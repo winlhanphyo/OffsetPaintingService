@@ -1,0 +1,23 @@
+@mixin hover-css {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 1px;
+  content: '.';
+  color: transparent;
+  background: #f47920;
+  opacity: 0;
+  z-index: -1;
+  transition: all .5s;
+}
+
+@mixin hover-visible {
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
+}

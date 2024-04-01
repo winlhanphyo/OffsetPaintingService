@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="js/common.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="header-inner">
+        <h1><a href=""><img src="images/common/logo.png" alt="Xenon Company Limited"></a></h1>
+        <nav>
+          <ul class="g-nav">
+            <li class="has-menu">
+              <a href="#">Products</a>
+              <ul class="sub-menu">
+                <li>
+                  <a href="">Business Cards</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="" class="dropdown-item">Standard Business Cards - Promo<span class="badge-info">SALE!</span></a>
+                    </li>
+                    <li><a href="" class="dropdown-item">Deluxe Business Card</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="">Large Format Printing</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="" class="dropdown-item">Vinyl Banner<span class="badge-info">HOT!</span></a>
+                    </li>
+                    <li><a href="" class="dropdown-item">Backlit Printing<span class="badge-info">UV</span></a></li>
+                    <li><a href="" class="dropdown-item">Building Printing</a></li>
+                    <li><a href="" class="dropdown-item">Event Backdrop</a></li>
+                    <li><a href="" class="dropdown-item">Billboard Printing</a></li>
+                    <li><a href="" class="dropdown-item">Reflective Printing</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="">Marketing Materials</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="" class="dropdown-item">Company Profile Book</a>
+                    </li>
+                    <li><a href="" class="dropdown-item">Flyer</a></li>
+                    <li><a href="" class="dropdown-item">Poster Sheet</a></li>
+                    <li><a href="" class="dropdown-item">Brochures</a></li>
+                    <li><a href="" class="dropdown-item">Poster Board</a></li>
+                    <li><a href="" class="dropdown-item">Table Tent Card</a></li>
+                    <li><a href="" class="dropdown-item">Spin Wheel</a></li>
+                    <li><a href="" class="dropdown-item">Booklet</a></li>
+                    <li><a href="" class="dropdown-item">Spiral Note Book</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="">Sticker</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="" class="dropdown-item">Ezy Film ( UV DTF )</a>
+                    </li>
+                    <li><a href="" class="dropdown-item">PP Paper Sticker ( ရေစိုခံ )</a></li>
+                    <li><a href="" class="dropdown-item">Sticker</a></li>
+                    <li><a href="" class="dropdown-item">Label Stickers<span class="badge-info">Hot Sales!</span></a></li>
+                    <li><a href="" class="dropdown-item">Paper Label Sticker - Promo</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="">Caution Sign Sticker</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="">Covid 19 Floor Sticker-01</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="">About US</a></li>
+            <li><a href="">Contact US</a></li>
+            <li><a href="">Request a Quote</a></li>
+            <li><a href="">Login / Register</a></li>
+          </ul>
+        </nav>
+        <div class="search-blk">
+          <div class="search-form">
+            <input type="search" name="top_search" id="top_search" value="" class="form-control" placeholder="Search" autocomplete="off" data-searched="">
+            <button>
+              <span class="material-symbols-outlined">
+                search
+              </span>
+            </button>
+          </div>
+          <ul class="language">
+            <li><img src="images/common/lang_burmese.png" alt=""></li>
+            <li><input type="checkbox" class="toggle"></li>
+            <li><img src="images/common/lang_usa.gif" alt=""></li>
+          </ul>
+          <div class="shopping">
+            <div class="material-symbols-outlined ">
+              shopping_cart
+            </div>
+            <div class="number">0</div>
+          </div>
+        </div>
+        
+      </div>
+    </header>
+    <main></main>
+    <!-- <footer>
+      <p>Copyright &copy; Dream Holdings., Ltd. All Rights Reserved.</p>
+    </footer> -->
+  </div>
+  <script>
+    $(document).ready(function(){
+      $(".job-list li").click(function() {
+        var targetClass = $(this).attr('class');
+        var prefixes = ['hawks', 'cleanarea', 'pop', 'media', 'root', 'kankitsu', 'fashion', 'unity', 'hizen', 'honda'];
+        if (targetClass) {
+          $('#' + targetClass).fadeIn("slow");
+          prefixes.forEach(function(prefix) {
+            $('[id^=' + prefix + ']').not('#' + targetClass).hide();
+          });
+        } else {
+          console.error("No class found on the clicked list item.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
