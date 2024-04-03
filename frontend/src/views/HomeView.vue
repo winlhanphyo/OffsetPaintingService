@@ -523,50 +523,12 @@ a {
 .sp {
   display: none;
 }
-@mixin hover-css {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  width: 100%;
-  height: 1px;
-  content: ".";
-  color: transparent;
-  background: #f47920;
-  opacity: 0;
-  z-index: -1;
-  transition: all 0.5s;
-}
-@mixin hover-visible {
-  opacity: 1;
-  visibility: visible;
-  height: 100%;
-}
-@mixin for-phone-only {
-  @media (max-width: 767.9px) {
-    @content;
-  }
-}
-@mixin for-tablet {
-  @media (min-width: 768px) and (max-width: 1440px) {
-    @content;
-  }
-}
-/* body {
-  margin: 0;
-  background: #efe2d9;
-  color: #313131;
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px; */
 .wrapper {
   width: 100%;
   header {
     max-width: 1440px;
     margin: 0 auto;
-    @include for-tablet {
+    @media screen and (min-width: 768px) and (max-width: 1440px) {
       max-width: 100%;
     }
     .header-inner {
@@ -576,71 +538,90 @@ a {
       padding: 20px 0;
       width: 1440px;
       margin: 0 auto;
-      @include for-tablet {
+      @media screen and (min-width: 768px) and (max-width: 1440px) {
         width: 95%;
       }
-      @include for-phone-only {
+      @media screen and (max-width: 767.9px) {
         width: 95%;
       }
       .flex {
         display: flex;
-        @include for-tablet {
+        @media screen and (min-width: 768px) and (max-width: 1440px) {
           flex-direction: column-reverse;
           align-items: end;
           margin-left: 10px;
         }
-        @include for-phone-only {
+        @media screen and (max-width: 767.9px) {
           display: block;
         }
       }
       h1 {
         width: 25%;
-        @include for-tablet {
+        @media screen and (min-width: 768px) and (max-width: 1440px) {
           width: 30%;
         }
-        @include for-phone-only {
-          width: 50%;
+        @media screen and (max-width: 767.9px) {
+          width: 35px;
+          margin-left: 45px;
         }
       }
       nav {
         .g-nav {
           display: flex;
-          @include for-phone-only {
+          @media screen and (max-width: 767.9px) {
             display: block;
           }
           li {
             font-weight: 500;
-            @include for-tablet {
+            @media screen and (min-width: 768px) and (max-width: 1440px) {
               font-size: 12px;
             }
             a {
               padding: 15px;
               position: relative;
-              @include for-tablet {
+              @media screen and (min-width: 768px) and (max-width: 1440px) {
                 padding: 9px;
               }
-              @include for-phone-only {
+              @media screen and (max-width: 767.9px) {
                 display: block;
               }
               &:hover {
-                color: #313131;
-                @include for-phone-only {
-                  background: #f47920;
+                color: #fff;
+                @media screen and (max-width: 767.9px) {
+                  background: #2e4412;
                 }
                 &::after {
-                  @include hover-visible();
+                  opacity: 1;
+                  visibility: visible;
+                  height: 100%;
                 }
               }
               &::after {
-                @include hover-css();
-                @include for-phone-only {
-                  @include hover-css();
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+                width: 100%;
+                height: 1px;
+                content: '.';
+                color: transparent;
+                background: #2e4412;
+                opacity: 0;
+                z-index: -1;
+                transition: all .5s;
+                @media screen and (max-width: 767.9px) {
                   display: none;
                 }
               }
               &.active {
+                color: #fff;
                 &::after {
-                  @include hover-visible();
+                  opacity: 1;
+                  visibility: visible;
+                  height: 100%;
                 }
               }
             }
@@ -652,19 +633,22 @@ a {
                 top: 35px;
                 left: -113px;
                 width: 350px;
-                background: #ceaf9b;
+                background: #fff;
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: space-between;
                 height: 600px;
                 overflow-y: auto;
                 z-index: 2;
-                @include for-tablet {
+                border: 8px solid #F5DD61;
+                color: #000;
+                box-shadow: 1px 2px 6px #000;
+                @media screen and (min-width: 768px) and (max-width: 1440px) {
                   top: 28px;
                   left: -113px;
                   width: 350px;
                 }
-                @include for-phone-only {
+                @media screen and (max-width: 767.9px) {
                   position: inherit;
                   top: 0;
                   left: 0;
@@ -692,7 +676,7 @@ a {
                   a {
                     display: block;
                     padding: 12px 20px 12px 20px;
-                    color: #fff;
+                    color: #313131;
                     font-weight: 700;
                     &:hover {
                       background: #f47920;
@@ -717,7 +701,7 @@ a {
                       padding: 1px 5px 2px;
                       font-size: 10px;
                       border-radius: 5px;
-                      @include for-phone-only {
+                      @media screen and (max-width: 767.9px) {
                         background: #b30000;
                       }
                     }
@@ -729,8 +713,18 @@ a {
               position: relative;
               a {
                 padding: 15px 30px 15px 24px;
-                @include for-tablet {
+                @media screen and (min-width: 768px) and (max-width: 1440px) {
                   padding: 11px 15px 11px 6px;
+                }
+              }
+              @media screen and (min-width: 768px) and (max-width: 1440px) {
+                &::after {
+                  right: -2px!important;
+                }
+              }
+              @media screen and (max-width: 767.9px) {
+                &::after {
+                  top: 12px!important;
                 }
               }
               &::after {
@@ -740,15 +734,15 @@ a {
                 top: -2px;
                 right: 9px;
                 font-size: 20px;
-                @include for-tablet {
-                  right: -2px;
-                }
-                @include for-phone-only {
-                  top: 12px;
+                
+              }
+              &:hover {
+                &::after {
+                  color: #fff;
                 }
               }
             }
-            @include for-phone-only {
+            @media screen and (max-width: 767.9px) {
               display: block;
               width: 100%;
               margin-bottom: 10px;
@@ -757,17 +751,17 @@ a {
             }
           }
         }
-        @include for-phone-only {
+        @media screen and (max-width: 767.9px) {
           position: fixed;
           top: 0;
-          right: -100vw;
+          left: -100vw;
           width: 100%;
           padding: 16.242vw 0 4.888vw;
           background-color: rgba(255, 255, 255, 0.9);
           transition: all 0.5s ease;
           opacity: 0;
           &.is-show {
-            right: 0;
+            left: 0;
             opacity: 1;
             z-index: 1;
           }
@@ -775,10 +769,10 @@ a {
       }
       .menu-toggle {
         display: none;
-        @include for-phone-only {
+        @media screen and (max-width: 767.9px) {
           position: fixed;
-          top: 27px;
-          right: 10px;
+          top: 35px;
+          left: 10px;
           width: 35px;
           height: 28px;
           cursor: pointer;
@@ -822,15 +816,15 @@ a {
       .search-blk {
         display: flex;
         align-items: center;
-        @include for-phone-only {
-          margin-right: 60px;
+        @media screen and (max-width: 767.9px) {
+          margin-right: 18px;
         }
         .search-form {
           position: relative;
           input {
             padding: 10px 35px 10px 15px;
             border-radius: 50px;
-            @include for-phone-only {
+            @media screen and (max-width: 767.9px) {
               display: none;
             }
           }
@@ -845,7 +839,7 @@ a {
             background: none;
             border: none;
             cursor: pointer;
-            @include for-phone-only {
+            @media screen and (max-width: 767.9px) {
               top: -9px;
             }
           }
@@ -854,7 +848,7 @@ a {
           display: flex;
           align-items: center;
           margin: 0 5px;
-          @include for-phone-only {
+          @media screen and (max-width: 767.9px) {
             display: none;
           }
           img {
@@ -904,7 +898,7 @@ a {
         }
         .shopping {
           position: relative;
-          @include for-phone-only {
+          @media screen and (max-width: 767.9px) {
             margin-top: 10px;
           }
           .number {
@@ -930,7 +924,7 @@ a {
       max-width: 100%;
       left: 0;
       right: 0;
-      background: #efe2d9;
+      background: #F5DD61;
     }
   }
   main {
@@ -940,13 +934,13 @@ a {
       }
       .slick-prev {
         left: 87px;
-        @include for-phone-only {
+        @media screen and (max-width: 767.9px) {
           left: 25px;
         }
       }
       .slick-next {
         right: 87px;
-        @include for-phone-only {
+        @media screen and (max-width: 767.9px) {
           right: 44px;
         }
       }
@@ -974,19 +968,19 @@ a {
     .container {
       max-width: 1440px;
       margin: 50px auto;
-      @include for-tablet {
+      @media screen and (min-width: 768px) and (max-width: 1440px) {
         max-width: 95%;
       }
-      @include for-phone-only {
+      @media screen and (max-width: 767.9px) {
         max-width: 95%;
       }
     }
   }
   footer {
     padding: 40px 0 0;
-    background: #977965;
+    background: rgb(44 44 44);
     color: #fff;
-    @include for-phone-only {
+    @media screen and (max-width: 767.9px) {
       padding: 40px 0 10px;
     }
     a {
@@ -995,14 +989,14 @@ a {
     .footer-inner {
       max-width: 1440px;
       margin: 0 auto;
-      @include for-tablet {
+      @media screen and (min-width: 768px) and (max-width: 1440px) {
         max-width: 95%;
       }
-      @include for-phone-only {
+      @media screen and (max-width: 767.9px) {
         max-width: 95%;
       }
       h3 {
-        color: #f47920;
+        color: #0097dc;
       }
       .ft-serch {
         margin-bottom: 30px;
@@ -1014,10 +1008,10 @@ a {
             padding: 15px 35px 15px 15px;
             border-radius: 10px;
             flex: 0 0 35%;
-            @include for-tablet {
+            @media screen and (min-width: 768px) and (max-width: 1440px) {
               flex: 0 0 50%;
             }
-            @include for-phone-only {
+            @media screen and (max-width: 767.9px) {
               flex: auto;
             }
           }
@@ -1031,7 +1025,7 @@ a {
             background: none;
             border: none;
             cursor: pointer;
-            background: #f47920;
+            background: #0097dc;
             border-radius: 0 8px 8px 0;
             color: #fff;
             font-weight: 700;
@@ -1053,13 +1047,13 @@ a {
         justify-content: space-between;
         .col {
           width: 21%;
-          @include for-phone-only {
+          @media screen and (max-width: 767.9px) {
             width: 100%;
           }
           .ft-txt {
             margin-top: 10px;
             line-height: 1.8;
-            @include for-phone-only {
+            @media screen and (max-width: 767.9px) {
               margin-bottom: 10px;
             }
           }
@@ -1075,7 +1069,7 @@ a {
               display: flex;
               line-height: 1.5;
               &:hover {
-                color: #f47920;
+                color: #0097dc;
               }
             }
             a[href^="tel"] {
@@ -1100,14 +1094,14 @@ a {
                   vertical-align: middle;
                 }
                 &:hover {
-                  color: #f47920;
+                  color: #0097dc;
                   &::before {
-                    color: #f47920;
+                    color: #0097dc;
                   }
                 }
               }
               span {
-                background: #f47920;
+                background: #0097dc;
                 color: #fff;
                 margin-left: 5px;
                 padding: 1px 5px 2px;
@@ -1119,7 +1113,7 @@ a {
         }
         &.ft-blk {
           align-items: center;
-          @include for-phone-only {
+          @media screen and (max-width: 767.9px) {
             display: block;
             padding-top: 10px;
             text-align: center;
@@ -1134,7 +1128,7 @@ a {
             }
             a {
               &:hover {
-                color: #f47920;
+                color: #0097dc;
               }
             }
           }
@@ -1142,7 +1136,7 @@ a {
       }
     }
     .footer-link {
-      background: #ceaf9b8c;
+      background: rgba(255, 255, 255, 0.3294117647);
       padding: 15px 0;
       .row {
         display: flex;
@@ -1152,7 +1146,7 @@ a {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          @include for-phone-only {
+          @media screen and (max-width: 767.9px) {
             display: block;
           }
           .title {
@@ -1164,7 +1158,7 @@ a {
             font-size: 22px;
             background: rgba(255, 255, 255, 0.3294117647);
             border-radius: 5px;
-            @include for-phone-only {
+            @media screen and (max-width: 767.9px) {
               margin-right: 10px;
               margin-bottom: 10px;
             }
@@ -1178,7 +1172,7 @@ a {
             }
           }
           &.payment {
-            @include for-phone-only {
+            @media screen and (max-width: 767.9px) {
               .row {
                 justify-content: flex-start;
               }
@@ -1189,7 +1183,7 @@ a {
               a {
                 width: 50px;
                 padding: 0;
-                @include for-phone-only {
+                @media screen and (max-width: 767.9px) {
                   width: 40px;
                 }
               }
@@ -1200,5 +1194,4 @@ a {
     }
   }
 }
-/* } */
 </style>
