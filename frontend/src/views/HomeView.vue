@@ -656,6 +656,9 @@ a {
                   height: 400px;
                   background: #003462;
                   transition: all 0.5s ease;
+                  border: inherit;
+                  color: #fff;
+                  box-shadow: none;
                 }
                 &::-webkit-scrollbar {
                   width: 10px;
@@ -676,8 +679,11 @@ a {
                   a {
                     display: block;
                     padding: 12px 20px 12px 20px;
-                    color: #313131;
+                    color: #000;
                     font-weight: 700;
+                    @media screen and (max-width: 767.9px) {
+                      color: #fff;
+                    }
                     &:hover {
                       background: #f47920;
                       color: #313131;
@@ -689,7 +695,11 @@ a {
                   li {
                     width: 100%;
                     a {
+                      color: #000;
                       font-weight: normal;
+                      @media screen and (max-width: 767.9px) {
+                        color: #fff;
+                      }
                     }
                     &::after {
                       display: none;
