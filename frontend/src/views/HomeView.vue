@@ -272,46 +272,6 @@ export default {
 
 <style lang="postcss">
 @import "@/assets/scss/mixins.scss";
-
-img {
-  max-width: 100%;
-  display: block;
-}
-h1,
-h2,
-h3 {
-  margin: 0;
-}
-ul {
-  padding: 0;
-  li {
-    list-style: none;
-  }
-}
-p {
-  margin: 0;
-}
-.clearfix {
-  zoom: 1;
-}
-.clearfix:after {
-  display: block;
-  clear: both;
-  height: 0;
-  line-height: 0;
-  visibility: hidden;
-  content: ".";
-}
-a {
-  color: #313131;
-  text-decoration: none;
-}
-.pc {
-  display: block;
-}
-.sp {
-  display: none;
-}
 .wrapper {
   main {
     .slider {
