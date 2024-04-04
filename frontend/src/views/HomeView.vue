@@ -478,7 +478,7 @@ export default {
       }
     }
     .company-info {
-      padding: 50px 0 0;
+      padding: 30px 0 80px;
       background: #f8f9fa;
       @media screen and (min-width: 768px) and (max-width: 1440px) {
         padding: 50px 0;

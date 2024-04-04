@@ -318,6 +318,7 @@ export default {
         }
         img {
           width: 10%;
+          cursor: pointer;
           @media screen and (min-width: 768px) and (max-width: 1440px) {
             width: 14%;
           }
