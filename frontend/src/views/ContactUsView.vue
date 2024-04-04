@@ -1,10 +1,10 @@
 <template>
-  <div>About</div>
+  <div>Contact Us</div>
 </template>
 
 <script>
 export default {
-  name: "AppAbout",
+  name: "AppContactUs",
   components: {},
   data() {
     return {};

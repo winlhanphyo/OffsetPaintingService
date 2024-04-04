@@ -1,10 +1,10 @@
 <template>
-  <div>About</div>
+  <div>Login Register</div>
 </template>
 
 <script>
 export default {
-  name: "AppAbout",
+  name: "AppLoginRegister",
   components: {},
   data() {
     return {};
