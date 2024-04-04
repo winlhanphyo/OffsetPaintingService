@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkoffset_printing"]=self["webpackChunkoffset_printing"]||[]).push([[437],{9437:function(n,t,e){e.r(t),e.d(t,{default:function(){return a}});var r=e(6768);function u(n,t,e,u,o,f){return(0,r.uX)(),(0,r.CE)("div",null,"About")}var o={name:"AppAbout",components:{},data(){return{}},methods:{}},f=e(1241);const s=(0,f.A)(o,[["render",u]]);var a=s}}]);
+//# sourceMappingURL=437.24bafb56.js.map
