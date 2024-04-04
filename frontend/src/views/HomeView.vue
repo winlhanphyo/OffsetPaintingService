@@ -243,10 +243,201 @@
         </ul>
       </div>
       <div class="container">
-        <h2>Products</h2>
-        <ul>
-          <li><a href=""></a></li>
-        </ul>
+        <h2><span>Products</span></h2>
+        <div class="product-list">
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Design T Shirt</h3>
+              <p>Create your own t-shirt designs for friends, families, and events</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Personalised T Shirt</h3>
+              <p>Create your own t-shirt designs for friends, families, and events</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Photography Prints</h3>
+              <p>Photographers Create it, we Print it, you Love it.</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Matt Canvas with Frame</h3>
+              <p>Canvas Printing with Frame</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Canves_print_1_400px.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>PP Paper Sticker ( ရေစိုခံ )</h3>
+              <p>PP Paper Sticker ( ရေစိုခံ )</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Water_Proof_400px.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Label Stickers</h3>
+              <p>Label Stickers</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/281_Label_sticker_main_image_1_400px20.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Vinyl Banner</h3>
+              <p>Vinyl Banner</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Vinyl_Banner_Small.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Standard Business Cards - Promo</h3>
+              <p>Name cards made from standard paper (Art Carton 250 gsm) printed with the best quality.</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Standard_Business_Cards_-_Promo_3_2copy.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Baked with Love Sticker Set</h3>
+              <p>Baked with Love Sticker Set</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/CakeBox_Sticker_Small.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Covid 19 Floor Sticker-01</h3>
+              <p>Caution Sign Floor Sticker</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/CautionSign_01_Small13.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Deluxe Business Card</h3>
+              <p>It offers the highest level printing. It comes with an option of luxurious Paper and also with matte & gloss lamination finishing. It adds a layer of depth to your branding and unique </p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Business_Card_Small.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Baked with Love Sticker Set</h3>
+              <p>Birthday Party <b>labels Stickers</b></p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/BD_StickerSet_Small.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Feather Banner Stand</h3>
+              <p>Feather Banner Stand</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Feather_Banner_400px.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Graceful Greeting and Invitation Cards</h3>
+              <p>Give customers greeting/invitation cards for any occasion.</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Greeting_Card_400.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Paper Label Sticker - Promo</h3>
+              <p>Label Stickers</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Paper_label_Sticker_400px.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Company Profile Book</h3>
+              <p>Company Profile</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/company_profile_400px.jpg" alt="" />
+              <div class="details">
+                <a href="">View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <footer>
@@ -535,7 +726,7 @@ a {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 0;
+      padding: 10px 0;
       width: 1440px;
       margin: 0 auto;
       @media screen and (min-width: 768px) and (max-width: 1440px) {
@@ -563,6 +754,15 @@ a {
         @media screen and (max-width: 767.9px) {
           width: 35px;
           margin-left: 45px;
+        }
+        img {
+          width: 10%;
+          @media screen and (min-width: 768px) and (max-width: 1440px) {
+            width: 14%;
+          }
+          @media screen and (max-width: 767.9px) {
+            width: auto;
+          }
         }
       }
       nav {
@@ -685,8 +885,8 @@ a {
                       color: #fff;
                     }
                     &:hover {
-                      background: #f47920;
-                      color: #313131;
+                      background: #000;
+                      color: #fff;
                     }
                   }
                 }
@@ -700,12 +900,15 @@ a {
                       @media screen and (max-width: 767.9px) {
                         color: #fff;
                       }
+                      &:hover {
+                        color: #fff;
+                      }
                     }
                     &::after {
                       display: none;
                     }
                     .badge-info {
-                      background: #003462;
+                      background: #0097dc;
                       color: #fff;
                       margin-left: 5px;
                       padding: 1px 5px 2px;
@@ -781,7 +984,7 @@ a {
         display: none;
         @media screen and (max-width: 767.9px) {
           position: fixed;
-          top: 35px;
+          top: 26px;
           left: 10px;
           width: 35px;
           height: 28px;
@@ -983,6 +1186,129 @@ a {
       }
       @media screen and (max-width: 767.9px) {
         max-width: 95%;
+      }
+      h2 {
+        text-align: center;
+        font-size: 30px;
+        @media screen and (max-width: 767.9px) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: 767.9px) {
+          span {
+            &::after {
+              width: 80px!important;;
+            }
+          }
+        }
+        span {
+          display: inline-block;
+          position: relative;
+          &::after {
+            position: absolute;
+            content: '';
+            width: 100px;
+            height: 2px;
+            background: #000;
+            bottom: -12px;
+            right: 0;
+            left: 0;
+            display: block;
+            margin: 0 auto;
+          }
+        }
+      }
+      .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 50px 0;
+        @media screen and (max-width: 767.9px) {
+          justify-content: space-between;
+        }
+        .product-card {
+          width: 21%;
+          padding: 20px;
+          background: #f4f5f9a6;
+          margin: 0 13px 13px 0;
+          border-radius: 10px;
+          position: relative;
+          @media screen and (min-width: 501px) and (max-width: 767.9px) {
+            width: 40%;
+            margin-right: 0;
+          }
+          @media screen and (max-width: 500px) {
+            width: auto;
+            margin-right: 0;
+          }
+          .work-heading {
+            padding-bottom: 20px;
+            h3 {
+              margin-bottom: 10px;
+              font-size: 17px;
+              color: #0c2773;
+              @media screen and (max-width: 767.9px) {
+                font-size: 16px;
+              }
+            }
+            p {
+              margin: 0;
+              color: #1d1a1a !important;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              line-height: 23px;
+              white-space: nowrap;
+              font-size: 14px;
+              @media screen and (max-width: 500px) {
+                white-space: normal;
+              }
+            }
+          }
+          &:hover {
+            .details {
+              bottom: 0;
+              height: 100%;
+              display: block;
+              opacity: 1;
+              transition: 0.8s ease;
+            }
+          }
+          .details {
+            position: absolute;
+            right: 0;
+            bottom: 100%;
+            left: 0;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            a {
+              background: #ffe401;
+              box-shadow: 0 10px 20px #307cff29;
+              color: #0c2773 !important;
+              padding: 10px;
+              border-radius: 25px;
+              display: inline-table;
+              align-items: center;
+              justify-content: space-between;
+              border: 0;
+              cursor: pointer;
+              font-size: 15px;
+              margin: 0 auto;
+              position: absolute;
+              bottom: 45%;
+              left: 0;
+              right: 0;
+              .fa {
+                margin-left: 7px;
+              }
+              @media screen and (max-width: 767.9px) {
+                font-size: 12px;
+              }
+            }
+          }
+          
+        }
       }
     }
   }
