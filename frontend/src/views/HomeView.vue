@@ -252,6 +252,36 @@
         </div>
       </div>
     </div>
+    <div class="company-info">
+      <div class="container">
+        <h2><span>Discover Colors with Best Printing</span></h2>
+        <p class="info-txt">Enjoy great offers on personalized and top-notch quality printing products</p>
+        <div class="company-overview">
+          <div class="short-company-overview">
+            <img src="@/assets/images/home/about_company.png" alt="" />
+            <div class="company-blk">
+              <h3>About Company</h3>
+              <p>
+                Since inception, we have worked relentlessly in improving your printing experience. We stand tall to provide you a high order and quality printing products backed with a 100% satisfaction guarantee.
+              </p>
+              <a class="btn btn-info" href="/about_us.html">Read More<i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+          <div class="short-company-overview">
+            <img src="@/assets/images/home/contact_us.png" alt="" />
+            <div class="company-blk">
+              <h3>Contact Us</h3>
+              <p>
+                We always welcome your feedback and suggestions. Feel free to contact our customer service desk and get in touch with our print experts. Our experts available 24/7 on email and telephone.
+              </p>
+              <a class="btn btn-info" href="/about_us.html">Contact Us<i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -394,11 +424,114 @@ export default {
               bottom: 45%;
               left: 0;
               right: 0;
+              &:hover {
+                opacity: 0.8;
+              }
               .fa {
                 margin-left: 7px;
               }
               @media screen and (max-width: 767.9px) {
                 font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .company-info {
+      padding: 30px 0 80px;
+      background: #f8f9fa;
+      @media screen and (min-width: 768px) and (max-width: 1440px) {
+        padding: 50px 0;
+      }
+      @media screen and (max-width: 767.9px) {
+        padding: 20px 0;
+      }
+      .info-txt {
+        margin-top: 50px;
+        text-align: center;
+      }
+      .company-overview {
+        display: flex;
+        margin-top: 40px;
+        justify-content: space-evenly;
+        @media screen and (min-width: 768px) and (max-width: 1440px) {
+          margin: 40px 0 125px;
+        }
+        @media screen and (max-width: 767.9px) {
+          display: block;
+        }
+        .short-company-overview{
+          position: relative;
+          margin-right: 10px;
+          @media screen and (max-width: 767.9px) {
+            margin: 0 0 20px;
+            img {
+              margin: 0 auto;
+            }
+          }
+          .company-blk {
+            position: absolute;
+            right: 0;
+            bottom: -60px;
+            right: 69px;
+            width: 65%;
+            overflow: hidden;
+            display: block;
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 25px;
+            color: #fff;
+            @media screen and (min-width: 768px) and (max-width: 1440px) {
+              bottom: -125px;
+              right: 56px;
+              padding: 16px;
+            }
+            @media screen and (max-width: 767.9px) {
+              position: inherit;
+              bottom: 0;
+              right: 0;
+              width: auto;
+              background: none;
+              padding: 15px 5px;
+            }
+            a {
+              background: #ffe401;
+              box-shadow: 0 10px 20px #307cff29;
+              color: #0c2773 !important;
+              padding: 10px;
+              border-radius: 25px;
+              display: inline-table;
+              align-items: center;
+              justify-content: space-between;
+              border: 0;
+              cursor: pointer;
+              font-size: 15px;
+              margin: 0 auto;
+              float: right;
+              &:hover {
+                opacity: 0.8;
+              }
+              .fa {
+                margin-left: 7px;
+              }
+              @media screen and (max-width: 767.9px) {
+                font-size: 12px;
+              }
+            }
+            h3 {
+              margin-bottom: 10px;
+              font-size: 17px;
+              color: #0097dc;
+            }
+            p {
+              margin: 0 0 10px;
+              line-height: 1.5;
+              color: #fff;
+              font-size: 14px;
+              @media screen and (max-width: 767.9px) {
+                color: #000;
               }
             }
           }

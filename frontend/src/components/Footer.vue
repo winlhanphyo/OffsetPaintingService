@@ -382,6 +382,7 @@ footer {
   .footer-link {
     background: rgba(255, 255, 255, 0.3294117647);
     padding: 15px 0;
+    margin-top: 10px;
     .row {
       display: flex;
       flex-wrap: wrap;

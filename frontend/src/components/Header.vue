@@ -318,6 +318,7 @@ export default {
         }
         img {
           width: 10%;
+          cursor: pointer;
           @media screen and (min-width: 768px) and (max-width: 1440px) {
             width: 14%;
           }
@@ -340,6 +341,7 @@ export default {
             a {
               padding: 15px;
               position: relative;
+              cursor: pointer;
               @media screen and (min-width: 768px) and (max-width: 1440px) {
                 padding: 9px;
               }
@@ -348,6 +350,7 @@ export default {
               }
               &:hover {
                 color: #fff;
+                background: #2e4412;
                 @media screen and (max-width: 767.9px) {
                   background: #2e4412;
                 }
@@ -357,28 +360,9 @@ export default {
                   height: 100%;
                 }
               }
-              &::after {
-                display: block;
-                position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                margin: auto;
-                width: 100%;
-                height: 1px;
-                content: ".";
-                color: transparent;
-                background: #2e4412;
-                opacity: 0;
-                z-index: -1;
-                transition: all 0.5s;
-                @media screen and (max-width: 767.9px) {
-                  display: none;
-                }
-              }
               &.active {
                 color: #fff;
+                background: #2e4412;
                 &::after {
                   opacity: 1;
                   visibility: visible;
@@ -400,6 +384,7 @@ export default {
                 justify-content: space-between;
                 height: 600px;
                 overflow-y: auto;
+                overflow-x: hidden;
                 z-index: 2;
                 border: 8px solid #f5dd61;
                 color: #000;
@@ -449,6 +434,9 @@ export default {
                       background: #000;
                       color: #fff;
                     }
+                    &.active {
+                      color: #fff;
+                    }
                   }
                 }
                 .dropdown-menu {
@@ -462,6 +450,9 @@ export default {
                         color: #fff;
                       }
                       &:hover {
+                        color: #fff;
+                      }
+                      &.active {
                         color: #fff;
                       }
                     }
@@ -486,39 +477,43 @@ export default {
             &.has-menu {
               position: relative;
               a {
+                position: relative;
                 padding: 15px 30px 15px 24px;
                 @media screen and (min-width: 768px) and (max-width: 1440px) {
-                  padding: 11px 15px 11px 6px;
+                  padding: 9px 15px 9px 6px;
+                }
+                &::after {
+                  content: "\e5cf";
+                  position: absolute;
+                  font-family: "Material Symbols Outlined";
+                  top: 12px;
+                  right: 9px;
+                  font-size: 20px;
+                }
+                @media screen and (max-width: 767.9px) {
+                  &::after {
+                    top: 12px;
+                  }
+                }
+                @media screen and (min-width: 768px) and (max-width: 1440px) {
+                  &::after {
+                    top: 6px;
+                    right: -2px !important;
+                  }
                 }
               }
-              @media screen and (min-width: 768px) and (max-width: 1440px) {
-                &::after {
-                  right: -2px !important;
-                }
-              }
-              @media screen and (max-width: 767.9px) {
-                &::after {
-                  top: 12px !important;
-                }
-              }
-              &::after {
-                content: "\e5cf";
-                position: absolute;
-                font-family: "Material Symbols Outlined";
-                top: -2px;
-                right: 9px;
-                font-size: 20px;
-              }
-              &:hover {
-                &::after {
-                  color: #fff;
+              .sub-menu {
+                a {
+                  &::after {
+                    top: 10px;
+                    right: 9px!important;
+                  }
                 }
               }
             }
             @media screen and (max-width: 767.9px) {
               display: block;
               width: 100%;
-              margin-bottom: 10px;
               font-size: 14px;
               text-align: center;
             }
@@ -740,6 +735,45 @@ export default {
       }
     }
   }
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  li {
+    list-style: none;
+  }
+}
+p {
+  margin: 0;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  display: block;
+  clear: both;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  content: ".";
+}
+a {
+  color: #313131;
+  text-decoration: none;
+}
+.pc {
+  display: block;
+}
+.sp {
+  display: none;
 }
 img {
   max-width: 100%;
