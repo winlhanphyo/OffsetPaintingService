@@ -312,44 +312,6 @@ export default {
       }
     }
     .container {
-      max-width: 1440px;
-      margin: 50px auto;
-      @media screen and (min-width: 768px) and (max-width: 1440px) {
-        max-width: 95%;
-      }
-      @media screen and (max-width: 767.9px) {
-        max-width: 95%;
-      }
-      h2 {
-        text-align: center;
-        font-size: 30px;
-        @media screen and (max-width: 767.9px) {
-          font-size: 20px;
-        }
-        @media screen and (max-width: 767.9px) {
-          span {
-            &::after {
-              width: 80px !important;
-            }
-          }
-        }
-        span {
-          display: inline-block;
-          position: relative;
-          &::after {
-            position: absolute;
-            content: "";
-            width: 100px;
-            height: 2px;
-            background: #000;
-            bottom: -12px;
-            right: 0;
-            left: 0;
-            display: block;
-            margin: 0 auto;
-          }
-        }
-      }
       .product-list {
         display: flex;
         flex-wrap: wrap;
