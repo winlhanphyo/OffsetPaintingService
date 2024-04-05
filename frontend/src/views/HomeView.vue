@@ -465,7 +465,7 @@ export default {
           position: relative;
           margin-right: 10px;
           @media screen and (max-width: 767.9px) {
-            margin: 0 0 100px;
+            margin: 0 0 20px;
             img {
               margin: 0 auto;
             }
@@ -488,17 +488,13 @@ export default {
               right: 56px;
               padding: 16px;
             }
-            @media screen and (min-width: 501px) and (max-width: 1440px) {
-              left: 0;
+            @media screen and (max-width: 767.9px) {
+              position: inherit;
+              bottom: 0;
               right: 0;
-              margin: 0 auto;
-              width: 80%;
-            }
-            @media screen and (max-width: 500px) {
-              left: 0;
-              right: 0;
-              margin: 0 auto;
-              width: 80%;
+              width: auto;
+              background: none;
+              padding: 15px 5px;
             }
             a {
               background: #ffe401;
@@ -534,6 +530,9 @@ export default {
               line-height: 1.5;
               color: #fff;
               font-size: 14px;
+              @media screen and (max-width: 767.9px) {
+                color: #000;
+              }
             }
           }
         }
