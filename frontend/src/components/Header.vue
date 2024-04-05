@@ -695,6 +695,85 @@ export default {
       background: #f5dd61;
     }
   }
+  .container {
+    max-width: 1440px;
+    margin: 50px auto;
+    @media screen and (min-width: 768px) and (max-width: 1440px) {
+      max-width: 95%;
+    }
+    @media screen and (max-width: 767.9px) {
+      max-width: 95%;
+    }
+    h2 {
+      text-align: center;
+      font-size: 30px;
+      @media screen and (max-width: 767.9px) {
+        font-size: 20px;
+      }
+      @media screen and (max-width: 767.9px) {
+        span {
+          &::after {
+            width: 80px !important;
+          }
+        }
+      }
+      span {
+        display: inline-block;
+        position: relative;
+        &::after {
+          position: absolute;
+          content: "";
+          width: 100px;
+          height: 2px;
+          background: #000;
+          bottom: -12px;
+          right: 0;
+          left: 0;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  li {
+    list-style: none;
+  }
+}
+p {
+  margin: 0;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  display: block;
+  clear: both;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  content: ".";
+}
+a {
+  color: #313131;
+  text-decoration: none;
+}
+.pc {
+  display: block;
+}
+.sp {
+  display: none;
 }
 img {
   max-width: 100%;
