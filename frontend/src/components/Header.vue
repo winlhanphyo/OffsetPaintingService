@@ -13,11 +13,11 @@
               <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="$router.push('/')">Home</a>
             </li>
             <li class="has-menu">
-              <a :class="[checkActiveMenu('/product') ? 'active' : '']">Products</a>
+              <a :class="[checkActiveMenu('/product') ? 'active' : '']" @click="resetMenu()">Products</a>
               <ul class="sub-menu">
                 <li>
-                  <a>Business Cards</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(0)">Business Cards</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[0]">
                     <li>
                       <a @click="$router.push('/product/1')" class="dropdown-item"
                         >Standard Business Cards - Promo<span class="badge-info"
@@ -32,8 +32,8 @@
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Large Format Printing</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(1)">Large Format Printing</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[1]">
                     <li>
                       <a href="" class="dropdown-item"
                         >Vinyl Banner<span class="badge-info">HOT!</span></a
@@ -51,8 +51,8 @@
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Marketing Materials</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(2)">Marketing Materials</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[2]">
                     <li>
                       <a href="" class="dropdown-item">Company Profile Book</a>
                     </li>
@@ -67,8 +67,8 @@
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Sticker</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(3)">Sticker</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[3]">
                     <li>
                       <a href="" class="dropdown-item">Ezy Film ( UV DTF )</a>
                     </li>
@@ -87,8 +87,8 @@
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Caution Sign Sticker</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(4)">Caution Sign Sticker</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[4]">
                     <li><a href="">Covid 19 Floor Sticker-01</a></li>
                     <li><a href="">Covid 19 Caution Sticker-02</a></li>
                     <li><a href="">Covid 19 Caution Sticker-03</a></li>
@@ -103,15 +103,15 @@
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">T Shirt Printing</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(5)">T Shirt Printing</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[5]">
                     <li><a href="">Design T Shirt</a></li>
                     <li><a href="">Personalised T Shirt</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Display Standee</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(6)">Display Standee</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[6]">
                     <li><a href="">Life Size Cut Out</a></li>
                     <li><a href="">Aluminium Lightbox (Customize Size)</a></li>
                     <li><a href="">X Stand</a></li>
@@ -122,76 +122,76 @@
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Stickers - ReadyMade</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(7)">Stickers - ReadyMade</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[7]">
                     <li><a href="">Baked with Love Sticker Set</a></li>
                     <li><a href="">Baked with Love Sticker Set</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Flag</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(8)">Flag</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[8]">
                     <li><a href="">Feather Banner Stand</a></li>
                     <li><a href="">J Flag Stand</a></li>
                     <li><a href="">Rectangle Flag</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Menu</a>
-                  <ul class="dropdown-menu">
+                  <span @click="clickActiveDropDownMenu(9)">Menu</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[9]">
                     <li><a href="">Menu Book</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Business Stationery</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="">Greeting Cards</a></li>
-                    <li><a href="">Document printing</a></li>
-                    <li><a href="">Letterhead</a></li>
-                    <li><a href="">Certificated</a></li>
-                    <li><a href="">ID Card</a></li>
-                    <li><a href="">Lanyard</a></li>
+                  <span @click="clickActiveDropDownMenu(10)">Business Stationery</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[10]">
+                    <li><a @click="$router.push('/product/1')">Greeting Cards</a></li>
+                    <li><a @click="$router.push('/product/1')">Document printing</a></li>
+                    <li><a @click="$router.push('/product/1')">Letterhead</a></li>
+                    <li><a @click="$router.push('/product/1')">Certificated</a></li>
+                    <li><a @click="$router.push('/product/1')">ID Card</a></li>
+                    <li><a @click="$router.push('/product/1')">Lanyard</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Canvas Print</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="">Matt Canvas with Frame</a></li>
+                  <span @click="clickActiveDropDownMenu(11)">Canvas Print</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[11]">
+                    <li><a @click="$router.push('/product/1')">Matt Canvas with Frame</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Decorative Printing</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="">Wall Paper</a></li>
+                  <span @click="clickActiveDropDownMenu(12)">Decorative Printing</span>
+                  <ul v-if="activeDropDownMenu[12]">
+                    <li><a @click="$router.push('/product/1')">Wall Paper</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Photo Print</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="">Acrylic UV Print</a></li>
-                    <li><a href="">Metal UV Print</a></li>
-                    <li><a href="">Photopaper Printing</a></li>
+                  <span @click="clickActiveDropDownMenu(13)">Photo Print</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[13]">
+                    <li><a @click="$router.push('/product/1')">Acrylic UV Print</a></li>
+                    <li><a @click="$router.push('/product/1')">Metal UV Print</a></li>
+                    <li><a @click="$router.push('/product/1')">Photopaper Printing</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">Souvenir & Gift</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="">Tote Bag</a></li>
-                    <li><a href="">Aluminium Bottle</a></li>
-                    <li><a href="">Ceramic Coaster</a></li>
-                    <li><a href="">Pillow Case</a></li>
-                    <li><a href="">Coffee Mug</a></li>
+                  <span @click="clickActiveDropDownMenu(14)">Souvenir & Gift</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[14]">
+                    <li><a @click="$router.push('/product/1')">Tote Bag</a></li>
+                    <li><a @click="$router.push('/product/1')">Aluminium Bottle</a></li>
+                    <li><a @click="$router.push('/product/1')">Ceramic Coaster</a></li>
+                    <li><a @click="$router.push('/product/1')">Pillow Case</a></li>
+                    <li><a @click="$router.push('/product/1')">Coffee Mug</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a @click="$router.push('/product/1')">POP Display</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="">Wobbler</a></li>
-                    <li><a href="">1mm PVC Rigid Printing with Sticker</a></li>
-                    <li><a href="">0.5mm PVC Rigid Printing with Sticker</a></li>
-                    <li><a href="">Dangler</a></li>
-                    <li><a href="">All in one Board Printing with Sticker</a></li>
-                    <li><a href="">PP Board Printing with Sticker</a></li>
+                  <span @click="clickActiveDropDownMenu(15)">POP Display</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[15]">
+                    <li><a @click="$router.push('/product/1')">Wobbler</a></li>
+                    <li><a @click="$router.push('/product/1')">1mm PVC Rigid Printing with Sticker</a></li>
+                    <li><a @click="$router.push('/product/1')">0.5mm PVC Rigid Printing with Sticker</a></li>
+                    <li><a @click="$router.push('/product/1')">Dangler</a></li>
+                    <li><a @click="$router.push('/product/1')">All in one Board Printing with Sticker</a></li>
+                    <li><a @click="$router.push('/product/1')">PP Board Printing with Sticker</a></li>
                   </ul>
                 </li>
               </ul>
@@ -252,10 +252,24 @@ export default {
   components: {},
   data() {
     return {
-      currentRoute: "home"
+      currentRoute: "home",
+      activeDropDownMenu: [false, false, false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false]
     };
   },
-  methods: {},
+  methods: {
+    clickActiveDropDownMenu(i) {
+      this.resetMenu(i);
+      this.activeDropDownMenu[i] = !this.activeDropDownMenu[i];
+    },
+    resetMenu(index=-1) {
+      for (let i = 0; i < this.activeDropDownMenu.length; i++) {
+        if (index !== i) {
+          this.activeDropDownMenu[i] = false;
+        }
+      }
+    }
+  },
   computed: {
     checkActiveMenu() {
       return (routeParam) => {
@@ -264,10 +278,10 @@ export default {
     },
   },
   watch: {
-    $route(to, from) {
-      console.log("to and from", to, from)
-      this.currentRoute = to.name;
-    },
+    // $route(to, from) {
+    //   console.log("to and from", to, from)
+    //   this.currentRoute = to.name;
+    // },
   },
 };
 </script>
@@ -422,7 +436,7 @@ export default {
                 }
                 li {
                   position: relative;
-                  a {
+                  span {
                     display: block;
                     padding: 12px 20px 12px 20px;
                     color: #000;

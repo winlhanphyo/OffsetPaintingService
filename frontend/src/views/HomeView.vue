@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="slider">
-      <ul>
+      <ul class="slider-item">
         <li><img src="@/assets/images/home/SaiSai_Banner.jpg" alt="" /></li>
         <li>
           <a href=""><img src="@/assets/images/home/T_Shirt37.jpg" alt="" /></a>
@@ -255,16 +255,21 @@
     <div class="company-info">
       <div class="container">
         <h2><span>Discover Colors with Best Printing</span></h2>
-        <p class="info-txt">Enjoy great offers on personalized and top-notch quality printing products</p>
+        <p class="info-txt">
+          Enjoy great offers on personalized and top-notch quality printing products
+        </p>
         <div class="company-overview">
           <div class="short-company-overview">
             <img src="@/assets/images/home/about_company.png" alt="" />
             <div class="company-blk">
               <h3>About Company</h3>
               <p>
-                Since inception, we have worked relentlessly in improving your printing experience. We stand tall to provide you a high order and quality printing products backed with a 100% satisfaction guarantee.
+                Since inception, we have worked relentlessly in improving your printing
+                experience. We stand tall to provide you a high order and quality printing
+                products backed with a 100% satisfaction guarantee.
               </p>
-              <a class="btn btn-info" href="/about_us.html">Read More<i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+              <a class="btn btn-info" href="/about_us.html"
+                >Read More<i class="fa fa-arrow-circle-right" aria-hidden="true"></i
               ></a>
             </div>
           </div>
@@ -273,9 +278,12 @@
             <div class="company-blk">
               <h3>Contact Us</h3>
               <p>
-                We always welcome your feedback and suggestions. Feel free to contact our customer service desk and get in touch with our print experts. Our experts available 24/7 on email and telephone.
+                We always welcome your feedback and suggestions. Feel free to contact our
+                customer service desk and get in touch with our print experts. Our experts
+                available 24/7 on email and telephone.
               </p>
-              <a class="btn btn-info" href="/about_us.html">Contact Us<i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+              <a class="btn btn-info" href="/about_us.html"
+                >Contact Us<i class="fa fa-arrow-circle-right" aria-hidden="true"></i
               ></a>
             </div>
           </div>
@@ -287,6 +295,8 @@
 
 <script>
 // @ is an alias to /src
+import $ from "jquery";
+import "slick-carousel";
 
 export default {
   name: "HomeView",
@@ -295,6 +305,19 @@ export default {
     return {
       activeMenu: false,
     };
+  },
+  mounted() {
+    console.log("Mounted");
+    $(".slider-item").slick({
+      arrows: true,
+      centerPadding: "0px",
+      dots: true,
+      slidesToShow: 1,
+      infinite: false,
+    });
+  },
+  beforeUnmount() {
+    $(".slider-item").slick("unslick");
   },
   methods: {},
 };
@@ -461,7 +484,7 @@ export default {
         @media screen and (max-width: 767.9px) {
           display: block;
         }
-        .short-company-overview{
+        .short-company-overview {
           position: relative;
           margin-right: 10px;
           @media screen and (max-width: 767.9px) {
