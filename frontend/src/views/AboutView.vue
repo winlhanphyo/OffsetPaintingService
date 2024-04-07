@@ -13,7 +13,7 @@
           </li>
         </ul> -->
       </div>
-      <h2><span>About Us</span></h2>
+      <h2>About Us</h2>
       <div class="landing-page">
         <p>
           Xenon Company Limited&nbsp;presents the premier Online Printing Platform for

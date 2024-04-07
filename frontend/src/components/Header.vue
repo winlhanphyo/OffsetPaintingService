@@ -364,9 +364,9 @@ export default {
               }
               &:hover {
                 color: #fff;
-                background: #2e4412;
+                background: #000;
                 @media screen and (max-width: 767.9px) {
-                  background: #2e4412;
+                  background: #000;
                 }
                 &::after {
                   opacity: 1;
@@ -376,7 +376,7 @@ export default {
               }
               &.active {
                 color: #fff;
-                background: #2e4412;
+                background: #000;
                 &::after {
                   opacity: 1;
                   visibility: visible;
@@ -441,6 +441,7 @@ export default {
                     padding: 12px 20px 12px 20px;
                     color: #000;
                     font-weight: 700;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
                     @media screen and (max-width: 767.9px) {
                       color: #fff;
                     }
@@ -454,26 +455,37 @@ export default {
                   }
                 }
                 .dropdown-menu {
-                  border-top: 1px solid rgba(255, 255, 255, 0.25);
                   li {
                     width: 100%;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
                     a {
                       color: #000;
                       font-weight: normal;
+                      display: block;
+                      @media screen and (min-width: 768px) and (max-width: 1440px) {
+                        padding: 9px 20px 9px 20px;
+                      }
                       @media screen and (max-width: 767.9px) {
                         color: #fff;
                       }
                       &:hover {
                         color: #fff;
+                        &::after {
+                          display: none;
+                        }
                       }
                       &.active {
                         color: #fff;
+                      }
+                      &::after {
+                        display: none;
                       }
                     }
                     &::after {
                       display: none;
                     }
                     .badge-info {
+                      display: inline;
                       background: #0097dc;
                       color: #fff;
                       margin-left: 5px;
@@ -483,6 +495,34 @@ export default {
                       @media screen and (max-width: 767.9px) {
                         background: #b30000;
                       }
+                      &::after {
+                        display: none;
+                      }
+                    }
+                  }
+                }
+              }
+              li {
+                span {
+                  position: relative;
+                  cursor: pointer;
+                  &::after {
+                    content: "\e5cf";
+                    position: absolute;
+                    font-family: "Material Symbols Outlined";
+                    top: 12px;
+                    right: 9px;
+                    font-size: 20px;
+                  }
+                  @media screen and (max-width: 767.9px) {
+                    &::after {
+                      top: 12px;
+                    }
+                  }
+                  @media screen and (min-width: 768px) and (max-width: 1440px) {
+                    &::after {
+                      top: 6px;
+                      right: 18px !important;
                     }
                   }
                 }
@@ -721,30 +761,26 @@ export default {
     h2 {
       text-align: center;
       font-size: 30px;
+      display: block;
+      position: relative;
+      &::after {
+        position: absolute;
+        content: "";
+        width: 100px;
+        height: 2px;
+        background: #000;
+        bottom: -12px;
+        right: 0;
+        left: 0;
+        display: block;
+        margin: 0 auto;
+      }
       @media screen and (max-width: 767.9px) {
         font-size: 20px;
       }
       @media screen and (max-width: 767.9px) {
-        span {
-          &::after {
-            width: 80px !important;
-          }
-        }
-      }
-      span {
-        display: inline-block;
-        position: relative;
         &::after {
-          position: absolute;
-          content: "";
-          width: 100px;
-          height: 2px;
-          background: #000;
-          bottom: -12px;
-          right: 0;
-          left: 0;
-          display: block;
-          margin: 0 auto;
+          width: 80px !important;
         }
       }
     }
