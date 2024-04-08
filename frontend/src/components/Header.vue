@@ -2,31 +2,31 @@
   <header>
     <div class="header-inner">
       <h1>
-        <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="$router.push('/')"
+        <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')"
           ><img src="@/assets/images/common/logo.png" alt="Xenon Company Limited"
         /></a>
       </h1>
       <div class="flex">
-        <nav class="gnav">
+        <nav :class="[mobileToggle ? 'gnav is-show' : 'gnav']">
           <ul class="g-nav">
             <li>
-              <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="$router.push('/')">Home</a>
+              <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')">Home</a>
             </li>
             <li class="has-menu">
               <a :class="[checkActiveMenu('/product') ? 'active' : '']" @click="resetMenu()">Products</a>
-              <ul class="sub-menu">
+              <ul :class="[activeMenu ? 'sub-menu is-show' : 'sub-menu']">
                 <li>
                   <span @click="clickActiveDropDownMenu(0)">Business Cards</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[0]">
                     <li>
-                      <a @click="$router.push('/product/1')" class="dropdown-item"
+                      <a @click="changeRoute()" class="dropdown-item"
                         >Standard Business Cards - Promo<span class="badge-info"
                           >SALE!</span
                         ></a
                       >
                     </li>
                     <li>
-                      <a @click="$router.push('/product/1')" class="dropdown-item"
+                      <a @click="changeRoute()" class="dropdown-item"
                         >Deluxe Business Card</a>
                     </li>
                   </ul>
@@ -35,182 +35,182 @@
                   <span @click="clickActiveDropDownMenu(1)">Large Format Printing</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[1]">
                     <li>
-                      <a href="" class="dropdown-item"
+                      <a @click="changeRoute()" class="dropdown-item"
                         >Vinyl Banner<span class="badge-info">HOT!</span></a
                       >
                     </li>
                     <li>
-                      <a href="" class="dropdown-item"
+                      <a @click="changeRoute()" class="dropdown-item"
                         >Backlit Printing<span class="badge-info">UV</span></a
                       >
                     </li>
-                    <li><a href="" class="dropdown-item">Building Printing</a></li>
-                    <li><a href="" class="dropdown-item">Event Backdrop</a></li>
-                    <li><a href="" class="dropdown-item">Billboard Printing</a></li>
-                    <li><a href="" class="dropdown-item">Reflective Printing</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Building Printing</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Event Backdrop</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Billboard Printing</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Reflective Printing</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(2)">Marketing Materials</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[2]">
                     <li>
-                      <a href="" class="dropdown-item">Company Profile Book</a>
+                      <a @click="changeRoute()" class="dropdown-item">Company Profile Book</a>
                     </li>
-                    <li><a href="" class="dropdown-item">Flyer</a></li>
-                    <li><a href="" class="dropdown-item">Poster Sheet</a></li>
-                    <li><a href="" class="dropdown-item">Brochures</a></li>
-                    <li><a href="" class="dropdown-item">Poster Board</a></li>
-                    <li><a href="" class="dropdown-item">Table Tent Card</a></li>
-                    <li><a href="" class="dropdown-item">Spin Wheel</a></li>
-                    <li><a href="" class="dropdown-item">Booklet</a></li>
-                    <li><a href="" class="dropdown-item">Spiral Note Book</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Flyer</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Poster Sheet</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Brochures</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Poster Board</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Table Tent Card</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Spin Wheel</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Booklet</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Spiral Note Book</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(3)">Sticker</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[3]">
                     <li>
-                      <a href="" class="dropdown-item">Ezy Film ( UV DTF )</a>
+                      <a @click="changeRoute()" class="dropdown-item">Ezy Film ( UV DTF )</a>
                     </li>
                     <li>
-                      <a href="" class="dropdown-item">PP Paper Sticker ( ရေစိုခံ )</a>
+                      <a @click="changeRoute()" class="dropdown-item">PP Paper Sticker ( ရေစိုခံ )</a>
                     </li>
-                    <li><a href="" class="dropdown-item">Sticker</a></li>
+                    <li><a @click="changeRoute()" class="dropdown-item">Sticker</a></li>
                     <li>
-                      <a href="" class="dropdown-item"
+                      <a @click="changeRoute()" class="dropdown-item"
                         >Label Stickers<span class="badge-info">Hot Sales!</span></a
                       >
                     </li>
                     <li>
-                      <a href="" class="dropdown-item">Paper Label Sticker - Promo</a>
+                      <a @click="changeRoute()" class="dropdown-item">Paper Label Sticker - Promo</a>
                     </li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(4)">Caution Sign Sticker</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[4]">
-                    <li><a href="">Covid 19 Floor Sticker-01</a></li>
-                    <li><a href="">Covid 19 Caution Sticker-02</a></li>
-                    <li><a href="">Covid 19 Caution Sticker-03</a></li>
-                    <li><a href="">Covid 19 Caution Sticker-04</a></li>
-                    <li><a href="">Covid 19 Caution Sign Board-05</a></li>
-                    <li><a href="">Covid 19 Floor Sticker-06</a></li>
-                    <li><a href="">Covid 19 Caution Sticker-07</a></li>
-                    <li><a href="">Covid 19 Caution Sticker-08</a></li>
-                    <li><a href="">Covid 19 Caution Sticker-09</a></li>
-                    <li><a href="">Covid 19 Caution Sticker-10</a></li>
-                    <li><a href="">Covid 19 Caution Sign Table Top-11</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Floor Sticker-01</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-02</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-03</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-04</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sign Board-05</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Floor Sticker-06</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-07</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-08</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-09</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-10</a></li>
+                    <li><a @click="changeRoute()">Covid 19 Caution Sign Table Top-11</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(5)">T Shirt Printing</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[5]">
-                    <li><a href="">Design T Shirt</a></li>
-                    <li><a href="">Personalised T Shirt</a></li>
+                    <li><a @click="changeRoute()">Design T Shirt</a></li>
+                    <li><a @click="changeRoute()">Personalised T Shirt</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(6)">Display Standee</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[6]">
-                    <li><a href="">Life Size Cut Out</a></li>
-                    <li><a href="">Aluminium Lightbox (Customize Size)</a></li>
-                    <li><a href="">X Stand</a></li>
-                    <li><a href="">Tripod Display Stand</a></li>
-                    <li><a href="">Door Shape Banner Stand</a></li>
-                    <li><a href="">Spin Wheel</a></li>
-                    <li><a href="">Portable Counter</a></li>
+                    <li><a @click="changeRoute()">Life Size Cut Out</a></li>
+                    <li><a @click="changeRoute()">Aluminium Lightbox (Customize Size)</a></li>
+                    <li><a @click="changeRoute()">X Stand</a></li>
+                    <li><a @click="changeRoute()">Tripod Display Stand</a></li>
+                    <li><a @click="changeRoute()">Door Shape Banner Stand</a></li>
+                    <li><a @click="changeRoute()">Spin Wheel</a></li>
+                    <li><a @click="changeRoute()">Portable Counter</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(7)">Stickers - ReadyMade</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[7]">
-                    <li><a href="">Baked with Love Sticker Set</a></li>
-                    <li><a href="">Baked with Love Sticker Set</a></li>
+                    <li><a @click="changeRoute()">Baked with Love Sticker Set</a></li>
+                    <li><a @click="changeRoute()">Baked with Love Sticker Set</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(8)">Flag</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[8]">
-                    <li><a href="">Feather Banner Stand</a></li>
-                    <li><a href="">J Flag Stand</a></li>
-                    <li><a href="">Rectangle Flag</a></li>
+                    <li><a @click="changeRoute()">Feather Banner Stand</a></li>
+                    <li><a @click="changeRoute()">J Flag Stand</a></li>
+                    <li><a @click="changeRoute()">Rectangle Flag</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(9)">Menu</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[9]">
-                    <li><a href="">Menu Book</a></li>
+                    <li><a @click="changeRoute()">Menu Book</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(10)">Business Stationery</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[10]">
-                    <li><a @click="$router.push('/product/1')">Greeting Cards</a></li>
-                    <li><a @click="$router.push('/product/1')">Document printing</a></li>
-                    <li><a @click="$router.push('/product/1')">Letterhead</a></li>
-                    <li><a @click="$router.push('/product/1')">Certificated</a></li>
-                    <li><a @click="$router.push('/product/1')">ID Card</a></li>
-                    <li><a @click="$router.push('/product/1')">Lanyard</a></li>
+                    <li><a @click="changeRoute()">Greeting Cards</a></li>
+                    <li><a @click="changeRoute()">Document printing</a></li>
+                    <li><a @click="changeRoute()">Letterhead</a></li>
+                    <li><a @click="changeRoute()">Certificated</a></li>
+                    <li><a @click="changeRoute()">ID Card</a></li>
+                    <li><a @click="changeRoute()">Lanyard</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(11)">Canvas Print</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[11]">
-                    <li><a @click="$router.push('/product/1')">Matt Canvas with Frame</a></li>
+                    <li><a @click="changeRoute()">Matt Canvas with Frame</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(12)">Decorative Printing</span>
                   <ul v-if="activeDropDownMenu[12]">
-                    <li><a @click="$router.push('/product/1')">Wall Paper</a></li>
+                    <li><a @click="changeRoute()">Wall Paper</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(13)">Photo Print</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[13]">
-                    <li><a @click="$router.push('/product/1')">Acrylic UV Print</a></li>
-                    <li><a @click="$router.push('/product/1')">Metal UV Print</a></li>
-                    <li><a @click="$router.push('/product/1')">Photopaper Printing</a></li>
+                    <li><a @click="changeRoute()">Acrylic UV Print</a></li>
+                    <li><a @click="changeRoute()">Metal UV Print</a></li>
+                    <li><a @click="changeRoute()">Photopaper Printing</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(14)">Souvenir & Gift</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[14]">
-                    <li><a @click="$router.push('/product/1')">Tote Bag</a></li>
-                    <li><a @click="$router.push('/product/1')">Aluminium Bottle</a></li>
-                    <li><a @click="$router.push('/product/1')">Ceramic Coaster</a></li>
-                    <li><a @click="$router.push('/product/1')">Pillow Case</a></li>
-                    <li><a @click="$router.push('/product/1')">Coffee Mug</a></li>
+                    <li><a @click="changeRoute()">Tote Bag</a></li>
+                    <li><a @click="changeRoute()">Aluminium Bottle</a></li>
+                    <li><a @click="changeRoute()">Ceramic Coaster</a></li>
+                    <li><a @click="changeRoute()">Pillow Case</a></li>
+                    <li><a @click="changeRoute()">Coffee Mug</a></li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(15)">POP Display</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[15]">
-                    <li><a @click="$router.push('/product/1')">Wobbler</a></li>
-                    <li><a @click="$router.push('/product/1')">1mm PVC Rigid Printing with Sticker</a></li>
-                    <li><a @click="$router.push('/product/1')">0.5mm PVC Rigid Printing with Sticker</a></li>
-                    <li><a @click="$router.push('/product/1')">Dangler</a></li>
-                    <li><a @click="$router.push('/product/1')">All in one Board Printing with Sticker</a></li>
-                    <li><a @click="$router.push('/product/1')">PP Board Printing with Sticker</a></li>
+                    <li><a @click="changeRoute()">Wobbler</a></li>
+                    <li><a @click="changeRoute()">1mm PVC Rigid Printing with Sticker</a></li>
+                    <li><a @click="changeRoute()">0.5mm PVC Rigid Printing with Sticker</a></li>
+                    <li><a @click="changeRoute()">Dangler</a></li>
+                    <li><a @click="changeRoute()">All in one Board Printing with Sticker</a></li>
+                    <li><a @click="changeRoute()">PP Board Printing with Sticker</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
             <li>
-              <a :class="[checkActiveMenu('/about') ? 'active' : '']" @click="$router.push('/about')">About US</a>
+              <a :class="[checkActiveMenu('/about') ? 'active' : '']" @click="changeRoute('/about')">About US</a>
             </li>
             <li>
-              <a :class="[checkActiveMenu('/contact') ? 'active' : '']" @click="$router.push('/contact')">Contact US</a>
+              <a :class="[checkActiveMenu('/contact') ? 'active' : '']" @click="changeRoute('/contact')">Contact US</a>
             </li>
             <li>
-              <a :class="[checkActiveMenu('/article') ? 'active' : '']" @click="$router.push('/article')">Article</a>
+              <a :class="[checkActiveMenu('/article') ? 'active' : '']" @click="changeRoute('/article')">Article</a>
             </li>
             <li>
-              <a :class="[checkActiveMenu('/login') ? 'active' : '']" @click="$router.push('/login')">Login / Register</a>
+              <a :class="[checkActiveMenu('/login') ? 'active' : '']" @click="changeRoute('/login')">Login / Register</a>
             </li>
           </ul>
         </nav>
-        <p class="menu-toggle">
+        <p :class="[mobileToggle ? 'menu-toggle active' : 'menu-toggle']" @click="clickMobileMenuToggle()">
           <span></span>
           <span></span>
           <span></span>
@@ -247,14 +247,18 @@
 </template>
 
 <script>
+import router from '../router';
+
 export default {
   name: "AppHeader",
   components: {},
   data() {
     return {
       currentRoute: "home",
+      activeMenu: false,
       activeDropDownMenu: [false, false, false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false]
+        false, false, false, false],
+      mobileToggle: false,
     };
   },
   methods: {
@@ -268,6 +272,22 @@ export default {
           this.activeDropDownMenu[i] = false;
         }
       }
+      if (index === -1) {
+        this.activeMenu = !this.activeMenu;
+      }
+    },
+    changeRoute(param) {
+      if (param) {
+        router.push(param);
+      } else {
+        router.push('/product/1');
+      }
+      this.activeMenu = false;
+      this.mobileToggle = false;
+      console.log("active menu----", this.activeMenu);
+    },
+    clickMobileMenuToggle() {
+      this.mobileToggle = !this.mobileToggle;
     }
   },
   computed: {
@@ -278,10 +298,12 @@ export default {
     },
   },
   watch: {
-    // $route(to, from) {
-    //   console.log("to and from", to, from)
-    //   this.currentRoute = to.name;
-    // },
+    $route(to, from) {
+      console.log('---from', from.name);
+      this.currentRoute = to.name;
+      this.activeMenu = false;
+      this.mobileToggle = false;
+    },
   },
 };
 </script>
