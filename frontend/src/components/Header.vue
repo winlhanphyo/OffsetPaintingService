@@ -16,8 +16,18 @@
               <a :class="[checkActiveMenu('/product') ? 'active' : '']" @click="resetMenu()">Products</a>
               <ul :class="[activeMenu ? 'sub-menu is-show' : 'sub-menu']">
                 <li>
-                  <span @click="clickActiveDropDownMenu(0)">Business Cards</span>
+                  <span @click="clickActiveDropDownMenu(0)">Promotion Printing</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[0]">
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >DTF Film for T Shirt</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <span @click="clickActiveDropDownMenu(1)">Business Cards</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[1]">
                     <li>
                       <a @click="changeRoute()" class="dropdown-item"
                         >Standard Business Cards - Promo<span class="badge-info"
@@ -32,8 +42,8 @@
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(1)">Large Format Printing</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[1]">
+                  <span @click="clickActiveDropDownMenu(2)">Large Format Printing</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[2]">
                     <li>
                       <a @click="changeRoute()" class="dropdown-item"
                         >Vinyl Banner<span class="badge-info">HOT!</span></a
@@ -51,8 +61,8 @@
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(2)">Marketing Materials</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[2]">
+                  <span @click="clickActiveDropDownMenu(3)">Marketing Materials</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[3]">
                     <li>
                       <a @click="changeRoute()" class="dropdown-item">Company Profile Book</a>
                     </li>
@@ -67,8 +77,8 @@
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(3)">Sticker</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[3]">
+                  <span @click="clickActiveDropDownMenu(4)">Sticker</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[4]">
                     <li>
                       <a @click="changeRoute()" class="dropdown-item">Ezy Film ( UV DTF )</a>
                     </li>
@@ -87,8 +97,8 @@
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(4)">Caution Sign Sticker</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[4]">
+                  <span @click="clickActiveDropDownMenu(5)">Caution Sign Sticker</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[5]">
                     <li><a @click="changeRoute()">Covid 19 Floor Sticker-01</a></li>
                     <li><a @click="changeRoute()">Covid 19 Caution Sticker-02</a></li>
                     <li><a @click="changeRoute()">Covid 19 Caution Sticker-03</a></li>
@@ -103,15 +113,15 @@
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(5)">T Shirt Printing</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[5]">
+                  <span @click="clickActiveDropDownMenu(6)">T Shirt Printing</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[6]">
                     <li><a @click="changeRoute()">Design T Shirt</a></li>
                     <li><a @click="changeRoute()">Personalised T Shirt</a></li>
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(6)">Display Standee</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[6]">
+                  <span @click="clickActiveDropDownMenu(7)">Display Standee</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[7]">
                     <li><a @click="changeRoute()">Life Size Cut Out</a></li>
                     <li><a @click="changeRoute()">Aluminium Lightbox (Customize Size)</a></li>
                     <li><a @click="changeRoute()">X Stand</a></li>
@@ -122,29 +132,29 @@
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(7)">Stickers - ReadyMade</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[7]">
+                  <span @click="clickActiveDropDownMenu(8)">Stickers - ReadyMade</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[8]">
                     <li><a @click="changeRoute()">Baked with Love Sticker Set</a></li>
                     <li><a @click="changeRoute()">Baked with Love Sticker Set</a></li>
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(8)">Flag</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[8]">
+                  <span @click="clickActiveDropDownMenu(9)">Flag</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[9]">
                     <li><a @click="changeRoute()">Feather Banner Stand</a></li>
                     <li><a @click="changeRoute()">J Flag Stand</a></li>
                     <li><a @click="changeRoute()">Rectangle Flag</a></li>
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(9)">Menu</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[9]">
+                  <span @click="clickActiveDropDownMenu(10)">Menu</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[10]">
                     <li><a @click="changeRoute()">Menu Book</a></li>
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(10)">Business Stationery</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[10]">
+                  <span @click="clickActiveDropDownMenu(11)">Business Stationery</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[11]">
                     <li><a @click="changeRoute()">Greeting Cards</a></li>
                     <li><a @click="changeRoute()">Document printing</a></li>
                     <li><a @click="changeRoute()">Letterhead</a></li>
@@ -154,28 +164,28 @@
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(11)">Canvas Print</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[11]">
+                  <span @click="clickActiveDropDownMenu(12)">Canvas Print</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[12]">
                     <li><a @click="changeRoute()">Matt Canvas with Frame</a></li>
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(12)">Decorative Printing</span>
-                  <ul v-if="activeDropDownMenu[12]">
+                  <span @click="clickActiveDropDownMenu(13)">Decorative Printing</span>
+                  <ul v-if="activeDropDownMenu[13]">
                     <li><a @click="changeRoute()">Wall Paper</a></li>
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(13)">Photo Print</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[13]">
+                  <span @click="clickActiveDropDownMenu(14)">Photo Print</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[14]">
                     <li><a @click="changeRoute()">Acrylic UV Print</a></li>
                     <li><a @click="changeRoute()">Metal UV Print</a></li>
                     <li><a @click="changeRoute()">Photopaper Printing</a></li>
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(14)">Souvenir & Gift</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[14]">
+                  <span @click="clickActiveDropDownMenu(15)">Souvenir & Gift</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[15]">
                     <li><a @click="changeRoute()">Tote Bag</a></li>
                     <li><a @click="changeRoute()">Aluminium Bottle</a></li>
                     <li><a @click="changeRoute()">Ceramic Coaster</a></li>
@@ -184,8 +194,8 @@
                   </ul>
                 </li>
                 <li>
-                  <span @click="clickActiveDropDownMenu(15)">POP Display</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[15]">
+                  <span @click="clickActiveDropDownMenu(16)">POP Display</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[16]">
                     <li><a @click="changeRoute()">Wobbler</a></li>
                     <li><a @click="changeRoute()">1mm PVC Rigid Printing with Sticker</a></li>
                     <li><a @click="changeRoute()">0.5mm PVC Rigid Printing with Sticker</a></li>
@@ -256,7 +266,7 @@ export default {
     return {
       currentRoute: "home",
       activeMenu: false,
-      activeDropDownMenu: [false, false, false, false, false, false, false, false, false, false, false, false,
+      activeDropDownMenu: [false, false, false, false, false, false, false, false, false, false, false, false, false,
         false, false, false, false],
       mobileToggle: false,
     };
@@ -804,6 +814,10 @@ export default {
         &::after {
           width: 80px !important;
         }
+      }
+      span {
+        color: #4c7da9;
+        font-size: 15px;
       }
     }
   }
