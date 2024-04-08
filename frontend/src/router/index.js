@@ -32,6 +32,11 @@ const routes = [
     component: () => import('../views/ProductDetailView.vue')
   },
   {
+    path: '/products',
+    name: 'products',
+    component: () => import('../views/ProductListView.vue')
+  },
+  {
     path: "/",
     redirect: "/home",
   },

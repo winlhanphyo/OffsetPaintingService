@@ -233,7 +233,8 @@ export default {
         
   },
   beforeUnmount() {
-    $(".slider-item").slick("unslick");
+    $(".slider-nav").slick("unslick");
+    $(".slider-for").slick("unslick");
   },
   methods: {},
 };

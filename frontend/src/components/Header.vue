@@ -16,6 +16,9 @@
               <a :class="[checkActiveMenu('/product') ? 'active' : '']" @click="resetMenu()">Products</a>
               <ul :class="[activeMenu ? 'sub-menu is-show' : 'sub-menu']">
                 <li>
+                  <span @click="$router.push('/products')">All Products</span>
+                </li>
+                <li>
                   <span @click="clickActiveDropDownMenu(0)">Promotion Printing</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[0]">
                     <li>
