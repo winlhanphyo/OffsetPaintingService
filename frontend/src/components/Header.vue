@@ -391,11 +391,13 @@ export default {
               padding: 15px;
               position: relative;
               cursor: pointer;
+              margin-right: 5px;
               @media screen and (min-width: 768px) and (max-width: 1440px) {
                 padding: 9px;
               }
               @media screen and (max-width: 767.9px) {
                 display: block;
+                margin-right: 0;
               }
               &:hover {
                 color: #fff;

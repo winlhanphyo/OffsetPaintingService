@@ -371,6 +371,9 @@ export default {
                 width: 95%;
                 padding: 10px;
                 border: 1px solid rgba(0, 0, 0, 0.25);
+                @media screen and (min-width: 768px) and (max-width: 1440px) {
+                  width: calc( 100% - 22px);
+                }
                 @media screen and (max-width: 767.9px) {
                   width: calc( 100% - 22px);
                 }

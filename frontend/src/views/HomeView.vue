@@ -254,7 +254,7 @@
     </div>
     <div class="company-info">
       <div class="container">
-        <h2><span>Discover Colors with Best Printing</span></h2>
+        <h2>Discover Colors with Best Printing</h2>
         <p class="info-txt">
           Enjoy great offers on personalized and top-notch quality printing products
         </p>
