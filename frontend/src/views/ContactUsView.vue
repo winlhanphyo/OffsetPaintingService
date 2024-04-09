@@ -1,353 +1,112 @@
 <template>
   <div class="container" id="contact">
-    <!--Main Content-->
-    <!-- <div class="row"> -->
-    <!--Left Panel--><!--/Left Panel--><!--Center Part-->
-    <!-- <div id="middle-content" class="col-12 col-md-12 col-lg-12 col-xl-12"> -->
-    <div class="page-header"><h1>Contact Us</h1></div>
-    <!-- <div class="breadcrumb_container">
-                <ul class="breadcrumb breadcrumb_arrow4">
-                  <li class="">
-                    <a href="https://www.xenonmm.com"><span class="a">Home</span></a
-                    ><meta content="1" />
-                  </li>
-                  <li class="active">
-                    <link href="https://www.xenonmm.com/en/contact-us.html" /><span
-                      class="a"
-                      >Contact Us</span
-                    ><meta content="2" />
-                  </li>
-                </ul>
-              </div> -->
-
-    <div class="landing_page">
-      <div itemscope="" itemtype="http://schema.org/Organization">
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          <a href="https://g.page/xenon-printing?share" target="_blank"
-            ><strong
-              ><span style="color: #ff8c00"
-                ><span style="font-size: 18px">Xenon Company Limited</span></span
-              ></strong
-            ></a
-          >
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-            min-height: 14px;
-          "
-        >
-          <span style="font-size: 16px">Main address :</span>
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          <span style="font-size: 14px">No. 55, Hla Theingi Street, </span
-          ><span style="font-size: 14px">Industrial Zone 2, </span>
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          <span style="font-size: 14px">Dagon Seikkan Township, </span
-          ><span style="font-size: 14px">Yangon.</span>
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          <span style="font-size: 14px">Tel: 09428304444, 09428305555</span>
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          <span style="font-size: 14px"
-            >Email: <a href="mailto:hello@xenonmm.com">hello@xenonmm.com</a></span
-          >
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          &nbsp;
-        </p>
-
-        <!-- <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          <a href="https://goo.gl/maps/PghcLbhgzR7ar4QT9" target="_blank"
-            ><strong
-              ><span style="color: #ff8c00"
-                ><span style="font-size: 14px">Xenon Premium Printing 1</span></span
-              ></strong
-            ></a
-          >
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          No. 78, Anawrahta Road, Bet 39th &amp; 40th Steet,
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          Kyauktada Township, Yangon.
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          Tel : 09428303333, 09451177799
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          Email :
-          <a href="mailto:retailshop1@xenonmm.com">retailshop1@xenonmm.com</a>
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          &nbsp;
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 13px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-            color: rgb(220, 161, 13);
-          "
-        >
-          <a
-            href="https://goo.gl/maps/PghcLbhgzR7ar4QT9"
-            style="font-family: 'Helvetica Neue'; font-size: 12px"
-            target="_blank"
-            ><span style="color: #ff8c00"></span></a
-          ><a href="https://goo.gl/maps/xxbwe2JTFRdstimGA"
-            ><span style="color: #ff8c00"
-              ><b style="font-family: 'Helvetica Neue'; font-size: 12px"></b
-              ><strong style="font-family: 'Helvetica Neue'; font-size: 12px"
-                >Xenon Premium Printing</strong
-              ></span
-            ></a
-          ><a href="https://goo.gl/maps/xxbwe2JTFRdstimGA"
-            ><span style="color: #ff8c00">&nbsp;Mandalay</span></a
-          ><span style="color: #000000"><b></b></span>
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 13px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          No. 179, 35th Street, (bet 77 &amp; 78 St), Maha Aung Myae Township, Mandalay.
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 13px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          Tel : 095410011, 09428307777
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 13px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          Email : mdy@xenonmm.com
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 13px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-            color: rgb(220, 161, 13);
-          "
-        >
-          <span style="color: #000000"
-            ><a href="mailto:retailshop1@xenonmm.com"
-              ><span style="font-stretch: normal; line-height: normal"></span></a
-          ></span>
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 13px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-            min-height: 15px;
-          "
-        >
-          &nbsp;
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 13px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-            color: rgb(220, 161, 13);
-          "
-        >
-          <a href="https://goo.gl/maps/PghcLbhgzR7ar4QT9"><b></b></a>
-        </p>
-        <p
-          style="
-            margin-right: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            font-stretch: normal;
-            font-size: 12px;
-            line-height: normal;
-            font-family: 'Helvetica Neue';
-          "
-        >
-          <a href="https://goo.gl/maps/VjCvMguQqJARFZmq6" target="_blank"
-            ><strong
-              ><span style="font-size: 14px"
-                ><span style="color: #ff8c00"></span></span></strong
-          ></a>
-        </p>
-        <span itemprop="email"></span
-        ><span
-          itemprop="member"
-          itemscope=""
-          itemtype="http://schema.org/Organization"
-        ></span> -->
+    <h2>Contact Us</h2>
+    <div class="contact">
+      <div class="row">
+        <div class="address">
+          <p>
+            <span>Xenon Company Limited</span><br>
+            Main address :<br>
+            No. 55 Hla Theingi Street<br>
+            Industrial Zone 2<br>
+            Dagon Seikkan Township<br>
+            Yangon<br>
+            Tel: 09428304444, 09428305555<br>
+            Email: <a href="mailto:hello@xenonmm.com">hello@xenonmm.com</a>
+          </p>
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.458696581868!2d96.28472107492203!3d16.853188983945664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c18cfb170bb19f%3A0xcfa5696f4b738826!2sXenon%20Company%20Limited!5e0!3m2!1sen!2smm!4v1712637412313!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        <div class="address">
+          <p>
+            <span>Xenon Premium Printing 1</span><br>
+            No. 78, Anawrahta Road, Bet 39th & 40th Steet,<br>
+            Kyauktada Township, Yangon.<br>
+            Tel : 09428303333, 09451177799<br>
+            Email : <a href="mailto:retailshop1@xenonmm.com">retailshop1@xenonmm.com</a>
+          </p>
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122239.9477148521!2d96.0113673972656!3d16.776756900000017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1ec89efb0b5cf%3A0x95ecd9218dfabc16!2sXenon%20Premium%20Printing%201!5e0!3m2!1sen!2smm!4v1712651950163!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="address mdy-address">
+          <p>
+            <span>Xenon Premium Printing Mandalay</span><br>
+            No. 179, 35th Street, (bet 77 & 78 St), Maha Aung Myae Township, Mandalay.<br>
+            Tel : 095410011, 09428307777<br>
+            Email : <a href="mailto:mdy@xenonmm.com">mdy@xenonmm.com</a>
+          </p>
+          <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.104788353216!2d96.08510987505929!3d21.968940979926177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30cb6dff604e954d%3A0x493e3a680da6fb09!2sXenon%20Premium%20Printing%20Mandalay!5e0!3m2!1sen!2smm!4v1712652086612!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="form">
+        <p class="d-inline-block">Please fill in the following fields.</p>
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="" class="label">Company</label>
+              <div class="form-data">
+                <input type="text" placeholder="Company">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="label">Full Name <span>*</span></label>
+              <div class="form-data">
+                <input type="text" placeholder="Full Name">
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="" class="label">Email <span>*</span></label>
+              <div class="form-data">
+                <input type="text" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="label">Phone</label>
+              <div class="form-data">
+                <input type="text" placeholder="Phone">
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="" class="label">Departmant</label>
+              <div class="form-data">
+                <select>
+                  <option value="" selected disabled hidden>Select Departmant</option>
+                  <option value="1">Sales</option>
+                  <option value="2">Graphic Design</option>
+                  <option value="3">Customer Assistance</option>
+                  <option value="4">Direct Mailing Question</option>
+                  <option value="5">Testimonials</option>
+                  <option value="6">Request Reorder</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="label">Order Number</label>
+              <div class="form-data">
+                <input type="text" placeholder="Order Number">
+              </div>
+            </div>
+          </div>
+          <div class="form-group textarea">
+            <label for="" class="label">Message <span>*</span></label>
+            <textarea name="" id="" cols="20" rows="5"></textarea>
+          </div>
+          <button class="submit-btn">Submit</button>
+          <button class="reset-btn">Reset</button>
+        </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12">
         <form
           method="post"
@@ -554,11 +313,7 @@
           />
         </form>
       </div>
-    </div>
-    <!-- </div> -->
-    <!--/Center Part-->
-    <!-- </div> -->
-    <!--/Main Content-->
+    </div> -->
   </div>
 </template>
 
@@ -574,118 +329,185 @@ export default {
 </script>
 
 <style lang="postcss">
-@import "@/assets/scss/mixins.scss";
 .wrapper {
-  main {
-    #contact.container {
-      @media screen and (min-width: 768px) and (max-width: 1440px) {
-        max-width: 95%;
-      }
-      @media screen and (max-width: 767.9px) {
-        max-width: 95%;
-      }
+  .container {
+    .breadcrumb-container {
+      .breadcrumb {
+        background-color: rgba(0, 0, 0, 0);
+        padding: 0.5rem 0.5rem 0.5rem 0;
 
-      .breadcrumb-container {
-        .breadcrumb {
-          background-color: rgba(0, 0, 0, 0);
-          padding: 0.5rem 0.5rem 0.5rem 0;
-
-          display: -ms-flexbox;
-          display: flex;
-          -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-          padding: 0.75rem 1rem;
-          margin-bottom: 1rem;
-          list-style: none;
-          background-color: #e9ecef;
-          border-radius: 0.25rem;
-          a {
-            color: #003462;
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -ms-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-          }
-          li .a {
-            cursor: pointer;
-          }
-          li.active .a {
-            color: #f47920;
-            cursor: text;
-          }
-        }
-        .breadcrumb.breadcrumb-arrow4 > li + li:before {
-          color: #ccc;
-          content: "/";
-          display: inline-block;
-          position: static;
-          font-family: "Font Awesome 5 Pro";
-          padding: 0 0.5rem;
-          font-weight: 600;
-        }
-      }
-
-      .landing-page {
-        margin-top: 60px;
-        @media screen and (max-width: 767.9px) {
-          margin-top: 50px;
-        }
-        ul {
-          margin: 0 0 0 40px;
-          @media screen and (max-width: 767.9px) {
-            margin: 0 0 0 30px;
-          }
-          li {
-            list-style: disc;
-            margin-bottom: 15px;
-            line-height: 1.5;
-          }
-        }
-      }
-
-      p {
-        margin-top: 0;
-        margin-bottom: 1rem;
-        line-height: 1.8;
-      }
-      .img-fluid {
-        max-width: 100%;
-        height: auto;
-      }
-      img {
-        vertical-align: middle;
-        border-style: none;
-      }
-
-      form {
-        display: block;
-        margin-top: 0em;
-      }
-
-      .row {
         display: -ms-flexbox;
         display: flex;
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-        margin-right: -15px;
-        margin-left: -15px;
-        .col-12 {
-          -ms-flex: 0 0 100%;
-          flex: 0 0 100%;
-          max-width: 100%;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1rem;
+        list-style: none;
+        background-color: #e9ecef;
+        border-radius: 0.25rem;
+        a {
+          color: #003462;
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -ms-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          transition: all 0.3s ease;
         }
-        .form-group {
-          position: relative;
-          margin-bottom: 1rem;
+        li .a {
+          cursor: pointer;
+        }
+        li.active .a {
+          color: #f47920;
+          cursor: text;
         }
       }
-
-      @media (min-width: 992px) {
-        .col-lg-6 {
-          -ms-flex: 0 0 50%;
-          flex: 0 0 50%;
-          max-width: 50%;
+      .breadcrumb.breadcrumb-arrow4 > li + li:before {
+        color: #ccc;
+        content: "/";
+        display: inline-block;
+        position: static;
+        font-family: "Font Awesome 5 Pro";
+        padding: 0 0.5rem;
+        font-weight: 600;
+      }
+    }
+    .contact {
+      margin-top: 60px;
+      @media screen and (max-width: 767.9px) {
+        margin-top: 50px;
+      }
+      .row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        @media screen and (max-width: 767.9px) {
+          display: block;
+        }
+        .address {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: calc(100% / 2);
+          margin-right: 30px;
+          @media screen and (min-width: 768px) and (max-width: 1000px) {
+            display: block;
+            width: 100%;
+          }
+          @media screen and (max-width: 767.9px) {
+            display: block;
+            width: 100%;
+            margin: 0 0 20px;
+          }
+          p {
+            margin-right: 10px;
+            font-size: 13px;
+            line-height: 1.8;
+            span {
+              color: #FF8C00;
+              font-size: 15px;
+            }
+            a {
+              &:hover {
+                color: #FF8C00;
+              }
+            }
+            @media screen and (max-width: 767.9px) {
+              margin-right: 0;
+            }
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+          &.mdy-address {
+            width: 57%;
+            @media screen and (max-width: 767.9px) {
+              width: 100%;
+            }
+          }
+          iframe {
+            @media screen and (min-width: 768px) and (max-width: 1440px) {
+              width: 100%;
+            }
+            @media screen and (max-width: 767.9px) {
+              width: 100%;
+            }
+          }
+        }
+      }
+      .form {
+        .d-inline-block {
+          margin-bottom: 20px;
+        }
+        .form-row {
+          .col {
+            display: flex;
+            justify-content: space-between;
+            @media screen and (max-width: 767.9px) {
+              display: block;
+            }
+          }
+        }
+        .form-group {
+          width: calc(100% / 2);
+          margin: 0 20px 20px 0;
+          @media screen and (max-width: 767.9px) {
+            width: 100%;
+          }
+          label {
+            display: block;
+            margin-bottom: 10px;
+            span {
+              color: #ff0018;
+            }
+          }
+          input {
+            width: calc( 100% - 22px);
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 5px;
+          }
+          &:last-child {
+            margin: 0 0 20px 0;
+          }
+          select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 5px;
+          }
+          &.textarea {
+            width: 100%;
+            textarea {
+              width: calc( 100% - 44px);
+              padding: 20px;
+              resize: none;
+              border: 1px solid rgba(0, 0, 0, 0.25);
+              border-radius: 5px;
+            }
+          }
+        }
+        .submit-btn {
+          padding: 9px;
+          margin-right: 10px;
+          font-size: 15px;
+          background: #000;
+          color: #fff;
+          cursor: pointer;
+          border-radius: 5px;
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+        .reset-btn {
+          padding: 9px;
+          font-size: 15px;
+          background: #fff;
+          color: #000;
+          cursor: pointer;
+          border-radius: 5px;
+          &:hover {
+            opacity: 0.7;
+          }
         }
       }
     }
