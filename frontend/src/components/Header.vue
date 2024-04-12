@@ -218,8 +218,23 @@
             <li>
               <a :class="[checkActiveMenu('/article') ? 'active' : '']" @click="changeRoute('/article')">Article</a>
             </li>
-            <li>
-              <a :class="[checkActiveMenu('/login') ? 'active' : '']" @click="changeRoute('/login')">Login / Register</a>
+            <li class="has-menu">
+              <a :class="[checkActiveMenu('/login', '/register') ? 'active' : '']" @click="clickLoginRegister()">Login / Register</a>
+              <ul :class="[activeLoginMenu ? 'sub-menu is-show' : 'sub-menu']">
+                <li>
+                  <span @click="$router.push('/login')">Login</span>
+                </li>
+                <li>
+                  <span @click="$router.push('/register')">Register</span>
+                  <!-- <ul class="dropdown-menu" v-if="activeDropDownMenu[0]">
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >DTF Film for T Shirt</a
+                      >
+                    </li>
+                  </ul> -->
+                </li>
+                </ul>
             </li>
           </ul>
         </nav>
@@ -269,6 +284,7 @@ export default {
     return {
       currentRoute: "home",
       activeMenu: false,
+      activeLoginMenu: false,
       activeDropDownMenu: [false, false, false, false, false, false, false, false, false, false, false, false, false,
         false, false, false, false],
       mobileToggle: false,
@@ -289,6 +305,10 @@ export default {
         this.activeMenu = !this.activeMenu;
       }
     },
+    clickLoginRegister() {
+
+      this.activeLoginMenu = !this.activeLoginMenu;
+    },
     changeRoute(param) {
       if (param) {
         router.push(param);
@@ -305,8 +325,12 @@ export default {
   },
   computed: {
     checkActiveMenu() {
-      return (routeParam) => {
-        return routeParam.indexOf(this.currentRoute) !== -1;
+      return (routeParam1, routeParam2=null) => {
+        if (routeParam2) {
+          return routeParam1.indexOf(this.currentRoute) !== -1 || routeParam2.indexOf(this.currentRoute) !== -1;
+        } else {
+          return routeParam1.indexOf(this.currentRoute) !== -1;
+        }
       };
     },
   },
