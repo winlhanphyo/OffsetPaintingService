@@ -220,7 +220,7 @@
             </li>
             <li class="has-menu">
               <a :class="[checkActiveMenu('/login', '/register') ? 'active' : '']" @click="clickLoginRegister()">Login / Register</a>
-              <ul :class="[activeLoginMenu ? 'sub-menu is-show' : 'sub-menu']">
+              <ul :class="[activeLoginMenu ? 'sub-menu is-show sub-menu2' : 'sub-menu']">
                 <li>
                   <span @click="$router.push('/login')">Login</span>
                 </li>
@@ -584,6 +584,29 @@ export default {
                     &::after {
                       top: 6px;
                       right: 18px !important;
+                    }
+                  }
+                }
+              }
+              &.sub-menu2 {
+                &.is-show {
+                  width: 200px;
+                  height: auto;
+                  right: 0;
+                  left: 0;
+                  @media screen and (min-width: 768px) and (max-width: 1440px) {
+                    width: auto;
+                    left: -5px;
+                  }
+                  @media screen and (max-width: 767.9px) {
+                    width: 100%;
+                    left: 0;
+                  }
+                }
+                li {
+                  span {
+                    &::after {
+                      display: none;
                     }
                   }
                 }
