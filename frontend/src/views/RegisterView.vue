@@ -68,6 +68,11 @@
           </div>
         </div>
       </div> -->
+      <div class="page-sub-header">
+        <h3 class="pb-1 m-0">New Customer Register Here</h3>
+        <small class="text-danger">* Required Information</small>
+      </div>
+
       <div class="form">
         <p class="d-inline-block">Please fill in the following fields.</p>
         <div class="form-row">
@@ -165,219 +170,185 @@
             <label for="" class="label">Message <span>*</span></label>
             <textarea name="" id="" cols="20" rows="5"></textarea>
           </div> -->
-          <button class="submit-btn">Submit</button>
-          <button class="reset-btn">Reset</button>
         </div>
-      </div>
-    </div>
-    <!-- <div class="row">
-        <div class="col-12">
-          <form
-            method="post"
-            name="Frmaddclient"
-            id="Frmaddclient"
-            class="mt-3"
-            novalidate="novalidate"
-          >
-            <div class="row">
-              <div class="col-12 mt-3">
-                <p class="d-inline-block">Please fill in the following fields.</p>
-                <small class="text-danger float-right mb-2">* Required Information</small>
-              </div>
-              <div class="form-group col-lg-6 col-12">
+
+        <div class="login-form">
+          <div>
+            <!-- <div class="page-sub-header mb-3 border-bottom"> -->
+            <h3>Login Information</h3>
+            <!-- </div> -->
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
                 <div class="d-flex position-relative">
                   <input
                     type="text"
-                    name="company"
-                    id="company"
+                    name="email"
+                    id="email"
                     value=""
-                    class="form-control"
-                  /><span class="input-group-require pl-1 text-danger"> &nbsp; </span
-                  ><label for="company" class="col-form-label">Company</label>
-                </div>
-                <span class="error-block text-danger"> &nbsp; </span>
-              </div>
-              <div class="form-group col-lg-6 col-12">
-                <div class="d-flex position-relative">
-                  <input
-                    type="text"
-                    name="fullname"
-                    id="fullname"
-                    value=""
-                    class="form-control"
-                    data-rule-required="true"
-                    data-msg-required="Full name is required"
-                  /><span class="input-group-require pl-1 text-danger"> * </span
-                  ><label for="fullname" class="col-form-label">Full Name</label>
-                </div>
-                <span class="error-block text-danger"> &nbsp; </span>
-              </div>
-              <div class="form-group col-lg-6 col-12">
-                <div class="d-flex position-relative">
-                  <input
-                    type="text"
-                    name="clientemail"
-                    id="clientemail"
-                    value=""
-                    class="form-control"
+                    class="email_validate form-control"
                     data-rule-required="true"
                     data-msg-required="Email ID is required"
                     data-rule-email="true"
                     data-msg-email="Invalid email ID"
                   /><span class="input-group-require pl-1 text-danger"> * </span
-                  ><label for="clientemail" class="col-form-label">Email ID</label>
+                  ><label for="email" class="col-form-label">Email ID</label>
                 </div>
                 <span class="error-block text-danger"> &nbsp; </span>
               </div>
-              <div class="form-group col-lg-6 col-12">
+              <div class="form-group">
                 <div class="d-flex position-relative">
                   <input
-                    type="text"
-                    name="phone"
-                    id="phone"
+                    type="password"
+                    name="password"
+                    id="password"
                     value=""
                     class="form-control"
-                    data-country_code="country_code"
-                    placeholder=" "
-                    data-rule-validatephone="true"
-                  /><span class="input-group-require pl-1 text-danger"> &nbsp; </span
-                  ><label for="phone" class="col-form-label">Phone</label>
-                </div>
-                <span class="error-block text-danger"> &nbsp; </span>
-              </div>
-              <div class="form-group col-lg-6 col-12">
-                <div class="d-flex position-relative">
-                  <select
-                    name="emailtopic"
-                    id="emailtopic"
-                    tabindex="5"
-                    class="custom-select form-control input-valid"
-                  >
-                    <option value="">Select Department</option>
-                    <option value="Sales">Sales</option>
-                    <option value="Graphic Design">Graphic Design</option>
-                    <option value="Customer Assistance">Customer Assistance</option>
-                    <option value="Direct Mailing Question">Direct Mailing Question</option>
-                    <option value="Testimonials">Testimonials</option>
-                    <option value="Request Reorder">Request Reorder</option></select
-                  ><label for="emailtopic" class="col-form-label">Department</label>
-                </div>
-              </div>
-              <div class="form-group col-lg-6 col-12">
-                <div class="d-flex position-relative">
-                  <input
-                    type="text"
-                    name="subject"
-                    id="subject"
-                    value=""
-                    class="form-control"
-                  /><span class="input-group-require pl-1 text-danger"> &nbsp; </span
-                  ><label for="subject" class="col-form-label">Order Number</label>
-                </div>
-                <span class="error-block text-danger"> &nbsp; </span>
-              </div>
-              <div class="form-group col-lg-12 col-12">
-                <div class="d-flex position-relative">
-                  <textarea
-                    name="enquiry"
-                    id="enquiry"
-                    class="form-control mr-1"
-                    tabindex="0"
-                    placeholder=""
-                    rows="3"
-                    cols="50"
+                    autocomplete="off"
                     data-rule-required="true"
-                    data-msg-required="Message is required"
-                  ></textarea
-                  ><span class="input-group-require pl-1 text-danger"> * </span
-                  ><label for="enquiry" class="col-form-label">Message</label>
+                    data-msg-required="Password is required"
+                    data-rule-validpassword="true"
+                    data-msg-validpassword="Enter only Alphanumeric, dash or underscore"
+                  /><span class="input-group-require pl-1 text-danger"> * </span
+                  ><label for="password" class="col-form-label">Password</label>
                 </div>
-                <span class="error-block text-danger"></span>
+                <span class="error-block text-danger"> &nbsp; </span>
               </div>
-              <div class="form-group col-lg-12 col-12">
-                <div class="row">
-                  <div class="col-lg-6 col-12">
-                    <div class="form-group">
-                      <div
-                        class="g-recaptcha"
-                        data-sitekey="6Lc8vMsZAAAAAIbltLWaXmf74bwG0j3Tfh_QSe79"
-                        data-widget-id="0"
-                      >
-                        <div style="width: 304px; height: 78px">
-                          <div>
-                            <iframe
-                              title="reCAPTCHA"
-                              width="304"
-                              height="78"
-                              role="presentation"
-                              name="a-hrnqa1ondtwl"
-                              frameborder="0"
-                              scrolling="no"
-                              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation"
-                              src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Lc8vMsZAAAAAIbltLWaXmf74bwG0j3Tfh_QSe79&amp;co=aHR0cHM6Ly93d3cueGVub25tbS5jb206NDQz&amp;hl=en&amp;v=rz4DvU-cY2JYCwHSTck0_qm-&amp;size=normal&amp;cb=a7ows5f82qp0"
-                            ></iframe>
-                          </div>
-                          <textarea
-                            id="g-recaptcha-response"
-                            name="g-recaptcha-response"
-                            class="g-recaptcha-response"
-                            style="
-                              width: 250px;
-                              height: 40px;
-                              border: 1px solid rgb(193, 193, 193);
-                              margin: 10px 25px;
-                              padding: 0px;
-                              resize: none;
-                              display: none;
-                            "
-                          ></textarea>
-                        </div>
-                        <iframe style="display: none"></iframe>
-                      </div>
-                      <span class="error-block text-danger"></span>
-                    </div>
-                  </div>
+              <div class="form-group">
+                <div class="d-flex position-relative">
                   <input
-                    type="hidden"
-                    name="referrer_page"
-                    id="referrer_page"
-                    value="https://www.xenonmm.com/my/contact-us.html"
-                  />
+                    type="password"
+                    name="confirmpassword"
+                    id="confirmpassword"
+                    value=""
+                    class="form-control"
+                    autocomplete="off"
+                    data-rule-required="true"
+                    data-msg-required="Confirm password is required"
+                  /><span class="input-group-require pl-1 text-danger"> * </span
+                  ><label for="confirmpassword" class="col-form-label"
+                    >Confirm password</label
+                  >
+                </div>
+                <span class="error-block text-danger"> &nbsp; </span>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div
+                    class="g-recaptcha"
+                    data-sitekey="6Lc8vMsZAAAAAIbltLWaXmf74bwG0j3Tfh_QSe79"
+                    data-widget-id="0"
+                  >
+                    <div style="width: 304px; height: 78px">
+                      <div>
+                        <iframe
+                          title="reCAPTCHA"
+                          width="304"
+                          height="78"
+                          role="presentation"
+                          name="a-15hsdskx3m0y"
+                          frameborder="0"
+                          scrolling="no"
+                          sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation"
+                          src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Lc8vMsZAAAAAIbltLWaXmf74bwG0j3Tfh_QSe79&amp;co=aHR0cHM6Ly93d3cueGVub25tbS5jb206NDQz&amp;hl=en&amp;v=rz4DvU-cY2JYCwHSTck0_qm-&amp;size=normal&amp;cb=rwxlhj6dvarp"
+                        ></iframe>
+                      </div>
+                      <textarea
+                        id="g-recaptcha-response"
+                        name="g-recaptcha-response"
+                        class="g-recaptcha-response"
+                        style="
+                          width: 250px;
+                          height: 40px;
+                          border: 1px solid rgb(193, 193, 193);
+                          margin: 10px 25px;
+                          padding: 0px;
+                          resize: none;
+                          display: none;
+                        "
+                      ></textarea>
+                    </div>
+                    <iframe style="display: none"></iframe>
+                  </div>
+                  <span class="error-block text-danger"></span>
                 </div>
               </div>
-              <div class="col-12">
-                <button
-                  type="submit"
-                  name="Submit"
-                  id="Submit"
-                  value="Submit"
-                  class="btn btn-primary"
-                >
-                  Submit</button
-                ><input type="hidden" name="Submit_x" value="1" /><input
-                  type="hidden"
-                  name="Submit_y"
-                  value="1"
-                /><button
-                  type="reset"
-                  name="btnreset2"
-                  id="btnreset2"
-                  value="Reset"
-                  class="btn btn-link btn-sm"
-                >
-                  Reset
-                </button>
+              <input
+                type="hidden"
+                name="referrer_page"
+                id="referrer_page"
+                value="https://www.xenonmm.com/user_login.php"
+              />
+              <div class="my-2">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    type="checkbox"
+                    name="newsLetter"
+                    id="newsLetter"
+                    value="1"
+                    class="custom-control-input"
+                    tabindex="10"
+                    data-labelposition="right"
+                  /><label class="custom-control-label" for="newsLetter"
+                    >Send newsletters</label
+                  >
+                </div>
               </div>
             </div>
-            <input
-              type="hidden"
-              name="csrf_token_name"
-              id="csrf_1063917074"
-              value="eac3cefe77627e9b22f1d085d189fe3c"
-            />
-          </form>
+            <div class="col">
+              <p>
+                <a
+                  data-fancybox-type="iframe"
+                  data-toggle="fancybox"
+                  href="/privacy_policy.html?popup=1"
+                  >Xenon Company Limited Privacy and Security Policy</a
+                >. Please double check the e-mail address you have entered. This is the
+                address to which we will send your order and shipping confirmations. It
+                also serves as your unique username. By clicking on the 'Submit' button,
+                you agree to Xenon Company Limited terms of use.<br /><br />
+                For a complete description, please read our
+                <a
+                  data-fancybox-type="iframe"
+                  data-toggle="fancybox"
+                  href="/terms_of_use.html?popup=1"
+                  >Terms of Use</a
+                >
+              </p>
+            </div>
+          </div>
         </div>
-      </div> -->
+      </div>
+    </div>
+
+    <input
+      type="hidden"
+      name="csrf_token_name"
+      id="csrf_824138834"
+      value="6db9fb23f7d1fd1993ae9ba8ec55433a"
+    /><button
+      type="submit"
+      name="Submit"
+      id="Submit"
+      value="Submit"
+      tabindex="7"
+      class="btn btn-primary"
+    >
+      Submit</button
+    ><input type="hidden" name="Submit_x" value="1" /><input
+      type="hidden"
+      name="Submit_y"
+      value="1"
+    /><button
+      type="reset"
+      name="btnreset2"
+      id="btnreset2"
+      value="Reset"
+      tabindex="7"
+      class="btn btn-link btn-sm"
+    >
+      Reset
+    </button>
   </div>
 </template>
 
@@ -395,6 +366,21 @@ export default {
 <style lang="postcss">
 .wrapper {
   .container {
+    .page-sub-header {
+      color: #003462;
+      border-bottom: 1px solid #dee2e6 !important;
+      margin-bottom: 1rem !important;
+    }
+    @media (min-width: 576px) {
+      .page-sub-header {
+        display: flex !important;
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+        .text-danger {
+          color: #dc3545 !important;
+        }
+      }
+    }
     .breadcrumb-container {
       .breadcrumb {
         background-color: rgba(0, 0, 0, 0);

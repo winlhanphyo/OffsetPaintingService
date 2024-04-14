@@ -10,10 +10,18 @@
         <nav :class="[mobileToggle ? 'gnav is-show' : 'gnav']">
           <ul class="g-nav">
             <li>
-              <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')">Home</a>
+              <a
+                :class="[checkActiveMenu('/home') ? 'active' : '']"
+                @click="changeRoute('/')"
+                >Home</a
+              >
             </li>
             <li class="has-menu">
-              <a :class="[checkActiveMenu('/product') ? 'active' : '']" @click="resetMenu()">Products</a>
+              <a
+                :class="[checkActiveMenu('/product') ? 'active' : '']"
+                @click="resetMenu()"
+                >Products</a
+              >
               <ul :class="[activeMenu ? 'sub-menu is-show' : 'sub-menu']">
                 <li>
                   <span @click="$router.push('/products')">All Products</span>
@@ -40,7 +48,8 @@
                     </li>
                     <li>
                       <a @click="changeRoute()" class="dropdown-item"
-                        >Deluxe Business Card</a>
+                        >Deluxe Business Card</a
+                      >
                     </li>
                   </ul>
                 </li>
@@ -57,36 +66,66 @@
                         >Backlit Printing<span class="badge-info">UV</span></a
                       >
                     </li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Building Printing</a></li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Event Backdrop</a></li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Billboard Printing</a></li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Reflective Printing</a></li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >Building Printing</a
+                      >
+                    </li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item">Event Backdrop</a>
+                    </li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >Billboard Printing</a
+                      >
+                    </li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >Reflective Printing</a
+                      >
+                    </li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(3)">Marketing Materials</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[3]">
                     <li>
-                      <a @click="changeRoute()" class="dropdown-item">Company Profile Book</a>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >Company Profile Book</a
+                      >
                     </li>
                     <li><a @click="changeRoute()" class="dropdown-item">Flyer</a></li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Poster Sheet</a></li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item">Poster Sheet</a>
+                    </li>
                     <li><a @click="changeRoute()" class="dropdown-item">Brochures</a></li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Poster Board</a></li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Table Tent Card</a></li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Spin Wheel</a></li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item">Poster Board</a>
+                    </li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item">Table Tent Card</a>
+                    </li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item">Spin Wheel</a>
+                    </li>
                     <li><a @click="changeRoute()" class="dropdown-item">Booklet</a></li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Spiral Note Book</a></li>
+                    <li>
+                      <a @click="changeRoute()" class="dropdown-item">Spiral Note Book</a>
+                    </li>
                   </ul>
                 </li>
                 <li>
                   <span @click="clickActiveDropDownMenu(4)">Sticker</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[4]">
                     <li>
-                      <a @click="changeRoute()" class="dropdown-item">Ezy Film ( UV DTF )</a>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >Ezy Film ( UV DTF )</a
+                      >
                     </li>
                     <li>
-                      <a @click="changeRoute()" class="dropdown-item">PP Paper Sticker ( ရေစိုခံ )</a>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >PP Paper Sticker ( ရေစိုခံ )</a
+                      >
                     </li>
                     <li><a @click="changeRoute()" class="dropdown-item">Sticker</a></li>
                     <li>
@@ -95,7 +134,9 @@
                       >
                     </li>
                     <li>
-                      <a @click="changeRoute()" class="dropdown-item">Paper Label Sticker - Promo</a>
+                      <a @click="changeRoute()" class="dropdown-item"
+                        >Paper Label Sticker - Promo</a
+                      >
                     </li>
                   </ul>
                 </li>
@@ -112,7 +153,9 @@
                     <li><a @click="changeRoute()">Covid 19 Caution Sticker-08</a></li>
                     <li><a @click="changeRoute()">Covid 19 Caution Sticker-09</a></li>
                     <li><a @click="changeRoute()">Covid 19 Caution Sticker-10</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sign Table Top-11</a></li>
+                    <li>
+                      <a @click="changeRoute()">Covid 19 Caution Sign Table Top-11</a>
+                    </li>
                   </ul>
                 </li>
                 <li>
@@ -126,7 +169,9 @@
                   <span @click="clickActiveDropDownMenu(7)">Display Standee</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[7]">
                     <li><a @click="changeRoute()">Life Size Cut Out</a></li>
-                    <li><a @click="changeRoute()">Aluminium Lightbox (Customize Size)</a></li>
+                    <li>
+                      <a @click="changeRoute()">Aluminium Lightbox (Customize Size)</a>
+                    </li>
                     <li><a @click="changeRoute()">X Stand</a></li>
                     <li><a @click="changeRoute()">Tripod Display Stand</a></li>
                     <li><a @click="changeRoute()">Door Shape Banner Stand</a></li>
@@ -200,26 +245,48 @@
                   <span @click="clickActiveDropDownMenu(16)">POP Display</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[16]">
                     <li><a @click="changeRoute()">Wobbler</a></li>
-                    <li><a @click="changeRoute()">1mm PVC Rigid Printing with Sticker</a></li>
-                    <li><a @click="changeRoute()">0.5mm PVC Rigid Printing with Sticker</a></li>
+                    <li>
+                      <a @click="changeRoute()">1mm PVC Rigid Printing with Sticker</a>
+                    </li>
+                    <li>
+                      <a @click="changeRoute()">0.5mm PVC Rigid Printing with Sticker</a>
+                    </li>
                     <li><a @click="changeRoute()">Dangler</a></li>
-                    <li><a @click="changeRoute()">All in one Board Printing with Sticker</a></li>
+                    <li>
+                      <a @click="changeRoute()">All in one Board Printing with Sticker</a>
+                    </li>
                     <li><a @click="changeRoute()">PP Board Printing with Sticker</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
             <li>
-              <a :class="[checkActiveMenu('/about') ? 'active' : '']" @click="changeRoute('/about')">About US</a>
+              <a
+                :class="[checkActiveMenu('/about') ? 'active' : '']"
+                @click="changeRoute('/about')"
+                >About US</a
+              >
             </li>
             <li>
-              <a :class="[checkActiveMenu('/contact') ? 'active' : '']" @click="changeRoute('/contact')">Contact US</a>
+              <a
+                :class="[checkActiveMenu('/contact') ? 'active' : '']"
+                @click="changeRoute('/contact')"
+                >Contact US</a
+              >
             </li>
             <li>
-              <a :class="[checkActiveMenu('/article') ? 'active' : '']" @click="changeRoute('/article')">Article</a>
+              <a
+                :class="[checkActiveMenu('/article') ? 'active' : '']"
+                @click="changeRoute('/article')"
+                >Article</a
+              >
             </li>
             <li class="has-menu">
-              <a :class="[checkActiveMenu('/login', '/register') ? 'active' : '']" @click="clickLoginRegister()">Login / Register</a>
+              <a
+                :class="[checkActiveMenu('/login', '/register') ? 'active' : '']"
+                @click="clickLoginRegister()"
+                >Login / Register</a
+              >
               <ul :class="[activeLoginMenu ? 'sub-menu is-show sub-menu2' : 'sub-menu']">
                 <li>
                   <span @click="$router.push('/login')">Login</span>
@@ -234,11 +301,14 @@
                     </li>
                   </ul> -->
                 </li>
-                </ul>
+              </ul>
             </li>
           </ul>
         </nav>
-        <p :class="[mobileToggle ? 'menu-toggle active' : 'menu-toggle']" @click="clickMobileMenuToggle()">
+        <p
+          :class="[mobileToggle ? 'menu-toggle active' : 'menu-toggle']"
+          @click="clickMobileMenuToggle()"
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -275,7 +345,7 @@
 </template>
 
 <script>
-import router from '../router';
+import router from "../router";
 
 export default {
   name: "AppHeader",
@@ -285,8 +355,25 @@ export default {
       currentRoute: "home",
       activeMenu: false,
       activeLoginMenu: false,
-      activeDropDownMenu: [false, false, false, false, false, false, false, false, false, false, false, false, false,
-        false, false, false, false],
+      activeDropDownMenu: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+      ],
       mobileToggle: false,
     };
   },
@@ -295,7 +382,7 @@ export default {
       this.resetMenu(i);
       this.activeDropDownMenu[i] = !this.activeDropDownMenu[i];
     },
-    resetMenu(index=-1) {
+    resetMenu(index = -1) {
       for (let i = 0; i < this.activeDropDownMenu.length; i++) {
         if (index !== i) {
           this.activeDropDownMenu[i] = false;
@@ -306,28 +393,31 @@ export default {
       }
     },
     clickLoginRegister() {
-
       this.activeLoginMenu = !this.activeLoginMenu;
     },
     changeRoute(param) {
       if (param) {
         router.push(param);
       } else {
-        router.push('/product/1');
+        router.push("/product/1");
       }
       this.activeMenu = false;
       this.mobileToggle = false;
+      this.activeLoginMenu = false;
       console.log("active menu----", this.activeMenu);
     },
     clickMobileMenuToggle() {
       this.mobileToggle = !this.mobileToggle;
-    }
+    },
   },
   computed: {
     checkActiveMenu() {
-      return (routeParam1, routeParam2=null) => {
+      return (routeParam1, routeParam2 = null) => {
         if (routeParam2) {
-          return routeParam1.indexOf(this.currentRoute) !== -1 || routeParam2.indexOf(this.currentRoute) !== -1;
+          return (
+            routeParam1.indexOf(this.currentRoute) !== -1 ||
+            routeParam2.indexOf(this.currentRoute) !== -1
+          );
         } else {
           return routeParam1.indexOf(this.currentRoute) !== -1;
         }
@@ -336,9 +426,10 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log('---from', from.name);
+      console.log("-----from", from);
       this.currentRoute = to.name;
       this.activeMenu = false;
+      this.activeLoginMenu = false;
       this.mobileToggle = false;
     },
   },
@@ -644,7 +735,7 @@ export default {
                 a {
                   &::after {
                     top: 10px;
-                    right: 9px!important;
+                    right: 9px !important;
                   }
                 }
               }

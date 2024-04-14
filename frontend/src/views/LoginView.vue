@@ -2,6 +2,7 @@
   <div class="container" id="contact">
     <h2>Login</h2>
     <div class="contact">
+      <div class="page-sub-header"><h3>Returning Customers</h3></div>
       <div class="form">
         <p class="d-inline-block">Please fill in the following fields.</p>
         <div class="form-row">
@@ -24,7 +25,16 @@
               </div>
             </div>
           </div>
-          <button class="submit-btn">Login</button>
+          <div class="btn-container">
+            <button class="submit-btn">Login</button>
+            <a class="forget-password-btn"
+              data-type="iframe"
+              data-width="500"
+              data-height="350"
+              data-toggle="fancybox"
+              data-fancybox=""
+              @click="$router.push('/forget-password')">Forgot password?</a>
+          </div>
         </div>
       </div>
     </div>
@@ -90,6 +100,15 @@ export default {
       @media screen and (max-width: 767.9px) {
         margin-top: 50px;
       }
+      .page-sub-header {
+        color: #003462;
+        margin-bottom: 4%;
+        h3 {
+          font-size: 1.375rem;
+          font-weight: 600;
+          text-align: left;
+        }
+      }
       .row {
         display: flex;
         justify-content: center;
@@ -109,6 +128,11 @@ export default {
             @media screen and (max-width: 767.9px) {
               display: block;
             }
+          }
+          .btn-container {
+            display: flex;
+            width: 50%;
+            justify-content: space-between;
           }
         }
         .form-group {
@@ -145,6 +169,19 @@ export default {
         border-radius: 5px;
         &:hover {
           opacity: 0.7;
+        }
+      }
+      .forget-password-btn {
+        padding: 9px;
+        margin-right: 10px;
+        font-size: 15px;
+        /* background: #000; */
+        color: #003462;
+        cursor: pointer;
+        border-radius: 5px;
+        &:hover {
+          /* opacity: 0.7; */
+          color: #f47920;
         }
       }
     }

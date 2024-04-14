@@ -42,6 +42,16 @@ const routes = [
     component: () => import('../views/ProductListView.vue')
   },
   {
+    path: '/forget-password',
+    name: 'forgetPassword',
+    component: () => import('../views/ForgetPassword.vue')
+  },
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: () => import('../views/CheckoutView.vue')
+  },
+  {
     path: "/",
     redirect: "/home",
   },
