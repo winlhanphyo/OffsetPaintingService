@@ -1,8 +1,8 @@
 <template>
-  <div class="container" id="contact">
+  <div class="container" id="login">
     <h2>Login</h2>
-    <div class="contact">
-      <div class="page-sub-header"><h3>Returning Customers</h3></div>
+    <div class="login">
+      <!-- <div class="page-sub-header"><h3>Returning Customers</h3></div> -->
       <div class="form">
         <p class="d-inline-block">Please fill in the following fields.</p>
         <div class="form-row">
@@ -95,10 +95,12 @@ export default {
         font-weight: 600;
       }
     }
-    .contact {
-      margin-top: 60px;
+    .login {
+      max-width: 720px;
+      margin: 60px auto 0;
       @media screen and (max-width: 767.9px) {
-        margin-top: 50px;
+        max-width: 100%;
+        margin: 50px auto 0;
       }
       .page-sub-header {
         color: #003462;
@@ -110,8 +112,7 @@ export default {
         }
       }
       .row {
-        display: flex;
-        justify-content: center;
+        display: block;
         margin-bottom: 30px;
         @media screen and (max-width: 767.9px) {
           display: block;
@@ -123,24 +124,17 @@ export default {
         }
         .form-row {
           .col {
-            display: flex;
-            justify-content: space-between;
-            @media screen and (max-width: 767.9px) {
-              display: block;
-            }
+            display: block;
           }
           .btn-container {
             display: flex;
-            width: 50%;
+            width: 100%;
             justify-content: space-between;
           }
         }
         .form-group {
-          width: calc(100% / 2);
+          width: 100%;
           margin: 0 20px 20px 0;
-          @media screen and (max-width: 767.9px) {
-            width: 100%;
-          }
           label {
             display: block;
             margin-bottom: 10px;
@@ -149,7 +143,7 @@ export default {
             }
           }
           input {
-            width: calc(100% - 22px);
+            width: calc( 100% - 22px);
             padding: 10px;
             border: 1px solid rgba(0, 0, 0, 0.25);
             border-radius: 5px;
@@ -168,20 +162,22 @@ export default {
         cursor: pointer;
         border-radius: 5px;
         &:hover {
-          opacity: 0.7;
+          color: #f47920;
+          background: #fff;
         }
       }
       .forget-password-btn {
         padding: 9px;
         margin-right: 10px;
         font-size: 15px;
-        /* background: #000; */
-        color: #003462;
+        color: #fff;
         cursor: pointer;
         border-radius: 5px;
+        background: #000;
         &:hover {
-          /* opacity: 0.7; */
           color: #f47920;
+          background: #fff;
+          border: 2px solid #000;
         }
       }
     }
