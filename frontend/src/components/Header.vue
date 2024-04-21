@@ -687,12 +687,13 @@ export default {
                   @media screen and (max-width: 767.9px) {
                     &::after {
                       top: 12px;
+                      right: 4px;
                     }
                   }
                   @media screen and (min-width: 768px) and (max-width: 1440px) {
                     &::after {
-                      top: 4px;
-                      right: -3px !important;
+                      top: 7px;
+                      right: 4px !important;
                     }
                   }
                 }
