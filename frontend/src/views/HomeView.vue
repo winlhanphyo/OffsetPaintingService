@@ -354,6 +354,9 @@ export default {
             &::before {
               color: #fff;
               font-size: 15px;
+              @media screen and (max-width: 767.9px) {
+                font-size: 10px;
+              }
             }
           }
           &.slick-active {

@@ -303,6 +303,11 @@
               </ul>
             </li>
           </ul>
+          <ul class="sp-language">
+            <li><img src="@/assets/images/common/lang_burmese.png" alt="" /></li>
+            <li><input type="checkbox" v-model="langChecked" @change="handleLanguage()" class="toggle" /></li>
+            <li><img src="@/assets/images/common/lang_usa.gif" alt="" /></li>
+          </ul>
         </nav>
         <p
           :class="[mobileToggle ? 'menu-toggle active' : 'menu-toggle']"
@@ -489,20 +494,14 @@ export default {
         }
       }
       h1 {
-        width: 25%;
-        @media screen and (min-width: 768px) and (max-width: 1440px) {
-          width: 30%;
-        }
+        width: auto;
         @media screen and (max-width: 767.9px) {
           width: 35px;
           margin-left: 45px;
         }
         img {
-          width: 10%;
+          width: 70%;
           cursor: pointer;
-          @media screen and (min-width: 768px) and (max-width: 1440px) {
-            width: 14%;
-          }
           @media screen and (max-width: 767.9px) {
             width: auto;
           }
@@ -511,6 +510,7 @@ export default {
       nav {
         .g-nav {
           display: flex;
+          align-items: center;
           @media screen and (max-width: 767.9px) {
             display: block;
           }
@@ -520,12 +520,13 @@ export default {
               font-size: 12px;
             }
             a {
-              padding: 15px;
+              padding: 12px 4px;
               position: relative;
               cursor: pointer;
               margin-right: 5px;
               @media screen and (min-width: 768px) and (max-width: 1440px) {
-                padding: 9px;
+                display: block;
+                padding: 7px 10px;
               }
               @media screen and (max-width: 767.9px) {
                 display: block;
@@ -690,8 +691,8 @@ export default {
                   }
                   @media screen and (min-width: 768px) and (max-width: 1440px) {
                     &::after {
-                      top: 6px;
-                      right: 18px !important;
+                      top: 4px;
+                      right: -3px !important;
                     }
                   }
                 }
@@ -724,15 +725,15 @@ export default {
               position: relative;
               a {
                 position: relative;
-                padding: 15px 30px 15px 24px;
+                padding: 12px 30px 12px 20px;
                 @media screen and (min-width: 768px) and (max-width: 1440px) {
-                  padding: 9px 15px 9px 6px;
+                  padding: 7px 15px 7px 6px;
                 }
                 &::after {
                   content: "\e5cf";
                   position: absolute;
                   font-family: "Material Symbols Outlined";
-                  top: 12px;
+                  top: 10px;
                   right: 9px;
                   font-size: 20px;
                 }
@@ -743,7 +744,7 @@ export default {
                 }
                 @media screen and (min-width: 768px) and (max-width: 1440px) {
                   &::after {
-                    top: 6px;
+                    top: 4px;
                     right: -2px !important;
                   }
                 }
@@ -779,6 +780,9 @@ export default {
             opacity: 1;
             z-index: 1;
           }
+        }
+        .sp-language {
+          display: none;
         }
       }
       .menu-toggle {
@@ -824,6 +828,60 @@ export default {
 
           &.active span:nth-of-type(3) {
             transform: translateY(-13px) rotate(45deg);
+          }
+        }
+      }
+      @media screen and (max-width: 767.9px) {
+        .sp-language {
+          position: absolute;
+          top: 28px;
+          right: 17px;
+          display: flex;
+          align-items: center;
+          margin: 0 5px;
+          img {
+            width: 30px;
+          }
+          input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            &:focus {
+              outline: 0;
+            }
+          }
+          .toggle {
+            height: 20px;
+            width: 42px;
+            border-radius: 16px;
+            display: inline-block;
+            position: relative;
+            margin: 0;
+            border: 2px solid #4caf50;
+            background: #4caf50;
+            transition: all 0.2s ease;
+            margin: -4px 3px;
+            &:after {
+              content: "";
+              position: absolute;
+              top: 1px;
+              left: 2px;
+              width: 15px;
+              height: 15px;
+              border-radius: 50%;
+              background: white;
+              box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
+              transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
+            }
+            &:checked {
+              border-color: red;
+              background: red;
+              &:after {
+                transform: translatex(20px);
+              }
+            }
           }
         }
       }
