@@ -584,7 +584,7 @@ export default {
                   left: 0;
                   width: 100%;
                   height: 400px;
-                  background: #003462;
+                  background: #4c7da9;
                   transition: all 0.5s ease;
                   border: inherit;
                   color: #fff;
@@ -598,11 +598,11 @@ export default {
                   border-radius: 10px;
                 }
                 &::-webkit-scrollbar-thumb {
-                  background: #977965;
+                  background: rgba(44, 44, 44, 0.2);
                   border-radius: 10px;
                 }
                 &::-webkit-scrollbar-thumb:hover {
-                  background: #b30000;
+                  background: rgba(44, 44, 44, 0.2);
                 }
                 li {
                   position: relative;
