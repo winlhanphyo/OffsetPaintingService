@@ -13,14 +13,14 @@
               <a
                 :class="[checkActiveMenu('/home') ? 'active' : '']"
                 @click="changeRoute('/')"
-                >Home</a
+                >{{ $t('message.home') }}</a
               >
             </li>
             <li class="has-menu">
               <a
                 :class="[checkActiveMenu('/product') ? 'active' : '']"
                 @click="resetMenu()"
-                >Products</a
+                >{{ $t('message.product') }}</a
               >
               <ul :class="[activeMenu ? 'sub-menu is-show' : 'sub-menu']">
                 <li>
@@ -264,29 +264,28 @@
               <a
                 :class="[checkActiveMenu('/about') ? 'active' : '']"
                 @click="changeRoute('/about')"
-                >About US</a
+                >{{ $t('message.aboutus') }}</a
               >
             </li>
             <li>
               <a
                 :class="[checkActiveMenu('/contact') ? 'active' : '']"
                 @click="changeRoute('/contact')"
-                >Contact US</a
+                >{{ $t('message.contactus') }}</a
               >
             </li>
             <li>
               <a
                 :class="[checkActiveMenu('/article') ? 'active' : '']"
                 @click="changeRoute('/article')"
-                >Article</a
+                >{{ $t('message.article') }}</a
               >
             </li>
             <li class="has-menu">
               <a
                 :class="[checkActiveMenu('/login', '/register') ? 'active' : '']"
                 @click="clickLoginRegister()"
-                >Login / Register</a
-              >
+                >Login / Register</a >
               <ul :class="[activeLoginMenu ? 'sub-menu is-show sub-menu2' : 'sub-menu']">
                 <li>
                   <span @click="$router.push('/login')">Login</span>
@@ -321,7 +320,7 @@
               id="top_search"
               value=""
               class="form-control"
-              placeholder="Search"
+              :placeholder="$t('message.search')"
               autocomplete="off"
               data-searched=""
             />
@@ -331,11 +330,11 @@
           </div>
           <ul class="language">
             <li><img src="@/assets/images/common/lang_burmese.png" alt="" /></li>
-            <li><input type="checkbox" class="toggle" /></li>
+            <li><input type="checkbox" v-model="langChecked" @change="handleLanguage()" class="toggle" /></li>
             <li><img src="@/assets/images/common/lang_usa.gif" alt="" /></li>
           </ul>
           <div class="shopping">
-            <div class="material-symbols-outlined">shopping_cart</div>
+            <div class="material-symbols-outlined" @click="$router.push('/checkout')">shopping_cart</div>
             <div class="number">0</div>
           </div>
         </div>
@@ -345,6 +344,7 @@
 </template>
 
 <script>
+import store from "@/store";
 import router from "../router";
 
 export default {
@@ -352,6 +352,8 @@ export default {
   components: {},
   data() {
     return {
+      langChecked: true,
+      lang: this.$store?.state?.common.lang,
       currentRoute: "home",
       activeMenu: false,
       activeLoginMenu: false,
@@ -377,7 +379,19 @@ export default {
       mobileToggle: false,
     };
   },
+  mounted() {
+    this.$i18n.locale = this.$store.state.common?.data?.lang;
+  },
   methods: {
+    async handleLanguage() {
+      console.log("Checkbox state changed. Checked:", this.langChecked);
+      this.lang = this.langChecked ? "eng" : "myan";
+      let param = {
+        lang: this.lang
+      };
+      await store.dispatch("commonData", param);
+      this.$i18n.locale = this.lang;
+    },
     clickActiveDropDownMenu(i) {
       this.resetMenu(i);
       this.activeDropDownMenu[i] = !this.activeDropDownMenu[i];
@@ -408,6 +422,7 @@ export default {
     },
     clickMobileMenuToggle() {
       this.mobileToggle = !this.mobileToggle;
+      console.log("mobileToggle----", this.mobileToggle);
     },
   },
   computed: {
@@ -431,6 +446,8 @@ export default {
       this.activeMenu = false;
       this.activeLoginMenu = false;
       this.mobileToggle = false;
+      this.$i18n.locale = this.$store.state.common?.data?.lang;
+      this.langChecked = this.$store.state.common?.data?.lang === "eng" ? true : false;
     },
   },
 };

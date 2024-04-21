@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="article">
-      <h2>Article</h2>
+      <h2>{{ $t('message.article') }}</h2>
       <ul class="article-list">
         <li>
           <a href="">

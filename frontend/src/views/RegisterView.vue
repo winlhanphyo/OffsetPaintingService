@@ -3,102 +3,42 @@
     <h2>Sign Up</h2>
     <div class="register">
       <div class="page-sub-header">
-        <h3 class="pb-1 m-0">New Customer Register Here</h3>
-        <small class="text-danger">* Required Information</small>
+        <h3 class="pb-1 m-0">{{ $t('message.registerTitle') }}</h3>
+        <small class="text-danger">* {{ $t('message.requiredInfo') }}</small>
       </div>
 
       <div class="form">
-        <p class="d-inline-block">Please fill in the following fields.</p>
+        <p class="d-inline-block">{{ $t('message.formMsg') }}</p>
         <div class="form-row">
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">First Name <span>*</span></label>
+              <label for="" class="label">{{ $t('message.firstName') }} <span>*</span></label>
               <div class="form-data">
-                <input type="text" placeholder="First Name" />
+                <input type="text" :placeholder="$t('message.firstName')" />
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">Last Name</label>
+              <label for="" class="label">{{ $t('message.lastName') }}</label>
               <div class="form-data">
-                <input type="text" placeholder="Last Name" />
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="" class="label">Address 1 <span>*</span></label>
-              <div class="form-data">
-                <input type="text" placeholder="Address1" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="" class="label">Address 2</label>
-              <div class="form-data">
-                <input type="text" placeholder="Address2" />
+                <input type="text" :placeholder="$t('message.lastName')" />
               </div>
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">Select State <span>*</span></label>
+              <label for="" class="label">{{ $t('message.address') }} <span>*</span></label>
               <div class="form-data">
-                <select>
-                  <option value="" selected disabled hidden>Select State</option>
-                  <option value="1">Sales</option>
-                  <option value="2">Graphic Design</option>
-                  <option value="3">Customer Assistance</option>
-                  <option value="4">Direct Mailing Question</option>
-                  <option value="5">Testimonials</option>
-                  <option value="6">Request Reorder</option>
-                </select>
+                <input type="text" :placeholder="$t('message.address')" />
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">City <span>*</span></label>
+              <label for="" class="label">{{ $t('message.phone') }} <span>*</span></label>
               <div class="form-data">
-                <input type="text" placeholder="City" />
+                <input type="text" :placeholder="$t('message.phone')" />
               </div>
             </div>
           </div>
 
-          <div class="col">
-            <div class="form-group">
-              <label for="" class="label">Township <span>*</span></label>
-              <div class="form-data">
-                <input type="text" placeholder="Township" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="" class="label">Phone <span>*</span></label>
-              <div class="form-data">
-                <input type="text" placeholder="Phone" />
-              </div>
-            </div>
-          </div>
-
-          <div class="col">
-            <div class="form-group">
-              <label for="" class="label">Select Country <span>*</span></label>
-              <div class="form-data">
-                <select>
-                  <option value="" selected disabled hidden>Country</option>
-                  <option value="1">Sales</option>
-                  <option value="2">Graphic Design</option>
-                  <option value="3">Customer Assistance</option>
-                  <option value="4">Direct Mailing Question</option>
-                  <option value="5">Testimonials</option>
-                  <option value="6">Request Reorder</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="" class="label">Company Number</label>
-              <div class="form-data">
-                <input type="text" placeholder="Company Name" />
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="login-form">
@@ -106,7 +46,7 @@
           <div class="row">
             <div class="col col-blk">
               <div class="form-group">
-                <label for="email" class="col-form-label">Email ID <span>*</span></label>
+                <label for="email" class="col-form-label">{{ $t('message.email') }} <span>*</span></label>
                   <input
                     type="text"
                     name="email"
@@ -120,7 +60,7 @@
                   />
               </div>
               <div class="form-group">
-                <label for="password" class="col-form-label">Password <span>*</span></label>
+                <label for="password" class="col-form-label">{{ $t('message.password') }} <span>*</span></label>
                 <input
                     type="password"
                     name="password"
@@ -136,7 +76,7 @@
               </div>
               <div class="form-group">
                 <label for="confirmpassword" class="col-form-label"
-                  >Confirm password <span>*</span></label
+                  >{{ $t('message.confirmPassword') }} <span>*</span></label
                 >
                 <input
                   type="password"
@@ -149,7 +89,7 @@
                   data-msg-required="Confirm password is required"
                 />
               </div>
-              <div class="form-row">
+              <!-- <div class="form-row">
                 <div class="col">
                   <div
                     class="g-recaptcha"
@@ -189,14 +129,14 @@
                   </div>
                   <span class="error-block text-danger"></span>
                 </div>
-              </div>
+              </div> -->
               <input
                 type="hidden"
                 name="referrer_page"
                 id="referrer_page"
                 value="https://www.xenonmm.com/user_login.php"
               />
-              <div class="my-2">
+              <!-- <div class="my-2">
                 <div class="custom-control custom-checkbox">
                   <input
                     type="checkbox"
@@ -210,7 +150,7 @@
                     >Send newsletters</label
                   >
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="col col-blk">
               <p>
@@ -235,8 +175,8 @@
           </div>
         </div>
       </div>
-      <button class="submit-btn">Submit</button>
-      <button class="reset-btn">Reset</button>
+      <button class="submit-btn">{{ $t('message.submit') }}</button>
+      <button class="reset-btn">{{ $t('message.reset') }}</button>
     </div>
   </div>
 </template>

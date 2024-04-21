@@ -1,4 +1,6 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import createPersistedState from "vuex-persistedstate";
+import common from "./modules/common";
 
 export default createStore({
   state: {
@@ -10,5 +12,7 @@ export default createStore({
   actions: {
   },
   modules: {
-  }
+    common
+  },
+  plugins: [createPersistedState()],
 })

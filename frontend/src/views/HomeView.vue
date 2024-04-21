@@ -11,7 +11,7 @@
       </ul>
     </div>
     <div class="container">
-      <h2>Products</h2>
+      <h2>{{ $t('message.product') }}</h2>
       <div class="product-list">
         <div class="product-card">
           <div class="work-heading">

@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="contact">
-    <h2>Contact Us</h2>
+    <h2>{{ $t('message.contactus') }}</h2>
     <div class="contact">
       <div class="row">
         <div class="address">
@@ -45,39 +45,39 @@
         </div>
       </div>
       <div class="form">
-        <p class="d-inline-block">Please fill in the following fields.</p>
+        <p class="d-inline-block">{{ $t('message.formMsg') }}</p>
         <div class="form-row">
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">Company</label>
+              <label for="" class="label">{{ $t('message.company') }}</label>
               <div class="form-data">
-                <input type="text" placeholder="Company">
+                <input type="text" :placeholder="$t('message.company')">
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">Full Name <span>*</span></label>
+              <label for="" class="label">{{ $t('message.fullName') }} <span>*</span></label>
               <div class="form-data">
-                <input type="text" placeholder="Full Name">
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="" class="label">Email <span>*</span></label>
-              <div class="form-data">
-                <input type="text" placeholder="Email">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="" class="label">Phone</label>
-              <div class="form-data">
-                <input type="text" placeholder="Phone">
+                <input type="text" :placeholder="$t('message.fullName')">
               </div>
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">Departmant</label>
+              <label for="" class="label">{{ $t('message.email') }}<span>*</span></label>
+              <div class="form-data">
+                <input type="text" :placeholder="$t('message.email')">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="label">{{ $t('message.phone') }}</label>
+              <div class="form-data">
+                <input type="text" :placeholder="$t('message.phone')">
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="" class="label">{{ $t('message.department') }}</label>
               <div class="form-data">
                 <select>
                   <option value="" selected disabled hidden>Select Departmant</option>
@@ -91,18 +91,18 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">Order Number</label>
+              <label for="" class="label">{{ $t('message.orderNo') }}</label>
               <div class="form-data">
-                <input type="text" placeholder="Order Number">
+                <input type="text" :placeholder="$t('message.orderNo')">
               </div>
             </div>
           </div>
           <div class="form-group textarea">
-            <label for="" class="label">Message <span>*</span></label>
+            <label for="" class="label">{{ $t('message.msg') }} <span>*</span></label>
             <textarea name="" id="" cols="20" rows="5"></textarea>
           </div>
-          <button class="submit-btn">Submit</button>
-          <button class="reset-btn">Reset</button>
+          <button class="submit-btn">{{ $t('message.submit') }}</button>
+          <button class="reset-btn">{{ $t('message.reset') }}</button>
         </div>
       </div>
     </div>
