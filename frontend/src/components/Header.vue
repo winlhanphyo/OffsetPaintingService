@@ -574,7 +574,7 @@ export default {
                 color: #000;
                 box-shadow: 1px 2px 6px #000;
                 @media screen and (min-width: 768px) and (max-width: 1440px) {
-                  top: 28px;
+                  top: 39px;
                   left: -113px;
                   width: 350px;
                 }
@@ -635,6 +635,7 @@ export default {
                       display: block;
                       @media screen and (min-width: 768px) and (max-width: 1440px) {
                         padding: 9px 20px 9px 20px;
+                        margin: 0;
                       }
                       @media screen and (max-width: 767.9px) {
                         color: #fff;
