@@ -88,6 +88,7 @@
             ></a>
           </div>
         </div>
+        <div class="ribbon">Hot Sales!</div>
       </div>
       <div class="product-card">
         <div class="work-heading">
@@ -102,6 +103,7 @@
             ></a>
           </div>
         </div>
+        <div class="ribbon">HOT!</div>
       </div>
       <div class="product-card">
         <div class="work-heading">
@@ -122,6 +124,7 @@
             ></a>
           </div>
         </div>
+        <div class="ribbon">HOT!</div>
       </div>
       <div class="product-card">
         <div class="work-heading">
@@ -364,6 +367,19 @@ export default {
             font-size: 12px;
           }
         }
+      }
+      .ribbon {
+        position: absolute;
+        color: #fff;
+        top: 4px;
+        right: 4px;
+        background: linear-gradient(#e66465, #9198e5);
+        white-space: nowrap;
+        font-size: 14px;
+        font-size: 0.875rem;
+        box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.8);
+        padding: 7px;
+        border-radius: 10px;
       }
     }
   }
