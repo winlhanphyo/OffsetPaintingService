@@ -63,16 +63,16 @@
            </div>
         </div>
         <div class="card-inner">
-          <h4>Price Calculator</h4>
+          <h4>{{ $t('message.priceCalculator') }}</h4>
           <div class="calculate">
             <div class="form-group">
-              <label for="" class="label">Size (inches)</label>
+              <label for="" class="label">{{ $t('message.size') }}</label>
               <div class="form-data">
                 <input type="text" placeholder="3.5 x 2.1 - Standard Business Card Size">
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">Quantity</label>
+              <label for="" class="label">{{ $t('message.quantity') }}</label>
               <div class="form-data">
                 <select name="" id="">
                   <option value="100">100</option>
@@ -90,19 +90,19 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">Material</label>
+              <label for="" class="label">{{ $t('message.material') }}</label>
               <div class="form-data">
                 <input type="text" placeholder="Artcard 250GSM">
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">Printing Type</label>
+              <label for="" class="label">{{ $t('message.printingType') }}</label>
               <div class="form-data">
                 <input type="text" placeholder="Digital Press">
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">Printing Sides</label>
+              <label for="" class="label">{{ $t('message.printingSides') }}</label>
               <div class="form-data">
                 <select name="" id="">
                   <option value="One">One Side</option>
@@ -111,16 +111,16 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">Lamination</label>
+              <label for="" class="label">{{ $t('message.lamination') }}</label>
               <div class="form-data">
                 <input type="text" placeholder="None">
               </div>
             </div>
             <div class="total">
-              <span>Total : Ks 14,850.00</span>
+              <span>{{ $t('message.total') }} : Ks 14,850.00</span>
             </div>
             <div class="accordion-container">
-              <h4 class="accordion-head">First Accordian Head<span class="plusminus">+</span></h4>
+              <h4 class="accordion-head">{{ $t('message.firstAccordianHead') }}<span class="plusminus">+</span></h4>
               <div class="accordion-body" style="display: none;">
                 <div class="form-group">
                   <label for="" class="label">Shipping Option</label>
@@ -165,7 +165,7 @@
                 </div>
               </div>
             </div>
-            <button class="start" id="openDialog">Get Started</button>
+            <button class="start" id="openDialog">{{ $t('message.getStarted') }}</button>
           </div>
         </div>
       </div>
