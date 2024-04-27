@@ -271,7 +271,7 @@
                 experience. We stand tall to provide you a high order and quality printing
                 products backed with a 100% satisfaction guarantee.
               </p>
-              <a class="btn btn-info" href="/about_us.html"
+              <a class="btn btn-info" @click="$router.push('/about')"
                 >Read More<i class="fa fa-arrow-circle-right" aria-hidden="true"></i
               ></a>
             </div>
@@ -285,9 +285,10 @@
                 customer service desk and get in touch with our print experts. Our experts
                 available 24/7 on email and telephone.
               </p>
-              <a class="btn btn-info" href="/about_us.html"
-                >Contact Us<i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
+              <a class="btn btn-info" @click="$router.push('/contact')">
+                Contact Us
+                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </div>

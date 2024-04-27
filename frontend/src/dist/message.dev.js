@@ -52,7 +52,13 @@ var messages = {
       shoppingCartTitle: "Shopping Cart",
       shoppingCartStep1: "Shopping Cart",
       shoppingCartStep2: "Shipping",
-      shoppingCartStep3: "Payment Details"
+      shoppingCartStep3: "Payment Details",
+      qty: "Qty",
+      jobName: "Job Name",
+      editOrder: "Edit Order",
+      subTotal: "Sub Total",
+      "continue": "Continue",
+      continueShopping: "Continue Shopping"
     }
   },
   // myanamr
@@ -98,11 +104,17 @@ var messages = {
       total: "စုစုပေါင်း",
       firstAccordianHead: "ပစ္စည်းပို့ဆောင်ခကုန်ကျစရိတ် တွက်ချက်ရန်",
       getStarted: "ဝယ်ယူရန် စတင်ပါ။",
-      //title
+      //checkout
       shoppingCartTitle: "စျေးဝယ်တွန်းလှည်း",
       shoppingCartStep1: "စျေးဝယ်တွန်းလှည်း",
       shoppingCartStep2: "ကုန်ပစ္စည်းပို့ဆောင်ခြင်း",
-      shoppingCartStep3: "ငွေပေးချေမှုအသေးစိတ်"
+      shoppingCartStep3: "ငွေပေးချေမှုအသေးစိတ်",
+      qty: "အရေအတွက်",
+      jobName: "အလုပ်အမည်",
+      editOrder: "အော်ဒါကိုပြင်ရန်",
+      subTotal: "စုစုပေါင်း",
+      "continue": "ဆက်လုပ်ရန်",
+      continueShopping: "ထပ်၀ယ်ရန်"
     }
   }
 };
