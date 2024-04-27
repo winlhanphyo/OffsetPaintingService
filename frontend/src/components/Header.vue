@@ -528,7 +528,7 @@ export default {
               font-size: 12px;
             }
             a {
-              padding: 12px 4px;
+              padding: 12px 10px;
               position: relative;
               cursor: pointer;
               margin-right: 5px;
@@ -736,7 +736,7 @@ export default {
               position: relative;
               a {
                 position: relative;
-                padding: 12px 30px 12px 20px;
+                padding: 12px 30px 12px 10px;
                 @media screen and (min-width: 768px) and (max-width: 1440px) {
                   padding: 7px 15px 7px 6px;
                 }
