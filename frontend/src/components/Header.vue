@@ -415,10 +415,12 @@ export default {
       }
       if (index === -1) {
         this.activeMenu = !this.activeMenu;
+        this.activeLoginMenu = false;
       }
     },
     clickLoginRegister() {
       this.activeLoginMenu = !this.activeLoginMenu;
+      this.activeMenu = false;
     },
     changeRoute(param) {
       if (param) {

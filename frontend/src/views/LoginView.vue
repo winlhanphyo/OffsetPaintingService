@@ -4,13 +4,13 @@
     <div class="login">
       <!-- <div class="page-sub-header"><h3>Returning Customers</h3></div> -->
       <div class="form">
-        <p class="d-inline-block">Please fill in the following fields.</p>
+        <p class="d-inline-block">{{ $t('message.formMsg') }}</p>
         <div class="form-row">
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">Email <span>*</span></label>
+              <label for="" class="label">{{ $t('message.email') }} <span>*</span></label>
               <div class="form-data">
-                <input type="text" placeholder="Email" />
+                <input type="text" :placeholder="$t('message.email')" />
               </div>
             </div>
           </div>
@@ -18,9 +18,9 @@
           <div class="form-row">
             <div class="col">
               <div class="form-group">
-                <label for="" class="label">Password <span>*</span></label>
+                <label for="" class="label">{{ $t('message.password') }} <span>*</span></label>
                 <div class="form-data">
-                  <input type="password" placeholder="Password" />
+                  <input type="password" :placeholder="$t('message.password')" />
                 </div>
               </div>
             </div>
@@ -33,7 +33,7 @@
               data-height="350"
               data-toggle="fancybox"
               data-fancybox=""
-              @click="$router.push('/forget-password')">Forgot password?</a>
+              @click="$router.push('/forget-password')">{{ $t('message.forgetPassword') }}</a>
           </div>
         </div>
       </div>
