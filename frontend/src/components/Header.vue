@@ -344,6 +344,12 @@
           </div>
         </div>
       </div>
+      <!-- <div class="search-dialog">
+        <div class="search-form"><input type="search" name="top_search" id="top_search" value="" class="form-control" placeholder="Search" autocomplete="off" data-searched="">
+          <button class="search-btn"><span class="material-symbols-outlined"> search </span></button>
+          <button class="close-btn">ESC</button>
+        </div>
+      </div> -->
     </div>
   </header>
 </template>
@@ -570,7 +576,7 @@ export default {
                 overflow-y: auto;
                 overflow-x: hidden;
                 z-index: 2;
-                border: 8px solid #f5dd61;
+                border: 8px solid rgba(0, 0, 0, 0.5);
                 color: #000;
                 box-shadow: 1px 2px 6px #000;
                 @media screen and (min-width: 768px) and (max-width: 1440px) {
@@ -782,6 +788,7 @@ export default {
             left: 0;
             opacity: 1;
             z-index: 1;
+            height: 100%;
           }
         }
         .sp-language {
@@ -997,7 +1004,53 @@ export default {
       max-width: 100%;
       left: 0;
       right: 0;
-      background: #f5dd61;
+      background: #fff;
+      box-shadow: 0 1px 4px #ccc;
+    }
+
+    .search-dialog {
+      display: none;
+      @media screen and (max-width: 767.9px) {
+        display: block;
+      }
+      .search-form {
+        position: relative;
+        max-width: 80%;
+        margin: 0 auto;
+        
+        input {
+          width: 100%;
+          padding: 10px 51px 10px 42px;
+          border-radius: 10px;
+        }
+        .search-btn {
+          content: "";
+          position: absolute;
+          top: 8px;
+          left: 3px;
+          bottom: 0;
+          width: 40px;
+          height: 25px;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+        .close-btn {
+          content: "";
+          position: absolute;
+          top: 2px;
+          right: 1px;
+          bottom: 0;
+          width: 46px;
+          height: 36px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          color: #212529;
+          background-color: #dae0e5;
+          border-radius: 0 8px 8px 0;
+        }
+      }
     }
   }
   .container {
