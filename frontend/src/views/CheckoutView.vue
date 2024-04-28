@@ -1,10 +1,9 @@
 <template>
   <div class="container">
-    <div class="page-header d-flex flex-md-nowrap flex-wrap justify-content-between">
-      <h1 class="cart_title">{{ $t('message.shoppingCartTitle') }}</h1>
-      <div
-        class="d-flex justify-content-end align-items-center steps my-2 mt-md-0 py-2 py-md-0">
-        <ul class="list-inline mb-0">
+    <div class="page-header">
+      <h1 class="cart-title">{{ $t('message.shoppingCartTitle') }}</h1>
+      <div class="steps">
+        <ul class="list-inline">
           <li class="list-inline-item visited">
             <a
               href="javascript:void(0)"
@@ -52,7 +51,7 @@
       
     </div>
     <div class="page-body">
-      <div>
+      <div class="page-content">
         <div class="product-container" v-for="data in cart" :key="data.id">
         <div class="product-img">
           <img :src="data.image" />
@@ -61,23 +60,17 @@
         <div class="product-info">
 
           <div class="product-info-header">
-            <div class="product-title">
-              <h3>
-                Standard Business Cards - Promo
-              </h3>            
-            </div>
+            <h3 class="product-title">
+              Standard Business Cards - Promo
+              <span>(Business Cards)</span>
+            </h3>
             <div class="product-count">
-              100 {{ $t('message.qty') }}
+              <strong>100</strong> {{ $t('message.qty') }}
             </div>
             <div class="product-amount">
-              KS14,850.00
+              <strong>Ks 14,850.00</strong>
             </div>
           </div>
-
-          <div class="product-info-category">
-            (Business Cards)
-          </div>
-
           <div class="product-info-detail">
             <div class="product-info-item">
               <label>{{ $t('message.jobName') }}:</label>
@@ -129,13 +122,15 @@
                 </div>
               </div>
             </div>
-
           </div>
-
           <hr />
-
-          <a href="#">{{ $t('message.editOrder') }}</a>
-          <i class="far fa-trash-alt"></i>
+          <div class="row">
+            <a href="#">{{ $t('message.editOrder') }}</a>
+            <div class="tooltip"><i class="far fa-trash-alt"></i>
+              <span class="tooltiptext">Delete</span>
+            </div>
+          </div>
+          
         </div>
       </div>
       </div>
@@ -150,12 +145,12 @@
             {{ $t('message.subTotal') }}
           </div>
           <div class="price-amount">
-            Ks34,518.00
+            Ks 34,518.00
           </div>
         </div>
 
         <button>{{ $t('message.continue') }}</button>
-        <a href="#">
+        <a href="#" class="continue-link">
           <i class="fa fa-arrow-left pr-2"></i>
           {{ $t('message.continueShopping') }}
         </a>
@@ -184,6 +179,7 @@ export default {
 <style lang="postcss">
 .page-header {
   display: flex;
+  align-items: center;
   flex-wrap: nowrap !important;
   justify-content: space-between !important;
   background: #f47920;
@@ -191,12 +187,31 @@ export default {
   padding: 0.5rem 0.9rem !important;
   border-bottom: 1px solid #ccc;
   margin-bottom: 1rem;
+  @media screen and (max-width: 767.9px) {
+    display: block;
+    .cart-title {
+      font-size: 20px;
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 1280px) {
+    .cart-title {
+      font-size: 20px;
+    }
+  }
   .list-inline {
     padding-left: 0;
     list-style: none;
   }
   .steps ul li {
     position: relative;
+    margin-right: 10px;
+    a {
+      margin-right: 10px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
     .orderstep {
       width: 25px;
       height: 25px;
@@ -210,7 +225,7 @@ export default {
       color: #fff;
     }
   }
-  .steps ul li:after {
+  .steps ul li:not(:last-child):after {
     content: "";
     width: 50px;
     display: inline-block;
@@ -225,38 +240,134 @@ export default {
   .list-inline-item {
     display: inline-block;
   }
+  .steps ul li.disabled {
+    opacity: .5;
+  }
 }
 .page-body {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  @media screen and (max-width: 767.9px) {
+    display: block;
+  }
+  .page-content {
+    width: 65%;
+    @media screen and (max-width: 767.9px) {
+      width: 100%;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1280px) {
+      width: 60%;
+    }
+  }
   .product-container {
-    width: 100% !important;
     display: flex;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 60%;
-    margin: 2% 0;
-    padding: 7px;
+    margin-bottom: 30px;
+    padding: 20px;
+    @media screen and (max-width: 1280px) {
+      display: block;
+    }
     .product-info {
-
+      width: 80%;
+      @media screen and (max-width: 1280px) {
+        width: 100%;
+      }
       .product-info-header {
         display: flex;
         justify-content: space-between;
-      }
-
-      .product-info-category {
-        
+        @media screen and (max-width: 767.9px) {
+          display: block;
+          .product-amount {
+            margin: 10px 0;
+          }
+        }
+        .product-title {
+          width: 55%;
+          line-height: 1.7;
+          margin-bottom: 10px;
+          @media screen and (max-width: 767.9px) {
+            width: auto;
+          }
+          span {
+            display: block;
+            color: #4c7da9;
+            font-size: 15px;
+          }
+        }
       }
 
       .product-info-detail {
         .product-info-item {
           display: flex;
+          margin-bottom: 10px;
+          @media screen and (max-width: 767.9px) {
+            line-height: 1.7;
+          }
+          label {
+            margin-right: 10px;
+            color: #999;
+          }
         }
+      }
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      a {
+        color: #f47920;
+        &:hover {
+          color: #d6600b;
+        }
+      }
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        color: rgba(0, 0, 0, .5);
+      }
+
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 10px;
+        position: absolute;
+        z-index: 1;
+        top: 145%;
+        right: -26px;
+      }
+
+      .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
       }
     }
   }
 
   .product-img {
+    margin: 0 auto;
+    @media screen and (max-width: 1280px) {
+      display: block;
+      margin-bottom: 20px;
+      img {
+        margin: 0 auto;
+      }
+    }
     img {
       width: 100px;
       height: 100px;
@@ -265,25 +376,51 @@ export default {
   }
 
   .price-summary {
-    height: 150px;
+    width: 30%;
+    padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-
+    @media screen and (max-width: 767.9px) {
+      width: auto;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1280px) {
+      width: 32%;
+    }
     .price-summary-detail {
       display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
     }
     button {
       width: 100%;
+      margin: 20px 0;
       background: #f47920;
       border-color: #f47920;
       padding: .5rem 1rem;
       font-size: 1.25rem;
       line-height: 1.5;
       border-radius: .3rem;
+      color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0);
+      cursor: pointer;
+      &:hover {
+        background: #d6600b;
+      }
     }
-    i {
-      width: 7px !important;
-      background-color: #e4e4e4;
+    .continue-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .pr-2 {
+        margin-right: 5px;
+        transition: all .3s ease-in;
+      }
+      &:hover {
+        color: #d6600b;
+        .pr-2 {
+          margin-right: 10px;
+        }
+      }
     }
   }
 }

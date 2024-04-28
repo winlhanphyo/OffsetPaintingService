@@ -324,6 +324,9 @@ footer {
         }
 
         &.ft-link {
+          h4 {
+            margin-top: 15px;
+          }
           li {
             position: relative;
             margin-bottom: 10px;
