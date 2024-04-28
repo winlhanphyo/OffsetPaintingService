@@ -707,6 +707,9 @@ export default {
                     }
                   }
                 }
+                &:first-child span::after {
+                  display: none;
+                }
               }
               &.sub-menu2 {
                 &.is-show {
