@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2>Forget Password</h2>
+    <h2>{{ $t('message.forgetPassword') }}</h2>
     <div class="forget-password">
       <div class="form">
         <p>To obtain your password please enter the e-mail address registered with us. Your password will be sent immediately.</p>
@@ -11,7 +11,7 @@
               <input type="text" placeholder="Email" />
             </div>
           </div>
-          <button class="submit-btn">Submit</button>
+          <button class="submit-btn">{{ $t('message.submit') }}</button>
         </div>
       </div>
     </div>
