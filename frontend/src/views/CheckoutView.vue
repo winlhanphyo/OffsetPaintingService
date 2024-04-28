@@ -47,80 +47,79 @@
         </ul>
       </div>
     </div>
-    <div>
-      <div class="page-body" v-if="step === 1">
-        <div class="page-content">
-          <div class="product-container" v-for="data in cart" :key="data.id">
-            <div class="product-img">
-              <img :src="data.image" />
-            </div>
+    <div class="page-body" v-if="step === 1">
+      <div class="page-content">
+        <div class="product-container" v-for="data in cart" :key="data.id">
+          <div class="product-img">
+            <img :src="data.image" />
+          </div>
 
-            <div class="product-info">
-              <div class="product-info-header">
-                <h3 class="product-title">
-                  Standard Business Cards - Promo
-                  <span>(Business Cards)</span>
-                </h3>
-                <div class="product-count">
-                  <strong>100</strong> {{ $t("message.qty") }}
-                </div>
-                <div class="product-amount">
-                  <strong>Ks 14,850.00</strong>
-                </div>
+          <div class="product-info">
+            <div class="product-info-header">
+              <h3 class="product-title">
+                Standard Business Cards - Promo
+                <span>(Business Cards)</span>
+              </h3>
+              <div class="product-count">
+                <strong>100</strong> {{ $t("message.qty") }}
               </div>
+              <div class="product-amount">
+                <strong>Ks 14,850.00</strong>
+              </div>
+            </div>
+            <div class="product-info-detail">
+              <div class="product-info-item">
+                <label>{{ $t("message.jobName") }}:</label>
+                <div>IBC_028</div>
+              </div>
+
               <div class="product-info-detail">
                 <div class="product-info-item">
-                  <label>{{ $t("message.jobName") }}:</label>
-                  <div>IBC_028</div>
-                </div>
-
-                <div class="product-info-detail">
-                  <div class="product-info-item">
-                    <label>{{ $t("message.size") }}:</label>
-                    <div>3.5" x 2.1" - Standard Business Card Size</div>
-                  </div>
-                </div>
-
-                <div class="product-info-detail">
-                  <div class="product-info-item">
-                    <label>{{ $t("message.material") }}:</label>
-                    <div>Artcard 250GSM</div>
-                  </div>
-                </div>
-
-                <div class="product-info-detail">
-                  <div class="product-info-item">
-                    <label>{{ $t("message.printingType") }}:</label>
-                    <div>Digital Press</div>
-                  </div>
-                </div>
-
-                <div class="product-info-detail">
-                  <div class="product-info-item">
-                    <label>{{ $t("message.printingSides") }}:</label>
-                    <div>One Side</div>
-                  </div>
-                </div>
-
-                <div class="product-info-detail">
-                  <div class="product-info-item">
-                    <label>{{ $t("message.lamination") }}:</label>
-                    <div>None</div>
-                  </div>
+                  <label>{{ $t("message.size") }}:</label>
+                  <div>3.5" x 2.1" - Standard Business Card Size</div>
                 </div>
               </div>
-              <hr />
-              <div class="row">
-                <a href="#">{{ $t("message.editOrder") }}</a>
-                <div class="tooltip">
-                  <i class="far fa-trash-alt"></i>
-                  <span class="tooltiptext">Delete</span>
+
+              <div class="product-info-detail">
+                <div class="product-info-item">
+                  <label>{{ $t("message.material") }}:</label>
+                  <div>Artcard 250GSM</div>
                 </div>
+              </div>
+
+              <div class="product-info-detail">
+                <div class="product-info-item">
+                  <label>{{ $t("message.printingType") }}:</label>
+                  <div>Digital Press</div>
+                </div>
+              </div>
+
+              <div class="product-info-detail">
+                <div class="product-info-item">
+                  <label>{{ $t("message.printingSides") }}:</label>
+                  <div>One Side</div>
+                </div>
+              </div>
+
+              <div class="product-info-detail">
+                <div class="product-info-item">
+                  <label>{{ $t("message.lamination") }}:</label>
+                  <div>None</div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <a href="#">{{ $t("message.editOrder") }}</a>
+              <div class="tooltip">
+                <i class="far fa-trash-alt"></i>
+                <span class="tooltiptext">Delete</span>
               </div>
             </div>
           </div>
-
-          <div class="price-summary">
+        </div>
+      </div>
+      <div class="price-summary">
           <div class="price-summary-title">
             <h3>Price Summary</h3>
             <hr />
@@ -130,132 +129,131 @@
             <div class="price-label">
               {{ $t("message.subTotal") }}
             </div>
-            <div class="price-amount">Ks34,518.00</div>
+            <div class="price-amount">Ks 34,518.00</div>
           </div>
 
           <button @click="handleContinue()">{{ $t("message.continue") }}</button>
-          <a @click="$router.push('/products')">
+          <a class="continue-link" @click="$router.push('/products')">
             <i class="fa fa-arrow-left pr-2"></i>
             {{ $t("message.continueShopping") }}
           </a>
         </div>
-        </div>
-      </div>
+    </div>
 
-      <div v-if="step === 2">
-        <div class="page-body">
-          <div>
-            <div class="product-container">
-              <div class="shipping-address">
-                <h4>{{ $t("message.shippingAddress") }}</h4>
-                <div class="shipping-customer-detail">
-                  <strong> Win Lhan Phyo </strong>
-                  <div class="shipping-customer-address">
-                    အမှတ်(၃၅) ၄လွှာ သဒ္ဒါရုံလမ်း <br />
-                    ၂မြောက် <br />
-                    Yangon City Yangon Thaketa <br />
-                    Myanmar
-                  </div>
-
-                  <div class="shipping-customer-phone">
-                    {{ $t("message.phone") }}: 09964764462
-                  </div>
-
-                  <div class="shipping-customer-btn-container">
-                    <button type="button" class="shipping-customer-btn">
-                      <i class="fas fa-edit pr-1"></i>Edit
-                    </button>
-                    <button type="button" class="shipping-customer-btn">
-                      <i class="fas fa-plus pr-1"></i>Add new
-                    </button>
-                  </div>
-
-                  <div>
-                    <select class="shipping-customer-option">
-                      <option selected>
-                        အမှတ်(၃၅) ၄လွှာ သဒ္ဒါရုံလမ်း <br />
-                        ၂မြောက် <br />
-                        Yangon City Yangon Thaketa <br />
-                        Myanmar
-                      </option>
-                    </select>
-                  </div>
+    <div v-if="step === 2">
+      <div class="page-body">
+        <div class="page-content">
+          <div class="product-container">
+            <div class="shipping-address">
+              <h4>{{ $t("message.shippingAddress") }}</h4>
+              <div class="shipping-customer-detail">
+                <strong> Win Lhan Phyo </strong>
+                <div class="shipping-customer-address">
+                  အမှတ်(၃၅) ၄လွှာ သဒ္ဒါရုံလမ်း <br />
+                  ၂မြောက် <br />
+                  Yangon City Yangon Thaketa <br />
+                  Myanmar
                 </div>
-              </div>
 
-              <div class="shipping-method">
-                <h4>{{ $t("message.shippingMethod") }}</h4>
+                <div class="shipping-customer-phone">
+                  {{ $t("message.phone") }}: 09964764462
+                </div>
 
                 <div class="shipping-customer-btn-container">
-                  <input type="radio" id="html" name="fav_language" value="HTML" />
-                  <label for="html">{{ $t("message.shipping") }}</label> <br />
-                  <input type="radio" id="css" name="fav_language" value="CSS" />
-                  <label for="css">{{ $t("message.pickUpFOC") }} </label>
+                  <button type="button" class="shipping-customer-btn">
+                    <i class="fas fa-edit pr-1"></i>Edit
+                  </button>
+                  <button type="button" class="shipping-customer-btn">
+                    <i class="fas fa-plus pr-1"></i>Add new
+                  </button>
                 </div>
 
-                <select class="shipping-customer-option">
-                  <option selected>Door to Door Delivery</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="price-summary">
-            <div class="price-summary-title">
-              <h3>Price Summary</h3>
-              <hr />
-            </div>
-
-            <div v-for="data in cart" :key="data.id">
-              <div class="price-summary-detail">
-                <div class="price-product-image">
-                  <img :src="data.image" />
+                <div>
+                  <select class="shipping-customer-option">
+                    <option selected>
+                      အမှတ်(၃၅) ၄လွှာ သဒ္ဒါရုံလမ်း <br />
+                      ၂မြောက် <br />
+                      Yangon City Yangon Thaketa <br />
+                      Myanmar
+                    </option>
+                  </select>
                 </div>
-                <div class="price-label">
-                  <div class="price-product-name">Standard Business</div>
-                  <div class="price-product-qty">Qty: 100</div>
-                </div>
-                <div class="price-amount">Ks34,518.00</div>
               </div>
-              <hr />
             </div>
 
-            <div class="price-summary-detail">
-              <div class="price-label">
-                {{ $t("message.subTotal") }}
-              </div>
-              <div class="price-amount">Ks34,518.00</div>
-            </div>
+            <div class="shipping-method">
+              <h4>{{ $t("message.shippingMethod") }}</h4>
 
-            <div class="price-summary-detail">
-              <div class="price-label">
-                {{ $t("message.shippingPrice") }}
+              <div class="shipping-customer-btn-container">
+                <input type="radio" id="html" name="fav_language" value="HTML" />
+                <label for="html">{{ $t("message.shipping") }}</label> <br />
+                <input type="radio" id="css" name="fav_language" value="CSS" />
+                <label for="css">{{ $t("message.pickUpFOC") }} </label>
               </div>
-              <div class="price-amount">Ks0.00</div>
-            </div>
 
-            <button @click="handleContinue()">{{ $t("message.continue") }}</button>
+              <select class="shipping-customer-option">
+                <option selected>Door to Door Delivery</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <div class="pb-2 d-flex align-items-start flex-wrap">
-          <h3 class="billing_address_label mb-0">{{ $t("message.billingAddress") }}</h3>
-          <div class="custom-control custom-checkbox custom-control-inline w-100">
-            <input
-              type="checkbox"
-              name="billing_address"
-              id="billing_address"
-              value=""
-              class="custom-control-input blindShipping"
-            /><label class="custom-control-label" for="billing_address"
-              ><small>Same as Shipping Address</small></label
-            >
+        <div class="price-summary">
+          <div class="price-summary-title">
+            <h3>Price Summary</h3>
+            <hr />
           </div>
+
+          <div v-for="data in cart" :key="data.id">
+            <div class="price-summary-detail">
+              <div class="price-product-image">
+                <img :src="data.image" />
+              </div>
+              <div class="price-label">
+                <div class="price-product-name">Standard Business</div>
+                <div class="price-product-qty">Qty: 100</div>
+              </div>
+              <div class="price-amount">Ks 34,518.00</div>
+            </div>
+            <hr />
+          </div>
+
+          <div class="price-summary-detail">
+            <div class="price-label">
+              {{ $t("message.subTotal") }}
+            </div>
+            <div class="price-amount">Ks 34,518.00</div>
+          </div>
+
+          <div class="price-summary-detail">
+            <div class="price-label">
+              {{ $t("message.shippingPrice") }}
+            </div>
+            <div class="price-amount">Ks 0.00</div>
+          </div>
+
+          <button @click="handleContinue()">{{ $t("message.continue") }}</button>
         </div>
       </div>
 
-      <div class="page-body" v-if="step === 3">Step 3</div>
+      <div class="pb-2 d-flex align-items-start flex-wrap">
+        <h3 class="billing_address_label mb-0">{{ $t("message.billingAddress") }}</h3>
+        <div class="custom-control custom-checkbox custom-control-inline w-100">
+          <input
+            type="checkbox"
+            name="billing_address"
+            id="billing_address"
+            value=""
+            class="custom-control-input blindShipping"
+          /><label class="custom-control-label" for="billing_address"
+            ><small>Same as Shipping Address</small></label
+          >
+        </div>
+      </div>
     </div>
+
+    <div class="page-body" v-if="step === 3">Step 3</div>
+
   </div>
 </template>
 <script>
@@ -426,11 +424,51 @@ export default {
     .shipping-address,
     .shipping-method {
       width: 50%;
+      @media screen and (max-width: 1280px) {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      h4 {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+    }
+
+    .shipping-customer-detail {
+      line-height: 2;
+      .shipping-customer-btn {
+        background: #fff;
+        color: #000;
+        border-color: #4c7da9;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        border: 1px solid #4c7da9;
+        margin-right: 5px;
+        &:hover {
+          background: #4c7da9;
+          color: #ffffff;
+          border-color: #4c7da9;
+        }
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .shipping-customer-btn-container {
+      margin: 10px 0;
+    }
+
+    select {
+      padding: 10px;
     }
 
     .shipping-customer-option {
       width: 95%;
-      .row {
+    }
+
+    .row {
         display: flex;
         justify-content: space-between;
         margin-top: 15px;
@@ -474,7 +512,6 @@ export default {
         .tooltip:hover .tooltiptext {
           visibility: visible;
         }
-      }
     }
 
     .product-img {
@@ -492,64 +529,78 @@ export default {
         object-fit: cover;
       }
     }
-
-    .price-summary {
-      height: 100%;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      width: 30%;
-      padding: 20px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      transition: 0.3s;
-      @media screen and (max-width: 767.9px) {
-        width: auto;
+  }
+  .price-summary {
+    width: 30%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    @media screen and (max-width: 767.9px) {
+      width: auto;
+      margin-bottom: 20px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1280px) {
+      width: 32%;
+    }
+    .price-summary-detail {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      @media screen and (max-width: 1280px) {
+        display: block;
       }
-      @media screen and (min-width: 768px) and (max-width: 1280px) {
-        width: 32%;
-      }
-      .price-summary-detail {
-        display: flex;
-        .price-product-image {
-          img {
-            width: 43px;
-            height: 69px;
+      .price-product-image {
+        img {
+          width: 43px;
+          height: 69px;
+          @media screen and (max-width: 1280px) {
+            width: auto;
+            margin: 0 auto 10px;
           }
         }
-
-        justify-content: space-between;
-        margin-top: 20px;
       }
-      button {
-        width: 100%;
-        margin: 20px 0;
-        background: #f47920;
-        border-color: #f47920;
-        padding: 0.5rem 1rem;
-        font-size: 1.25rem;
+      .price-label {
         line-height: 1.5;
-        border-radius: 0.3rem;
-        color: #fff;
-        border: 1px solid rgba(0, 0, 0, 0);
-        cursor: pointer;
-        &:hover {
-          background: #d6600b;
-        }
       }
-      .continue-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .price-amount {
+        padding-top: 5px;
+      }
+    }
+    button {
+      width: 100%;
+      margin: 20px 0;
+      background: #f47920;
+      border-color: #f47920;
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      border-radius: 0.3rem;
+      color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0);
+      cursor: pointer;
+      &:hover {
+        background: #d6600b;
+      }
+    }
+    .continue-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .pr-2 {
+        margin-right: 5px;
+        transition: all 0.3s ease-in;
+      }
+      &:hover {
+        color: #d6600b;
         .pr-2 {
-          margin-right: 5px;
-          transition: all 0.3s ease-in;
-        }
-        &:hover {
-          color: #d6600b;
-          .pr-2 {
-            margin-right: 10px;
-          }
+          margin-right: 10px;
         }
       }
     }
   }
+}
+.custom-control {
+  display: flex;
+  margin-top: 10px;
 }
 </style>
