@@ -59,6 +59,13 @@ const messages = {
             subTotal: "Sub Total",
             continue: "Continue",
             continueShopping: "Continue Shopping",
+            shippingPrice: "Shipping Price",
+
+            shippingAddress: "Shipping Address",
+            shippingMethod: "Shipping Method",
+            shipping: "Shipping",
+            pickUpFOC: "Pickup (FOC)",
+            billingAddress: "Billing Address",
         },
     },
     // myanamr
@@ -121,6 +128,13 @@ const messages = {
             subTotal: "စုစုပေါင်း",
             continue: "ဆက်လုပ်ရန်",
             continueShopping: "ထပ်၀ယ်ရန်",
+            shippingPrice: "ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း",
+
+            shippingAddress: "ကုန်ပစ္စည်းပို့ဆောင်ရမည့်လိပ်စာအသေးစိတ်",
+            shippingMethod: "ပို့ဆောင်မှုနည်းလမ်း",
+            shipping: "အရောက်ပို့ဆောင်ခြင်း",
+            pickUpFOC: "သတ်မှတ်နေရာတွင်လာရွေးယူခြင်း (FOC)",
+            billingAddress: "ငွေတောင်းခံလွှာပို့ရန်လိပ်စာ"
         },
     },
 }
