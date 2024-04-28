@@ -273,7 +273,7 @@ export default {
       console.log("handle continue");
       if (data) {
         this.step = data;
-      } else if (this.step < 2) {
+      } else if (this.step < 3) {
         this.step += 1;
       }
     },

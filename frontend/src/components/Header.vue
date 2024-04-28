@@ -278,9 +278,16 @@
               <a
                 :class="[checkActiveMenu('/article') ? 'active' : '']"
                 @click="changeRoute('/article')"
-                >{{ $t('message.article') }}</a
-              >
+                >{{ $t('message.article') }}</a>
             </li>
+
+            <li>
+              <a
+                :class="[checkActiveMenu('/quota') ? 'active' : '']"
+                @click="changeRoute('/quota')"
+                >{{ $t('message.requestAQuota') }}</a>
+            </li>
+
             <li class="has-menu">
               <a
                 :class="[checkActiveMenu('/login', '/register') ? 'active' : '']"

@@ -16,6 +16,7 @@ var messages = {
       article: 'Article',
       shoppingcart: 'Shopping Cart',
       search: 'Search',
+      requestAQuota: ' Request A Quota',
       //register
       registerTitle: 'New Customer Register Here',
       requiredInfo: "Required Information",
@@ -78,6 +79,7 @@ var messages = {
       article: 'ဆောင်းပါးများ',
       shoppingcart: 'Shopping Cart',
       search: 'ရှာပါ',
+      requestAQuota: 'စျေးနှုန်းတောင်းခံရန်',
       //register
       registerTitle: 'စျေးဝယ်သူအသစ် မှတ်ပုံတင်ရန် ',
       requiredInfo: 'လိုအပ်သည့်သတင်းအချက်အလက်',

@@ -10,6 +10,7 @@ const messages = {
             article: 'Article',
             shoppingcart: 'Shopping Cart',
             search: 'Search',
+            requestAQuota: ' Request A Quota',
 
             //register
             registerTitle: 'New Customer Register Here',
@@ -79,6 +80,7 @@ const messages = {
             article: 'ဆောင်းပါးများ',
             shoppingcart: 'Shopping Cart',
             search: 'ရှာပါ',
+            requestAQuota: 'စျေးနှုန်းတောင်းခံရန်',
 
             //register
             registerTitle: 'စျေးဝယ်သူအသစ် မှတ်ပုံတင်ရန် ',
