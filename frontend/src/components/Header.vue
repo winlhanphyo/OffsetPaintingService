@@ -551,17 +551,20 @@ export default {
           }
           li {
             font-weight: 500;
+            font-size: 12px;
             @media screen and (min-width: 768px) and (max-width: 1440px) {
-              font-size: 12px;
+              font-size: 11px;
             }
             a {
               padding: 12px 10px;
               position: relative;
               cursor: pointer;
               margin-right: 5px;
+              white-space: nowrap;
               @media screen and (min-width: 768px) and (max-width: 1440px) {
                 display: block;
                 padding: 7px 10px;
+                white-space: inherit;
               }
               @media screen and (max-width: 767.9px) {
                 display: block;
