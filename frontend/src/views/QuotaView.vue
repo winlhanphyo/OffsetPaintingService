@@ -104,6 +104,36 @@
           ></span>
           Select printing options
         </h4>
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label>Material</label>
+              <div class="form-data">
+                <select>
+                  <option value="" selected disabled hidden>Select Material</option>
+                  <option value="1">Sales</option>
+                  <option value="2">Graphic Design</option>
+                  <option value="3">Customer Assistance</option>
+                  <option value="4">Direct Mailing Question</option>
+                  <option value="5">Testimonials</option>
+                  <option value="6">Request Reorder</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Coating</label>
+              <div class="form-data">
+                <select>
+                  <option value="" selected disabled hidden>Select Coating</option>
+                  <option value="1">None</option>
+                  <option value="2">Both Sides</option>
+                  <option value="3">One Side</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+        </div>
       </div>
     </div>
   </div>
@@ -291,6 +321,40 @@ export default {
     .printing-option-container {
       h4 {
         font-size: 20px;
+      }
+      .form-row {
+        margin-top: 20px;
+      }
+      .col {
+        display: flex;
+        justify-content: space-between;
+        @media screen and (max-width: 767.9px) {
+          display: block;
+        }
+        .form-group {
+          width: calc(100% / 2);
+          margin: 0 20px 20px 0;
+          @media screen and (max-width: 767.9px) {
+            width: 100%;
+            margin: 0 0 20px 0;
+          }
+          label {
+            display: block;
+            margin-bottom: 10px;
+          }
+          select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 5px;
+            option {
+              padding: 5px 10px;
+            }
+          }
+          &:last-child {
+            margin: 0 0 20px 0;
+          }
+        }
       }
     }
   }

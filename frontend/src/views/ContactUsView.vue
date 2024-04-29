@@ -244,6 +244,7 @@ export default {
           margin: 0 20px 20px 0;
           @media screen and (max-width: 767.9px) {
             width: 100%;
+            margin: 0 0 20px 0;
           }
           label {
             display: block;
