@@ -4,7 +4,6 @@
       <h1>
         <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')">
           <img src="@/assets/images/common/logo.png" alt="Xenon Company Limited"/>
-          <span>Ci Ci Printing Service</span>
         </a>
       </h1>
       <div class="flex">
@@ -510,35 +509,18 @@ export default {
         }
       }
       h1 {
-        width: auto;
+        width: 20%;
         @media screen and (max-width: 767.9px) {
+          width: 50%;
           margin-left: 45px;
         }
-        img {
-          width: 14%;
-          cursor: pointer;
-          @media screen and (max-width: 767.9px) {
-            width: 19%;
-          }
+        @media screen and (min-width: 768px) and (max-width: 1440px) {
+          width: 27%;
         }
         a {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
           cursor: pointer;
           &:hover {
             opacity: 0.7;
-          }
-          span {
-            margin: 0 0 0 10px;
-            color: #22a5e1;
-            font-size: 18px;
-            @media screen and (min-width: 768px) and (max-width: 1440px) {
-              font-size: 12px;
-            }
-            @media screen and (max-width: 767.9px) {
-              font-size: 12px;
-            }
           }
         }
       }
@@ -886,7 +868,7 @@ export default {
         display: none;
         @media screen and (max-width: 767.9px) {
           position: fixed;
-          top: 26px;
+          top: 5vw;
           left: 10px;
           width: 35px;
           height: 28px;
