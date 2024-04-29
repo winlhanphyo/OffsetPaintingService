@@ -165,24 +165,6 @@
                   />
                 </a>
               </li>
-              <li>
-                <a href="#" title="123">
-                  <img
-                    alt="123"
-                    class="img-fluid"
-                    src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/123.jpg"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" title="m-many">
-                  <img
-                    alt="m-many"
-                    class="img-fluid"
-                    src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/M_Ks.jpg"
-                  />
-                </a>
-              </li>
             </ul>
           </div>
         </div>

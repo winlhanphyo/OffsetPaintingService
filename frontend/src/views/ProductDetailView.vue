@@ -126,8 +126,8 @@
                   <label for="" class="label">Shipping Option</label>
                   <div class="form-data">
                     <ul>
-                      <li><input type="radio" value="1">Shipping</li>
-                      <li><input type="radio" value="2">Pickup (FOC)</li>
+                      <li><input type="radio" name="option" value="shipping">Shipping</li>
+                      <li><input type="radio" name="option" value="pickup">Pickup (FOC)</li>
                     </ul>
                   </div>
                 </div>
