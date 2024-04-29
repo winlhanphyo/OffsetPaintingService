@@ -346,6 +346,7 @@ export default {
           border-bottom: 1px solid #dee2e6;
         }
         .calculate {
+          margin-top: 10px;
           .form-group {
             display: flex;
             align-items: center;

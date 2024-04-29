@@ -2,9 +2,9 @@
   <header>
     <div class="header-inner">
       <h1>
-        <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')"
-          ><img src="@/assets/images/common/logo.png" alt="Xenon Company Limited"
-        /></a>
+        <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')">
+          <img src="@/assets/images/common/logo.png" alt="Xenon Company Limited"/>
+        </a>
       </h1>
       <div class="flex">
         <nav :class="[mobileToggle ? 'gnav is-show' : 'gnav']">
@@ -509,16 +509,18 @@ export default {
         }
       }
       h1 {
-        width: auto;
+        width: 20%;
         @media screen and (max-width: 767.9px) {
-          width: 35px;
+          width: 50%;
           margin-left: 45px;
         }
-        img {
-          width: 70%;
+        @media screen and (min-width: 768px) and (max-width: 1440px) {
+          width: 27%;
+        }
+        a {
           cursor: pointer;
-          @media screen and (max-width: 767.9px) {
-            width: auto;
+          &:hover {
+            opacity: 0.7;
           }
         }
       }
@@ -531,17 +533,20 @@ export default {
           }
           li {
             font-weight: 500;
+            font-size: 12px;
             @media screen and (min-width: 768px) and (max-width: 1440px) {
-              font-size: 12px;
+              font-size: 11px;
             }
             a {
               padding: 12px 10px;
               position: relative;
               cursor: pointer;
               margin-right: 5px;
+              white-space: nowrap;
               @media screen and (min-width: 768px) and (max-width: 1440px) {
                 display: block;
                 padding: 7px 10px;
+                white-space: inherit;
               }
               @media screen and (max-width: 767.9px) {
                 display: block;
@@ -648,6 +653,8 @@ export default {
                       color: #000;
                       font-weight: normal;
                       display: block;
+                      margin: 0;
+                      padding: 12px 20px 12px 20px;
                       @media screen and (min-width: 768px) and (max-width: 1440px) {
                         padding: 9px 20px 9px 20px;
                         margin: 0;
@@ -754,7 +761,7 @@ export default {
                   content: "\e5cf";
                   position: absolute;
                   font-family: "Material Symbols Outlined";
-                  top: 10px;
+                  top: 9px;
                   right: 9px;
                   font-size: 20px;
                 }
@@ -863,7 +870,7 @@ export default {
         display: none;
         @media screen and (max-width: 767.9px) {
           position: fixed;
-          top: 26px;
+          top: 5vw;
           left: 10px;
           width: 35px;
           height: 28px;
