@@ -2,9 +2,10 @@
   <header>
     <div class="header-inner">
       <h1>
-        <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')"
-          ><img src="@/assets/images/common/logo.png" alt="Xenon Company Limited"
-        /></a>
+        <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')">
+          <img src="@/assets/images/common/logo.png" alt="Xenon Company Limited"/>
+          <span>Ci Ci Printing Service</span>
+        </a>
       </h1>
       <div class="flex">
         <nav :class="[mobileToggle ? 'gnav is-show' : 'gnav']">
@@ -511,14 +512,33 @@ export default {
       h1 {
         width: auto;
         @media screen and (max-width: 767.9px) {
-          width: 35px;
           margin-left: 45px;
         }
         img {
-          width: 70%;
+          width: 14%;
           cursor: pointer;
           @media screen and (max-width: 767.9px) {
-            width: auto;
+            width: 19%;
+          }
+        }
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          cursor: pointer;
+          &:hover {
+            opacity: 0.7;
+          }
+          span {
+            margin: 0 0 0 10px;
+            color: #22a5e1;
+            font-size: 18px;
+            @media screen and (min-width: 768px) and (max-width: 1440px) {
+              font-size: 12px;
+            }
+            @media screen and (max-width: 767.9px) {
+              font-size: 12px;
+            }
           }
         }
       }
