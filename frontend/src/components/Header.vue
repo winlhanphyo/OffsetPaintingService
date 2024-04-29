@@ -653,6 +653,8 @@ export default {
                       color: #000;
                       font-weight: normal;
                       display: block;
+                      margin: 0;
+                      padding: 12px 20px 12px 20px;
                       @media screen and (min-width: 768px) and (max-width: 1440px) {
                         padding: 9px 20px 9px 20px;
                         margin: 0;
