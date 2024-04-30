@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
   .forget-password {
     max-width: 720px;
     margin: 60px auto 0;

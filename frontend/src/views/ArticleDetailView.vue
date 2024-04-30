@@ -50,7 +50,7 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 .article-detail {
   display: flex;
   justify-content: space-between;

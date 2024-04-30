@@ -273,7 +273,7 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 .container {
   .product-list {
     display: flex;

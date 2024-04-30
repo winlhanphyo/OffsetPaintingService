@@ -327,7 +327,7 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 @import "@/assets/scss/mixins.scss";
 .wrapper {
   main {

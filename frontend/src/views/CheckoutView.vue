@@ -284,7 +284,7 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 .page-header {
   display: flex;
   align-items: center;

@@ -240,7 +240,7 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
   .product-detail {
     .card {
       display: flex;

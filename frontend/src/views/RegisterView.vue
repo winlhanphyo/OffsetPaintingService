@@ -192,7 +192,7 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 .wrapper {
   .container {
     .page-sub-header {

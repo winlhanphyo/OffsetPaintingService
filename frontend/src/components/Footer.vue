@@ -195,12 +195,14 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 @import "@/assets/scss/mixins.scss";
+
+// $primary-color: #2c2c2c;  // Tomato color
 
 footer {
   padding: 40px 0 0;
-  background: rgb(44 44 44);
+  background-color: #2c2c2c;
   color: #fff;
   @media screen and (max-width: 767.9px) {
     padding: 40px 0 10px;
