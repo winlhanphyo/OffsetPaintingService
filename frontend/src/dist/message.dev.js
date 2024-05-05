@@ -49,6 +49,8 @@ var messages = {
       total: "Total",
       firstAccordianHead: "First Accordian Head",
       getStarted: "Get Started",
+      // package
+      "package": "Package",
       //title
       shoppingCartTitle: "Shopping Cart",
       shoppingCartStep1: "Shopping Cart",
@@ -124,6 +126,8 @@ var messages = {
       "continue": "ဆက်လုပ်ရန်",
       continueShopping: "ထပ်၀ယ်ရန်",
       shippingPrice: "ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း",
+      //package
+      "package": "ပက်ကေ့များ",
       shippingAddress: "ကုန်ပစ္စည်းပို့ဆောင်ရမည့်လိပ်စာအသေးစိတ်",
       shippingMethod: "ပို့ဆောင်မှုနည်းလမ်း",
       shipping: "အရောက်ပို့ဆောင်ခြင်း",

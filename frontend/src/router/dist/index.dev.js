@@ -86,11 +86,27 @@ var routes = [{
     });
   }
 }, {
+  path: '/package/:id',
+  name: 'package',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/PackageDetailView.vue'));
+    });
+  }
+}, {
   path: '/products',
   name: 'products',
   component: function component() {
     return Promise.resolve().then(function () {
       return _interopRequireWildcard(require('../views/ProductListView.vue'));
+    });
+  }
+}, {
+  path: '/packages',
+  name: 'packages',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/PackageListView.vue'));
     });
   }
 }, {

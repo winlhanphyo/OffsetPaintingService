@@ -47,9 +47,19 @@ const routes = [
     component: () => import('../views/ProductDetailView.vue')
   },
   {
+    path: '/package/:id',
+    name: 'package',
+    component: () => import('../views/PackageDetailView.vue')
+  },
+  {
     path: '/products',
     name: 'products',
     component: () => import('../views/ProductListView.vue')
+  },
+  {
+    path: '/packages',
+    name: 'packages',
+    component: () => import('../views/PackageListView.vue')
   },
   {
     path: '/forget-password',
