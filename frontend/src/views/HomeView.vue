@@ -11,70 +11,73 @@
       </ul>
     </div>
     <div class="container">
-      <h2>{{ $t('message.package') }}</h2>
-      <div class="product-list">
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Design T Shirt</h3>
-            <p>Create your own t-shirt designs for friends, families, and events</p>
+      <div class="package">
+        <h2>{{ $t('message.package') }}</h2>
+        <div class="product-list package-list">
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Design T Shirt</h3>
+              <p>Create your own t-shirt designs for friends, families, and events</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
+              <div class="details">
+                <a @click="$router.push('/package/1')"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
           </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/package/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Personalised T Shirt</h3>
+              <p>Create your own t-shirt designs for friends, families, and events</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg" alt="" />
+              <div class="details">
+                <a @click="$router.push('/package/1')"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Photography Prints</h3>
+              <p>Photographers Create it, we Print it, you Love it.</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg" alt="" />
+              <div class="details">
+                <a @click="$router.push('/package/1')"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Matt Canvas with Frame</h3>
+              <p>Canvas Printing with Frame</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Canves_print_1_400px.jpg" alt="" />
+              <div class="details">
+                <a @click="$router.push('/package/1')"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Personalised T Shirt</h3>
-            <p>Create your own t-shirt designs for friends, families, and events</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/package/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
+        <div class="link">
+          <div class="show-all">
+            <a @click="$router.push('/packages')"><span>Show All</span></a>
           </div>
         </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Photography Prints</h3>
-            <p>Photographers Create it, we Print it, you Love it.</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/package/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Matt Canvas with Frame</h3>
-            <p>Canvas Printing with Frame</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Canves_print_1_400px.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/package/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <a @click="$router.push('/packages')">Show All </a>
-        </div>
-    </div>
-
+        
+      </div>
 
       <h2>{{ $t('message.product') }}</h2>
       <div class="product-list">
@@ -542,6 +545,51 @@ export default {
             box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.8);
             padding: 7px;
             border-radius: 10px;
+          }
+        }
+      }
+      .package-list {
+        margin: 50px 0 10px;
+      }
+      .link {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 0 20px 25px 0;
+      }
+      .show-all {
+        background: #ffe401;
+        box-shadow: 0 10px 20px #307cff29;
+        color: #0c2773 !important;
+        border-radius: 25px;
+        display: inline-table;
+        align-items: center;
+        justify-content: space-between;
+        border: 0;
+        cursor: pointer;
+        font-size: 15px;
+        margin: 10px 0;
+        a {
+          display: block;
+          padding: 10px 20px;
+          &:hover {
+            span::before {
+              right: -6px;
+            }
+          }
+        }
+        span {
+          position: relative;
+          padding-right: 25px;
+          &::before {
+            position: absolute;
+            top: 0px;
+            right: 0;
+            width: 18px;
+            height: 18px;
+            content: "";
+            background: url(@/assets/images/home/arrow.svg) no-repeat center / 100%;
+            transition: all .3s ease-in;
           }
         }
       }
