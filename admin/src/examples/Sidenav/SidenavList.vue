@@ -35,9 +35,9 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
-          to="/tables"
-          :class="getRoute() === 'tables' ? 'active' : ''"
-          :navText="isRTL ? 'الجداول' : 'Tables'"
+          to="/banner"
+          :class="getRoute() === 'banner' ? 'active' : ''"
+          :navText="isRTL ? 'الجداول' : 'Banner'"
         >
           <template v-slot:icon>
             <i
@@ -49,9 +49,9 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
-          to="/billing"
-          :class="getRoute() === 'billing' ? 'active' : ''"
-          :navText="isRTL ? 'الفواتیر' : 'Billing'"
+          to="/category"
+          :class="getRoute() === 'category' ? 'active' : ''"
+          :navText="isRTL ? 'الفواتیر' : 'Category'"
         >
           <template v-slot:icon>
             <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
@@ -61,9 +61,9 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
-          to="/virtual-reality"
-          :class="getRoute() === 'virtual-reality' ? 'active' : ''"
-          :navText="isRTL ? 'الواقع الافتراضي' : 'Virtual Reality'"
+          to="/product"
+          :class="getRoute() === 'product' ? 'active' : ''"
+          :navText="isRTL ? 'الواقع الافتراضي' : 'Product'"
         >
           <template v-slot:icon>
             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -73,9 +73,9 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
-          to="/rtl-page"
-          :class="getRoute() === 'rtl-page' ? 'active' : ''"
-          navText="RTL"
+          to="/user"
+          :class="getRoute() === 'user' ? 'active' : ''"
+          navText="User"
         >
           <template v-slot:icon>
             <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>

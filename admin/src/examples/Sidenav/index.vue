@@ -2,7 +2,8 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import SidenavList from "./SidenavList.vue";
-import logo from "@/assets/img/logo-ct-dark.png";
+import logo from "@/assets/img/logos/logo.png";
+// import logo from "@/assets/img/logo-ct-dark.png";
 import logoWhite from "@/assets/img/logo-ct.png";
 
 const store = useStore();
@@ -40,7 +41,7 @@ const darkMode = computed(() => store.state.darkMode);
           alt="main_logo"
         />
 
-        <span class="ms-2 font-weight-bold me-2">Argon Dashboard 2</span>
+        <!-- <span class="ms-2 font-weight-bold me-2">CiCi Printing Admin Panel</span> -->
       </router-link>
     </div>
 
