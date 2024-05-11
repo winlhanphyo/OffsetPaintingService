@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header pb-0">
-      <h6>User table</h6>
+      <h6>Order table</h6>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
@@ -18,7 +18,7 @@
               >
                 Function
               </th>
-              <!-- <th
+              <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
                 Status
@@ -27,7 +27,7 @@
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
                 Employed
-              </th> -->
+              </th>
               <th class="text-secondary opacity-7"></th>
             </tr>
           </thead>
@@ -52,12 +52,12 @@
                 <p class="text-xs font-weight-bold mb-0">Manager</p>
                 <p class="text-xs text-secondary mb-0">Organization</p>
               </td>
-              <!-- <td class="align-middle text-center text-sm">
+              <td class="align-middle text-center text-sm">
                 <span class="badge badge-sm bg-gradient-success">Online</span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-              </td> -->
+              </td>
               <td class="align-middle">
                 <a
                   href="javascript:;"
@@ -66,13 +66,6 @@
                   data-original-title="Edit user"
                   >Edit</a
                 >
-                <a
-                  href="javascript:;"
-                  style="margin-left: 30px"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Delete</a>
               </td>
             </tr>
             <tr>
@@ -95,12 +88,12 @@
                 <p class="text-xs font-weight-bold mb-0">Programator</p>
                 <p class="text-xs text-secondary mb-0">Developer</p>
               </td>
-              <!-- <td class="align-middle text-center text-sm">
+              <td class="align-middle text-center text-sm">
                 <span class="badge badge-sm bg-gradient-secondary">Offline</span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
-              </td> -->
+              </td>
               <td class="align-middle">
                 <a
                   href="javascript:;"
@@ -109,12 +102,6 @@
                   data-original-title="Edit user"
                   >Edit</a
                 >
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Delete</a>
               </td>
             </tr>
             <tr>
@@ -137,12 +124,12 @@
                 <p class="text-xs font-weight-bold mb-0">Executive</p>
                 <p class="text-xs text-secondary mb-0">Projects</p>
               </td>
-              <!-- <td class="align-middle text-center text-sm">
+              <td class="align-middle text-center text-sm">
                 <span class="badge badge-sm bg-gradient-success">Online</span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
-              </td> -->
+              </td>
               <td class="align-middle">
                 <a
                   href="javascript:;"
@@ -151,12 +138,6 @@
                   data-original-title="Edit user"
                   >Edit</a
                 >
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Delete</a>
               </td>
             </tr>
             <tr>
@@ -179,12 +160,12 @@
                 <p class="text-xs font-weight-bold mb-0">Programator</p>
                 <p class="text-xs text-secondary mb-0">Developer</p>
               </td>
-              <!-- <td class="align-middle text-center text-sm">
+              <td class="align-middle text-center text-sm">
                 <span class="badge badge-sm bg-gradient-success">Online</span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
-              </td> -->
+              </td>
               <td class="align-middle">
                 <a
                   href="javascript:;"
@@ -193,12 +174,6 @@
                   data-original-title="Edit user"
                   >Edit</a
                 >
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Delete</a>
               </td>
             </tr>
             <tr>
@@ -221,12 +196,12 @@
                 <p class="text-xs font-weight-bold mb-0">Manager</p>
                 <p class="text-xs text-secondary mb-0">Executive</p>
               </td>
-              <!-- <td class="align-middle text-center text-sm">
+              <td class="align-middle text-center text-sm">
                 <span class="badge badge-sm bg-gradient-secondary">Offline</span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
-              </td> -->
+              </td>
               <td class="align-middle">
                 <a
                   href="javascript:;"
@@ -235,12 +210,6 @@
                   data-original-title="Edit user"
                   >Edit</a
                 >
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Delete</a>
               </td>
             </tr>
             <tr>
@@ -263,12 +232,12 @@
                 <p class="text-xs font-weight-bold mb-0">Programtor</p>
                 <p class="text-xs text-secondary mb-0">Developer</p>
               </td>
-              <!-- <td class="align-middle text-center text-sm">
+              <td class="align-middle text-center text-sm">
                 <span class="badge badge-sm bg-gradient-secondary">Offline</span>
               </td>
               <td class="align-middle text-center">
                 <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
-              </td> -->
+              </td>
               <td class="align-middle">
                 <a
                   href="javascript:;"
@@ -277,12 +246,6 @@
                   data-original-title="Edit user"
                   >Edit</a
                 >
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Delete</a>
               </td>
             </tr>
           </tbody>

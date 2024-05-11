@@ -4,6 +4,8 @@ import Banner from "../views/Banner.vue";
 import Category from "../views/Category.vue";
 import Product from "../views/Product.vue";
 import User from "../views/User.vue";
+import Article from "../views/Article.vue";
+import Order from "../views/Order.vue";
 import Billing from "../views/Billing.vue";
 import VirtualReality from "../views/VirtualReality.vue";
 import RTL from "../views/Rtl.vue";
@@ -36,6 +38,16 @@ const routes = [
     path: "/product",
     name: "Product",
     component: Product,
+  },
+  {
+    path: "/article",
+    name: "Article",
+    component: Article,
+  },
+  {
+    path: "/order",
+    name: "Order",
+    component: Order,
   },
   {
     path: "/user",
