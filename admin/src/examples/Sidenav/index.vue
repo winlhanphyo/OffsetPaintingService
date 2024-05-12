@@ -50,3 +50,10 @@ const darkMode = computed(() => store.state.darkMode);
     <sidenav-list />
   </aside>
 </template>
+<style lang="scss">
+  .modal-open {
+    .navbar-vertical.navbar-expand-xs {
+      z-index: 1;
+    }
+  }
+</style>
