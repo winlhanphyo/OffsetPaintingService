@@ -35,7 +35,7 @@
               >
                 <span class="material-symbols-outlined"> location_on </span>
                 <span>
-                  <b>CI Ci Company Limited</b><br />
+                  <b>Ci Ci Company Limited</b><br />
                   Main address :<br />
                   No.565, Mann Aung Street<br />
                   3 Man Pyay Ward<br />
