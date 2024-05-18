@@ -4,7 +4,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: () => import('../views/HomeView.vue')
+    component: () => import('../views/HomeView.vue'),
   },
   {
     path: '/about',
@@ -69,7 +69,8 @@ const routes = [
   {
     path: '/checkout',
     name: 'checkout',
-    component: () => import('../views/CheckoutView.vue')
+    component: () => import('../views/CheckoutView.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/product/search',
@@ -90,5 +91,18 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (localStorage.getItem("token")) {
+      console.log("existed storage")
+      next();
+      return;
+    }
+    next("/login");
+  } else {
+    next();
+  }
+});
 
 export default router
