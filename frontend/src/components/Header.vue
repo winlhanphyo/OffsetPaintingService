@@ -395,12 +395,20 @@ export default {
         false,
       ],
       mobileToggle: false,
+      categories: this.$store.state.apiData?.categories
     };
   },
   mounted() {
     this.$i18n.locale = this.$store.state.common?.data?.lang;
+    this.getProductCategory();
   },
   methods: {
+    async getProductCategory() {
+      const token = localStorage.getItem("token") || "";
+      await store.dispatch("GetCategoryProduct", token);
+
+      console.log("---------categories", this.categories);
+    },
     async handleLanguage() {
       console.log("Checkbox state changed. Checked:", this.langChecked);
       this.lang = this.langChecked ? "eng" : "myan";

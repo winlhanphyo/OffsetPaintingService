@@ -1,3 +1,8 @@
+<script setup>
+import ArgonPagination from "@/components/ArgonPagination.vue";
+import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+</script>
+
 <template>
   <div class="card">
     <div class="card-header pb-0">
@@ -14,7 +19,7 @@
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
-                No
+                ID
               </th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
@@ -45,43 +50,61 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="(item, index) in products" :key="index">
               <td>
-                <div class="px-3 py-1">1</div>
+                <div class="px-3 py-1">{{ item?.id }}</div>
               </td>
               <td>
                 <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">John Michael</a></h6>
+                  <h6 class="mb-0 text-sm">
+                    <a href="#detailModalToggle" data-bs-toggle="modal">{{
+                      item?.productName
+                    }}</a>
+                  </h6>
                 </div>
               </td>
               <td>
                 <div class="px-3 py-1">
                   <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar me-3"
-                      alt="user1"
-                    />
+                    <img :src="item?.image" class="avatar me-3" alt="user1" />
                   </div>
                 </div>
               </td>
               <td>
                 <div class="py-1">
-                  <h6 class="mb-0 text-sm">John Michael</h6>
+                  <h6 class="mb-0 text-sm">{{ item?.categoryName }}</h6>
                 </div>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
+                <span class="text-secondary text-xs font-weight-bold">{{
+                  item?.createdAt
+                }}</span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
+                <span class="text-secondary text-xs font-weight-bold">{{
+                  item?.updatedAt
+                }}</span>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary"
+                  data-bs-target="#editModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-danger ms-2"
+                  data-bs-target="#deleteModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>
                 <div class="px-3 py-1">2</div>
               </td>
@@ -260,23 +283,40 @@
                 <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
                 <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
-        <div class="modal fade" id="editModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <argon-pagination>
+          <argon-pagination-item prev />
+          <argon-pagination-item label="1" active />
+          <argon-pagination-item label="2" />
+          <argon-pagination-item label="3" />
+          <argon-pagination-item next />
+        </argon-pagination>
+        <div
+          class="modal fade"
+          id="editModalToggle"
+          aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel"
+          tabindex="-1"
+        >
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Product Update</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                  Product Update
+                </h1>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
                     <label for="product-name" class="col-form-label">Product Name</label>
-                    <input type="text" class="form-control" id="product-name">
+                    <input type="text" class="form-control" id="product-name" />
                   </div>
                   <div class="mb-3">
-                    <label for="category-name" class="col-form-label">Category Name</label>
+                    <label for="category-name" class="col-form-label"
+                      >Category Name</label
+                    >
                     <select class="form-select" aria-label="Default select example">
                       <option selected>Select Category Menu</option>
                       <option value="1">One</option>
@@ -286,38 +326,69 @@
                   </div>
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Image file</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="formFile" />
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-target="#exampleModalToggle2"
+                  data-bs-toggle="modal"
+                >
+                  Update
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <div class="modal fade" id="deleteModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+
+        <div
+          class="modal fade"
+          id="deleteModalToggle"
+          aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel"
+          tabindex="-1"
+        >
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Delete</h1>
               </div>
-              <div class="modal-body">
-                Are you sure want to Delete?
-              </div>
+              <div class="modal-body">Are you sure want to Delete?</div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-bs-target="#exampleModalToggle2"
+                  data-bs-toggle="modal"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <div class="modal fade" id="detailModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div
+          class="modal fade"
+          id="detailModalToggle"
+          aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel"
+          tabindex="-1"
+        >
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Product Detail</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                  Product Detail
+                </h1>
               </div>
               <div class="modal-body">
                 <div>
@@ -347,7 +418,9 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
               </div>
             </div>
           </div>
@@ -356,13 +429,85 @@
     </div>
   </div>
 </template>
+
+<script>
+import { getProduct } from "@/services/admin.service.js";
+
+export default {
+  data() {
+    return {
+      products: [
+        {
+          id: 1,
+          productName: "John Michael",
+          image: require("@/assets/img/team-2.jpg"),
+          categoryName: "John Michael",
+          createdAt: "2024/05/12",
+          updatedAt: "2024/05/12",
+        },
+        {
+          id: 2,
+          productName: "Alexa Liras",
+          image: require("../../assets/img/team-3.jpg"),
+          categoryName: "John Michael",
+          createdAt: "2024/05/12",
+          updatedAt: "2024/05/12",
+        },
+        {
+          id: 3,
+          productName: "Laurent Perrier",
+          image: require("../../assets/img/team-4.jpg"),
+          categoryName: "John Michael",
+          createdAt: "2024/05/12",
+          updatedAt: "2024/05/12",
+        },
+        {
+          id: 4,
+          productName: "Michael Levi",
+          image: require("../../assets/img/team-3.jpg"),
+          categoryName: "Michael Levi",
+          createdAt: "2024/05/12",
+          updatedAt: "2024/05/12",
+        },
+        {
+          id: 5,
+          productName: "Richard Gran",
+          image: require("../../assets/img/team-2.jpg"),
+          categoryName: "Richard Gran",
+          createdAt: "2024/05/12",
+          updatedAt: "2024/05/12",
+        },
+        {
+          id: 6,
+          productName: "Miriam Eric",
+          image: require("../../assets/img/team-4.jpg"),
+          categoryName: "Miriam Eric",
+          createdAt: "2024/05/12",
+          updatedAt: "2024/05/12",
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.getProductData();
+  },
+  methods: {
+    async getProductData() {
+      const token = localStorage.getItem("token");
+      const res = await getProduct(token);
+      console.log("---------res", res);
+    },
+  },
+};
+</script>
+
 <style lang="scss">
-  .w-28 {
-    width: 28%;
+.w-28 {
+  width: 28%;
+}
+.text-sm {
+  a {
+    text-decoration: underline;
   }
-  .text-sm {
-    a {
-      text-decoration: underline;
-    }
-  }
+}
 </style>
