@@ -24,7 +24,7 @@ const mutations = {
     });
   },
   resetCommonData(state, common) {
-    console.log("---common", common);
+    console.log("------common", common);
     state.data = {
       lang: 'en'
     };

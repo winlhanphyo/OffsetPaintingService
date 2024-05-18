@@ -3,7 +3,7 @@ import { onBeforeUnmount, onBeforeMount } from "vue";
 import { useStore } from "vuex";
 import Navbar from "@/examples/PageLayout/Navbar.vue";
 import ArgonInput from "@/components/ArgonInput.vue";
-import ArgonSwitch from "@/components/ArgonSwitch.vue";
+// import ArgonSwitch from "@/components/ArgonSwitch.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
 const body = document.getElementsByTagName("body")[0];
 
@@ -49,7 +49,7 @@ onBeforeUnmount(() => {
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form @submit.prevent="signIn">
                     <div class="mb-3">
                       <argon-input
                         id="email"
@@ -57,6 +57,7 @@ onBeforeUnmount(() => {
                         placeholder="Email"
                         name="email"
                         size="lg"
+                        v-model="email"
                       />
                     </div>
                     <div class="mb-3">
@@ -66,11 +67,11 @@ onBeforeUnmount(() => {
                         placeholder="Password"
                         name="password"
                         size="lg"
+                        v-model="password"
                       />
                     </div>
-                    <argon-switch id="rememberMe" name="remember-me"
-                      >Remember me</argon-switch
-                    >
+                    <!-- <argon-switch id="rememberMe" name="remember-me"
+                      >Remember me</argon-switch> -->
 
                     <div class="text-center">
                       <argon-button
@@ -79,6 +80,7 @@ onBeforeUnmount(() => {
                         color="success"
                         fullWidth
                         size="lg"
+                        @click="signIn"
                         >Sign in</argon-button
                       >
                     </div>
@@ -88,7 +90,7 @@ onBeforeUnmount(() => {
                   <p class="mx-auto mb-4 text-sm">
                     Don't have an account?
                     <a
-                      href="javascript:;"
+                      @click="$router.push('/signup')"
                       class="text-success text-gradient font-weight-bold"
                       >Sign up</a
                     >
@@ -124,3 +126,34 @@ onBeforeUnmount(() => {
     </section>
   </main>
 </template>
+
+<script>
+import Swal from 'sweetalert2';
+
+export default {
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    signIn() {
+      if (this.email === "admin@gmail.com" && this.password === "password") {
+        localStorage.setItem("token", "aaaaa");
+        this.$router.push("/dashboard-default");
+      } else {
+        Swal.fire({
+          position: 'bottom',
+          icon: 'error',
+          title: "Username or Password is incorrect.",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true
+        });
+      }
+    }
+  },
+};
+</script>
