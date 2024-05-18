@@ -5,42 +5,13 @@
       <div class="row">
         <div class="address">
           <p>
-            <span>Xenon Company Limited</span><br>
-            Main address :<br>
-            No. 55 Hla Theingi Street<br>
-            Industrial Zone 2<br>
-            Dagon Seikkan Township<br>
-            Yangon<br>
-            Tel: 09428304444, 09428305555<br>
-            Email: <a href="mailto:hello@xenonmm.com">hello@xenonmm.com</a>
+            <span>Ci Ci Company Limited</span><br>
+            No.565, Mann Aung Street, 3 Man Pyay Ward, Thaketa Township, Yangon.<br>
+            Tel : 09254006394, 09400065339<br>
+            Email : <a href="mailto:cici.offset@gmail.com">cici.offset@gmail.com</a>
           </p>
           <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.458696581868!2d96.28472107492203!3d16.853188983945664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c18cfb170bb19f%3A0xcfa5696f4b738826!2sXenon%20Company%20Limited!5e0!3m2!1sen!2smm!4v1712637412313!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-        <div class="address">
-          <p>
-            <span>Xenon Premium Printing 1</span><br>
-            No. 78, Anawrahta Road, Bet 39th & 40th Steet,<br>
-            Kyauktada Township, Yangon.<br>
-            Tel : 09428303333, 09451177799<br>
-            Email : <a href="mailto:retailshop1@xenonmm.com">retailshop1@xenonmm.com</a>
-          </p>
-          <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122239.9477148521!2d96.0113673972656!3d16.776756900000017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1ec89efb0b5cf%3A0x95ecd9218dfabc16!2sXenon%20Premium%20Printing%201!5e0!3m2!1sen!2smm!4v1712651950163!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="address mdy-address">
-          <p>
-            <span>Xenon Premium Printing Mandalay</span><br>
-            No. 179, 35th Street, (bet 77 & 78 St), Maha Aung Myae Township, Mandalay.<br>
-            Tel : 095410011, 09428307777<br>
-            Email : <a href="mailto:mdy@xenonmm.com">mdy@xenonmm.com</a>
-          </p>
-          <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.104788353216!2d96.08510987505929!3d21.968940979926177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30cb6dff604e954d%3A0x493e3a680da6fb09!2sXenon%20Premium%20Printing%20Mandalay!5e0!3m2!1sen!2smm!4v1712652086612!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d954.9682909828629!2d96.19654627519941!3d16.782984796422678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1edb5481416c5%3A0xf30d85e67a8420c6!2sCi%20Ci%20Printing%20Services!5e0!3m2!1sen!2smm!4v1716029567315!5m2!1sen!2smm" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
       </div>
@@ -179,15 +150,13 @@ export default {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          width: calc(100% / 2);
+          width: 100%;
           margin-right: 30px;
           @media screen and (min-width: 768px) and (max-width: 1000px) {
             display: block;
-            width: 100%;
           }
           @media screen and (max-width: 767.9px) {
             display: block;
-            width: 100%;
             margin: 0 0 20px;
           }
           p {
@@ -205,16 +174,11 @@ export default {
             }
             @media screen and (max-width: 767.9px) {
               margin-right: 0;
+              margin-bottom: 10px;
             }
           }
-          &:last-child {
-            margin-right: 0;
-          }
-          &.mdy-address {
-            width: 57%;
-            @media screen and (max-width: 767.9px) {
-              width: 100%;
-            }
+          .map {
+            width: 100%;
           }
           iframe {
             @media screen and (min-width: 768px) and (max-width: 1440px) {

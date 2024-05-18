@@ -7,7 +7,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
   <div class="card">
     <div class="card-header pb-0">
       <div class="d-flex justify-content-between">
-        <h6>Product Table</h6>
+        <h6>Package Table</h6>
         <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal">Create</button>
       </div>
     </div>
@@ -24,7 +24,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >
-                Product Name
+                Package Name
               </th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -304,7 +304,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
-                  Product Update
+                  Package Update
                 </h1>
               </div>
               <div class="modal-body">

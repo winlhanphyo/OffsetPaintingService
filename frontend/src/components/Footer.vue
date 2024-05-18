@@ -35,24 +35,23 @@
               >
                 <span class="material-symbols-outlined"> location_on </span>
                 <span>
-                  <b>Xenon Company Limited</b><br />
+                  <b>CI Ci Company Limited</b><br />
                   Main address :<br />
-                  No. 55 Hla Theingi Street<br />
-                  Industrial Zone 2<br />
-                  Dagon Seikkan Township<br />
-                  Yangon
+                  No.565, Mann Aung Street<br />
+                  3 Man Pyay Ward<br />
+                  Thaketa Township, Yangon.
                 </span>
               </a>
             </li>
             <li class="phone">
               <a href="tel:09977666888"
                 ><span class="material-symbols-outlined">phone_iphone</span
-                ><span>09977 666 888</span></a
+                ><span>09 254006394, 09 400065339</span></a
               >
             </li>
             <li class="mail">
-              <a href="mailto:hello@xenonmm.com"
-                ><span class="material-symbols-outlined"> mail </span>hello@xenonmm.com</a
+              <a href="mailto:cici.offset@gmail.com"
+                ><span class="material-symbols-outlined"> mail </span>cici.offset@gmail.com</a
               >
             </li>
           </ul>
@@ -93,42 +92,18 @@
             <p class="title">Follow Us:</p>
             <ul class="row">
               <li>
-                <a href="https://www.facebook.com/XenonCompanyLimited/" title="Facebook"
+                <a href="https://www.facebook.com/cicioffsetprinting" title="Facebook"
                   ><i class="fab fa-facebook-f"></i
                 ></a>
               </li>
               <li>
-                <a href=""><i class="fab fa-instagram"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fab fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fab fa-pinterest-p"></i></a>
+                <a href="#viber"><span class="material-symbols-outlined">wifi_calling_1</span></a>
               </li>
             </ul>
           </div>
           <div class="extra-link payment">
             <p class="title">We Accept:</p>
             <ul class="row">
-              <li>
-                <a href="#" title="Visa">
-                  <img
-                    alt="visa"
-                    class="img-fluid"
-                    src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/Visa.jpg"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" title="master">
-                  <img
-                    alt="master"
-                    class="img-fluid"
-                    src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/Master_Card.jpg"
-                  />
-                </a>
-              </li>
               <li>
                 <a href="#" title="mpu">
                   <img
@@ -177,6 +152,15 @@
           <li><a href="">Privacy</a></li>
           <li><a href="">Terms & Conditions</a></li>
         </ul>
+      </div>
+    </div>
+    <div id="viber" class="overlay">
+      <div class="popup">
+          <div class="popup-content">
+            <img src="@/assets/images/home/viber_icon.png" alt="viber">
+            <span><strong>U Soe Naing</strong><br>+959 254006394 +959 400065339</span>
+          </div>
+          <a class="close" href="#">&times;</a>
       </div>
     </div>
   </footer>
@@ -374,6 +358,9 @@ footer {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      @media screen and (max-width: 767.9px) {
+        justify-content: flex-start;
+      }
       .extra-link {
         display: flex;
         justify-content: space-between;
@@ -395,9 +382,10 @@ footer {
             margin-bottom: 10px;
           }
           a {
-            display: block;
+            display: flex;
+            justify-content: center;
             width: 20px;
-            padding: 9px 14px;
+            padding: 9px 11px;
             &:hover {
               opacity: 0.7;
             }
@@ -423,6 +411,65 @@ footer {
         }
       }
     }
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .popup {
+    margin: 240px auto;
+    padding: 20px;
+    background: #fff;
+    color: #000;
+    border-radius: 5px;
+    width: 210px;
+    position: relative;
+    transition: all 5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup-content {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    img {
+      width: 30%;
+      display: block;
+      margin: 0 auto;
+    }
+    span {
+      display: block;
+      margin-top: 20px;
+      font-size: 20px;
+      line-height: 1.8;
+    }
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
   }
 }
 </style>
