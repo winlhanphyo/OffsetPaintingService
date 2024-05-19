@@ -55,34 +55,34 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="(item, index) in user" :key="index">
               <td>
-                <div class="px-3 py-1">1</div>
+                <div class="px-3 py-1">{{ item.id }}</div>
               </td>
               <td>
                 <div class="px-3 py-1">
-                  <h6 class="mb-0 text-sm">John Michael</h6>
+                  <h6 class="mb-0 text-sm">{{ item?.firstName + item?.lastName }}</h6>
                 </div>
               </td>
               <td>
                 <div class="py-1">
-                  <h6 class="mb-0 text-sm">john@creative-tim.com</h6>
+                  <h6 class="mb-0 text-sm">{{ item?.email }}</h6>
                 </div>
               </td>
               <td>
-                <span class="text-secondary text-xs font-weight-bold">09457863367</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ item?.phone }}</span>
               </td>
               <td>
-                <span class="text-secondary text-xs font-weight-bold">Yangon</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ item?.address }}</span>
               </td>
               <td>
-                <span class="text-secondary text-xs font-weight-bold">Admin</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ item?.type }}</span>
               </td>
               <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ item?.createdAt }}</span>
               </td>
               <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ item?.updatedAt }}</span>
               </td>
               <td class="align-middle">
                 <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
@@ -381,6 +381,30 @@
     </div>
   </div>
 </template>
+
+<script>
+import { getUser } from "@/services/admin.service.js";
+
+export default {
+  data() {
+    return {
+      users: [],
+    };
+  },
+  mounted() {
+    this.getUserData();
+  },
+  methods: {
+    async getUserData() {
+      const token = localStorage.getItem("token");
+      const res = await getUser(token);
+
+      this.users = res?.data?.data;
+    },
+  },
+};
+</script>
+
 <style lang="scss">
   .z-1 {
     z-index: 1;

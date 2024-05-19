@@ -32,7 +32,7 @@ export const getProduct = async (token) => {
  */
 export const getCategoryProduct = async (token) => {
   console.log("-------getCategory", token);
-  const res = await api.get('/api/categoryProduct', token);
+  const res = await api.get('/category/product', token);
   return res;
 }
 

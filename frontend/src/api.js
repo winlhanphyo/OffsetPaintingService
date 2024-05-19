@@ -55,7 +55,7 @@ const doRequest = async (path, params, method, activeToken) => {
           icon: "error",
           // title: "Oops...",
           text: "API error is occurred.",
-          confirmButtonText: "好的",
+          confirmButtonText: "Close",
         });
       }
     }
@@ -76,7 +76,7 @@ const doRequest = async (path, params, method, activeToken) => {
         icon: "error",
         // title: "Oops...",
         text: res?.data?.info,
-        confirmButtonText: "好的",
+        confirmButtonText: "Close",
       });
     }
     return res;

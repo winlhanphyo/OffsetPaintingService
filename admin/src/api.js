@@ -7,7 +7,7 @@ const objectToQueryString = (obj) => {
   return Object.keys(obj).map(key => key + '=' + obj[key]).join('&');
 }
 
-const doRequest = async (path, params, method, activeToken) => {
+const doRequest = async (path, params, method, activeToken, form=false) => {
 
   const options = {
     method, headers: {}
@@ -24,12 +24,16 @@ const doRequest = async (path, params, method, activeToken) => {
   if (activeToken) {
     options.headers = {
       Authorization: `Bearer ${activeToken}`,
-      'content-type': 'application/json',
-      method: 'HEAD',
-      mode: 'no-cors',
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+      'Content-Type': 'application/json',
+      // method: 'HEAD',
+      // mode: 'no-cors',
+      // "Access-Control-Allow-Origin": "*",
     };
+  }
+
+  if (form) {
+    options.headers['Content-Type'] = 'multipart/form-data';
+    options.headers['userId'] = localStorage.getItem("userId");
   }
   const httpMethods = method.toLowerCase();
   // axios.defaults.withCredentials = true;
@@ -44,7 +48,7 @@ const doRequest = async (path, params, method, activeToken) => {
         return Swal.fire({
           position: 'bottom',
           icon: 'error',
-          title: "您尚未登录, 请点击 <a href='http://lotte-auth.ks888.club/login'>这里</a>登录",
+          title: "API error is occurred.",
           showConfirmButton: false,
           // timer: 3000,
           timerProgressBar: true,
@@ -55,7 +59,7 @@ const doRequest = async (path, params, method, activeToken) => {
           icon: "error",
           // title: "Oops...",
           text: "API error is occurred.",
-          confirmButtonText: "好的",
+          confirmButtonText: "Close",
         });
       }
     }
@@ -76,7 +80,7 @@ const doRequest = async (path, params, method, activeToken) => {
         icon: "error",
         // title: "Oops...",
         text: res?.data?.info,
-        confirmButtonText: "好的",
+        confirmButtonText: "Close",
       });
     }
     return res;
@@ -86,8 +90,8 @@ const get = (path, params, token) => {
   return doRequest(path, params, 'GET', token);
 }
 
-const post = (path, params, token) => {
-  return doRequest(path, params, 'POST', token);
+const post = (path, params, token, form=false) => {
+  return doRequest(path, params, 'POST', token, form);
 }
 
 export default {

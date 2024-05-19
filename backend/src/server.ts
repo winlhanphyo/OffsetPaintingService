@@ -43,7 +43,7 @@ const fileStorage = multer.diskStorage({
 const fileFilter = async (_req: any, file: any, cb: any) => {
   const files: any = _req.files;
   // if (_req.isAuthenticated()) {
-  if (files?.image || files?.thumbnail) {
+  if (files?.image || files?.categoryImage) {
     if (
       file.mimetype === "image/png" ||
       file.mimetype === "image/jpg" ||
@@ -66,7 +66,9 @@ export default class Server {
     this.app = express();
 
     const corsOptions = {
-      allowedHeaders: ['Content-Type', 'Authorization', 'userid'], // Add 'userid' to the allowed headers
+      origin: '*', // Allow all origins
+      allowedHeaders: ['Content-Type', 'Authorization', 'userid', 'mode'], // Add 'userid' to the allowed headers
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow these HTTP methods
     };
     this.app.use(cors(corsOptions));
     // this.app.use(helmet());
@@ -90,6 +92,7 @@ export default class Server {
         const maxVideoLength = 15 * 1024 * 1024;
         multer({ storage: fileStorage, fileFilter }).fields([
           { name: 'image', maxCount: 1 },
+          { name: 'categoryImage', maxCount: 1 },
           { name: 'media', maxCount: 6 }
         ])
           (req, res, (err) => {

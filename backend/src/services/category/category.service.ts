@@ -96,7 +96,7 @@ class CategoryService {
     try {
       let image: string = req.body.categoryImage;
       if (req.files?.categoryImage?.length > 0) {
-        image = req.files.image[0].path?.split("\\").join("/");
+        image = req.files.categoryImage[0].path?.split("\\").join("/");
       }
 
       const categoryObj: ICategoryModel = {

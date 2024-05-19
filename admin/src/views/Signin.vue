@@ -141,6 +141,7 @@ export default {
     signIn() {
       if (this.email === "admin@gmail.com" && this.password === "password") {
         localStorage.setItem("token", "aaaaa");
+        localStorage.setItem("userId", "1");
         this.$router.push("/dashboard-default");
       } else {
         Swal.fire({

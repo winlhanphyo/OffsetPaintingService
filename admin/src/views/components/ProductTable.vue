@@ -58,7 +58,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">
                     <a href="#detailModalToggle" data-bs-toggle="modal">{{
-                      item?.productName
+                      item?.name
                     }}</a>
                   </h6>
                 </div>
@@ -66,13 +66,14 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="px-3 py-1">
                   <div>
-                    <img :src="item?.image" class="avatar me-3" alt="user1" />
+                  {{ console.log("------productImage", item?.productImage) }}
+                    <img :src="item?.productImage" class="avatar me-3" alt="user1" />
                   </div>
                 </div>
               </td>
               <td>
                 <div class="py-1">
-                  <h6 class="mb-0 text-sm">{{ item?.categoryName }}</h6>
+                  <h6 class="mb-0 text-sm">{{ item?.category?.name }}</h6>
                 </div>
               </td>
               <td class="align-middle text-center">
@@ -431,6 +432,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 </template>
 
 <script>
+import { imgRoot } from "../../../config.js";
 import { getProduct } from "@/services/admin.service.js";
 
 export default {
@@ -439,48 +441,48 @@ export default {
       products: [
         {
           id: 1,
-          productName: "John Michael",
-          image: require("@/assets/img/team-2.jpg"),
+          name: "John Michael",
+          productImage: require("@/assets/img/team-2.jpg"),
           categoryName: "John Michael",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 2,
-          productName: "Alexa Liras",
-          image: require("../../assets/img/team-3.jpg"),
+          name: "Alexa Liras",
+          productImage: require("../../assets/img/team-3.jpg"),
           categoryName: "John Michael",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 3,
-          productName: "Laurent Perrier",
-          image: require("../../assets/img/team-4.jpg"),
+          name: "Laurent Perrier",
+          productImage: require("../../assets/img/team-4.jpg"),
           categoryName: "John Michael",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 4,
-          productName: "Michael Levi",
-          image: require("../../assets/img/team-3.jpg"),
+          name: "Michael Levi",
+          productImage: require("../../assets/img/team-3.jpg"),
           categoryName: "Michael Levi",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 5,
-          productName: "Richard Gran",
-          image: require("../../assets/img/team-2.jpg"),
+          name: "Richard Gran",
+          productImage: require("../../assets/img/team-2.jpg"),
           categoryName: "Richard Gran",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 6,
-          productName: "Miriam Eric",
-          image: require("../../assets/img/team-4.jpg"),
+          name: "Miriam Eric",
+          productImage: require("../../assets/img/team-4.jpg"),
           categoryName: "Miriam Eric",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
@@ -496,6 +498,13 @@ export default {
       const token = localStorage.getItem("token");
       const res = await getProduct(token);
       console.log("---------res", res);
+
+      this.products = res?.data?.data;
+      this.products.map((dist) => {
+        if (dist?.media?.length > 0) {
+          dist.productImage = imgRoot + dist.media[0]?.url;
+        }
+      });
     },
   },
 };

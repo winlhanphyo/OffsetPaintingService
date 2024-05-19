@@ -8,7 +8,10 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
     <div class="card-header pb-0">
       <div class="d-flex justify-content-between">
         <h6>Category Table</h6>
-        <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal">Create</button>
+        <button type="button" class="m-0 btn btn-info" data-bs-target="#categoryModal"
+          data-bs-toggle="modal" @click="changeLabel('Create')">
+          Create
+        </button>
       </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
@@ -48,7 +51,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 <div class="px-3 py-1">
                   <div>
                     <img
-                      :src="item?.image"
+                      :src="item?.categoryImage"
                       class="avatar me-3"
                       alt="user1"
                     />
@@ -56,171 +59,17 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 </div>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{ item?.createdAt }}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ moment(item?.createdAt).format("YYYY-MM-DD") }}</span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{ item?.createdAt }}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ moment(item?.createdAt).format("YYYY-MM-DD") }}</span>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
+                <button type="button" class="m-0 btn btn-primary" data-bs-target="#categoryModal" data-bs-toggle="modal"
+                  @click="changeLabel('Update', item)">Edit</button>
                 <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
               </td>
             </tr>
-            <!-- <tr>
-              <td>
-                <div class="px-3 py-1">2</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar me-3"
-                      alt="user2"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">3</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar me-3"
-                      alt="user3"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">4</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Michael Levi</h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar me-3"
-                      alt="user4"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">5</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Richard Gran</h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar me-3"
-                      alt="user5"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">6</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar me-3"
-                      alt="user6"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr> -->
           </tbody>
         </table>
         <argon-pagination>
@@ -230,27 +79,27 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
           <argon-pagination-item label="3" />
           <argon-pagination-item next />
         </argon-pagination>
-        <div class="modal fade" id="editModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal fade" id="categoryModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Category Update</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Category {{ modalLabel }}</h1>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
                     <label for="recipient-name" class="col-form-label">Name</label>
-                    <input type="text" class="form-control" id="recipient-name">
+                    <input type="text" class="form-control" id="recipient-name" v-model="name">
                   </div>
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Image file</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="formFile" @change="handleFileUpload">
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update</button>
+                <button type="button" ref="Close" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
+                <button type="button" class="btn btn-primary" @click="submitCategory()">{{modalLabel}}</button>
               </div>
             </div>
           </div>
@@ -265,7 +114,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 Are you sure want to Delete?
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" ref="Close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Delete</button>
               </div>
             </div>
@@ -278,55 +127,62 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 
 
 <script>
-import { getCategory } from "@/services/admin.service.js";
+import moment from "moment";
+import Swal from 'sweetalert2';
+import { imgRoot } from "../../../config.js";
+import { getCategory, updateCategory, createCategory } from "@/services/admin.service.js";
 
 export default {
   data() {
     return {
       categories: [
-        {
-          id: 1,
-          name: "John Michael",
-          image: require('@/assets/img/team-2.jpg'),
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12"
-        },
-        {
-          id: 2,
-          name: "Alexa Liras",
-          image: require("../../assets/img/team-3.jpg"),
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12"
-        },
-        {
-          id: 3,
-          name: "Laurent Perrier",
-          image: require("../../assets/img/team-4.jpg"),
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12"
-        },
-        {
-          id: 4,
-          name: "Michael Levi",
-          image: require("../../assets/img/team-3.jpg"),
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12"
-        },
-        {
-          id: 5,
-          name: "Richard Gran",
-          image: require("../../assets/img/team-2.jpg"),
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12"
-        },
-        {
-          id: 6,
-          name: "Miriam Eric",
-          image: require("../../assets/img/team-4.jpg"),
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12"
-        }
+        // {
+        //   id: 1,
+        //   name: "John Michael",
+        //   categoryImage: require('@/assets/img/team-2.jpg'),
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12"
+        // },
+        // {
+        //   id: 2,
+        //   name: "Alexa Liras",
+        //   categoryImage: require("../../assets/img/team-3.jpg"),
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12"
+        // },
+        // {
+        //   id: 3,
+        //   name: "Laurent Perrier",
+        //   categoryImage: require("../../assets/img/team-4.jpg"),
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12"
+        // },
+        // {
+        //   id: 4,
+        //   name: "Michael Levi",
+        //   categoryImage: require("../../assets/img/team-3.jpg"),
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12"
+        // },
+        // {
+        //   id: 5,
+        //   name: "Richard Gran",
+        //   categoryImage: require("../../assets/img/team-2.jpg"),
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12"
+        // },
+        // {
+        //   id: 6,
+        //   name: "Miriam Eric",
+        //   categoryImage: require("../../assets/img/team-4.jpg"),
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12"
+        // }
       ],
+      id: "",
+      name: "",
+      categoryImage: "",
+      modalLabel: "Create"
     };
   },
   mounted() {
@@ -336,7 +192,82 @@ export default {
     async getCategoryData() {
       const token = localStorage.getItem("token");
       const res = await getCategory(token);
-      console.log("---------res", res);
+      this.categories = res?.data?.data;
+      this.categories?.map((dist) => {
+        dist.categoryImage = imgRoot + dist.categoryImage;
+        console.log("category-----", dist.categoryImage);
+      });
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      this.categoryImage = file;
+
+      console.log("------categoryImage", this.categoryImage);
+    },
+    changeLabel(text, data=null) {
+      this.modalLabel = text;
+      if (this.modalLabel === 'Create') {
+        this.name = "";
+        this.categoryImage = "";
+
+        console.log("category-----", this.category);
+      } else {
+        this.id = data?.id;
+        this.name = data?.name;
+        this.categoryImage = "";
+
+        console.log("category-----", this.category);
+      }
+    },
+    async submitCategory() {
+      const token = localStorage.getItem("token");
+      // $('#ModalId').modal('hide')
+      document.getElementById('close').click();
+      if (this.modalLabel === 'Create') {
+        let formParam = new FormData();
+        formParam.append('name', this.name);
+        formParam.append('categoryImage', this.categoryImage);
+
+       createCategory(formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Category is created successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getCategoryData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+      } else {
+        let formParam = new FormData();
+        formParam.append('name', this.name);
+        if (this.categoryImage) {
+          formParam.append('categoryImage', this.categoryImage);
+        }
+
+       updateCategory(this.id, formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Category is updated successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getCategoryData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+      }
     }
   },
 };

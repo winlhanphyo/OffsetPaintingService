@@ -26,34 +26,23 @@
                 <li>
                   <span @click="$router.push('/products')">All Products</span>
                 </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(0)">Promotion Printing</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[0]">
-                    <li>
+                <li v-for="(item, index) in categories" :key="'category' + index">
+                  <span @click="clickActiveDropDownMenu(index)">{{ item?.name }}</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[index]">
+                    <li v-for="(data, i) in item?.product" :key="'product' + i">
                       <a @click="changeRoute()" class="dropdown-item"
-                        >DTF Film for T Shirt</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(1)">Business Cards</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[1]">
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Standard Business Cards - Promo<span class="badge-info"
-                          >SALE!</span
+                        >{{ data?.name }}<span class="badge-info">SALE!</span
                         ></a
                       >
                     </li>
-                    <li>
+                    <!-- <li>
                       <a @click="changeRoute()" class="dropdown-item"
                         >Deluxe Business Card</a
                       >
-                    </li>
+                    </li> -->
                   </ul>
                 </li>
-                <li>
+                <!-- <li>
                   <span @click="clickActiveDropDownMenu(2)">Large Format Printing</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[2]">
                     <li>
@@ -257,7 +246,7 @@
                     </li>
                     <li><a @click="changeRoute()">PP Board Printing with Sticker</a></li>
                   </ul>
-                </li>
+                </li> -->
               </ul>
             </li>
             <li>
@@ -395,7 +384,7 @@ export default {
         false,
       ],
       mobileToggle: false,
-      categories: this.$store.state.apiData?.categories
+      categories: this.$store.state.apiData?.categoryProducts
     };
   },
   mounted() {
@@ -406,8 +395,6 @@ export default {
     async getProductCategory() {
       const token = localStorage.getItem("token") || "";
       await store.dispatch("GetCategoryProduct", token);
-
-      console.log("---------categories", this.categories);
     },
     async handleLanguage() {
       console.log("Checkbox state changed. Checked:", this.langChecked);

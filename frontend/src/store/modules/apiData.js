@@ -37,7 +37,7 @@ const mutations = {
     state.products = data;
   },
   setCategoryProduct(state, data) {
-    state.categoryProduct = data;
+    state.categoryProducts = data;
   }
 };
 

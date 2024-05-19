@@ -10,21 +10,21 @@ module.exports = {
       [
         {
           name: "media1",
-          url: 'upload/user/photo/1.png',
+          url: 'upload/user/product/1.png',
           status: "available",
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'
         },
         {
           name: "media2",
-          url: 'upload/user/photo/2.png',
+          url: 'upload/user/product/2.png',
           status: "available",
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'
         },
         {
           name: "media3",
-          url: 'upload/user/photo/3.png',
+          url: 'upload/user/product/3.png',
           status: "available",
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'

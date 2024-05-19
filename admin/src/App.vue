@@ -27,7 +27,7 @@ const isAbsolute = computed(() => store.state.isAbsolute);
 const showSidenav = computed(() => store.state.showSidenav);
 const layout = computed(() => store.state.layout);
 const showNavbar = computed(() => store.state.showNavbar);
-const showFooter = computed(() => store.state.showFooter);
+const showFooter = false;
 // const showConfig = computed(() => store.state.showConfig);
 // const hideConfigButton = computed(() => store.state.hideConfigButton);
 // const toggleConfigurator = () => store.commit("toggleConfigurator");
