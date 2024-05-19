@@ -23,7 +23,7 @@ var getCategory = function getCategory(token) {
         case 0:
           console.log("-------getCategory", token);
           _context.next = 3;
-          return regeneratorRuntime.awrap(_api["default"].get('/api/category', token));
+          return regeneratorRuntime.awrap(_api["default"].get('/category', token));
 
         case 3:
           res = _context.sent;
@@ -54,7 +54,7 @@ var getProduct = function getProduct(token) {
         case 0:
           console.log("-------getProduct", token);
           _context2.next = 3;
-          return regeneratorRuntime.awrap(_api["default"].get('/api/product', token));
+          return regeneratorRuntime.awrap(_api["default"].get('/product', token));
 
         case 3:
           res = _context2.sent;

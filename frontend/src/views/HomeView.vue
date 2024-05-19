@@ -81,7 +81,23 @@
 
       <h2>{{ $t('message.product') }}</h2>
       <div class="product-list">
-        <div class="product-card">
+
+        <div class="product-card" v-for="(item, index) in products" :key="'product' + index">
+          <div class="work-heading">
+            <h3>{{ item?.name }}</h3>
+            <p>{{ item?.description }}</p>
+          </div>
+          <div class="work-image-box">
+            <img :src="item?.productImage" alt="" />
+            <div class="details">
+              <a @click="$router.push(`/product/${item?.id}`)"
+                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="product-card">
           <div class="work-heading">
             <h3>Design T Shirt</h3>
             <p>Create your own t-shirt designs for friends, families, and events</p>
@@ -320,7 +336,7 @@
               ></a>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="company-info">
@@ -369,6 +385,8 @@
 // @ is an alias to /src
 import $ from "jquery";
 import "slick-carousel";
+import { getProduct } from "@/services/offset.service.js";
+import { imgRoot } from "./../../config";
 
 export default {
   name: "HomeView",
@@ -376,6 +394,7 @@ export default {
   data() {
     return {
       activeMenu: false,
+      products: []
     };
   },
   mounted() {
@@ -387,12 +406,25 @@ export default {
       slidesToShow: 1,
       infinite: false,
     });
+    this.getProductData();
   },
   beforeUnmount() {
     $(".slider-item").slick("unslick");
   },
-  methods: {},
-};
+  methods: {
+    async getProductData() {
+      const token = localStorage.getItem("token");
+      const res = await getProduct(token);
+
+      this.products = res?.data?.data;
+      this.products?.map((dist) => {
+        if (dist?.media?.length > 0) {
+          dist.productImage = imgRoot + dist.media[0]?.url;
+        }
+      });
+  },
+}
+}
 </script>
 
 <style lang="scss">

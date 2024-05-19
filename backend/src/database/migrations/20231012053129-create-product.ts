@@ -22,21 +22,13 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false
       },
-      quote: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      note: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      price: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       categoryId: {
         type: DataTypes.INTEGER,
         allowNull: false
+      },
+      status: {
+        type: DataTypes.STRING,
+        allowNull: true
       },
       createdUserId: {
         type: DataTypes.INTEGER,

@@ -12,10 +12,7 @@ module.exports = {
         {
           name: 'Product 1',
           description: "Description",
-          price: 1000,
           categoryId: 1,
-          quote: "quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conse-",
-          note: "m dolor sit amet, consectetuer Lorem ipsum dolor sit amet, consec- tetuer Lorem ipsum dolor sit amet, consectetuer m dolor sit amet, consec- tetuer Lorem ipsum.",
           createdUserId: 1,
           createdAt: '2023-07-11',
           updatedAt: '2023-07-11'
@@ -23,10 +20,7 @@ module.exports = {
         {
           name: 'NFT',
           description: "Description",
-          price: 1000,
           categoryId: 1,
-          quote: "quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conse-",
-          note: "m dolor sit amet, consectetuer Lorem ipsum dolor sit amet, consec- tetuer Lorem ipsum dolor sit amet, consectetuer m dolor sit amet, consec- tetuer Lorem ipsum.",
           createdUserId: 1,
           createdAt: '2023-07-11',
           updatedAt: '2023-07-11'
@@ -34,10 +28,7 @@ module.exports = {
         {
           name: 'Bass',
           description: "Description",
-          price: 1000,
           categoryId: 1,
-          quote: "quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conse-",
-          note: "m dolor sit amet, consectetuer Lorem ipsum dolor sit amet, consec- tetuer Lorem ipsum dolor sit amet, consectetuer m dolor sit amet, consec- tetuer Lorem ipsum.",
           createdUserId: 1,
           createdAt: '2023-07-11',
           updatedAt: '2023-07-11'

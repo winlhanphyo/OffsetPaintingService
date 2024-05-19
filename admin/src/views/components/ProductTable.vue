@@ -8,7 +8,8 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
     <div class="card-header pb-0">
       <div class="d-flex justify-content-between">
         <h6>Product Table</h6>
-        <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal">Create</button>
+        <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal"
+          @click="changeLabel('Create')">Create</button>
       </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
@@ -57,7 +58,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">
-                    <a href="#detailModalToggle" data-bs-toggle="modal">{{
+                    <a href="#detailModalToggle" @click="showDetailDialog(item)" data-bs-toggle="modal">{{
                       item?.name
                     }}</a>
                   </h6>
@@ -66,7 +67,6 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="px-3 py-1">
                   <div>
-                  {{ console.log("------productImage", item?.productImage) }}
                     <img :src="item?.productImage" class="avatar me-3" alt="user1" />
                   </div>
                 </div>
@@ -91,16 +91,14 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                   type="button"
                   class="m-0 btn btn-primary"
                   data-bs-target="#editModalToggle"
-                  data-bs-toggle="modal"
-                >
+                  data-bs-toggle="modal" @click="changeLabel('Update', item)">
                   Edit
                 </button>
                 <button
                   type="button"
                   class="m-0 btn btn-danger ms-2"
                   data-bs-target="#deleteModalToggle"
-                  data-bs-toggle="modal"
-                >
+                  data-bs-toggle="modal" @click="showDeleteDialog(item)">
                   Delete
                 </button>
               </td>
@@ -305,57 +303,57 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
-                  Product Update
+                  Product {{ modalLabel }}
                 </h1>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
                     <label for="product-name" class="col-form-label">Product Name</label>
-                    <input type="text" class="form-control" id="product-name" />
+                    <input type="text" class="form-control" id="product-name" v-model="name"/>
                   </div>
                   <div class="mb-3">
                     <label for="category-name" class="col-form-label"
                       >Category Name</label
                     >
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Select Category Menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                    <select class="form-select" @change="changeCategory($event)" v-model="categoryId">
+                      <option value="" disabled>Select Category Menu</option>
+                      {{ console.log("---------categoryList", categoryList) }}
+                      <option v-for="(item, i) in categoryList" :key="'categoryList' + i" :value="item.value">{{ item?.name }}</option>
                     </select>
                   </div>
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Image file</label>
-                    <input class="form-control" type="file" id="formFile" />
+                    <input class="form-control" type="file" id="formFile" @change="handleFileUpload" />
                   </div>
                   <div class="mb-3">
                     <label for="status" class="col-form-label"
                       >Status</label
                     >
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Select Status</option>
-                      <option value="1">Hot</option>
-                      <option value="2">Sale</option>
+                    <select class="form-select" @change="changeStatus($event)" v-model="status">
+                      <option value="">None</option>
+                      <option value="Hot">Hot</option>
+                      <option value="Sale">Sale</option>
                     </select>
                   </div>
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Description</label>
-                    <textarea id="w3review" name="w3review" rows="4"></textarea>
+                    <textarea id="w3review" name="w3review" rows="4" v-model="description"></textarea>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">
                   Close
                 </button>
                 <button
                   type="button"
                   class="btn btn-primary"
-                  data-bs-target="#exampleModalToggle2"
+                  data-bs-target="#editModalToggle"
                   data-bs-toggle="modal"
+                  @click="submitProduct()"
                 >
-                  Update
+                {{modalLabel}}
                 </button>
               </div>
             </div>
@@ -383,8 +381,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                   type="button"
                   class="btn btn-danger"
                   data-bs-target="#exampleModalToggle2"
-                  data-bs-toggle="modal"
-                >
+                  data-bs-toggle="modal" @click="clickDeleteProduct()">
                   Delete
                 </button>
               </div>
@@ -416,24 +413,24 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                   </div>
                   <div class="d-flex mt-3">
                     <div class="w-28">Product Name:</div>
-                    <div class="w-75 ms-2">Testing Testing Testing Testing</div>
+                    <div class="w-75 ms-2">{{ detailData?.name }}</div>
                   </div>
                   <div class="d-flex mt-3">
                     <div class="w-28">Category Name:</div>
-                    <div class="w-75 ms-2">Testing Testing</div>
-                  </div>
-                  <div class="d-flex mt-3">
-                    <div class="w-28">Created User:</div>
-                    <div class="w-75 ms-2">John Michael</div>
-                  </div>
-                  <div class="d-flex mt-3">
-                    <div class="w-28">Updated User:</div>
-                    <div class="w-75 ms-2">Richard Gran</div>
+                    <div class="w-75 ms-2">{{ detailData?.categoryName }}</div>
                   </div>
                   <div class="d-flex mt-3">
                     <div class="w-28">Description:</div>
-                    <div class="w-75 ms-2">Testing Testing Testing Testing Testing Testing Testing Testing Testing</div>
+                    <div class="w-75 ms-2">{{ detailData?.description }}</div>
                   </div>
+                  <div class="d-flex mt-3">
+                    <div class="w-28">Status:</div>
+                    <div class="w-75 ms-2">{{ detailData?.status }}</div>
+                  </div>
+                  <!-- <div class="d-flex mt-3">
+                    <div class="w-28">Description:</div>
+                    <div class="w-75 ms-2">Testing Testing Testing Testing Testing Testing Testing Testing Testing</div>
+                  </div> -->
                 </div>
               </div>
               <div class="modal-footer">
@@ -450,80 +447,215 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import { imgRoot } from "../../../config.js";
-import { getProduct } from "@/services/admin.service.js";
+import { getProduct, createProduct, updateProduct, deleteProduct, getCategory } from "@/services/admin.service.js";
 
 export default {
   data() {
     return {
       products: [
-        {
-          id: 1,
-          name: "John Michael",
-          productImage: require("@/assets/img/team-2.jpg"),
-          categoryName: "John Michael",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 2,
-          name: "Alexa Liras",
-          productImage: require("../../assets/img/team-3.jpg"),
-          categoryName: "John Michael",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 3,
-          name: "Laurent Perrier",
-          productImage: require("../../assets/img/team-4.jpg"),
-          categoryName: "John Michael",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 4,
-          name: "Michael Levi",
-          productImage: require("../../assets/img/team-3.jpg"),
-          categoryName: "Michael Levi",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 5,
-          name: "Richard Gran",
-          productImage: require("../../assets/img/team-2.jpg"),
-          categoryName: "Richard Gran",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 6,
-          name: "Miriam Eric",
-          productImage: require("../../assets/img/team-4.jpg"),
-          categoryName: "Miriam Eric",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
+        // {
+        //   id: 1,
+        //   name: "John Michael",
+        //   productImage: require("@/assets/img/team-2.jpg"),
+        //   categoryName: "John Michael",
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12",
+        // },
+        // {
+        //   id: 2,
+        //   name: "Alexa Liras",
+        //   productImage: require("../../assets/img/team-3.jpg"),
+        //   categoryName: "John Michael",
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12",
+        // },
+        // {
+        //   id: 3,
+        //   name: "Laurent Perrier",
+        //   productImage: require("../../assets/img/team-4.jpg"),
+        //   categoryName: "John Michael",
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12",
+        // },
+        // {
+        //   id: 4,
+        //   name: "Michael Levi",
+        //   productImage: require("../../assets/img/team-3.jpg"),
+        //   categoryName: "Michael Levi",
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12",
+        // },
+        // {
+        //   id: 5,
+        //   name: "Richard Gran",
+        //   productImage: require("../../assets/img/team-2.jpg"),
+        //   categoryName: "Richard Gran",
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12",
+        // },
+        // {
+        //   id: 6,
+        //   name: "Miriam Eric",
+        //   productImage: require("../../assets/img/team-4.jpg"),
+        //   categoryName: "Miriam Eric",
+        //   createdAt: "2024/05/12",
+        //   updatedAt: "2024/05/12",
+        // },
       ],
+      id: "",
+      name: "",
+      image: "",
+      categoryId: "",
+      description: "",
+      status: "",
+      categoryList: [],
+      modalLabel: "Create",
+      detailData: {}
     };
   },
   mounted() {
     this.getProductData();
+    this.getCategoryData();
   },
   methods: {
     async getProductData() {
       const token = localStorage.getItem("token");
       const res = await getProduct(token);
-      console.log("---------res", res);
 
       this.products = res?.data?.data;
-      this.products.map((dist) => {
+      this.products?.map((dist) => {
         if (dist?.media?.length > 0) {
           dist.productImage = imgRoot + dist.media[0]?.url;
         }
       });
     },
+    async getCategoryData() {
+      const token = localStorage.getItem("token");
+      const arr = [];
+      const res = await getCategory(token);
+      this.categories = res?.data?.data;
+      for (let i = 0; i < this.categories.length; i++) {
+        arr.push({
+          name: this.categories[i].name,
+          value: this.categories[i].id
+        })
+      }
+      console.log("------arr", arr);
+      this.categoryList = arr;
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      this.image = file;
+
+      console.log("------productImage", this.image);
+    },
+    changeLabel(text, data=null) {
+      this.modalLabel = text;
+      if (this.modalLabel === 'Create') {
+        this.name = "";
+        this.image = "";
+        this.categoryId = "";
+      } else {
+        this.id = data?.id;
+        this.name = data?.name;
+        this.categoryId = data?.categoryId;
+        this.image = "";
+        this.description = data?.description;
+        this.status = data?.status;
+      }
+    },
+    showDeleteDialog(data) {
+      this.id = data?.id;
+    },
+    showDetailDialog(data) {
+      console.log("------delete", data);
+      this.detailData = data;
+    },
+    async submitProduct() {
+      const token = localStorage.getItem("token");
+      document.getElementById('close').click();
+      if (this.modalLabel === 'Create') {
+        let formParam = new FormData();
+        formParam.append('name', this.name);
+        formParam.append('categoryId', this.categoryId);
+        formParam.append('description', this.description);
+        formParam.append('status', this.status);
+
+        if (this.image) {
+          formParam.append('media', this.image);
+        }
+
+       createProduct(formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Product is created successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getProductData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+      } else {
+        let formParam = new FormData();
+        formParam.append('name', this.name);
+        formParam.append('categoryId', this.categoryId);
+        formParam.append('description', this.description);
+        formParam.append('status', this.status);
+        if (this.image) {
+          formParam.append('media', this.image);
+        }
+
+       updateProduct(this.id, formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Product is updated successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getProductData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+      }
+    },
+    async clickDeleteProduct() {
+      const token = localStorage.getItem("token");
+      deleteProduct(this.id, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Product is deleted successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getProductData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+    },
+    changeStatus (event) {
+      this.status = event.target.value;
+    },
+    changeCategory (event) {
+      this.categoryId = event.target.value;
+    }
   },
 };
 </script>

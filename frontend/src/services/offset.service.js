@@ -8,7 +8,7 @@ import api from "../api";
  */
 export const getCategory = async (token) => {
   console.log("-------getCategory", token);
-  const res = await api.get('/api/category', token);
+  const res = await api.get('/category', token);
   return res;
 }
 
@@ -20,7 +20,7 @@ export const getCategory = async (token) => {
  */
 export const getProduct = async (token) => {
   console.log("-------getProduct", token);
-  const res = await api.get('/api/product', token);
+  const res = await api.get('/product', token);
   return res;
 }
 

@@ -2,7 +2,22 @@
   <div class="container">
     <h2>{{ $t('message.product') }}</h2>
     <div class="product-list">
-      <div class="product-card">
+      <div class="product-card" v-for="(item, index) in products" :key="'product' + index">
+        <div class="work-heading">
+          <h3>{{ item?.name }}</h3>
+          <p>{{ item?.description }}</p>
+        </div>
+        <div class="work-image-box">
+          <img :src="item?.productImage" alt="" />
+          <div class="details">
+            <a @click="$router.push(`/product/${item?.id}`)"
+              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="product-card">
         <div class="work-heading">
           <h3>Design T Shirt</h3>
           <p>Create your own t-shirt designs for friends, families, and events</p>
@@ -15,8 +30,8 @@
             ></a>
           </div>
         </div>
-      </div>
-      <div class="product-card">
+      </div> -->
+      <!-- <div class="product-card">
         <div class="work-heading">
           <h3>Personalised T Shirt</h3>
           <p>Create your own t-shirt designs for friends, families, and events</p>
@@ -241,7 +256,7 @@
             ></a>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="pagination-container-awesome">
       <vue-awesome-paginate
@@ -257,18 +272,37 @@
 </template>
 
 <script>
+import { getProduct } from "@/services/offset.service.js";
+import { imgRoot } from "./../../config";
+
 export default {
   name: "AppProductList",
   components: {},
   data() {
     return {
       currentPage: 1,
+      products: []
     };
+  },
+  mounted() {
+    console.log("Mounted");
+    this.getProductData();
   },
   methods: {
     clickPaginate(page) {
       console.log("click paginate-------", page);
     },
+    async getProductData() {
+      const token = localStorage.getItem("token");
+      const res = await getProduct(token);
+
+      this.products = res?.data?.data;
+      this.products?.map((dist) => {
+        if (dist?.media?.length > 0) {
+          dist.productImage = imgRoot + dist.media[0]?.url;
+        }
+      });
+  },
   },
 };
 </script>

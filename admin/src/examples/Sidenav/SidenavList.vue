@@ -4,7 +4,7 @@ import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
 import SidenavItem from "./SidenavItem.vue";
-import SidenavCard from "./SidenavCard.vue";
+// import SidenavCard from "./SidenavCard.vue";
 
 const store = useStore();
 const isRTL = computed(() => store.state.isRTL);
@@ -176,7 +176,7 @@ const getRoute = () => {
   </div>
 
   <div class="pt-3 mx-3 mt-3 sidenav-footer">
-    <sidenav-card
+    <!-- <sidenav-card
       :card="{
         title: 'Need Help?',
         description: 'Please check our docs',
@@ -195,6 +195,6 @@ const getRoute = () => {
           },
         ],
       }"
-    />
+    /> -->
   </div>
 </template>

@@ -17,6 +17,8 @@ const doRequest = async (path, params, method, activeToken, form=false) => {
     if (method == 'GET') {
       path += '?' + objectToQueryString(params)
       // console.log("chk options get", options)
+    } else if (method == 'DELETE') {
+      options.headers['userId'] = localStorage.getItem("userId");
     } else {
       options.data = params;
     }
@@ -94,9 +96,14 @@ const post = (path, params, token, form=false) => {
   return doRequest(path, params, 'POST', token, form);
 }
 
+const deleteData = (path, params, token) => {
+  return doRequest(path, params, 'DELETE', token);
+}
+
 export default {
   get,
   post,
+  deleteData,
   apiRoot,
   imgRoot,
   version

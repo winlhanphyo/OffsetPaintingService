@@ -1,6 +1,6 @@
 <script setup>
-import ArgonPagination from "@/components/ArgonPagination.vue";
-import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+// import ArgonPagination from "@/components/ArgonPagination.vue";
+// import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 </script>
 
 <template>
@@ -67,18 +67,19 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td class="align-middle">
                 <button type="button" class="m-0 btn btn-primary" data-bs-target="#categoryModal" data-bs-toggle="modal"
                   @click="changeLabel('Update', item)">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
+                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal"
+                  @click="showDeleteDialog(item)">Delete</button>
               </td>
             </tr>
           </tbody>
         </table>
-        <argon-pagination>
+        <!-- <argon-pagination>
           <argon-pagination-item prev />
           <argon-pagination-item label="1" active />
           <argon-pagination-item label="2" />
           <argon-pagination-item label="3" />
           <argon-pagination-item next />
-        </argon-pagination>
+        </argon-pagination> -->
         <div class="modal fade" id="categoryModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -115,7 +116,8 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               </div>
               <div class="modal-footer">
                 <button type="button" ref="Close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Delete</button>
+                <button type="button" class="btn btn-danger" data-bs-target="#deleteModalToggle" data-bs-toggle="modal"
+                  @click="clickDeleteCategory()">Delete</button>
               </div>
             </div>
           </div>
@@ -130,7 +132,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 import moment from "moment";
 import Swal from 'sweetalert2';
 import { imgRoot } from "../../../config.js";
-import { getCategory, updateCategory, createCategory } from "@/services/admin.service.js";
+import { getCategory, updateCategory, createCategory, deleteCategory } from "@/services/admin.service.js";
 
 export default {
   data() {
@@ -219,9 +221,11 @@ export default {
         console.log("category-----", this.category);
       }
     },
+    showDeleteDialog(data) {
+      this.id = data?.id;
+    },
     async submitCategory() {
       const token = localStorage.getItem("token");
-      // $('#ModalId').modal('hide')
       document.getElementById('close').click();
       if (this.modalLabel === 'Create') {
         let formParam = new FormData();
@@ -268,6 +272,25 @@ export default {
             })
           });
       }
+    },
+    async clickDeleteCategory() {
+      const token = localStorage.getItem("token");
+      deleteCategory(this.id, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Category is deleted successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getCategoryData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
     }
   },
 };

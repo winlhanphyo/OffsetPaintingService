@@ -8,9 +8,6 @@ export interface IProductModel {
   id: number;
   name: string;
   description: string;
-  price: number;
-  quote: string;
-  note: string;
   categoryId: number;
   status: string;
   createdUserId: number;
@@ -33,16 +30,7 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     type: DataTypes.STRING,
     allowNull: false
   },
-  price: {
-    type: DataTypes.DOUBLE,
-    allowNull: false,
-    defaultValue: 1
-  },
-  quote: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  note: {
+  status: {
     type: DataTypes.STRING,
     allowNull: true
   },

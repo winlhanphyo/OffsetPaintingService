@@ -164,9 +164,7 @@ class ProductService {
       const productData: IProductModel = {
         name: req.body.name,
         description: req.body.description,
-        price: req.body.price,
-        quote: req.body.quote,
-        note: req.body.note,
+        status: req.body?.status,
         categoryId: req.body.categoryId,
         createdUserId: req.headers['userid']
       } as any;
@@ -183,19 +181,13 @@ class ProductService {
           const splitUrl = url.split("/");
           if (files.media[i].mimetype.startsWith('image')) {
             type = "photo";
-          } else if (files?.media[i].mimetype.startsWith('audio')) {
-            type = "music";
-          } else if (files?.media[i].mimetype.startsWith('video')) {
-            type = "video"
-          } else if (files?.media[i].mimetype.startsWith('application/pdf')) {
-            type = "text";
           }
           const filename = files?.media[i].originalname.split(".");
           mediaData.push({
             name: filename[0],
             type,
             url,
-            status: req.body.status
+            status: "available"
           });
         }
         const media = await MediaDbModel.bulkCreate(mediaData);
@@ -229,9 +221,7 @@ class ProductService {
       const productData: IProductModel = {
         name: req.body.name,
         description: req.body.description,
-        price: req?.body?.price || 1,
-        quote: req?.body?.quote,
-        note: req.body.note,
+        status: req.body?.status,
         categoryId: req.body.categoryId,
         updatedUserId: req.headers['userid']
       } as any;
@@ -240,6 +230,47 @@ class ProductService {
         where: { id: id as number }
       });
 
+      if (req?.files?.media?.length > 0) {
+        const files = req.files;
+        const mediaData = [];
+        for (let i = 0; i < files?.media?.length; i++) {
+          let type = null;
+          const url = files?.media[i].path?.split("\\").join("/");
+          console.log('file', files?.media[i].originalname);
+          const splitUrl = url.split("/");
+          if (files.media[i].mimetype.startsWith('image')) {
+            type = "photo";
+          }
+          const filename = files?.media[i].originalname.split(".");
+          mediaData.push({
+            name: filename[0],
+            type,
+            url,
+            status: "available"
+          });
+        }
+        const media = await MediaDbModel.bulkCreate(mediaData);
+
+        // Ensure updateProduct is a proper instance
+        if (updateProduct && id) {
+          const updatedProductInstance = await ProductDbModel.findOne({
+            where: {
+              id
+            },
+            include: [
+              {
+                model: MediaDbModel,
+                as: "media"
+              }
+            ]
+          }) as any;
+
+          // Associate media with product
+          if (updatedProductInstance) {
+            await updatedProductInstance.setMedia(media);
+          }
+        }
+      }
       return res.json({
         success: true,
         message: 'Product is updated successfully',

@@ -34,6 +34,17 @@ export const updateCategory = async (id, data, token) => {
   return res;
 }
 
+/**
+ * delete category API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const deleteCategory = async (id, token) => {
+  const res = await api.deleteData(`/category/${id}`, token);
+  return res;
+}
+
 
 /**
  * get product API.
@@ -47,7 +58,7 @@ export const getProduct = async (token) => {
 }
 
 /**
- * create category API.
+ * create product API.
  * @param {*} token 
  * @param {*} data 
  * @returns 
@@ -58,13 +69,24 @@ export const createProduct = async (data, token) => {
 }
 
 /**
- * update category API.
+ * update product API.
  * @param {*} token 
  * @param {*} data 
  * @returns 
  */
 export const updateProduct = async (id, data, token) => {
   const res = await api.post(`/product/update/${id}`, data, token, true);
+  return res;
+}
+
+/**
+ * delete product API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const deleteProduct = async (id, token) => {
+  const res = await api.deleteData(`/product/${id}`, token);
   return res;
 }
 
