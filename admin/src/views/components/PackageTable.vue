@@ -7,7 +7,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
   <div class="card">
     <div class="card-header pb-0">
       <div class="d-flex justify-content-between">
-        <h6>Product Table</h6>
+        <h6>Package Table</h6>
         <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal">Create</button>
       </div>
     </div>
@@ -24,7 +24,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >
-                Product Name
+                Package Name
               </th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -58,7 +58,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">
                     <a href="#detailModalToggle" data-bs-toggle="modal">{{
-                      item?.name
+                      item?.productName
                     }}</a>
                   </h6>
                 </div>
@@ -66,14 +66,13 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="px-3 py-1">
                   <div>
-                  {{ console.log("------productImage", item?.productImage) }}
-                    <img :src="item?.productImage" class="avatar me-3" alt="user1" />
+                    <img :src="item?.image" class="avatar me-3" alt="user1" />
                   </div>
                 </div>
               </td>
               <td>
                 <div class="py-1">
-                  <h6 class="mb-0 text-sm">{{ item?.category?.name }}</h6>
+                  <h6 class="mb-0 text-sm">{{ item?.categoryName }}</h6>
                 </div>
               </td>
               <td class="align-middle text-center">
@@ -305,7 +304,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
-                  Product Update
+                  Package Update
                 </h1>
               </div>
               <div class="modal-body">
@@ -450,7 +449,6 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 </template>
 
 <script>
-import { imgRoot } from "../../../config.js";
 import { getProduct } from "@/services/admin.service.js";
 
 export default {
@@ -459,48 +457,48 @@ export default {
       products: [
         {
           id: 1,
-          name: "John Michael",
-          productImage: require("@/assets/img/team-2.jpg"),
+          productName: "John Michael",
+          image: require("@/assets/img/team-2.jpg"),
           categoryName: "John Michael",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 2,
-          name: "Alexa Liras",
-          productImage: require("../../assets/img/team-3.jpg"),
+          productName: "Alexa Liras",
+          image: require("../../assets/img/team-3.jpg"),
           categoryName: "John Michael",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 3,
-          name: "Laurent Perrier",
-          productImage: require("../../assets/img/team-4.jpg"),
+          productName: "Laurent Perrier",
+          image: require("../../assets/img/team-4.jpg"),
           categoryName: "John Michael",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 4,
-          name: "Michael Levi",
-          productImage: require("../../assets/img/team-3.jpg"),
+          productName: "Michael Levi",
+          image: require("../../assets/img/team-3.jpg"),
           categoryName: "Michael Levi",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 5,
-          name: "Richard Gran",
-          productImage: require("../../assets/img/team-2.jpg"),
+          productName: "Richard Gran",
+          image: require("../../assets/img/team-2.jpg"),
           categoryName: "Richard Gran",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
         },
         {
           id: 6,
-          name: "Miriam Eric",
-          productImage: require("../../assets/img/team-4.jpg"),
+          productName: "Miriam Eric",
+          image: require("../../assets/img/team-4.jpg"),
           categoryName: "Miriam Eric",
           createdAt: "2024/05/12",
           updatedAt: "2024/05/12",
@@ -516,13 +514,6 @@ export default {
       const token = localStorage.getItem("token");
       const res = await getProduct(token);
       console.log("---------res", res);
-
-      this.products = res?.data?.data;
-      this.products.map((dist) => {
-        if (dist?.media?.length > 0) {
-          dist.productImage = imgRoot + dist.media[0]?.url;
-        }
-      });
     },
   },
 };

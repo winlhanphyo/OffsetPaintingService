@@ -73,6 +73,18 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
+          to="/package"
+          :class="getRoute() === 'package' ? 'active' : ''"
+          :navText="isRTL ? 'الواقع الافتراضي' : 'Package'"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-app text-info text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
+        <sidenav-item
           to="/article"
           :class="getRoute() === 'article' ? 'active' : ''"
           :navText="isRTL ? 'الواقع الافتراضي' : 'Article'"

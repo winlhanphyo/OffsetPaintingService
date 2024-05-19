@@ -3,6 +3,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Banner from "../views/Banner.vue";
 import Category from "../views/Category.vue";
 import Product from "../views/Product.vue";
+import Package from "../views/Package.vue";
 import User from "../views/User.vue";
 import Article from "../views/Article.vue";
 import Order from "../views/Order.vue";
@@ -42,6 +43,12 @@ const routes = [
     path: "/product",
     name: "Product",
     component: Product,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/package",
+    name: "Package",
+    component: Package,
     meta: { requiresAuth: true },
   },
   {

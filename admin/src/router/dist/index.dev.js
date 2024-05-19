@@ -15,6 +15,8 @@ var _Category = _interopRequireDefault(require("../views/Category.vue"));
 
 var _Product = _interopRequireDefault(require("../views/Product.vue"));
 
+var _Package = _interopRequireDefault(require("../views/Package.vue"));
+
 var _User = _interopRequireDefault(require("../views/User.vue"));
 
 var _Billing = _interopRequireDefault(require("../views/Billing.vue"));
@@ -51,6 +53,10 @@ var routes = [{
   path: "/product",
   name: "Product",
   component: _Product["default"]
+},{
+  path: "/package",
+  name: "Package",
+  component: _Package["default"]
 }, {
   path: "/user",
   name: "User",

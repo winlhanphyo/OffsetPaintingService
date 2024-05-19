@@ -56,4 +56,10 @@ const darkMode = computed(() => store.state.darkMode);
       z-index: 1;
     }
   }
+  .pagination {
+    margin: 10px 15px;
+    li {
+      margin-right: 5px;
+    }
+  }
 </style>
