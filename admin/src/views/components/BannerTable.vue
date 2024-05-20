@@ -21,7 +21,7 @@
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
-               Updated At
+                Updated At
               </th>
               <th class="text-secondary opacity-7"></th>
             </tr>
@@ -46,7 +46,14 @@
                 <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Edit</button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Edit
+                </button>
               </td>
             </tr>
             <tr>
@@ -68,7 +75,14 @@
                 <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Edit</button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Edit
+                </button>
               </td>
             </tr>
             <tr>
@@ -90,7 +104,14 @@
                 <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Edit</button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Edit
+                </button>
               </td>
             </tr>
             <tr>
@@ -112,7 +133,14 @@
                 <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Edit</button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Edit
+                </button>
               </td>
             </tr>
             <tr>
@@ -134,7 +162,14 @@
                 <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Edit</button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Edit
+                </button>
               </td>
             </tr>
             <tr>
@@ -156,28 +191,53 @@
                 <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Edit</button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                >
+                  Edit
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
-        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div
+          class="modal fade"
+          id="exampleModalToggle"
+          aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel"
+          tabindex="-1"
+        >
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Image Update</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                  Image Update
+                </h1>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Image file</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="formFile" />
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-target="#exampleModalToggle"
+                  data-bs-toggle="modal"
+                  @click="submitBanner()"
+                >
+                  Update
+                </button>
               </div>
             </div>
           </div>
@@ -186,3 +246,61 @@
     </div>
   </div>
 </template>
+
+<script>
+// import moment from "moment";
+// import Swal from 'sweetalert2';
+// import { imgRoot } from "../../../config.js";
+// import { getBanner, updateBanner } from "@/services/admin.service.js";
+
+export default {
+  data() {
+    return {
+      banners: [],
+      id: "",
+      image: "",
+      modalLabel: "Create",
+    };
+  },
+  mounted() {
+    this.getBannerData();
+  },
+  methods: {
+    async getBannerData() {
+      // const token = localStorage.getItem("token");
+      // const res = await getBanner(token);
+      // this.banners = res?.data?.data;
+      // this.banners?.map((dist) => {
+      //   dist.image = imgRoot + dist.image;
+      //   console.log("category-----", dist.image);
+      // });
+    },
+    async submitBanner() {
+      // const token = localStorage.getItem("token");
+      document.getElementById("close").click();
+
+      // let formParam = new FormData();
+
+      // formParam.append("image", this.image);
+
+      // updateBanner(this.id, formParam, token)
+      //   .then(() => {
+      //     Swal.fire({
+      //       title: "Success!",
+      //       text: "Banner is updated successfully!",
+      //       icon: "success",
+      //     }).then(() => {
+      //       this.getBannerData();
+      //     });
+      //   })
+      //   .catch((err) => {
+      //     Swal.fire({
+      //       title: "Oops!",
+      //       text: err.toString(),
+      //       icon: "error",
+      //     });
+      //   });
+    },
+  },
+};
+</script>

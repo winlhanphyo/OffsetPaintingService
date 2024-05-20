@@ -77,14 +77,14 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 </div>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{
-                  item?.createdAt
-                }}</span>
+                <span class="text-secondary text-xs font-weight-bold">
+                  {{ moment(item?.createdAt).format("YYYY-MM-DD") }}
+                </span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{
-                  item?.updatedAt
-                }}</span>
+                <span class="text-secondary text-xs font-weight-bold">
+                  {{ moment(item?.updatedAt).format("YYYY-MM-DD") }}
+                </span>
               </td>
               <td class="align-middle">
                 <button
@@ -103,186 +103,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 </button>
               </td>
             </tr>
-            <!-- <tr>
-              <td>
-                <div class="px-3 py-1">2</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Alexa Liras</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar me-3"
-                      alt="user2"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">3</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Laurent Perrier</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar me-3"
-                      alt="user3"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">4</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Michael Levi</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar me-3"
-                      alt="user4"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Michael Levi</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">5</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Richard Gran</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar me-3"
-                      alt="user5"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Richard Gran</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">6</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Miriam Eric</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar me-3"
-                      alt="user6"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr> -->
+            
           </tbody>
         </table>
         <argon-pagination>
@@ -318,7 +139,6 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                     >
                     <select class="form-select" @change="changeCategory($event)" v-model="categoryId">
                       <option value="" disabled>Select Category Menu</option>
-                      {{ console.log("---------categoryList", categoryList) }}
                       <option v-for="(item, i) in categoryList" :key="'categoryList' + i" :value="item.value">{{ item?.name }}</option>
                     </select>
                   </div>
@@ -351,9 +171,8 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                   class="btn btn-primary"
                   data-bs-target="#editModalToggle"
                   data-bs-toggle="modal"
-                  @click="submitProduct()"
-                >
-                {{modalLabel}}
+                  @click="submitProduct()">
+                  {{ modalLabel }}
                 </button>
               </div>
             </div>
@@ -447,6 +266,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 </template>
 
 <script>
+import moment from "moment";
 import Swal from "sweetalert2";
 import { imgRoot } from "../../../config.js";
 import { getProduct, createProduct, updateProduct, deleteProduct, getCategory } from "@/services/admin.service.js";

@@ -101,3 +101,57 @@ export const getUser = async (token) => {
   return res;
 }
 
+/**
+ * create user API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const createUser = async (data, token) => {
+  const res = await api.post("/user", data, token, true);
+  return res;
+}
+
+/**
+ * update user API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const updateUser = async (id, data, token) => {
+  const res = await api.post(`/user/update/${id}`, data, token, true);
+  return res;
+}
+
+/**
+ * delete user API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const deleteUser = async (id, token) => {
+  const res = await api.deleteData(`/user/${id}`, token);
+  return res;
+}
+
+/**
+ * get banner API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+export const getBanner = async (token) => {
+  const res = await api.get('/banner', token);
+  return res;
+}
+
+/**
+ * update banner API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const updateBanner = async (id, data, token) => {
+  const res = await api.post(`/banner/update/${id}`, data, token, true);
+  return res;
+}

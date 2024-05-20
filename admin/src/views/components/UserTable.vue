@@ -1,9 +1,14 @@
+<script setup>
+// import ArgonPagination from "@/components/ArgonPagination.vue";
+// import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+</script>
+
 <template>
   <div class="card">
     <div class="card-header pb-0">
       <div class="d-flex justify-content-between">
         <h6>User Table</h6>
-        <button type="button" class="m-0 btn btn-info" data-bs-target="#createModalToggle" data-bs-toggle="modal">Create</button>
+        <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal" @click="changeLabel('Create')">Create</button>
       </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
@@ -55,7 +60,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in user" :key="index">
+            <tr v-for="(item, index) in users" :key="index">
               <td>
                 <div class="px-3 py-1">{{ item.id }}</div>
               </td>
@@ -79,284 +84,68 @@
                 <span class="text-secondary text-xs font-weight-bold">{{ item?.type }}</span>
               </td>
               <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">{{ item?.createdAt }}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ moment(item?.createdAt).format("YYYY-MM-DD") }}</span>
               </td>
               <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">{{ item?.updatedAt }}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ moment(item?.updatedAt).format("YYYY-MM-DD") }}</span>
               </td>
               <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
+                <button type="button" class="m-0 btn btn-primary"
+                  data-bs-target="#editModalToggle"
+                  data-bs-toggle="modal"
+                  @click="changeLabel('Update', item)">Edit</button>
                 <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
               </td>
             </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">2</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">alexa@creative-tim.com</h6>
-                </div>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">09457863367</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Yangon</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Admin</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">3</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">laurent@creative-tim.com</h6>
-                </div>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">09457863367</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Yangon</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Admin</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">4</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <h6 class="mb-0 text-sm">Michael Levi</h6>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">michael@creative-tim.com</h6>
-                </div>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">09457863367</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Yangon</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Admin</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">5</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <h6 class="mb-0 text-sm">Richard Gran</h6>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">richard@creative-tim.com</h6>
-                </div>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">09457863367</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Yangon</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Admin</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">6</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">miriam@creative-tim.com</h6>
-                </div>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">09457863367</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Yangon</span>
-              </td>
-              <td>
-                <span class="text-secondary text-xs font-weight-bold">Admin</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
+            
           </tbody>
         </table>
-        <div class="modal fade" id="createModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header z-1 position-sticky top-0 bg-white">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Create User</h1>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="mb-3">
-                    <label for="user-name" class="col-form-label">User Name</label>
-                    <input type="text" class="form-control" id="user-name">
-                  </div>
-                  <div class="mb-3">
-                    <label for="email" class="col-form-label">Email</label>
-                    <input type="text" class="form-control" id="email">
-                  </div>
-                  <div class="mb-3">
-                    <label for="password" class="col-form-label">Password</label>
-                    <input type="text" class="form-control" id="password">
-                  </div>
-                  <div class="mb-3">
-                    <label for="password" class="col-form-label">Confirm Password</label>
-                    <input type="text" class="form-control" id="password">
-                  </div>
-                  <div class="mb-3">
-                    <label for="phone" class="col-form-label">Phone</label>
-                    <input type="text" class="form-control" id="phone">
-                  </div>
-                  <div class="mb-3">
-                    <label for="address" class="col-form-label">Address</label>
-                    <input type="text" class="form-control" id="address">
-                  </div>
-                  <div class="mb-3">
-                    <label for="category-name" class="col-form-label">User Type</label>
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Select User Type</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer position-sticky bottom-0 bg-white">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update</button>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="modal fade" id="editModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header z-1 position-sticky top-0 bg-white">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Edit User</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">{{ modalLabel }} User</h1>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
                     <label for="user-name" class="col-form-label">User Name</label>
-                    <input type="text" class="form-control" id="user-name">
+                    <input type="text" class="form-control" id="user-name" v-model="username">
                   </div>
                   <div class="mb-3">
                     <label for="email" class="col-form-label">Email</label>
-                    <input type="text" class="form-control" id="email">
+                    <input type="text" class="form-control" id="email" v-model="email">
                   </div>
                   <div class="mb-3">
                     <label for="password" class="col-form-label">Password</label>
-                    <input type="text" class="form-control" id="password">
+                    <input type="text" class="form-control" id="password" v-model="password">
                   </div>
                   <div class="mb-3">
-                    <label for="password" class="col-form-label">Confirm Password</label>
-                    <input type="text" class="form-control" id="password">
+                    <label for="confirmpassword" class="col-form-label">Confirm Password</label>
+                    <input type="text" class="form-control" id="confirmpassword" v-model="confirmPassword">
                   </div>
                   <div class="mb-3">
                     <label for="phone" class="col-form-label">Phone</label>
-                    <input type="text" class="form-control" id="phone">
+                    <input type="text" class="form-control" id="phone" v-model="phone">
                   </div>
                   <div class="mb-3">
                     <label for="address" class="col-form-label">Address</label>
-                    <input type="text" class="form-control" id="address">
+                    <input type="text" class="form-control" id="address" v-model="address">
                   </div>
                   <div class="mb-3">
                     <label for="category-name" class="col-form-label">User Type</label>
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Select User Type</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                    <select class="form-select" v-model="type" @change="changetype($event)">
+                      <option value="">Select User Type</option>
+                      <option value="superAdmin">Super Admin</option>
+                      <option value="Admin">Admin</option>
+                      <option value="User">User</option>
                     </select>
                   </div>
                 </form>
               </div>
               <div class="modal-footer position-sticky bottom-0 bg-white">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal" @click="submitUser()">{{ modalLabel }}</button>
               </div>
             </div>
           </div>
@@ -372,7 +161,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Delete</button>
+                <button type="button" class="btn btn-danger" data-bs-target="#editModalToggle" data-bs-toggle="modal">Delete</button>
               </div>
             </div>
           </div>
@@ -383,12 +172,23 @@
 </template>
 
 <script>
-import { getUser } from "@/services/admin.service.js";
+import moment from "moment";
+import Swal from "sweetalert2";
+import { getUser, updateUser, createUser, deleteUser } from "@/services/admin.service.js";
 
 export default {
   data() {
     return {
       users: [],
+      id: "",
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      phone: "",
+      address: "",
+      type: "",
+      modalLabel: "Create"
     };
   },
   mounted() {
@@ -401,6 +201,102 @@ export default {
 
       this.users = res?.data?.data;
     },
+    changeLabel(text, data=null) {
+      this.modalLabel = text;
+      if (this.modalLabel === 'Create') {
+        this.username = "";
+        this.email = "";
+        this.phone = "";
+        this.address = "";
+        this.type = "";
+      } else {
+        this.id = data?.id;
+        this.username = data?.firstName;
+        this.email = data?.email;
+        this.phone = data?.phone;
+        this.address = data?.address;
+        this.type = data?.type;
+      }
+    },
+    showDeleteDialog(data) {
+      this.id = data?.id;
+    },
+    async submitUser() {
+      const token = localStorage.getItem("token");
+      document.getElementById('close').click();
+      if (this.modalLabel === 'Create') {
+        let formParam = new FormData();
+        formParam.append('firstName', this.username);
+        formParam.append('password', this.password);
+        formParam.append('email', this.email);
+        formParam.append('phone', this.phone);
+        formParam.append('address', this.address);
+        formParam.append('type', this.type);
+
+       createUser(formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "User is created successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getUserData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+      } else {
+        let formParam = new FormData();
+        formParam.append('firstName', this.username);
+        formParam.append('email', this.email);
+        formParam.append('phone', this.phone);
+        formParam.append('address', this.address);
+        formParam.append('type', this.type);
+
+       updateUser(this.id, formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "User is updated successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getUserData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+      }
+    },
+    async clickDeleteUser() {
+      const token = localStorage.getItem("token");
+      deleteUser(this.id, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "User is deleted successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getUserData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+    },
+    changetype (event) {
+      this.type = event.target.value;
+    }
   },
 };
 </script>

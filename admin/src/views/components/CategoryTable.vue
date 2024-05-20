@@ -137,50 +137,7 @@ import { getCategory, updateCategory, createCategory, deleteCategory } from "@/s
 export default {
   data() {
     return {
-      categories: [
-        // {
-        //   id: 1,
-        //   name: "John Michael",
-        //   categoryImage: require('@/assets/img/team-2.jpg'),
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12"
-        // },
-        // {
-        //   id: 2,
-        //   name: "Alexa Liras",
-        //   categoryImage: require("../../assets/img/team-3.jpg"),
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12"
-        // },
-        // {
-        //   id: 3,
-        //   name: "Laurent Perrier",
-        //   categoryImage: require("../../assets/img/team-4.jpg"),
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12"
-        // },
-        // {
-        //   id: 4,
-        //   name: "Michael Levi",
-        //   categoryImage: require("../../assets/img/team-3.jpg"),
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12"
-        // },
-        // {
-        //   id: 5,
-        //   name: "Richard Gran",
-        //   categoryImage: require("../../assets/img/team-2.jpg"),
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12"
-        // },
-        // {
-        //   id: 6,
-        //   name: "Miriam Eric",
-        //   categoryImage: require("../../assets/img/team-4.jpg"),
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12"
-        // }
-      ],
+      categories: [],
       id: "",
       name: "",
       categoryImage: "",
