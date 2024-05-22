@@ -7,5 +7,6 @@ export * from './order.model';
 export * from './orderDetail.model';
 export * from './media.model';
 export * from './productMedia.model';
+export * from './banner.model';
 
 processAssociations();

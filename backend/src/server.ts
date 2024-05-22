@@ -10,7 +10,7 @@ import { orderController } from "./controllers/order";
 import { config } from './config';
 import { router } from './routes';
 import authRouter from './routes/auth/auth.router';
-import { PRODUCT_PATH, CATEGORY_PATH } from './utils/constant';
+import { PRODUCT_PATH, CATEGORY_PATH, BANNER_PATH } from './utils/constant';
 // import { userService } from './services/user';
 // const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
@@ -26,6 +26,10 @@ const fileStorage = multer.diskStorage({
     } else if (_file?.fieldname == "media") {
       if (_file.mimetype.startsWith('image')) {
         cb(null, PRODUCT_PATH);
+      }
+    } else if (_file?.fieldname == "image") {
+      if (_file.mimetype.startsWith('image')) {
+        cb(null, BANNER_PATH);
       }
     }
   },

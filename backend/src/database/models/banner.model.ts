@@ -4,7 +4,7 @@ import { DataBaseTableNames, DataBaseModelNames } from "../constants";
 import { DbModelFieldInit } from "../db-structure.model";
 import { db } from '../db.provider';
 
-export interface ICategoryModel {
+export interface IBannerModel {
   id: number;
   image: string;
   createdUserId: number;
@@ -14,7 +14,7 @@ export interface ICategoryModel {
   deletedAt: string;
 }
 
-const modelAttributes: DbModelFieldInit<Partial<ICategoryModel>> = {
+const modelAttributes: DbModelFieldInit<Partial<IBannerModel>> = {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,

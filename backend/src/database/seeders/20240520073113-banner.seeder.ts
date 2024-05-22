@@ -10,25 +10,25 @@ module.exports = {
       [
         {
           createdUserId: 1,
-          image: 'upload/user/banner/1.png',
+          image: 'upload/user/banner/1.jpg',
           createdAt: '2024-05-18',
           updatedAt: '2024-05-18'
         },
         {
           createdUserId: 1,
-          image: 'upload/user/banner/2.png',
+          image: 'upload/user/banner/2.jpg',
           createdAt: '2024-05-18',
           updatedAt: '2024-05-18'
         },
         {
           createdUserId: 1,
-          image: 'upload/user/banner/3.png',
+          image: 'upload/user/banner/3.jpg',
           createdAt: '2024-05-18',
           updatedAt: '2024-05-18'
         },
         {
           createdUserId: 1,
-          image: 'upload/user/banner/4.png',
+          image: 'upload/user/banner/4.jpg',
           createdAt: '2024-05-18',
           updatedAt: '2024-05-18'
         }
