@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getCategoryProduct = exports.getProduct = exports.getCategory = void 0;
+exports.getBanner = exports.getCategoryProduct = exports.getProduct = exports.getCategory = void 0;
 
 var _api = _interopRequireDefault(require("../api"));
 
@@ -98,5 +98,36 @@ var getCategoryProduct = function getCategoryProduct(token) {
     }
   });
 };
+/**
+ * get banner API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+
 
 exports.getCategoryProduct = getCategoryProduct;
+
+var getBanner = function getBanner(token) {
+  var res;
+  return regeneratorRuntime.async(function getBanner$(_context4) {
+    while (1) {
+      switch (_context4.prev = _context4.next) {
+        case 0:
+          console.log("-------getBanner", token);
+          _context4.next = 3;
+          return regeneratorRuntime.awrap(_api["default"].get('/banner', token));
+
+        case 3:
+          res = _context4.sent;
+          return _context4.abrupt("return", res);
+
+        case 5:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  });
+};
+
+exports.getBanner = getBanner;

@@ -1,3 +1,8 @@
+<script setup>
+// import ArgonPagination from "@/components/ArgonPagination.vue";
+// import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+</script>
+
 <template>
   <div class="card">
     <div class="card-header pb-0">
@@ -27,23 +32,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="(item, index) in banners" :key="index">
               <td>
-                <div class="px-3 py-1">1</div>
+                <div class="px-3 py-1">{{ item?.id }}</div>
               </td>
               <td>
                 <div class="px-3 py-1">
                   <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar me-3"
-                      alt="user1"
-                    />
+                    <img :src="item?.image" class="avatar me-3" alt="user1" />
                   </div>
                 </div>
               </td>
               <td>
-                <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
+                <div class="px-3 text-xs font-weight-bold">
+                  {{ moment(item?.createdAt).format("YYYY-MM-DD") }}
+                </div>
               </td>
               <td class="align-middle">
                 <button
@@ -51,151 +54,7 @@
                   class="m-0 btn btn-primary"
                   data-bs-target="#exampleModalToggle"
                   data-bs-toggle="modal"
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">2</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar me-3"
-                      alt="user2"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
-              </td>
-              <td class="align-middle">
-                <button
-                  type="button"
-                  class="m-0 btn btn-primary"
-                  data-bs-target="#exampleModalToggle"
-                  data-bs-toggle="modal"
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">3</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar me-3"
-                      alt="user3"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
-              </td>
-              <td class="align-middle">
-                <button
-                  type="button"
-                  class="m-0 btn btn-primary"
-                  data-bs-target="#exampleModalToggle"
-                  data-bs-toggle="modal"
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">4</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar me-3"
-                      alt="user4"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
-              </td>
-              <td class="align-middle">
-                <button
-                  type="button"
-                  class="m-0 btn btn-primary"
-                  data-bs-target="#exampleModalToggle"
-                  data-bs-toggle="modal"
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">5</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar me-3"
-                      alt="user5"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
-              </td>
-              <td class="align-middle">
-                <button
-                  type="button"
-                  class="m-0 btn btn-primary"
-                  data-bs-target="#exampleModalToggle"
-                  data-bs-toggle="modal"
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">6</div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar me-3"
-                      alt="user6"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 text-xs font-weight-bold">2024/05/12</div>
-              </td>
-              <td class="align-middle">
-                <button
-                  type="button"
-                  class="m-0 btn btn-primary"
-                  data-bs-target="#exampleModalToggle"
-                  data-bs-toggle="modal"
+                  @click="changeLabel('Update', item)"
                 >
                   Edit
                 </button>
@@ -221,12 +80,22 @@
                 <form>
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Image file</label>
-                    <input class="form-control" type="file" id="formFile" />
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      @change="handleFileUpload"
+                    />
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  id="close"
+                >
                   Close
                 </button>
                 <button
@@ -248,10 +117,10 @@
 </template>
 
 <script>
-// import moment from "moment";
-// import Swal from 'sweetalert2';
-// import { imgRoot } from "../../../config.js";
-// import { getBanner, updateBanner } from "@/services/admin.service.js";
+import moment from "moment";
+import Swal from "sweetalert2";
+import { imgRoot } from "../../../config.js";
+import { getBanner, updateBanner } from "@/services/admin.service.js";
 
 export default {
   data() {
@@ -267,39 +136,56 @@ export default {
   },
   methods: {
     async getBannerData() {
-      // const token = localStorage.getItem("token");
-      // const res = await getBanner(token);
-      // this.banners = res?.data?.data;
-      // this.banners?.map((dist) => {
-      //   dist.image = imgRoot + dist.image;
-      //   console.log("category-----", dist.image);
-      // });
+      const token = localStorage.getItem("token");
+      const res = await getBanner(token);
+      this.banners = res?.data?.data;
+      this.banners?.map((dist) => {
+        dist.image = imgRoot + dist.image;
+      });
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      this.image = file;
+    },
+    changeLabel(text, data = null) {
+      this.modalLabel = text;
+      if (this.modalLabel === "Create") {
+        this.name = "";
+        this.image = "";
+
+        console.log("banner-----", this.banners);
+      } else {
+        this.id = data?.id;
+        this.image = "";
+
+        console.log("banner-----", this.banners);
+      }
     },
     async submitBanner() {
-      // const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
       document.getElementById("close").click();
 
-      // let formParam = new FormData();
+      let formParam = new FormData();
 
-      // formParam.append("image", this.image);
+      formParam.append("image", this.image);
 
-      // updateBanner(this.id, formParam, token)
-      //   .then(() => {
-      //     Swal.fire({
-      //       title: "Success!",
-      //       text: "Banner is updated successfully!",
-      //       icon: "success",
-      //     }).then(() => {
-      //       this.getBannerData();
-      //     });
-      //   })
-      //   .catch((err) => {
-      //     Swal.fire({
-      //       title: "Oops!",
-      //       text: err.toString(),
-      //       icon: "error",
-      //     });
-      //   });
+      updateBanner(this.id, formParam, token)
+        .then(() => {
+          Swal.fire({
+            title: "Success!",
+            text: "Banner is updated successfully!",
+            icon: "success",
+          }).then(() => {
+            this.getBannerData();
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Oops!",
+            text: err.toString(),
+            icon: "error",
+          });
+        });
     },
   },
 };

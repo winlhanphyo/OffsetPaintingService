@@ -36,3 +36,14 @@ export const getCategoryProduct = async (token) => {
   return res;
 }
 
+/**
+ * get banner API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+export const getBanner = async (token) => {
+  console.log("-------getBanner", token);
+  const res = await api.get('/banner', token);
+  return res;
+}

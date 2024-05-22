@@ -160,8 +160,6 @@ export default {
     handleFileUpload(event) {
       const file = event.target.files[0];
       this.categoryImage = file;
-
-      console.log("------categoryImage", this.categoryImage);
     },
     changeLabel(text, data=null) {
       this.modalLabel = text;

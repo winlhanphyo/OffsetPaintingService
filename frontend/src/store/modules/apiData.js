@@ -1,14 +1,16 @@
-import { getCategory, getCategoryProduct, getProduct } from "../../services/offset.service";
+import { getCategory, getCategoryProduct, getProduct, getBanner } from "../../services/offset.service";
 
 const state = {
   categories: [],
   products: [],
+  banners: [],
   categoryProducts: []
 };
 
 const getters = {
   StateCategory: (state) => state.categories,
   StateProduct: (state) => state.products,
+  StateBanner: (state) => state.banners,
 };
 
 const actions = {
@@ -21,6 +23,11 @@ const actions = {
     const result = await getProduct(token);
     const data = result?.data?.data;
     await commit("setProduct", data);
+  },
+  async GetBanner({ commit }, token) {
+    const result = await getBanner(token);
+    const data = result?.data?.data;
+    await commit("setBanner", data);
   },
   async GetCategoryProduct({ commit }, token) {
     const result = await getCategoryProduct(token);
@@ -35,6 +42,9 @@ const mutations = {
   },
   setProduct(state, data) {
     state.products = data;
+  },
+  setBanner(state, data) {
+    state.banners = data;
   },
   setCategoryProduct(state, data) {
     state.categoryProducts = data;

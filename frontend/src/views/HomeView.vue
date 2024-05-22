@@ -1,13 +1,17 @@
 <template>
   <main>
-    <div class="slider">
+    <div v-if="banners?.length > 0" class="slider">
       <ul class="slider-item">
-        <li><img src="@/assets/images/home/SaiSai_Banner.jpg" alt="" /></li>
+        <li v-for="(item, index) in banners" :key="index">
+          <img v-if="index !== 1" :src="item?.image" alt="" />
+          <a v-if="index === 1" href=""><img :src="item?.image" alt="" /></a>
+        </li>
+        <!-- <li><img src="@/assets/images/home/SaiSai_Banner.jpg" alt="" /></li>
         <li>
           <a href=""><img src="@/assets/images/home/T_Shirt37.jpg" alt="" /></a>
         </li>
         <li><img src="@/assets/images/home/banner.jpg" alt="" /></li>
-        <li><img src="@/assets/images/home/Deliver_Banner.jpg" alt="" /></li>
+        <li><img src="@/assets/images/home/Deliver_Banner.jpg" alt="" /></li> -->
       </ul>
     </div>
     <div class="container">
@@ -385,7 +389,8 @@
 // @ is an alias to /src
 import $ from "jquery";
 import "slick-carousel";
-import { getProduct } from "@/services/offset.service.js";
+// import store from "@/store";
+import { getProduct, getBanner } from "@/services/offset.service.js";
 import { imgRoot } from "./../../config";
 
 export default {
@@ -394,19 +399,39 @@ export default {
   data() {
     return {
       activeMenu: false,
-      products: []
+      banners: [
+        {
+          id: 1,
+          image: "@/assets/images/home/SaiSai_Banner.jpg"
+        },
+        {
+          id: 2,
+          image: "@/assets/images/home/T_Shirt37.jpg"
+        },
+        {
+          id: 3,
+          image: "@/assets/images/home/banner.jpg"
+        },
+        {
+          id: 4,
+          image: "@/assets/images/home/Deliver_Banner.jpg"
+        },
+    ]
     };
   },
   mounted() {
     console.log("Mounted");
-    $(".slider-item").slick({
+    // setTimeout(() => {
+        $(".slider-item").slick({
       arrows: true,
       centerPadding: "0px",
       dots: true,
       slidesToShow: 1,
-      infinite: false,
+      infinite: true,
     });
+      // }, 500);
     this.getProductData();
+    this.getBanner();
   },
   beforeUnmount() {
     $(".slider-item").slick("unslick");
@@ -421,6 +446,15 @@ export default {
         if (dist?.media?.length > 0) {
           dist.productImage = imgRoot + dist.media[0]?.url;
         }
+      });
+  },
+  async getBanner() {
+    const token = localStorage.getItem("token") || "";
+    // await store.dispatch("GetBanner", token);
+      const res = await getBanner(token);
+      this.banners = res?.data?.data;
+      this.banners?.map((dist) => {
+        dist.image = imgRoot + dist.image;
       });
   },
 }
