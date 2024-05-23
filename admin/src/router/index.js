@@ -118,7 +118,7 @@ router.beforeEach((to, from, next) => {
       next();
       return;
     }
-    next("/signup");
+    next("/siginin");
   } else {
     next();
   }
