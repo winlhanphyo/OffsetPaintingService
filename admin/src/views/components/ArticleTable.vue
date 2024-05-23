@@ -1,7 +1,23 @@
+<script setup>
+// import ArgonPagination from "@/components/ArgonPagination.vue";
+// import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+</script>
+
 <template>
   <div class="card">
     <div class="card-header pb-0">
-      <h6>Article table</h6>
+      <div class="d-flex justify-content-between">
+        <h6>Article Table</h6>
+        <button
+          type="button"
+          class="m-0 btn btn-info"
+          data-bs-target="#articleModal"
+          data-bs-toggle="modal"
+          @click="changeLabel('Create')"
+        >
+          Create
+        </button>
+      </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
@@ -11,246 +27,308 @@
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
-                Author
+                ID
               </th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >
-                Function
+                Name
+              </th>
+              <th
+                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >
+                Image
               </th>
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
-                Status
+                Created At
               </th>
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
-                Employed
+                Updated At
               </th>
               <th class="text-secondary opacity-7"></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="(item, index) in articles" :key="index">
               <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user1"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">John Michael</h6>
-                    <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                  </div>
+                <div class="px-3 py-1">{{ item?.id }}</div>
+              </td>
+              <td>
+                <div class="py-1">
+                  <h6 class="mb-0 text-sm">{{ item?.name }}</h6>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">Manager</p>
-                <p class="text-xs text-secondary mb-0">Organization</p>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-success">Online</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-              </td>
-              <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
+                <div class="px-3 py-1">
                   <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user2"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                    <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p>
+                    <img :src="item?.articleImage" class="avatar me-3" alt="user1" />
                   </div>
                 </div>
               </td>
-              <td>
-                <p class="text-xs font-weight-bold mb-0">Programator</p>
-                <p class="text-xs text-secondary mb-0">Developer</p>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+              <td class="align-middle text-center">
+                <span class="text-secondary text-xs font-weight-bold">{{
+                  moment(item?.createdAt).format("YYYY-MM-DD")
+                }}</span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
+                <span class="text-secondary text-xs font-weight-bold">{{
+                  moment(item?.createdAt).format("YYYY-MM-DD")
+                }}</span>
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary"
+                  data-bs-target="#articleModal"
+                  data-bs-toggle="modal"
+                  @click="changeLabel('Update', item)"
                 >
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user3"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                    <p class="text-xs text-secondary mb-0">laurent@creative-tim.com</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p class="text-xs font-weight-bold mb-0">Executive</p>
-                <p class="text-xs text-secondary mb-0">Projects</p>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-success">Online</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
-              </td>
-              <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="m-0 btn btn-danger ms-2"
+                  data-bs-target="#deleteModalToggle"
+                  data-bs-toggle="modal"
+                  @click="showDeleteDialog(item)"
                 >
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user4"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Michael Levi</h6>
-                    <p class="text-xs text-secondary mb-0">michael@creative-tim.com</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p class="text-xs font-weight-bold mb-0">Programator</p>
-                <p class="text-xs text-secondary mb-0">Developer</p>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-success">Online</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
-              </td>
-              <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user5"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Richard Gran</h6>
-                    <p class="text-xs text-secondary mb-0">richard@creative-tim.com</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p class="text-xs font-weight-bold mb-0">Manager</p>
-                <p class="text-xs text-secondary mb-0">Executive</p>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
-              </td>
-              <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user6"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                    <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p class="text-xs font-weight-bold mb-0">Programtor</p>
-                <p class="text-xs text-secondary mb-0">Developer</p>
-              </td>
-              <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
-              </td>
-              <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
+        <!-- <argon-pagination>
+          <argon-pagination-item prev />
+          <argon-pagination-item label="1" active />
+          <argon-pagination-item label="2" />
+          <argon-pagination-item label="3" />
+          <argon-pagination-item next />
+        </argon-pagination> -->
+        <div
+          class="modal fade"
+          id="articleModal"
+          aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel"
+          tabindex="-1"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+                  Article {{ modalLabel }}
+                </h1>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="recipient-name"
+                      v-model="name"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="formFile" class="col-form-label">Image file</label>
+                    <input
+                      class="form-control"
+                      type="file"
+                      id="formFile"
+                      @change="handleFileUpload"
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  ref="Close"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  id="close"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary" @click="submitArticle()">
+                  {{ modalLabel }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="modal fade"
+          id="deleteModalToggle"
+          aria-hidden="true"
+          aria-labelledby="exampleModalToggleLabel"
+          tabindex="-1"
+        >
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Delete</h1>
+              </div>
+              <div class="modal-body">Are you sure want to Delete?</div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  ref="Close"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-bs-target="#deleteModalToggle"
+                  data-bs-toggle="modal"
+                  @click="clickDeleteArticle()"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import moment from "moment";
+import Swal from "sweetalert2";
+import { imgRoot } from "../../../config.js";
+import {
+  getArticle,
+  updateArticle,
+  createArticle,
+  deleteArticle,
+} from "@/services/admin.service.js";
+
+export default {
+  data() {
+    return {
+      articles: [],
+      id: "",
+      name: "",
+      articleImage: "",
+      modalLabel: "Create",
+    };
+  },
+  mounted() {
+    this.getArticleData();
+  },
+  methods: {
+    async getArticleData() {
+      const token = localStorage.getItem("token");
+      const res = await getArticle(token);
+      this.articles = res?.data?.data;
+      this.articles?.map((dist) => {
+        dist.articleImage = imgRoot + dist.articleImage;
+        console.log("article-----", dist.articleImage);
+      });
+    },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      this.articleImage = file;
+    },
+    changeLabel(text, data = null) {
+      this.modalLabel = text;
+      if (this.modalLabel === "Create") {
+        this.name = "";
+        this.description = "";
+        this.articleImage = "";
+      } else {
+        this.id = data?.id;
+        this.name = data?.name;
+        this.description = data?.description;
+        this.articleImage = "";
+      }
+    },
+    showDeleteDialog(data) {
+      this.id = data?.id;
+    },
+    async submitArticle() {
+      const token = localStorage.getItem("token");
+      document.getElementById("close").click();
+      if (this.modalLabel === "Create") {
+        let formParam = new FormData();
+        formParam.append("name", this.name);
+        formParam.append("description", this.description);
+        formParam.append("articleImage", this.articleImage);
+
+        createArticle(formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Article is created successfully!",
+              icon: "success",
+            }).then(() => {
+              this.getArticleData();
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error",
+            });
+          });
+      } else {
+        let formParam = new FormData();
+        formParam.append("name", this.name);
+        formParam.append("description", this.description);
+        if (this.articleImage) {
+          formParam.append("articleImage", this.articleImage);
+        }
+
+        updateArticle(this.id, formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Article is updated successfully!",
+              icon: "success",
+            }).then(() => {
+              this.getArticleData();
+            });
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error",
+            });
+          });
+      }
+    },
+    async clickDeleteArticle() {
+      const token = localStorage.getItem("token");
+      deleteArticle(this.id, token)
+        .then(() => {
+          Swal.fire({
+            title: "Success!",
+            text: "Article is deleted successfully!",
+            icon: "success",
+          }).then(() => {
+            this.getArticleData();
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Oops!",
+            text: err.toString(),
+            icon: "error",
+          });
+        });
+    },
+  },
+};
+</script>

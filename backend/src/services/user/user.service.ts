@@ -73,6 +73,7 @@ class UserService {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
+        phone: req.body.phone,
         password: await bcrypt.hash(req.body.password, 12),
         type: req.body.type,
         address: req.body.address,
@@ -125,11 +126,15 @@ class UserService {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        password: await bcrypt.hash(req.body.password, 12),
+        phone: req.body.phone,
         type: req.body.type,
         address: req.body.address,
         updatedAt: new Date().toISOString()
       } as any;
+
+      if (req.body?.password) {
+        userData.password = await bcrypt.hash(req.body.password, 12);
+      }
 
       userData.id = +req.params.id;
       const updateUser = await UserDbModel.update(userData, {

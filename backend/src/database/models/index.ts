@@ -8,5 +8,6 @@ export * from './orderDetail.model';
 export * from './media.model';
 export * from './productMedia.model';
 export * from './banner.model';
+export * from './article.model';
 
 processAssociations();

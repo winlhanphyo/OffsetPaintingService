@@ -66,7 +66,7 @@
               </td>
               <td>
                 <div class="px-3 py-1">
-                  <h6 class="mb-0 text-sm">{{ item?.firstName + item?.lastName }}</h6>
+                  <h6 class="mb-0 text-sm">{{ item?.firstName + " " + item?.lastName }}</h6>
                 </div>
               </td>
               <td>
@@ -109,8 +109,12 @@
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
-                    <label for="user-name" class="col-form-label">User Name</label>
-                    <input type="text" class="form-control" id="user-name" v-model="username">
+                    <label for="firstName" class="col-form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" v-model="firstName">
+                  </div>
+                  <div class="mb-3">
+                    <label for="lastName" class="col-form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" v-model="lastName">
                   </div>
                   <div class="mb-3">
                     <label for="email" class="col-form-label">Email</label>
@@ -181,7 +185,8 @@ export default {
     return {
       users: [],
       id: "",
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -204,14 +209,16 @@ export default {
     changeLabel(text, data=null) {
       this.modalLabel = text;
       if (this.modalLabel === 'Create') {
-        this.username = "";
+        this.firstName = "";
+        this.lastName = "";
         this.email = "";
         this.phone = "";
         this.address = "";
         this.type = "";
       } else {
         this.id = data?.id;
-        this.username = data?.firstName;
+        this.firstName = data?.firstName;
+        this.lastName = data?.lastName;
         this.email = data?.email;
         this.phone = data?.phone;
         this.address = data?.address;
@@ -226,7 +233,8 @@ export default {
       document.getElementById('close').click();
       if (this.modalLabel === 'Create') {
         let formParam = new FormData();
-        formParam.append('firstName', this.username);
+        formParam.append('firstName', this.firstName);
+        formParam.append('lastName', this.lastName);
         formParam.append('password', this.password);
         formParam.append('email', this.email);
         formParam.append('phone', this.phone);
@@ -251,7 +259,8 @@ export default {
           });
       } else {
         let formParam = new FormData();
-        formParam.append('firstName', this.username);
+        formParam.append('firstName', this.firstName);
+        formParam.append('lastName', this.lastName);
         formParam.append('email', this.email);
         formParam.append('phone', this.phone);
         formParam.append('address', this.address);

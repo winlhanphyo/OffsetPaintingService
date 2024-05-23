@@ -7,6 +7,7 @@ export enum DataBaseTableNames {
   ORDER = 'order',
   ORDER_DETAIL='order_detail',
   MEDIA='media',
+  ARTICLE='article',
   PRODUCT_MEDIA='product_media',
   PASSWORD_RESET='product_reset'
 }
@@ -20,6 +21,7 @@ export enum DataBaseModelNames {
   ORDER = 'order',
   ORDER_DETAIL='order_detail',
   MEDIA='media',
+  ARTICLE='article',
   PRODUCT_MEDIA='product_media',
   PASSWORD_RESET='product_reset'
 }

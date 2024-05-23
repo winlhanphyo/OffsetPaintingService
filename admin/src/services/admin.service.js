@@ -135,6 +135,61 @@ export const deleteUser = async (id, token) => {
 }
 
 /**
+ * get article API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+export const getArticle = async (token) => {
+  const res = await api.get('/article', token);
+  return res;
+}
+
+/**
+ * create article API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const createArticle = async (data, token) => {
+  const res = await api.post("/article", data, token, true);
+  return res;
+}
+
+/**
+ * update article API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const updateArticle = async (id, data, token) => {
+  const res = await api.post(`/article/update/${id}`, data, token, true);
+  return res;
+}
+
+/**
+ * get article detail API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const detailArticle = async (id, data, token) => {
+  const res = await api.post(`/article/${id}`, data, token, true);
+  return res;
+}
+
+/**
+ * delete article API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const deleteArticle = async (id, token) => {
+  const res = await api.deleteData(`/article/${id}`, token);
+  return res;
+}
+
+/**
  * get banner API.
  * @param {*} data 
  * @param {*} token 
