@@ -7,8 +7,9 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
   <div class="card">
     <div class="card-header pb-0">
       <div class="d-flex justify-content-between">
-        <h6>Package Table</h6>
-        <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal">Create</button>
+        <h6>Product Table</h6>
+        <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal"
+          @click="changeLabel('Create')">Create</button>
       </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
@@ -24,7 +25,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >
-                Package Name
+                Product Name
               </th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -34,7 +35,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >
-                Category Name
+                Product Name
               </th>
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -50,15 +51,15 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in products" :key="index">
+            <tr v-for="(item, index) in packages" :key="index">
               <td>
                 <div class="px-3 py-1">{{ item?.id }}</div>
               </td>
               <td>
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">
-                    <a href="#detailModalToggle" data-bs-toggle="modal">{{
-                      item?.productName
+                    <a href="#detailModalToggle" @click="showDetailDialog(item)" data-bs-toggle="modal">{{
+                      item?.name
                     }}</a>
                   </h6>
                 </div>
@@ -66,224 +67,43 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="px-3 py-1">
                   <div>
-                    <img :src="item?.image" class="avatar me-3" alt="user1" />
+                    <img :src="item?.productImage" class="avatar me-3" alt="user1" />
                   </div>
                 </div>
               </td>
               <td>
                 <div class="py-1">
-                  <h6 class="mb-0 text-sm">{{ item?.categoryName }}</h6>
+                  <h6 class="mb-0 text-sm">{{ item?.product?.name }}</h6>
                 </div>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{
-                  item?.createdAt
-                }}</span>
+                <span class="text-secondary text-xs font-weight-bold">
+                  {{ moment(item?.createdAt).format("YYYY-MM-DD") }}
+                </span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{
-                  item?.updatedAt
-                }}</span>
+                <span class="text-secondary text-xs font-weight-bold">
+                  {{ moment(item?.updatedAt).format("YYYY-MM-DD") }}
+                </span>
               </td>
               <td class="align-middle">
                 <button
                   type="button"
                   class="m-0 btn btn-primary"
                   data-bs-target="#editModalToggle"
-                  data-bs-toggle="modal"
-                >
+                  data-bs-toggle="modal" @click="changeLabel('Update', item)">
                   Edit
                 </button>
                 <button
                   type="button"
                   class="m-0 btn btn-danger ms-2"
                   data-bs-target="#deleteModalToggle"
-                  data-bs-toggle="modal"
-                >
+                  data-bs-toggle="modal" @click="showDeleteDialog(item)">
                   Delete
                 </button>
               </td>
             </tr>
-            <!-- <tr>
-              <td>
-                <div class="px-3 py-1">2</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Alexa Liras</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar me-3"
-                      alt="user2"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">3</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Laurent Perrier</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar me-3"
-                      alt="user3"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">4</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Michael Levi</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar me-3"
-                      alt="user4"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Michael Levi</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">5</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Richard Gran</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar me-3"
-                      alt="user5"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Richard Gran</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="px-3 py-1">6</div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm"><a href="#detailModalToggle" data-bs-toggle="modal">Miriam Eric</a></h6>
-                </div>
-              </td>
-              <td>
-                <div class="px-3 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar me-3"
-                      alt="user6"
-                    />
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="py-1">
-                  <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                </div>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">2024/05/12</span>
-              </td>
-              <td class="align-middle">
-                <button type="button" class="m-0 btn btn-primary" data-bs-target="#editModalToggle" data-bs-toggle="modal">Edit</button>
-                <button type="button" class="m-0 btn btn-danger ms-2" data-bs-target="#deleteModalToggle" data-bs-toggle="modal">Delete</button>
-              </td>
-            </tr> -->
+            
           </tbody>
         </table>
         <argon-pagination>
@@ -304,57 +124,55 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
-                  Package Update
+                  Product {{ modalLabel }}
                 </h1>
               </div>
               <div class="modal-body">
                 <form>
                   <div class="mb-3">
-                    <label for="product-name" class="col-form-label">Product Name</label>
-                    <input type="text" class="form-control" id="product-name" />
+                    <label for="package-name" class="col-form-label">Package Name</label>
+                    <input type="text" class="form-control" id="package-name" v-model="name"/>
                   </div>
                   <div class="mb-3">
-                    <label for="category-name" class="col-form-label"
-                      >Category Name</label
+                    <label for="product-name" class="col-form-label"
+                      >Product Name</label
                     >
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Select Category Menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                    <select class="form-select" @change="changeProduct($event)" v-model="productId">
+                      <option value="" disabled>Select Product Menu</option>
+                      <option v-for="(item, i) in productList" :key="'productList' + i" :value="item.value">{{ item?.name }}</option>
                     </select>
                   </div>
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Image file</label>
-                    <input class="form-control" type="file" id="formFile" />
+                    <input class="form-control" type="file" id="formFile" @change="handleFileUpload" />
                   </div>
                   <div class="mb-3">
                     <label for="status" class="col-form-label"
                       >Status</label
                     >
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Select Status</option>
-                      <option value="1">Hot</option>
-                      <option value="2">Sale</option>
+                    <select class="form-select" @change="changeStatus($event)" v-model="status">
+                      <option value="">None</option>
+                      <option value="Hot">Hot</option>
+                      <option value="Sale">Sale</option>
                     </select>
                   </div>
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Description</label>
-                    <textarea id="w3review" name="w3review" rows="4"></textarea>
+                    <textarea id="w3review" name="w3review" rows="4" v-model="description"></textarea>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">
                   Close
                 </button>
                 <button
                   type="button"
                   class="btn btn-primary"
-                  data-bs-target="#exampleModalToggle2"
+                  data-bs-target="#editModalToggle"
                   data-bs-toggle="modal"
-                >
-                  Update
+                  @click="submitPackage()">
+                  {{ modalLabel }}
                 </button>
               </div>
             </div>
@@ -382,8 +200,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                   type="button"
                   class="btn btn-danger"
                   data-bs-target="#exampleModalToggle2"
-                  data-bs-toggle="modal"
-                >
+                  data-bs-toggle="modal" @click="clickdeletePackage()">
                   Delete
                 </button>
               </div>
@@ -415,24 +232,24 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                   </div>
                   <div class="d-flex mt-3">
                     <div class="w-28">Product Name:</div>
-                    <div class="w-75 ms-2">Testing Testing Testing Testing</div>
+                    <div class="w-75 ms-2">{{ detailData?.name }}</div>
                   </div>
                   <div class="d-flex mt-3">
-                    <div class="w-28">Category Name:</div>
-                    <div class="w-75 ms-2">Testing Testing</div>
-                  </div>
-                  <div class="d-flex mt-3">
-                    <div class="w-28">Created User:</div>
-                    <div class="w-75 ms-2">John Michael</div>
-                  </div>
-                  <div class="d-flex mt-3">
-                    <div class="w-28">Updated User:</div>
-                    <div class="w-75 ms-2">Richard Gran</div>
+                    <div class="w-28">Product Name:</div>
+                    <div class="w-75 ms-2">{{ detailData?.productName }}</div>
                   </div>
                   <div class="d-flex mt-3">
                     <div class="w-28">Description:</div>
-                    <div class="w-75 ms-2">Testing Testing Testing Testing Testing Testing Testing Testing Testing</div>
+                    <div class="w-75 ms-2">{{ detailData?.description }}</div>
                   </div>
+                  <div class="d-flex mt-3">
+                    <div class="w-28">Status:</div>
+                    <div class="w-75 ms-2">{{ detailData?.status }}</div>
+                  </div>
+                  <!-- <div class="d-flex mt-3">
+                    <div class="w-28">Description:</div>
+                    <div class="w-75 ms-2">Testing Testing Testing Testing Testing Testing Testing Testing Testing</div>
+                  </div> -->
                 </div>
               </div>
               <div class="modal-footer">
@@ -449,72 +266,165 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 </template>
 
 <script>
-import { getProduct } from "@/services/admin.service.js";
+import moment from "moment";
+import Swal from "sweetalert2";
+import { imgRoot } from "../../../config.js";
+import { getPackage, createPackage, updatePackage, deletePackage, getProduct } from "@/services/admin.service.js";
 
 export default {
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          productName: "John Michael",
-          image: require("@/assets/img/team-2.jpg"),
-          categoryName: "John Michael",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 2,
-          productName: "Alexa Liras",
-          image: require("../../assets/img/team-3.jpg"),
-          categoryName: "John Michael",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 3,
-          productName: "Laurent Perrier",
-          image: require("../../assets/img/team-4.jpg"),
-          categoryName: "John Michael",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 4,
-          productName: "Michael Levi",
-          image: require("../../assets/img/team-3.jpg"),
-          categoryName: "Michael Levi",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 5,
-          productName: "Richard Gran",
-          image: require("../../assets/img/team-2.jpg"),
-          categoryName: "Richard Gran",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
-        {
-          id: 6,
-          productName: "Miriam Eric",
-          image: require("../../assets/img/team-4.jpg"),
-          categoryName: "Miriam Eric",
-          createdAt: "2024/05/12",
-          updatedAt: "2024/05/12",
-        },
+      packages: [
+        
       ],
+      id: "",
+      name: "",
+      image: "",
+      productId: "",
+      description: "",
+      status: "",
+      productList: [],
+      modalLabel: "Create",
+      detailData: {}
     };
   },
   mounted() {
     this.getProductData();
+    this.getPackageData();
   },
   methods: {
+    async getPackageData() {
+      const token = localStorage.getItem("token");
+      const res = await getPackage(token);
+
+      this.packages = res?.data?.data;
+      this.packages?.map((dist) => {
+        if (dist?.media?.length > 0) {
+          dist.productImage = imgRoot + dist.media[0]?.url;
+        }
+      });
+    },
     async getProductData() {
       const token = localStorage.getItem("token");
+      const arr = [];
       const res = await getProduct(token);
-      console.log("---------res", res);
+      const products = res?.data?.data;
+      for (let i = 0; i < products?.length; i++) {
+        arr.push({
+          name: products[i].name,
+          value: products[i].id
+        })
+      }
+      this.productList = arr;
     },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      this.image = file;
+    },
+    changeLabel(text, data=null) {
+      this.modalLabel = text;
+      if (this.modalLabel === 'Create') {
+        this.name = "";
+        this.image = "";
+        this.productId = "";
+      } else {
+        this.id = data?.id;
+        this.name = data?.name;
+        this.productId = data?.productId;
+        this.image = "";
+        this.description = data?.description;
+        this.status = data?.status;
+      }
+    },
+    showDeleteDialog(data) {
+      this.id = data?.id;
+    },
+    showDetailDialog(data) {
+      this.detailData = data;
+    },
+    async submitPackage() {
+      const token = localStorage.getItem("token");
+      document.getElementById('close').click();
+      if (this.modalLabel === 'Create') {
+        let formParam = new FormData();
+        formParam.append('name', this.name);
+        formParam.append('productId', this.productId);
+        formParam.append('description', this.description);
+        formParam.append('status', this.status);
+
+        if (this.image) {
+          formParam.append('packageImage', this.image);
+        }
+
+       createPackage(formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Package is created successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getPackageData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+      } else {
+        let formParam = new FormData();
+        formParam.append('name', this.name);
+        formParam.append('productId', this.productId);
+        formParam.append('description', this.description);
+        formParam.append('status', this.status);
+        if (this.image) {
+          formParam.append('packageImage', this.image);
+        }
+
+       updatePackage(this.id, formParam, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Package is updated successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getPackageData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+      }
+    },
+    async clickdeletePackage() {
+      const token = localStorage.getItem("token");
+      deletePackage(this.id, token)
+          .then(() => {
+            Swal.fire({
+              title: "Success!",
+              text: "Package is deleted successfully!",
+              icon: "success"
+            }).then(() => {
+              this.getPackageData();
+            });
+          }).catch((err) => {
+            Swal.fire({
+              title: "Oops!",
+              text: err.toString(),
+              icon: "error"
+            })
+          });
+    },
+    changeStatus (event) {
+      this.status = event.target.value;
+    },
+    changeProduct (event) {
+      this.productId = event.target.value;
+    }
   },
 };
 </script>

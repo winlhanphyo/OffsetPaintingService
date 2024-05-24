@@ -135,7 +135,7 @@ export const deleteUser = async (id, token) => {
 }
 
 /**
- * get article API.
+ * get user API.
  * @param {*} data 
  * @param {*} token 
  * @returns 
@@ -163,18 +163,7 @@ export const createArticle = async (data, token) => {
  * @returns 
  */
 export const updateArticle = async (id, data, token) => {
-  const res = await api.post(`/article/update/${id}`, data, token, true);
-  return res;
-}
-
-/**
- * get article detail API.
- * @param {*} token 
- * @param {*} data 
- * @returns 
- */
-export const detailArticle = async (id, data, token) => {
-  const res = await api.post(`/article/${id}`, data, token, true);
+  const res = await api.post(`/user/article/${id}`, data, token, true);
   return res;
 }
 
@@ -186,6 +175,50 @@ export const detailArticle = async (id, data, token) => {
  */
 export const deleteArticle = async (id, token) => {
   const res = await api.deleteData(`/article/${id}`, token);
+  return res;
+}
+
+/**
+ * get package API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+export const getPackage = async (token) => {
+  const res = await api.get('/package', token);
+  return res;
+}
+
+/**
+ * create package API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const createPackage = async (data, token) => {
+  const res = await api.post("/package", data, token, true);
+  return res;
+}
+
+/**
+ * update package API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const updatePackage = async (id, data, token) => {
+  const res = await api.post(`/user/package/${id}`, data, token, true);
+  return res;
+}
+
+/**
+ * delete package API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const deletePackage = async (id, token) => {
+  const res = await api.deleteData(`/package/${id}`, token);
   return res;
 }
 

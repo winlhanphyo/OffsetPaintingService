@@ -3,7 +3,7 @@
     <div v-if="banners?.length > 0" class="slider">
       <ul class="slider-item">
         <li v-for="(item, index) in banners" :key="index">
-          <img v-if="index !== 1" :src="item?.image" alt="" />
+          <img v-if="index !== 1" :src="item?.image" alt="" style="width: 100%" />
           <a v-if="index === 1" href=""><img :src="item?.image" alt="" /></a>
         </li>
         <!-- <li><img src="@/assets/images/home/SaiSai_Banner.jpg" alt="" /></li>
@@ -99,6 +99,8 @@
               ></a>
             </div>
           </div>
+          <div v-if="item?.status === 'hot'" class="ribbon">Hot Sales!</div>
+          <div v-if="item?.status === 'sale'" class="ribbon">Sales!</div>
         </div>
 
         <!-- <div class="product-card">

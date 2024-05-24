@@ -40,9 +40,7 @@ onBeforeUnmount(() => {
       <div class="page-header min-vh-100">
         <div class="container">
           <div class="row">
-            <div
-              class="mx-auto col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0"
-            >
+            <div class="mx-auto col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0">
               <div class="card card-plain">
                 <div class="pb-0 card-header text-start">
                   <h4 class="font-weight-bolder">Sign In</h4>
@@ -104,19 +102,17 @@ onBeforeUnmount(() => {
               <div
                 class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
                 style="
-                  background-image: url(&quot;https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg&quot;);
+                  background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
                   background-size: cover;
                 "
               >
                 <span class="mask bg-gradient-success opacity-6"></span>
-                <h4
-                  class="mt-5 text-white font-weight-bolder position-relative"
-                >
+                <h4 class="mt-5 text-white font-weight-bolder position-relative">
                   "Attention is the new currency"
                 </h4>
                 <p class="text-white position-relative">
-                  The more effortless the writing looks, the more effort the
-                  writer actually put into the process.
+                  The more effortless the writing looks, the more effort the writer
+                  actually put into the process.
                 </p>
               </div>
             </div>
@@ -128,33 +124,44 @@ onBeforeUnmount(() => {
 </template>
 
 <script>
-import Swal from 'sweetalert2';
+import axios from "axios";
+import Swal from "sweetalert2";
+import { loginRoot } from "../../config";
 
 export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
     };
   },
   methods: {
-    signIn() {
-      if (this.email === "admin@gmail.com" && this.password === "password") {
-        localStorage.setItem("token", "aaaaa");
-        localStorage.setItem("userId", "1");
-        this.$router.push("/dashboard-default");
-      } else {
-        Swal.fire({
-          position: 'bottom',
-          icon: 'error',
-          title: "Username or Password is incorrect.",
-          showConfirmButton: false,
-          // timer: 3000,
-          timerProgressBar: true,
-          toast: true
+    async signIn() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      };
+      await axios
+        .post(`${loginRoot}/login`, data)
+        .then((res) => {
+          const dist = res.data;
+          console.log("--------dist", dist);
+          localStorage.setItem("token", "aaaaa");
+          localStorage.setItem("userId", "1");
+          this.$router.push("/dashboard-default");
+        })
+        .catch(() => {
+          Swal.fire({
+            position: "bottom",
+            icon: "error",
+            title: "Username or Password is incorrect.",
+            showConfirmButton: false,
+            // timer: 3000,
+            timerProgressBar: true,
+            toast: true,
+          });
         });
-      }
-    }
+    },
   },
 };
 </script>

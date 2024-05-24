@@ -35,6 +35,11 @@
                 Name
               </th>
               <th
+                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
+              >
+                Description
+              </th>
+              <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
                 Image
@@ -60,6 +65,11 @@
               <td>
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">{{ item?.name }}</h6>
+                </div>
+              </td>
+              <td>
+                <div class="py-1">
+                  <h6 class="mb-0 text-sm">{{ item?.description }}</h6>
                 </div>
               </td>
               <td>
@@ -132,6 +142,15 @@
                       class="form-control"
                       id="recipient-name"
                       v-model="name"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Description</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="recipient-name"
+                      v-model="description"
                     />
                   </div>
                   <div class="mb-3">
@@ -219,6 +238,7 @@ export default {
       articles: [],
       id: "",
       name: "",
+      description: "",
       articleImage: "",
       modalLabel: "Create",
     };

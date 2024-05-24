@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateBanner = exports.getBanner = exports.deleteArticle = exports.detailArticle = exports.updateArticle = exports.createArticle = exports.getArticle = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProduct = exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategory = void 0;
+exports.updateBanner = exports.getBanner = exports.deletePackage = exports.updatePackage = exports.createPackage = exports.getPackage = exports.deleteArticle = exports.updateArticle = exports.createArticle = exports.getArticle = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProduct = exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategory = void 0;
 
 var _api = _interopRequireDefault(require("../api"));
 
@@ -368,7 +368,7 @@ var deleteUser = function deleteUser(id, token) {
   });
 };
 /**
- * get article API.
+ * get user API.
  * @param {*} data 
  * @param {*} token 
  * @returns 
@@ -444,7 +444,7 @@ var updateArticle = function updateArticle(id, data, token) {
       switch (_context15.prev = _context15.next) {
         case 0:
           _context15.next = 2;
-          return regeneratorRuntime.awrap(_api["default"].post("/article/update/".concat(id), data, token, true));
+          return regeneratorRuntime.awrap(_api["default"].post("/user/article/".concat(id), data, token, true));
 
         case 2:
           res = _context15.sent;
@@ -458,7 +458,7 @@ var updateArticle = function updateArticle(id, data, token) {
   });
 };
 /**
- * get article detail API.
+ * delete article API.
  * @param {*} token 
  * @param {*} data 
  * @returns 
@@ -467,14 +467,14 @@ var updateArticle = function updateArticle(id, data, token) {
 
 exports.updateArticle = updateArticle;
 
-var detailArticle = function detailArticle(id, data, token) {
+var deleteArticle = function deleteArticle(id, token) {
   var res;
-  return regeneratorRuntime.async(function detailArticle$(_context16) {
+  return regeneratorRuntime.async(function deleteArticle$(_context16) {
     while (1) {
       switch (_context16.prev = _context16.next) {
         case 0:
           _context16.next = 2;
-          return regeneratorRuntime.awrap(_api["default"].post("/article/".concat(id), data, token, true));
+          return regeneratorRuntime.awrap(_api["default"].deleteData("/article/".concat(id), token));
 
         case 2:
           res = _context16.sent;
@@ -488,23 +488,23 @@ var detailArticle = function detailArticle(id, data, token) {
   });
 };
 /**
- * delete article API.
- * @param {*} token 
+ * get package API.
  * @param {*} data 
+ * @param {*} token 
  * @returns 
  */
 
 
-exports.detailArticle = detailArticle;
+exports.deleteArticle = deleteArticle;
 
-var deleteArticle = function deleteArticle(id, token) {
+var getPackage = function getPackage(token) {
   var res;
-  return regeneratorRuntime.async(function deleteArticle$(_context17) {
+  return regeneratorRuntime.async(function getPackage$(_context17) {
     while (1) {
       switch (_context17.prev = _context17.next) {
         case 0:
           _context17.next = 2;
-          return regeneratorRuntime.awrap(_api["default"].deleteData("/article/".concat(id), token));
+          return regeneratorRuntime.awrap(_api["default"].get('/package', token));
 
         case 2:
           res = _context17.sent;
@@ -518,23 +518,23 @@ var deleteArticle = function deleteArticle(id, token) {
   });
 };
 /**
- * get banner API.
- * @param {*} data 
+ * create package API.
  * @param {*} token 
+ * @param {*} data 
  * @returns 
  */
 
 
-exports.deleteArticle = deleteArticle;
+exports.getPackage = getPackage;
 
-var getBanner = function getBanner(token) {
+var createPackage = function createPackage(data, token) {
   var res;
-  return regeneratorRuntime.async(function getBanner$(_context18) {
+  return regeneratorRuntime.async(function createPackage$(_context18) {
     while (1) {
       switch (_context18.prev = _context18.next) {
         case 0:
           _context18.next = 2;
-          return regeneratorRuntime.awrap(_api["default"].get('/banner', token));
+          return regeneratorRuntime.awrap(_api["default"].post("/package", data, token, true));
 
         case 2:
           res = _context18.sent;
@@ -543,6 +543,96 @@ var getBanner = function getBanner(token) {
         case 4:
         case "end":
           return _context18.stop();
+      }
+    }
+  });
+};
+/**
+ * update package API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+
+
+exports.createPackage = createPackage;
+
+var updatePackage = function updatePackage(id, data, token) {
+  var res;
+  return regeneratorRuntime.async(function updatePackage$(_context19) {
+    while (1) {
+      switch (_context19.prev = _context19.next) {
+        case 0:
+          _context19.next = 2;
+          return regeneratorRuntime.awrap(_api["default"].post("/user/package/".concat(id), data, token, true));
+
+        case 2:
+          res = _context19.sent;
+          return _context19.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context19.stop();
+      }
+    }
+  });
+};
+/**
+ * delete package API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+
+
+exports.updatePackage = updatePackage;
+
+var deletePackage = function deletePackage(id, token) {
+  var res;
+  return regeneratorRuntime.async(function deletePackage$(_context20) {
+    while (1) {
+      switch (_context20.prev = _context20.next) {
+        case 0:
+          _context20.next = 2;
+          return regeneratorRuntime.awrap(_api["default"].deleteData("/package/".concat(id), token));
+
+        case 2:
+          res = _context20.sent;
+          return _context20.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context20.stop();
+      }
+    }
+  });
+};
+/**
+ * get banner API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+
+
+exports.deletePackage = deletePackage;
+
+var getBanner = function getBanner(token) {
+  var res;
+  return regeneratorRuntime.async(function getBanner$(_context21) {
+    while (1) {
+      switch (_context21.prev = _context21.next) {
+        case 0:
+          _context21.next = 2;
+          return regeneratorRuntime.awrap(_api["default"].get('/banner', token));
+
+        case 2:
+          res = _context21.sent;
+          return _context21.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context21.stop();
       }
     }
   });
@@ -559,20 +649,20 @@ exports.getBanner = getBanner;
 
 var updateBanner = function updateBanner(id, data, token) {
   var res;
-  return regeneratorRuntime.async(function updateBanner$(_context19) {
+  return regeneratorRuntime.async(function updateBanner$(_context22) {
     while (1) {
-      switch (_context19.prev = _context19.next) {
+      switch (_context22.prev = _context22.next) {
         case 0:
-          _context19.next = 2;
+          _context22.next = 2;
           return regeneratorRuntime.awrap(_api["default"].post("/banner/update/".concat(id), data, token, true));
 
         case 2:
-          res = _context19.sent;
-          return _context19.abrupt("return", res);
+          res = _context22.sent;
+          return _context22.abrupt("return", res);
 
         case 4:
         case "end":
-          return _context19.stop();
+          return _context22.stop();
       }
     }
   });
