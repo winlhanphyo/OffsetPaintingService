@@ -3,7 +3,7 @@
     <div class="header-inner">
       <h1>
         <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')">
-          <img src="@/assets/images/common/logo.png" alt="Xenon Company Limited"/>
+          <img src="@/assets/images/common/logo.png" alt="Xenon Company Limited" />
         </a>
       </h1>
       <div class="flex">
@@ -13,14 +13,14 @@
               <a
                 :class="[checkActiveMenu('/home') ? 'active' : '']"
                 @click="changeRoute('/')"
-                >{{ $t('message.home') }}</a
+                >{{ $t("message.home") }}</a
               >
             </li>
             <li class="has-menu">
               <a
                 :class="[checkActiveMenu('/product') ? 'active' : '']"
                 @click="resetMenu()"
-                >{{ $t('message.product') }}</a
+                >{{ $t("message.product") }}</a
               >
               <ul :class="[activeMenu ? 'sub-menu is-show' : 'sub-menu']">
                 <li>
@@ -31,8 +31,7 @@
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[index]">
                     <li v-for="(data, i) in item?.product" :key="'product' + i">
                       <a @click="changeRoute()" class="dropdown-item"
-                        >{{ data?.name }}<span class="badge-info">SALE!</span
-                        ></a
+                        >{{ data?.name }}<span class="badge-info">SALE!</span></a
                       >
                     </li>
                     <!-- <li>
@@ -48,49 +47,58 @@
               <a
                 :class="[checkActiveMenu('/about') ? 'active' : '']"
                 @click="changeRoute('/about')"
-                >{{ $t('message.aboutus') }}</a
+                >{{ $t("message.aboutus") }}</a
               >
             </li>
             <li>
               <a
                 :class="[checkActiveMenu('/contact') ? 'active' : '']"
                 @click="changeRoute('/contact')"
-                >{{ $t('message.contactus') }}</a
+                >{{ $t("message.contactus") }}</a
               >
             </li>
             <li>
               <a
                 :class="[checkActiveMenu('/article') ? 'active' : '']"
                 @click="changeRoute('/article')"
-                >{{ $t('message.article') }}</a>
+                >{{ $t("message.article") }}</a
+              >
             </li>
 
             <li>
               <a
                 :class="[checkActiveMenu('/quota') ? 'active' : '']"
                 @click="changeRoute('/quota')"
-                >{{ $t('message.requestAQuota') }}</a>
+                >{{ $t("message.requestAQuota") }}</a
+              >
             </li>
 
             <li class="has-menu">
               <a
                 :class="[checkActiveMenu('/login', '/register') ? 'active' : '']"
                 @click="clickLoginRegister()"
-                >Login / Register</a >
+                >Login / Register</a
+              >
               <ul :class="[activeLoginMenu ? 'sub-menu is-show sub-menu2' : 'sub-menu']">
                 <li>
                   <span @click="$router.push('/login')">Login</span>
                 </li>
                 <li>
                   <span @click="$router.push('/register')">Register</span>
-  
                 </li>
               </ul>
             </li>
           </ul>
           <ul class="sp-language">
             <li><img src="@/assets/images/common/lang_burmese.png" alt="" /></li>
-            <li><input type="checkbox" v-model="langChecked" @change="handleLanguage()" class="toggle" /></li>
+            <li>
+              <input
+                type="checkbox"
+                v-model="langChecked"
+                @change="handleLanguage()"
+                class="toggle"
+              />
+            </li>
             <li><img src="@/assets/images/common/lang_usa.gif" alt="" /></li>
           </ul>
         </nav>
@@ -120,16 +128,24 @@
           </div>
           <ul class="language">
             <li><img src="@/assets/images/common/lang_burmese.png" alt="" /></li>
-            <li><input type="checkbox" v-model="langChecked" @change="handleLanguage()" class="toggle" /></li>
+            <li>
+              <input
+                type="checkbox"
+                v-model="langChecked"
+                @change="handleLanguage()"
+                class="toggle"
+              />
+            </li>
             <li><img src="@/assets/images/common/lang_usa.gif" alt="" /></li>
           </ul>
           <div class="shopping">
-            <div class="material-symbols-outlined" @click="$router.push('/checkout')">shopping_cart</div>
+            <div class="material-symbols-outlined" @click="$router.push('/checkout')">
+              shopping_cart
+            </div>
             <div class="number">0</div>
           </div>
         </div>
       </div>
-
     </div>
   </header>
 </template>
@@ -179,12 +195,13 @@ export default {
     async getProductCategory() {
       const token = localStorage.getItem("token") || "";
       await store.dispatch("GetCategoryProduct", token);
+      this.categories = this.$store.state.apiData?.categoryProducts;
     },
     async handleLanguage() {
       console.log("Checkbox state changed. Checked:", this.langChecked);
       this.lang = this.langChecked ? "eng" : "myan";
       let param = {
-        lang: this.lang
+        lang: this.lang,
       };
       await store.dispatch("commonData", param);
       this.$i18n.locale = this.lang;
@@ -815,7 +832,7 @@ export default {
         position: relative;
         max-width: 80%;
         margin: 0 auto;
-        
+
         input {
           width: 100%;
           padding: 10px 51px 10px 42px;

@@ -1,9 +1,11 @@
-import { getCategory, getCategoryProduct, getProduct, getBanner } from "../../services/offset.service";
+import { getCategory, getCategoryProduct, getProduct, getBanner, getPackage, getArticle } from "../../services/offset.service";
 
 const state = {
   categories: [],
   products: [],
   banners: [],
+  packages: [],
+  articles: [],
   categoryProducts: []
 };
 
@@ -11,6 +13,8 @@ const getters = {
   StateCategory: (state) => state.categories,
   StateProduct: (state) => state.products,
   StateBanner: (state) => state.banners,
+  StatePackage: (state) => state.packages,
+  StateArticle: (state) => state.packages,
 };
 
 const actions = {
@@ -29,6 +33,17 @@ const actions = {
     const data = result?.data?.data;
     await commit("setBanner", data);
   },
+  async GetPackage({ commit }, token) {
+    const result = await getPackage(token);
+    const data = result?.data?.data;
+    await commit("setPackage", data);
+  },
+  async GetArticle({ commit }, token) {
+    console.log("----------getArticle reducer");
+    const result = await getArticle(token);
+    const data = result?.data?.data;
+    await commit("setArticle", data);
+  },
   async GetCategoryProduct({ commit }, token) {
     const result = await getCategoryProduct(token);
     const data = result?.data?.data;
@@ -42,6 +57,12 @@ const mutations = {
   },
   setProduct(state, data) {
     state.products = data;
+  },
+  setPackage(state, data) {
+    state.packages = data;
+  },
+  setArticle(state, data) {
+    state.articles = data;
   },
   setBanner(state, data) {
     state.banners = data;

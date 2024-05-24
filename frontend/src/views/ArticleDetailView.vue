@@ -1,15 +1,18 @@
+<script setup>
+// import ArgonPagination from "@/components/ArgonPagination.vue";
+// import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+</script>
+
 <template>
   <div class="container">
     <div class="article-detail">
       <div class="article-inner">
-        <h3>Standard Business Cards - Promo</h3>
+        <h3>{{ articleDetail?.name }}</h3>
         <div class="card">
-          <img src="@/assets/images/products/Lanyard_Mockup.png" alt="">
-          <span>2024/04/01</span>
+          <img :src="articleDetail?.articleImage" alt="">
+          <span>{{ moment(item?.createdAt).format("YYYY-MM-DD") }}</span>
           <p>
-            testing testing testing testing testing testing testing testing testing testing testing testing testing testing 
-            testing testing testing testing testing testing testing testing testing testing testing testing testing testing 
-            testing testing testing testing testing testing testing testing testing testing testing testing testing testing 
+            {{ articleDetail?.description }}
           </p>
         </div>
       </div>
@@ -39,14 +42,33 @@
 </template>
 
 <script>
+import moment from "moment";
+import { getArticleDetail } from "@/services/offset.service.js";
+import { imgRoot } from "./../../config";
+
 export default {
   name: "AppArticleDetail",
   components: {},
   data() {
-    return {};
+    return {
+      articleDetail: {}
+    };
   },
-  mounted() {},
-  methods: {},
+  mounted() {
+    this.getArticleDetailData();
+  },
+  methods: {
+    async getArticleDetailData() {
+      const id = this.$route.params.id;
+      const token = localStorage.getItem("token");
+      const res = await getArticleDetail(token, id);
+      if (res?.data?.data) {
+        this.articleDetail = res.data.data;
+        console.log("------article detail", this.articleDetail);
+        this.articleDetail.articleImage = this.articleDetail?.articleImage ? imgRoot + this.articleDetail?.articleImage : "";
+      }
+    }
+  },
 };
 </script>
 
@@ -70,6 +92,9 @@ export default {
   }
   .card {
     margin: 40px 0;
+    img {
+      height: 400px;
+    }
     span {
       display: block;
       margin: 20px 0;

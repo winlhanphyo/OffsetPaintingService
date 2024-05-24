@@ -16,7 +16,7 @@
     </div>
     <div class="container">
       <div class="package">
-        <h2>{{ $t('message.package') }}</h2>
+        <h2>{{ $t("message.package") }}</h2>
         <div class="product-list package-list">
           <div class="product-card">
             <div class="work-heading">
@@ -38,7 +38,10 @@
               <p>Create your own t-shirt designs for friends, families, and events</p>
             </div>
             <div class="work-image-box">
-              <img src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg" alt="" />
+              <img
+                src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg"
+                alt=""
+              />
               <div class="details">
                 <a @click="$router.push('/package/1')"
                   >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
@@ -52,7 +55,10 @@
               <p>Photographers Create it, we Print it, you Love it.</p>
             </div>
             <div class="work-image-box">
-              <img src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg" alt="" />
+              <img
+                src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg"
+                alt=""
+              />
               <div class="details">
                 <a @click="$router.push('/package/1')"
                   >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
@@ -80,13 +86,15 @@
             <a @click="$router.push('/packages')"><span>Show All</span></a>
           </div>
         </div>
-        
       </div>
 
-      <h2>{{ $t('message.product') }}</h2>
+      <h2>{{ $t("message.product") }}</h2>
       <div class="product-list">
-
-        <div class="product-card" v-for="(item, index) in products" :key="'product' + index">
+        <div
+          class="product-card"
+          v-for="(item, index) in products"
+          :key="'product' + index"
+        >
           <div class="work-heading">
             <h3>{{ item?.name }}</h3>
             <p>{{ item?.description }}</p>
@@ -102,247 +110,6 @@
           <div v-if="item?.status === 'hot'" class="ribbon">Hot Sales!</div>
           <div v-if="item?.status === 'sale'" class="ribbon">Sales!</div>
         </div>
-
-        <!-- <div class="product-card">
-          <div class="work-heading">
-            <h3>Design T Shirt</h3>
-            <p>Create your own t-shirt designs for friends, families, and events</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Personalised T Shirt</h3>
-            <p>Create your own t-shirt designs for friends, families, and events</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Photography Prints</h3>
-            <p>Photographers Create it, we Print it, you Love it.</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Matt Canvas with Frame</h3>
-            <p>Canvas Printing with Frame</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Canves_print_1_400px.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>PP Paper Sticker ( ရေစိုခံ )</h3>
-            <p>PP Paper Sticker ( ရေစိုခံ )</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Water_Proof_400px.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Label Stickers</h3>
-            <p>Label Stickers</p>
-          </div>
-          <div class="work-image-box">
-            <img
-              src="@/assets/images/products/281_Label_sticker_main_image_1_400px20.jpg"
-              alt=""
-            />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-          <div class="ribbon">Hot Sales!</div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Vinyl Banner</h3>
-            <p>Vinyl Banner</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Vinyl_Banner_Small.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-          <div class="ribbon">HOT!</div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Standard Business Cards - Promo</h3>
-            <p>
-              Name cards made from standard paper (Art Carton 250 gsm) printed with the
-              best quality.
-            </p>
-          </div>
-          <div class="work-image-box">
-            <img
-              src="@/assets/images/products/Standard_Business_Cards_-_Promo_3_2copy.jpg"
-              alt=""
-            />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-          <div class="ribbon">SALE!</div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Baked with Love Sticker Set</h3>
-            <p>Baked with Love Sticker Set</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/CakeBox_Sticker_Small.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Covid 19 Floor Sticker-01</h3>
-            <p>Caution Sign Floor Sticker</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/CautionSign_01_Small13.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Deluxe Business Card</h3>
-            <p>
-              It offers the highest level printing. It comes with an option of luxurious
-              Paper and also with matte & gloss lamination finishing. It adds a layer of
-              depth to your branding and unique
-            </p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Business_Card_Small.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Baked with Love Sticker Set</h3>
-            <p>Birthday Party <b>labels Stickers</b></p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/BD_StickerSet_Small.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Feather Banner Stand</h3>
-            <p>Feather Banner Stand</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Feather_Banner_400px.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Graceful Greeting and Invitation Cards</h3>
-            <p>Give customers greeting/invitation cards for any occasion.</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Greeting_Card_400.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Paper Label Sticker - Promo</h3>
-            <p>Label Stickers</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Paper_label_Sticker_400px.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Company Profile Book</h3>
-            <p>Company Profile</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/company_profile_400px.jpg" alt="" />
-            <div class="details">
-              <a @click="$router.push('/product/1')"
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
     <div class="company-info">
@@ -391,8 +158,8 @@
 // @ is an alias to /src
 import $ from "jquery";
 import "slick-carousel";
-// import store from "@/store";
-import { getProduct, getBanner } from "@/services/offset.service.js";
+import store from "@/store";
+// import { getProduct } from "@/services/offset.service.js";
 import { imgRoot } from "./../../config";
 
 export default {
@@ -401,39 +168,16 @@ export default {
   data() {
     return {
       activeMenu: false,
-      banners: [
-        {
-          id: 1,
-          image: "@/assets/images/home/SaiSai_Banner.jpg"
-        },
-        {
-          id: 2,
-          image: "@/assets/images/home/T_Shirt37.jpg"
-        },
-        {
-          id: 3,
-          image: "@/assets/images/home/banner.jpg"
-        },
-        {
-          id: 4,
-          image: "@/assets/images/home/Deliver_Banner.jpg"
-        },
-    ]
+      banners: [],
+      products: [],
+      packages: [],
     };
   },
   mounted() {
     console.log("Mounted");
-    // setTimeout(() => {
-        $(".slider-item").slick({
-      arrows: true,
-      centerPadding: "0px",
-      dots: true,
-      slidesToShow: 1,
-      infinite: true,
-    });
-      // }, 500);
     this.getProductData();
     this.getBanner();
+    // this.getPackage();
   },
   beforeUnmount() {
     $(".slider-item").slick("unslick");
@@ -441,26 +185,50 @@ export default {
   methods: {
     async getProductData() {
       const token = localStorage.getItem("token");
-      const res = await getProduct(token);
+      // const res = await getProduct(token);
 
-      this.products = res?.data?.data;
+      // this.products = res?.data?.data;
+      await store.dispatch("GetProduct", token);
+      this.products = await this.$store?.state?.apiData?.products;
+
       this.products?.map((dist) => {
         if (dist?.media?.length > 0) {
           dist.productImage = imgRoot + dist.media[0]?.url;
         }
       });
-  },
-  async getBanner() {
-    const token = localStorage.getItem("token") || "";
-    // await store.dispatch("GetBanner", token);
-      const res = await getBanner(token);
-      this.banners = res?.data?.data;
+    },
+    async getBanner() {
+      const token = localStorage.getItem("token") || "";
+      await store.dispatch("GetBanner", token);
+      this.banners = await this.$store?.state?.apiData?.banners;
+      // const res = await getBanner(token);
+      // this.banners = res?.data?.data;
       this.banners?.map((dist) => {
         dist.image = imgRoot + dist.image;
       });
+      setTimeout(() => {
+        $(".slider-item").slick({
+          arrows: true,
+          centerPadding: "0px",
+          dots: true,
+          slidesToShow: 1,
+          infinite: true,
+        });
+      }, 500);
+
+    },
+    async getPackage() {
+      const token = localStorage.getItem("token") || "";
+      await store.dispatch("GetPackage", token);
+      this.packages = await this.$store?.state?.apiData?.packages;
+      // const res = await getBanner(token);
+      // this.banners = res?.data?.data;
+      this.packages?.map((dist) => {
+        dist.image = imgRoot + dist.image;
+      });
+    },
   },
-}
-}
+};
 </script>
 
 <style lang="scss">
@@ -470,6 +238,10 @@ export default {
     .slider {
       ul {
         margin: 0;
+      }
+      .slick-slide img {
+        width: 100%;
+        object-fit: cover;
       }
       .slick-prev {
         left: 87px;
@@ -657,7 +429,7 @@ export default {
             height: 18px;
             content: "";
             background: url(@/assets/images/home/arrow.svg) no-repeat center / 100%;
-            transition: all .3s ease-in;
+            transition: all 0.3s ease-in;
           }
         }
       }

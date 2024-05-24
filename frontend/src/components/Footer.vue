@@ -97,7 +97,7 @@
                 ></a>
               </li>
               <li>
-                <a href="#viber"><span class="material-symbols-outlined">wifi_calling_1</span></a>
+                <a><span class="material-symbols-outlined">wifi_calling_1</span></a>
               </li>
             </ul>
           </div>
@@ -105,7 +105,7 @@
             <p class="title">We Accept:</p>
             <ul class="row">
               <li>
-                <a href="#" title="mpu">
+                <a title="mpu">
                   <img
                     alt="mpu"
                     class="img-fluid"
@@ -114,7 +114,7 @@
                 </a>
               </li>
               <li>
-                <a href="#" title="kbzpay">
+                <a title="kbzpay">
                   <img
                     alt="kbz-pay"
                     class="img-fluid"
@@ -123,7 +123,7 @@
                 </a>
               </li>
               <li>
-                <a href="#" title="aya bank">
+                <a title="aya bank">
                   <img
                     alt="aya-bank"
                     class="img-fluid"
@@ -132,7 +132,7 @@
                 </a>
               </li>
               <li>
-                <a href="#" title="cb bank">
+                <a title="cb bank">
                   <img
                     alt="cb bank"
                     class="img-fluid"
