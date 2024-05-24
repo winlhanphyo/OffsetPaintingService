@@ -11,7 +11,6 @@ import Billing from "../views/Billing.vue";
 import VirtualReality from "../views/VirtualReality.vue";
 import RTL from "../views/Rtl.vue";
 import Profile from "../views/Profile.vue";
-import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 
 const routes = [
@@ -98,11 +97,11 @@ const routes = [
     name: "Signin",
     component: Signin,
   },
-  {
-    path: "/signup",
-    name: "Signup",
-    component: Signup,
-  },
+  // {
+  //   path: "/signup",
+  //   name: "Signup",
+  //   component: Signup,
+  // },
 ];
 
 const router = createRouter({
@@ -118,7 +117,7 @@ router.beforeEach((to, from, next) => {
       next();
       return;
     }
-    next("/siginin");
+    next("/signin");
   } else {
     next();
   }
