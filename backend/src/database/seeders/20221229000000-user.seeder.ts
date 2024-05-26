@@ -79,17 +79,17 @@ export default {
           updatedAt: '2023-07-11'
         },
         {
-          firstName: 'Li',
-          lastName: 'Li',
-          email: 'lili@gmail.com',
-          password: await bcrypt.hash("password123", 12),
+          firstName: 'Ci',
+          lastName: 'Ci',
+          email: 'admin@gmail.com',
+          password: await bcrypt.hash("password", 12),
           type: 1,
           address: "Wembley Stadium",
           phone: "+3912312",
           createdUserId: 1,
           createdAt: '2023-07-11',
           updatedAt: '2023-07-11'
-        },
+        }
       ], {});
   },
   down: (queryInterface: QueryInterface, Sequelize: any) => {
