@@ -44,9 +44,13 @@
               </a>
             </li>
             <li class="phone">
-              <a href="tel:09977666888"
+              <a href="tel:09254006394"
                 ><span class="material-symbols-outlined">phone_iphone</span
-                ><span>09 254006394, 09 400065339</span></a
+                ><span>09 254006394</span></a
+              >
+              <a href="tel:09400065339"
+                ><span class="material-symbols-outlined">phone_iphone</span
+                ><span>09 400065339</span></a
               >
             </li>
             <li class="mail">
@@ -56,39 +60,8 @@
             </li>
           </ul>
         </div>
-        <div class="col ft-link">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="">Artwork Guidelines</a></li>
-            <li><a href="">Download Templates</a></li>
-            <li><a href="">Privacy & Security Policy</a></li>
-            <li><a href="">FAQs</a></li>
-            <li><a href="">Request a Quote</a></li>
-            <li><a href="">Terms & Conditions</a></li>
-          </ul>
-        </div>
-        <div class="col ft-link">
-          <h3>Product Category</h3>
-          <h4>Business Cards</h4>
-          <ul>
-            <li>
-              <a href="">Standard Business Cards - Promo<span>SALE!</span></a>
-            </li>
-            <li><a href="">Deluxe Business Card</a></li>
-          </ul>
-          <h4>Large Format Printing</h4>
-          <ul>
-            <li>
-              <a href="">Vinyl Banner<span>HOT!</span></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-link">
-      <div class="footer-inner">
-        <div class="row">
-          <div class="extra-link">
+        <div class="col extra-link">
+          <div class="extra">
             <p class="title">Follow Us:</p>
             <ul class="row">
               <li>
@@ -97,11 +70,11 @@
                 ></a>
               </li>
               <li>
-                <a><span class="material-symbols-outlined">wifi_calling_1</span></a>
+                <a href="#viber"><span class="material-symbols-outlined">wifi_calling_1</span></a>
               </li>
             </ul>
           </div>
-          <div class="extra-link payment">
+          <div class="extra payment">
             <p class="title">We Accept:</p>
             <ul class="row">
               <li>
@@ -145,15 +118,29 @@
         </div>
       </div>
     </div>
-    <div class="footer-inner">
-      <div class="row ft-blk">
-        <p>Copyright &copy; Dream Holdings., Ltd. All Rights Reserved.</p>
-        <ul class="terms">
-          <li><a href="">Privacy</a></li>
-          <li><a href="">Terms & Conditions</a></li>
-        </ul>
+    <div class="ft-copyright">
+      <div class="footer-inner">
+        <div class="row ft-blk">
+          <p>Copyright &copy; Ci Ci., Ltd. All Rights Reserved.</p>
+          <ul class="terms">
+            <li><a href="">Privacy</a></li>
+            <li><a href="">Terms & Conditions</a></li>
+          </ul>
+        </div>
       </div>
     </div>
+    <ul class="icon-fixed">
+      <li>
+        <a href="https://www.facebook.com/cicioffsetprinting">
+          <img src="@/assets/images/common/facebook.png" alt="facebook">
+        </a>
+      </li>
+      <li>
+        <a href="#viber">
+          <img src="@/assets/images/common/viber.png" alt="viber">
+        </a>
+      </li>
+    </ul>
     <div id="viber" class="overlay">
       <div class="popup">
           <div class="popup-content">
@@ -188,9 +175,6 @@ footer {
   padding: 40px 0 0;
   background-color: #2c2c2c;
   color: #fff;
-  @media screen and (max-width: 767.9px) {
-    padding: 40px 0 10px;
-  }
   a {
     color: #fff;
   }
@@ -284,6 +268,7 @@ footer {
             text-decoration: none;
             pointer-events: none;
             cursor: default;
+            margin-bottom: 12px;
             @media screen and (max-width: 767.9px) {
               cursor: pointer;
               pointer-events: auto;
@@ -325,6 +310,65 @@ footer {
             }
           }
         }
+        &.extra-link {
+          width: 25%;
+          @media screen and (max-width: 767.9px) {
+            width: 100%;
+            margin-top: 20px;
+          }
+          .extra {
+            display: block;
+            @media screen and (max-width: 767.9px) {
+              display: block;
+            }
+            .title {
+              margin-right: 15px;
+              font-size: 22px;
+            }
+            .row {
+              justify-content: flex-start;
+            }
+            li {
+              margin-right: 15px;
+              font-size: 22px;
+              background: rgba(255, 255, 255, 0.3294117647);
+              border-radius: 5px;
+              @media screen and (max-width: 767.9px) {
+                margin-right: 10px;
+                margin-bottom: 10px;
+              }
+              a {
+                display: flex;
+                justify-content: center;
+                width: 20px;
+                padding: 9px 11px;
+                &:hover {
+                  opacity: 0.7;
+                }
+              }
+            }
+            &.payment {
+              @media screen and (max-width: 767.9px) {
+                .row {
+                  justify-content: flex-start;
+                }
+              }
+              li {
+                background: none;
+                border-radius: inherit;
+                margin: 0 10px 10px 0;
+                a {
+                  width: 50px;
+                  padding: 0;
+                  cursor: pointer;
+                  @media screen and (max-width: 767.9px) {
+                    width: 40px;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       &.ft-blk {
         align-items: center;
@@ -350,7 +394,7 @@ footer {
       }
     }
   }
-  .footer-link {
+  .ft-copyright {
     background: rgba(255, 255, 255, 0.3294117647);
     padding: 15px 0;
     margin-top: 10px;
@@ -361,54 +405,19 @@ footer {
       @media screen and (max-width: 767.9px) {
         justify-content: flex-start;
       }
-      .extra-link {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        @media screen and (max-width: 767.9px) {
-          display: block;
-        }
-        .title {
-          margin-right: 15px;
-          font-size: 22px;
-        }
-        li {
-          margin-right: 15px;
-          font-size: 22px;
-          background: rgba(255, 255, 255, 0.3294117647);
-          border-radius: 5px;
-          @media screen and (max-width: 767.9px) {
-            margin-right: 10px;
-            margin-bottom: 10px;
-          }
-          a {
-            display: flex;
-            justify-content: center;
-            width: 20px;
-            padding: 9px 11px;
-            &:hover {
-              opacity: 0.7;
-            }
-          }
-        }
-        &.payment {
-          @media screen and (max-width: 767.9px) {
-            .row {
-              justify-content: flex-start;
-            }
-          }
-          li {
-            background: none;
-            border-radius: inherit;
-            a {
-              width: 50px;
-              padding: 0;
-              @media screen and (max-width: 767.9px) {
-                width: 40px;
-              }
-            }
-          }
-        }
+    }
+  }
+  .icon-fixed {
+    position: fixed;
+    bottom: 20%;
+    right: 8px;
+    width: 50px;
+    li {
+      margin-bottom: 20px;
+      transition: transform 0.3s ease-in-out;
+      &:hover {
+        opacity: 0.8;
+        transform: scale(1.1);
       }
     }
   }
