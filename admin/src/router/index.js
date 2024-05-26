@@ -60,13 +60,13 @@ const routes = [
     path: "/order",
     name: "Order",
     component: Order,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, userType: 'superAdmin' },
   },
   {
     path: "/user",
     name: "User",
     component: User,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, userType: 'superAdmin' },
   },
   {
     path: "/billing",
@@ -114,6 +114,14 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (localStorage.getItem("token")) {
       console.log("existed storage")
+      if (to.matched.some((record) => record.meta.userType === 'superAdmin')) {
+        if (localStorage.getItem("superAdmin") === 'superAdmin') {
+          next();
+          return;
+        } else {
+          next("/dashboard-default");
+        }
+      }
       next();
       return;
     }

@@ -122,11 +122,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="password" class="col-form-label">Password</label>
-                    <input type="text" class="form-control" id="password" v-model="password">
-                  </div>
-                  <div class="mb-3">
-                    <label for="confirmpassword" class="col-form-label">Confirm Password</label>
-                    <input type="text" class="form-control" id="confirmpassword" v-model="confirmPassword">
+                    <input type="password" class="form-control" id="password" v-model="password">
                   </div>
                   <div class="mb-3">
                     <label for="phone" class="col-form-label">Phone</label>
@@ -189,7 +185,6 @@ export default {
       lastName: "",
       email: "",
       password: "",
-      confirmPassword: "",
       phone: "",
       address: "",
       type: "",

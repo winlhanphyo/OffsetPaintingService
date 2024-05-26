@@ -152,6 +152,9 @@ export default {
           if (dist?.user?.id) {
             localStorage.setItem("userId", dist.user.id);
           }
+          if (dist?.user) {
+            localStorage.setItem("user", JSON.stringify(dist.user));
+          }
           this.$router.push("/dashboard-default");
         })
         .catch(() => {

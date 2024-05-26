@@ -7,7 +7,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
   <div class="card">
     <div class="card-header pb-0">
       <div class="d-flex justify-content-between">
-        <h6>Product Table</h6>
+        <h6>Package Table</h6>
         <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal"
           @click="changeLabel('Create')">Create</button>
       </div>
@@ -67,13 +67,13 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="px-3 py-1">
                   <div>
-                    <img :src="item?.productImage" class="avatar me-3" alt="user1" />
+                    <img :src="item?.packageImage" class="avatar me-3" alt="user1" />
                   </div>
                 </div>
               </td>
               <td>
                 <div class="py-1">
-                  <h6 class="mb-0 text-sm">{{ item?.product?.name }}</h6>
+                  <h6 class="mb-0 text-sm">{{ item?.productNames }}</h6>
                 </div>
               </td>
               <td class="align-middle text-center">
@@ -299,9 +299,14 @@ export default {
 
       this.packages = res?.data?.data;
       this.packages?.map((dist) => {
-        if (dist?.media?.length > 0) {
-          dist.productImage = imgRoot + dist.media[0]?.url;
-        }
+        console.log("dist", dist);
+        dist.packageImage = imgRoot + dist.packageImage;
+        dist?.product.map((data, index) => {
+          dist.productNames = index > 0 ? + ", " + data.name : data.name;
+          data?.media.map((m) => {
+            m.url = imgRoot + m.url;
+          });
+        });
       });
     },
     async getProductData() {
@@ -352,6 +357,7 @@ export default {
         formParam.append('description', this.description);
         formParam.append('status', this.status);
 
+        console.log("----------image", this.image);
         if (this.image) {
           formParam.append('packageImage', this.image);
         }
