@@ -9,6 +9,7 @@ export enum DataBaseTableNames {
   MEDIA='media',
   ARTICLE='article',
   PRODUCT_MEDIA='product_media',
+  PACKAGE_PRODUCT='package_product',
   PASSWORD_RESET='product_reset'
 }
 
@@ -23,5 +24,6 @@ export enum DataBaseModelNames {
   MEDIA='media',
   ARTICLE='article',
   PRODUCT_MEDIA='product_media',
-  PASSWORD_RESET='product_reset'
+  PASSWORD_RESET='product_reset',
+  PACKAGE_PRODUCT='package_product',
 }

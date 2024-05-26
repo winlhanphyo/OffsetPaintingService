@@ -96,7 +96,7 @@ const closeMenu = () => {
               </li>
 
               <li class="mb-2">
-                <a class="dropdown-item border-radius-md" href="javascript:;">
+                <a class="dropdown-item border-radius-md" @click="logout()">
                   <div class="py-1 d-flex">
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-1 text-sm font-weight-normal">
@@ -113,3 +113,20 @@ const closeMenu = () => {
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  mounted() {
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      this.$router.push("/signin");
+    }
+  },
+};
+</script>

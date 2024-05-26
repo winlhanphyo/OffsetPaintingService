@@ -8,6 +8,7 @@ import { contactRouter } from "./v1/contact";
 import { dashboardRouter } from "./v1/dashboard/dashboard.router";
 import { bannerRouter } from "./v1/banner/banner.router";
 import { articleRouter } from "./v1/article";
+import { packageRouter } from "./v1/package";
 
 const v1ApiRoutes = new Router();
 
@@ -24,6 +25,7 @@ try {
   v1ApiRoutes.use('/dashboard', dashboardRouter);
   v1ApiRoutes.use('/banner', bannerRouter);
   v1ApiRoutes.use('/article', articleRouter);
+  v1ApiRoutes.use('/package', packageRouter);
 
   baseRouter.use('/api/v1', v1ApiRoutes);
 

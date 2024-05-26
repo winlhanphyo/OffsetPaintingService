@@ -4,11 +4,10 @@ import { DataBaseTableNames, DataBaseModelNames } from "../constants";
 import { DbModelFieldInit } from "../db-structure.model";
 import { db } from '../db.provider';
 
-export interface IProductModel {
+export interface IPackageModel {
   id: number;
   name: string;
   description: string;
-  categoryId: number;
   status: string;
   createdUserId: number;
   updatedUserId: number;
@@ -16,7 +15,7 @@ export interface IProductModel {
   updatedAt: Date;
 }
 
-const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
+const modelAttributes: DbModelFieldInit<Partial<IPackageModel>> = {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -33,14 +32,6 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
   status: {
     type: DataTypes.STRING,
     allowNull: true
-  },
-  categoryId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'category',
-      key: 'id'
-    }
   },
   createdUserId: {
     type: DataTypes.INTEGER,
@@ -61,27 +52,24 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
 };
 
 @associative
-export class ProductDbModel extends Model {
+export class PackageDbModel extends Model {
   static associate({
-    CategoryDbModel,
     UserDbModel,
-    MediaDbModel,
-    PackageDbModel,
-    ProductMediaDbModel,
-    PackageProductDbModel
+    ProductDbModel,
+    PackageProductDbModel,
+    OrderDetailDbModel
   }: any) {
-    this.belongsTo(CategoryDbModel, { foreignKey: 'categoryId', as: 'category', targetKey: 'id' });
-    this.belongsToMany(MediaDbModel, { through: ProductMediaDbModel, as: 'media', foreignKey: 'productId' });
-    this.belongsToMany(PackageDbModel, { through: PackageProductDbModel, as: 'package', foreignKey: 'productId' });
+    this.belongsToMany(ProductDbModel, { through: PackageProductDbModel, as: 'product', foreignKey: 'packageId' });
+    this.hasMany(OrderDetailDbModel, { foreignKey: 'packageId', as: 'packageData' });
     this.belongsTo(UserDbModel, { foreignKey: 'createdUserId', as: 'createdProductyByUser', targetKey: 'id' });
     this.belongsTo(UserDbModel, { foreignKey: 'updatedUserId', as: 'updatedProductByUser', targetKey: 'id' });
   }
 }
 
-ProductDbModel.init(modelAttributes as ModelAttributes, {
+PackageDbModel.init(modelAttributes as ModelAttributes, {
   sequelize: db,
-  modelName: DataBaseModelNames.PRODUCT,
-  tableName: DataBaseTableNames.PRODUCT,
+  modelName: DataBaseModelNames.PACKAGE,
+  tableName: DataBaseTableNames.PACKAGE,
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   timestamps: true
