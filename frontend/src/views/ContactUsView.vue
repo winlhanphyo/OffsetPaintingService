@@ -154,6 +154,7 @@ export default {
           margin-right: 30px;
           @media screen and (min-width: 768px) and (max-width: 1000px) {
             display: block;
+            margin-right: 0;
           }
           @media screen and (max-width: 767.9px) {
             display: block;
