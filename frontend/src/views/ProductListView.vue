@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { getProduct } from "@/services/offset.service.js";
+import store from "@/store";
 import { imgRoot } from "./../../config";
 
 export default {
@@ -53,9 +53,12 @@ export default {
     },
     async getProductData() {
       const token = localStorage.getItem("token");
-      const res = await getProduct(token);
+      // const res = await getProduct(token);
 
-      this.products = res?.data?.data;
+      // this.products = res?.data?.data;
+      await store.dispatch("GetProduct", token);
+      this.products = await this.$store?.state?.apiData?.products;
+
       this.products?.map((dist) => {
         if (dist?.media?.length > 0) {
           dist.productImage = imgRoot + dist.media[0]?.url;

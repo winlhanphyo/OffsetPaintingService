@@ -10,7 +10,7 @@ import { orderController } from "./controllers/order";
 import { config } from './config';
 import { router } from './routes';
 import authRouter from './routes/auth/auth.router';
-import { PRODUCT_PATH, CATEGORY_PATH, BANNER_PATH } from './utils/constant';
+import { PRODUCT_PATH, CATEGORY_PATH, BANNER_PATH, PACKAGE_PATH } from './utils/constant';
 // import { userService } from './services/user';
 // const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
@@ -31,6 +31,10 @@ const fileStorage = multer.diskStorage({
       if (_file.mimetype.startsWith('image')) {
         cb(null, BANNER_PATH);
       }
+    } else if (_file?.fieldname == "packageImage") {
+      if (_file.mimetype.startsWith('image')) {
+        cb(null, PACKAGE_PATH);
+      }
     }
   },
   filename: (_req, file, cb) => {
@@ -47,7 +51,7 @@ const fileStorage = multer.diskStorage({
 const fileFilter = async (_req: any, file: any, cb: any) => {
   const files: any = _req.files;
   // if (_req.isAuthenticated()) {
-  if (files?.image || files?.categoryImage) {
+  if (files?.image || files?.categoryImage || files?.packageImage) {
     if (
       file.mimetype === "image/png" ||
       file.mimetype === "image/jpg" ||
@@ -97,6 +101,7 @@ export default class Server {
         multer({ storage: fileStorage, fileFilter }).fields([
           { name: 'image', maxCount: 1 },
           { name: 'categoryImage', maxCount: 1 },
+          { name: 'packageImage', maxCount: 1 },
           { name: 'media', maxCount: 6 }
         ])
           (req, res, (err) => {

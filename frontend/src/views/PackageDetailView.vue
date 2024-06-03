@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div class="product-detail">
-      <h2>Standard Business Cards - Promo <span>(Business Cards)</span></h2>
+      <h2>
+        {{ packageDetail?.name }}
+        <!-- <span>({{ packageDetail?.prod }})</span> -->
+      </h2>
       <div class="card">
         <div class="card-inner">
           <div>
@@ -73,19 +76,22 @@
               <li><a href="#tab3">Product Review</a></li>
             </ul>
             <!-- END tabs-nav -->
+            {{ console.log("packageDetail product", packageDetail) }}
             <div id="tabs-content">
               <div id="tab1" class="tab-content">
-                <p>
-                  Standard Business Card<br />
-                  Name cards made from standard paper (Art Carton 250 gsm) printed with
-                  the best quality.
+                <p
+                  v-for="(item, index) in packageDetail?.product"
+                  :key="'packageDetail' + index"
+                >
+                  {{ item?.name }}<br />
+                  {{ item?.description }}
                 </p>
-                <p>
+                <!-- <p>
                   With our online design tool, you're able to create business card design
                   in minutes! Choose a business cards specification, browse our business
                   card design template, edit your details, insert logo, and checkout! It's
                   that simple!
-                </p>
+                </p> -->
               </div>
               <div id="tab2" class="tab-content">
                 <div class="row">
@@ -237,12 +243,16 @@
 <script>
 import $ from "jquery";
 import "slick-carousel";
+import { getPackageDetail, getMediaWithProductId } from "@/services/offset.service.js";
+import { imgRoot } from "./../../config";
 
 export default {
   name: "AppPackageDetail",
   components: {},
   data() {
-    return {};
+    return {
+      packageDetail: null,
+    };
   },
   mounted() {
     $(".slider-for").slick({
@@ -291,12 +301,43 @@ export default {
       $(activeTab).fadeIn();
       return false;
     });
+
+    this.getPackageDetailData();
+    // this.getProductDetailData();
   },
   beforeUnmount() {
     $(".slider-nav").slick("unslick");
     $(".slider-for").slick("unslick");
   },
-  methods: {},
+  methods: {
+    async getPackageDetailData() {
+      const id = this.$route.params.id;
+      const token = localStorage.getItem("token");
+      const res = await getPackageDetail(token, id);
+      if (res?.data?.data) {
+        this.packageDetail = res.data.data;
+        this.packageDetail.packageImage = this.packageDetail?.packageImage
+          ? imgRoot + this.packageDetail?.packageImage
+          : "";
+      }
+    },
+    async getMediaWithProductData() {
+      const id = this.$route.params.id;
+      const token = localStorage.getItem("token");
+      const res = await getMediaWithProductId(token, id);
+      if (res?.data?.data) {
+        this.media = res.data.data;
+        this.media?.map((dist) => {
+          if (dist?.url) {
+            dist.url = imgRoot + dist?.url;
+          }
+        });
+        setTimeout(() => {
+          this.setupSlider();
+        }, 100);
+      }
+    },
+  },
 };
 </script>
 

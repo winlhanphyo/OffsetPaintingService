@@ -2,21 +2,22 @@
     <div class="container">
       <h2>{{ $t('message.package') }}</h2>
       <div class="product-list">
-        <div class="product-card">
+        <div class="product-card" v-for="(item, index) in packages" :key="'packages' + index">
           <div class="work-heading">
-            <h3>Design T Shirt</h3>
-            <p>Create your own t-shirt designs for friends, families, and events</p>
+            <h3>{{ item?.name }}</h3>
+            <p>{{ item.description }}</p>
           </div>
           <div class="work-image-box">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
+            <img :src="item?.packageImage" alt="" />
             <div class="details">
-              <a @click="$router.push('/package/1')"
+              <a @click="$router.push(`/package/${item?.id}`)"
                 >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
               ></a>
             </div>
           </div>
         </div>
-        <div class="product-card">
+
+        <!-- <div class="product-card">
           <div class="work-heading">
             <h3>Personalised T Shirt</h3>
             <p>Create your own t-shirt designs for friends, families, and events</p>
@@ -241,9 +242,9 @@
               ></a>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
-      <div class="pagination-container-awesome">
+      <!-- <div class="pagination-container-awesome">
         <vue-awesome-paginate
           :total-items="100"
           :items-per-page="5"
@@ -252,20 +253,37 @@
           :on-click="clickPaginate"
           first-last-button="true"
         />
-      </div>
+      </div> -->
     </div>
   </template>
   
   <script>
+  import store from "@/store";
+  import { imgRoot } from "./../../config";
+
   export default {
     name: "AppPackageList",
     components: {},
     data() {
       return {
         currentPage: 1,
+        packages: []
       };
     },
+    mounted() {
+    console.log("Mounted");
+    this.getPackageList();
+  },
     methods: {
+      async getPackageList() {
+        const token = localStorage.getItem("token") || "";
+        await store.dispatch("GetPackage", token);
+        this.packages = await this.$store?.state?.apiData?.packages;
+        this.packages?.map((dist) => {
+          dist.packageImage = imgRoot + dist.packageImage;
+        });
+        console.log("--------packages", this.packages);
+      },
       clickPaginate(page) {
         console.log("click paginate-------", page);
       },

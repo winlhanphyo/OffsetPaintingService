@@ -7,6 +7,7 @@ import { db } from '../db.provider';
 export interface IPackageModel {
   id: number;
   name: string;
+  packageImage: string;
   description: string;
   status: string;
   createdUserId: number;
@@ -22,6 +23,10 @@ const modelAttributes: DbModelFieldInit<Partial<IPackageModel>> = {
     autoIncrement: true
   },
   name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  packageImage: {
     type: DataTypes.STRING,
     allowNull: false
   },

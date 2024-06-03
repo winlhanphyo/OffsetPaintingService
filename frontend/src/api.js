@@ -40,11 +40,10 @@ const doRequest = async (path, params, method, activeToken) => {
       if (error?.response?.status === 401 && !originalRequest?._retry) {
         originalRequest._retry = true;
         await store.dispatch("LogOut");
-        // return window.location.href = "http://lotte-auth.ks888.club/login";
         return Swal.fire({
           position: 'bottom',
           icon: 'error',
-          title: "您尚未登录, 请点击 <a href='http://lotte-auth.ks888.club/login'>这里</a>登录",
+          title: "Please Login <a href='https://cicimm.net/login'>Link</a>",
           showConfirmButton: false,
           // timer: 3000,
           timerProgressBar: true,

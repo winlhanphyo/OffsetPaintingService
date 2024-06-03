@@ -18,7 +18,23 @@
       <div class="package">
         <h2>{{ $t("message.package") }}</h2>
         <div class="product-list package-list">
-          <div class="product-card">
+
+          <div class="product-card" v-for="(item, index) in packages" :key="'package' + index">
+            <div class="work-heading">
+              <h3>{{ item?.name }}</h3>
+              <p>{{ item?.description }}</p>
+            </div>
+            <div class="work-image-box">
+              <img :src="item?.packageImage" alt="" />
+              <div class="details">
+                <a @click="$router.push(`/package/${item?.id}`)"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="product-card">
             <div class="work-heading">
               <h3>Design T Shirt</h3>
               <p>Create your own t-shirt designs for friends, families, and events</p>
@@ -79,7 +95,7 @@
                 ></a>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="link">
           <div class="show-all">
@@ -177,7 +193,7 @@ export default {
     console.log("Mounted");
     this.getProductData();
     this.getBanner();
-    // this.getPackage();
+    this.getPackage();
   },
   beforeUnmount() {
     $(".slider-item").slick("unslick");
@@ -224,8 +240,9 @@ export default {
       // const res = await getBanner(token);
       // this.banners = res?.data?.data;
       this.packages?.map((dist) => {
-        dist.image = imgRoot + dist.image;
+        dist.packageImage = imgRoot + dist.packageImage;
       });
+      console.log("--------packages", this.packages);
     },
   },
 };

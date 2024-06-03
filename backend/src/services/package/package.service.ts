@@ -1,6 +1,7 @@
 import sequelize, { Sequelize } from "sequelize";
 import { FindOptions, Op, fn } from "sequelize";
-import { CategoryDbModel, IProductModel, ProductDbModel, UserDbModel, MediaDbModel, PackageDbModel, IPackageModel } from "../../database";
+import { ProductDbModel, MediaDbModel, PackageDbModel, IPackageModel, PackageProductDbModel } from "../../database";
+import { deleteFile } from "../../utils/utils";
 
 class PackageService {
   /**
@@ -14,11 +15,11 @@ class PackageService {
       limit = limit && limit > 0 ? limit : undefined;
 
       let productFindOption = status ?
-      {
-        where: { 
-          status
-        }
-      } : null;
+        {
+          where: {
+            status
+          }
+        } : null;
 
       const packageList = await PackageDbModel.findAll({
         attributes: packageAttributes,
@@ -31,19 +32,25 @@ class PackageService {
             as: 'product',
             ...productFindOption,
             required: false,
+            include: [
+              {
+                model: MediaDbModel,
+                as: 'media'
+              }
+            ]
           }
         ]
       });
 
       // for (let i = 0; i < productList.length; i++) {
-        // const packageData: any = productList[i]?.dataValues?.package;
-        // for (let j = 0; j < packageData?.length; j++) {
-          // if (packageData[j].type === "photo") {
-            // packageData[j].dataValues.cover = packageData[j]?.url;
-          // }
-        // }
+      // const packageData: any = productList[i]?.dataValues?.package;
+      // for (let j = 0; j < packageData?.length; j++) {
+      // if (packageData[j].type === "photo") {
+      // packageData[j].dataValues.cover = packageData[j]?.url;
       // }
-      
+      // }
+      // }
+
       const packageCount = await PackageDbModel.count({
         ...otherFindOptions // Apply the same OR condition to the count
       });
@@ -132,7 +139,7 @@ class PackageService {
   //         }
   //       }
   //     }
-    
+
   //     return res.json({
   //       success: true,
   //       data: productList,
@@ -156,39 +163,32 @@ class PackageService {
   async createPackage(req: any, res: any): Promise<PackageDbModel> {
     try {
 
+      let image: string = req.body.packageImage;
+      if (req.files?.packageImage?.length > 0) {
+        image = req.files.packageImage[0].path?.split("\\").join("/");
+      }
+
       const packageData: IPackageModel = {
         name: req.body.name,
-        description: req.body.description,
+        description: req.body?.description,
         status: req.body?.status,
-        categoryId: req.body.categoryId,
+        packageImage: image,
         createdUserId: req.headers['userid']
       } as any;
 
       const createPackage: any = await PackageDbModel.create({ ...packageData, createdAt: new Date().toISOString() });
 
-      // if (req?.files?.media?.length > 0) {
-      //   const files = req.files;
-      //   const mediaData = [];
-      //   for (let i = 0; i < files?.media?.length; i++) {
-      //     let type = null;
-      //     const url = files?.media[i].path?.split("\\").join("/");
-      //     console.log('file', files?.media[i].originalname);
-      //     const splitUrl = url.split("/");
-      //     if (files.media[i].mimetype.startsWith('image')) {
-      //       type = "photo";
-      //     }
-      //     const filename = files?.media[i].originalname.split(".");
-      //     mediaData.push({
-      //       name: filename[0],
-      //       type,
-      //       url,
-      //       status: "available"
-      //     });
-      //   }
-      //   const media = await MediaDbModel.bulkCreate(mediaData);
-
-      //   await createPackage.setMedia(media);
-      // }
+      if (req?.body?.productId?.length > 0) {
+        const products = JSON.parse(req.body?.productId);
+        const packageData: any = [];
+        products.map((dist: any) => {
+          packageData.push({
+            packageId: parseInt(createPackage?.dataValues?.id),
+            productId: parseInt(dist)
+          })
+        });
+        await PackageProductDbModel.bulkCreate(packageData);
+      }
 
       return res.json({
         success: true,
@@ -213,59 +213,38 @@ class PackageService {
     try {
       const id = +req.params.id;
 
+      const detailPackage = await PackageDbModel.findOne({
+        where: {
+          id
+        },
+      });
+
+      if (!detailPackage) {
+        return res.status(404).send("Package is not found");
+      }
+
       const packageData: IPackageModel = {
         name: req.body.name,
         description: req.body.description,
         status: req.body?.status,
-        categoryId: req.body.categoryId,
         updatedUserId: req.headers['userid']
       } as any;
+
+      let image: any = req.body.packageImage;
+      if (req.files?.packageImage?.length > 0) {
+        image = req.files.packageImage[0].path?.split("\\").join("/");
+        if (detailPackage?.dataValues?.packageImage) {
+          deleteFile(detailPackage?.dataValues?.packageImage);
+        }
+        if (detailPackage) {
+          packageData.packageImage = image;
+        }
+      }
 
       const updatePackage = await PackageDbModel.update(packageData, {
         where: { id: id as number }
       });
 
-      // if (req?.files?.media?.length > 0) {
-      //   const files = req.files;
-      //   const mediaData = [];
-      //   for (let i = 0; i < files?.media?.length; i++) {
-      //     let type = null;
-      //     const url = files?.media[i].path?.split("\\").join("/");
-      //     console.log('file', files?.media[i].originalname);
-      //     const splitUrl = url.split("/");
-      //     if (files.media[i].mimetype.startsWith('image')) {
-      //       type = "photo";
-      //     }
-      //     const filename = files?.media[i].originalname.split(".");
-      //     mediaData.push({
-      //       name: filename[0],
-      //       type,
-      //       url,
-      //       status: "available"
-      //     });
-      //   }
-      //   const media = await MediaDbModel.bulkCreate(mediaData);
-
-      //   // Ensure updateProduct is a proper instance
-      //   if (updateProduct && id) {
-      //     const updatedProductInstance = await ProductDbModel.findOne({
-      //       where: {
-      //         id
-      //       },
-      //       include: [
-      //         {
-      //           model: MediaDbModel,
-      //           as: "media"
-      //         }
-      //       ]
-      //     }) as any;
-
-      //     // Associate media with product
-      //     if (updatedProductInstance) {
-      //       await updatedProductInstance.setMedia(media);
-      //     }
-      //   }
-      // }
       return res.json({
         success: true,
         message: 'Package is updated successfully',
@@ -336,11 +315,17 @@ class PackageService {
           id: package_id
         },
         include: [
-          // {
-          //   model: CategoryDbModel,
-          //   foreignKey: "categoryId",
-          //   as: "category"
-          // },
+          {
+            model: ProductDbModel,
+            foreignKey: "productId",
+            as: "product",
+            include: [
+              {
+                model: MediaDbModel,
+                as: 'media' // Ensure the alias matches the one in your association
+              }
+            ]
+          },
           // {
           //   model: UserDbModel,
           //   through: { attributes: [] },

@@ -12,6 +12,7 @@ module.exports = {
         {
           name: 'Package1',
           description: "Description 1",
+          packageImage: 'upload/user/package/1.png',
           createdUserId: 1,
           createdAt: '2023-07-11',
           updatedAt: '2023-07-11'
@@ -19,6 +20,7 @@ module.exports = {
         {
           name: 'Package2',
           description: "Description 2",
+          packageImage: 'upload/user/package/2.png',
           createdUserId: 1,
           createdAt: '2023-07-11',
           updatedAt: '2023-07-11'
@@ -26,6 +28,7 @@ module.exports = {
         {
           name: 'Package3',
           description: "Description 3",
+          packageImage: 'upload/user/package/3.png',
           createdUserId: 1,
           createdAt: '2023-07-11',
           updatedAt: '2023-07-11'

@@ -37,6 +37,18 @@ export const getProductDetail = async (token, id) => {
 }
 
 /**
+ * get package detail API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+export const getPackageDetail = async (token, id) => {
+  console.log("-------get package detail service", token);
+  const res = await api.get(`/package/${id}`, token);
+  return res;
+}
+
+/**
  * get media with product id.
  * @param {*} data 
  * @param {*} token 

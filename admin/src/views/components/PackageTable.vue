@@ -133,7 +133,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                     <label for="package-name" class="col-form-label">Package Name</label>
                     <input type="text" class="form-control" id="package-name" v-model="name"/>
                   </div>
-                  <div class="mb-3">
+                  <!-- <div class="mb-3">
                     <label for="product-name" class="col-form-label"
                       >Product Name</label
                     >
@@ -141,7 +141,23 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                       <option value="" disabled>Select Product Menu</option>
                       <option v-for="(item, i) in productList" :key="'productList' + i" :value="item.value">{{ item?.name }}</option>
                     </select>
+                  </div> -->
+
+                  <div v-if="modalLabel === 'Create'">
+                    <label class="typo__label">Product Name</label>
+                    <multiselect
+                      v-model="productValue"
+                      tag-placeholder="Add Product"
+                      placeholder="Search or add a tag"
+                      label="name"
+                      track-by="value"
+                      :options="productList"
+                      :multiple="true"
+                      :taggable="true">
+                    </multiselect>
+                      <!-- <pre class="language-json"><code>{{ productValue }}</code></pre> -->
                   </div>
+
                   <div class="mb-3">
                     <label for="formFile" class="col-form-label">Image file</label>
                     <input class="form-control" type="file" id="formFile" @change="handleFileUpload" />
@@ -236,7 +252,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                   </div>
                   <div class="d-flex mt-3">
                     <div class="w-28">Product Name:</div>
-                    <div class="w-75 ms-2">{{ detailData?.productName }}</div>
+                    <div class="w-75 ms-2">{{ detailData?.productNames }}</div>
                   </div>
                   <div class="d-flex mt-3">
                     <div class="w-28">Description:</div>
@@ -268,10 +284,14 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 <script>
 import moment from "moment";
 import Swal from "sweetalert2";
+import Multiselect from 'vue-multiselect';
 import { imgRoot } from "../../../config.js";
-import { getPackage, createPackage, updatePackage, deletePackage, getProduct } from "@/services/admin.service.js";
+import { getPackage, deletePackage, getProduct, createPackage, updatePackage } from "@/services/admin.service.js";
 
 export default {
+  components: {
+    Multiselect
+  },
   data() {
     return {
       packages: [
@@ -281,11 +301,13 @@ export default {
       name: "",
       image: "",
       productId: "",
+      selectedProductId: [],
+      productValue: [],
       description: "",
       status: "",
       productList: [],
       modalLabel: "Create",
-      detailData: {}
+      detailData: {},
     };
   },
   mounted() {
@@ -302,7 +324,12 @@ export default {
         console.log("dist", dist);
         dist.packageImage = imgRoot + dist.packageImage;
         dist?.product.map((data, index) => {
-          dist.productNames = index > 0 ? + ", " + data.name : data.name;
+          if (index == 0) {
+            dist.productNames = "";
+            dist.productNames = dist.name;
+          } else {
+            dist.productNames +=  ", " + data.name;
+          }
           data?.media.map((m) => {
             m.url = imgRoot + m.url;
           });
@@ -350,10 +377,13 @@ export default {
     async submitPackage() {
       const token = localStorage.getItem("token");
       document.getElementById('close').click();
+      console.log("product value", this.productValue);
+      const productIdList = await this.productValue.map(dist => dist.value);
+
       if (this.modalLabel === 'Create') {
         let formParam = new FormData();
         formParam.append('name', this.name);
-        formParam.append('productId', this.productId);
+        formParam.append('productId', JSON.stringify(productIdList));
         formParam.append('description', this.description);
         formParam.append('status', this.status);
 
@@ -381,7 +411,7 @@ export default {
       } else {
         let formParam = new FormData();
         formParam.append('name', this.name);
-        formParam.append('productId', this.productId);
+        // formParam.append('productId', productIdList);
         formParam.append('description', this.description);
         formParam.append('status', this.status);
         if (this.image) {
@@ -428,12 +458,19 @@ export default {
     changeStatus (event) {
       this.status = event.target.value;
     },
-    changeProduct (event) {
-      this.productId = event.target.value;
+    changeProduct (selected) {
+      // const tag = {
+      //   name: newTag,
+      //   code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+      // }
+      // this.options.push(tag);
+      // this.value.push(tag);
+      console.log("selected", selected);
     }
   },
 };
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.esm.css"></style>
 
 <style lang="scss">
 .w-28 {

@@ -18,6 +18,10 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false
       },
+      packageImage: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       description: {
         type: DataTypes.STRING,
         allowNull: false
