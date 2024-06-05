@@ -81,7 +81,10 @@ class AuthService {
       }) as any;
 
       if (!userData) {
-        return res.status(404).send("Email is not found");
+        return res.status(400).send({
+          success: false,
+          message: 'Email is not found'
+        })
       }
       if (!compareSync(req.body.password, userData.password)) {
         return res.status(400).send({
@@ -172,7 +175,9 @@ class AuthService {
       });
     } catch (err: any) {
       console.log('error');
-      res.status(400).send("An error occured" + err.toString());
+      res.status(400).send({
+        message: "An error occured" + err.toString()
+      });
     }
   }
 
@@ -209,7 +214,9 @@ class AuthService {
         message: "Password reset sucessfully."
       });
     } catch (err: any) {
-      res.status(400).send("An error occured " + err.toString());
+      res.status(400).json({
+        message: "An error occured " + err.toString()
+      });
     }
   }
 
