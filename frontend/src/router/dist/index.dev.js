@@ -118,6 +118,14 @@ var routes = [{
     });
   }
 }, {
+  path: '/change-password',
+  name: 'changePassword',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/ChangePassword.vue'));
+    });
+  }
+}, {
   path: '/checkout',
   name: 'checkout',
   component: function component() {

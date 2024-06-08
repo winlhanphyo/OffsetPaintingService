@@ -92,6 +92,7 @@ var messages = {
       confirmPassword: "စကားဝှက်ကိုအတည်ပြုပါ",
       // login
       forgetPassword: "စကားဝှက်ကိုမေ့နေပါသလား?",
+      changePassword: "စကားဝှက်ကိုပြောင်းလိုပါသလား?",
       //contact us
       formMsg: "ကျေးဇူးပြု၍ အောက်ပါအချက်အလက်များကို ဖြည့်ပါ။",
       company: "ကုမ္ပဏီ",

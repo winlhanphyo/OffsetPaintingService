@@ -22,7 +22,8 @@ const messages = {
             confirmPassword: "Confirm Password",
 
             // login
-            forgetPassword: "Forgot password?",
+            forgetPassword: "Forgot Password?",
+            changePassword: "Change Password",
 
 
             //contact us
@@ -96,6 +97,7 @@ const messages = {
 
             // login
             forgetPassword: "စကားဝှက်ကိုမေ့နေပါသလား?",
+            changePassword: "စကားဝှက်ကိုပြောင်းလိုပါသလား?",
 
 
             //contact us
