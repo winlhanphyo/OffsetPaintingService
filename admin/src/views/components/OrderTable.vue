@@ -2,6 +2,20 @@
   <div class="card">
     <div class="card-header pb-0">
       <h6>Order table</h6>
+      <div
+        class="pe-md-3 d-flex align-items-center ms-md-auto"
+      >
+        <div class="input-group">
+          <span class="input-group-text text-body">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Type here..."
+          />
+        </div>
+      </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">

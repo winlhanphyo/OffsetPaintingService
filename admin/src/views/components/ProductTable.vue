@@ -18,7 +18,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             <input
               type="text"
               class="form-control"
-              :placeholder="isRTL ? 'أكتب هنا...' : 'Type here...'"
+              placeholder="Type here..."
             />
           </div>
         </div>
