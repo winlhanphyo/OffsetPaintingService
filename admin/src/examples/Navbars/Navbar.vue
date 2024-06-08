@@ -42,25 +42,10 @@ const closeMenu = () => {
       />
 
       <div
-        class="mt-2 collapse navbar-collapse mt-sm-0 me-md-0 me-sm-4"
+        class="mt-2 collapse navbar-collapse mt-sm-0 me-md-0 me-sm-4 justify-content-end"
         :class="isRTL ? 'px-0' : 'me-sm-4'"
         id="navbar"
       >
-        <div
-          class="pe-md-3 d-flex align-items-center"
-          :class="isRTL ? 'me-md-auto' : 'ms-md-auto'"
-        >
-          <div class="input-group">
-            <span class="input-group-text text-body">
-              <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-            <input
-              type="text"
-              class="form-control"
-              :placeholder="isRTL ? 'أكتب هنا...' : 'Type here...'"
-            />
-          </div>
-        </div>
         <ul class="navbar-nav justify-content-end">
           <li
             class="nav-item dropdown d-flex align-items-center"
