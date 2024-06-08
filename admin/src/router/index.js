@@ -12,6 +12,8 @@ import VirtualReality from "../views/VirtualReality.vue";
 import RTL from "../views/Rtl.vue";
 import Profile from "../views/Profile.vue";
 import Signin from "../views/Signin.vue";
+import ChangePassword from "../views/ChangePassword.vue";
+import UpdatePassword from "../views/UpdatePassword.vue";
 
 const routes = [
   {
@@ -96,6 +98,16 @@ const routes = [
     path: "/signin",
     name: "Signin",
     component: Signin,
+  },
+  {
+    path: "/change-password",
+    name: "ChangePassword",
+    component: ChangePassword,
+  },
+  {
+    path: "/update-password",
+    name: "UpdatePassword",
+    component: UpdatePassword,
   },
   // {
   //   path: "/signup",
