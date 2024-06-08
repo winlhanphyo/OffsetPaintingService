@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <h2>{{ $t('message.updatePassword') }}</h2>
-      <div class="confirm-password">
+      <div class="update-password">
         <div class="form">
           <div class="form-row">
             <div class="form-group">
@@ -35,7 +35,7 @@
   </script>
   
   <style lang="scss">
-    .confirm-password {
+    .update-password {
       max-width: 720px;
       margin: 60px auto 0;
       @media screen and (max-width: 767.9px) {
