@@ -24,6 +24,7 @@ const messages = {
             // login
             forgetPassword: "Forgot Password?",
             changePassword: "Change Password",
+            updatePassword: "Update Password",
 
 
             //contact us
@@ -37,6 +38,7 @@ const messages = {
             msg: "Message",
             submit: "Submit",
             reset: "Reset",
+            update: "Update",
 
             //product
             priceCalculator: "Price Calculator",
@@ -98,6 +100,7 @@ const messages = {
             // login
             forgetPassword: "စကားဝှက်ကိုမေ့နေပါသလား?",
             changePassword: "စကားဝှက်ကိုပြောင်းလိုပါသလား?",
+            updatePassword: "သင့်စကားဝှက်ကို အပ်ဒိတ်လုပ်လိုပါသလား။",
 
 
             //contact us

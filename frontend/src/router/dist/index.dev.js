@@ -125,6 +125,14 @@ var routes = [{
       return _interopRequireWildcard(require('../views/ChangePassword.vue'));
     });
   }
+}, , {
+  path: '/update-password',
+  name: 'updatePassword',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/UpdatePassword.vue'));
+    });
+  }
 }, {
   path: '/checkout',
   name: 'checkout',
