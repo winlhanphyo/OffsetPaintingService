@@ -1,19 +1,21 @@
 <template>
   <div class="card">
     <div class="card-header pb-0">
-      <h6>Order table</h6>
-      <div
-        class="pe-md-3 d-flex align-items-center ms-md-auto"
-      >
-        <div class="input-group">
-          <span class="input-group-text text-body">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </span>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Type here..."
-          />
+      <div class="d-flex justify-content-between">
+        <h6>Order table</h6>
+        <div
+          class="pe-md-3 d-flex align-items-center ms-md-auto"
+        >
+          <div class="input-group">
+            <span class="input-group-text text-body">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Type here..."
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -25,241 +27,163 @@
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
-                Author
+                First Name
               </th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >
-                Function
+                Last Name
+              </th>
+              <th
+                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >
+                Address
               </th>
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >
                 Status
               </th>
-              <th
-                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-              >
-                Employed
-              </th>
-              <th class="text-secondary opacity-7"></th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user1"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">John Michael</h6>
-                    <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
-                  </div>
+                <div class="px-3 py-1">
+                    <p class="mb-0 text-sm">John</p>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">Manager</p>
-                <p class="text-xs text-secondary mb-0">Organization</p>
+                <p class="text-sm mb-0">Michael</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-success">Online</span>
+                <p class="text-sm mb-0">Ygn</p>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                <span class="text-secondary text-sm">User</span>
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary">
+                  Pending
+                </button>
               </td>
             </tr>
             <tr>
               <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user2"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Alexa Liras</h6>
-                    <p class="text-xs text-secondary mb-0">alexa@creative-tim.com</p>
-                  </div>
+                <div class="px-3 py-1">
+                    <p class="mb-0 text-sm">Alexa</p>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">Programator</p>
-                <p class="text-xs text-secondary mb-0">Developer</p>
+                <p class="text-sm mb-0">Liras</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                <p class="text-sm mb-0">Ygn</p>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">11/01/19</span>
+                <span class="text-secondary text-sm">User</span>
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary">
+                  Pending
+                </button>
               </td>
             </tr>
             <tr>
               <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user3"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Laurent Perrier</h6>
-                    <p class="text-xs text-secondary mb-0">laurent@creative-tim.com</p>
-                  </div>
+                <div class="px-3 py-1">
+                    <p class="mb-0 text-sm">Laurent</p>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">Executive</p>
-                <p class="text-xs text-secondary mb-0">Projects</p>
+                <p class="text-sm mb-0">Perrier</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-success">Online</span>
+                <p class="text-sm mb-0">Mdy</p>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">19/09/17</span>
+                <span class="text-secondary text-sm">User</span>
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary">
+                  Pending
+                </button>
               </td>
             </tr>
             <tr>
               <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-3.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user4"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Michael Levi</h6>
-                    <p class="text-xs text-secondary mb-0">michael@creative-tim.com</p>
-                  </div>
+                <div class="px-3 py-1">
+                    <p class="mb-0 text-sm">Michael</p>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">Programator</p>
-                <p class="text-xs text-secondary mb-0">Developer</p>
+                <p class="text-sm mb-0">Levi</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-success">Online</span>
+                <p class="text-sm mb-0">Mdy</p>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">24/12/08</span>
+                <span class="text-secondary text-sm">User</span>
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary">
+                  Pending
+                </button>
               </td>
             </tr>
             <tr>
               <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-2.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user5"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Richard Gran</h6>
-                    <p class="text-xs text-secondary mb-0">richard@creative-tim.com</p>
-                  </div>
+                <div class="px-3 py-1">
+                    <p class="mb-0 text-sm">Richard</p>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">Manager</p>
-                <p class="text-xs text-secondary mb-0">Executive</p>
+                <p class="text-sm mb-0">Gran</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                <p class="text-sm mb-0">Mdy</p>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">04/10/21</span>
+                <span class="text-secondary text-sm">User</span>
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary">
+                  Pending
+                </button>
               </td>
             </tr>
             <tr>
               <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <img
-                      src="../../assets/img/team-4.jpg"
-                      class="avatar avatar-sm me-3"
-                      alt="user6"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Miriam Eric</h6>
-                    <p class="text-xs text-secondary mb-0">miriam@creative-tim.com</p>
-                  </div>
+                <div class="px-3 py-1">
+                    <p class="mb-0 text-sm">Miriam</p>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">Programtor</p>
-                <p class="text-xs text-secondary mb-0">Developer</p>
+                <p class="text-sm mb-0">Eric</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="badge badge-sm bg-gradient-secondary">Offline</span>
+                <p class="text-sm mb-0">Ygn</p>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">14/09/20</span>
+                <span class="text-secondary text-sm">User</span>
               </td>
               <td class="align-middle">
-                <a
-                  href="javascript:;"
-                  class="text-secondary font-weight-bold text-xs"
-                  data-toggle="tooltip"
-                  data-original-title="Edit user"
-                  >Edit</a
-                >
+                <button
+                  type="button"
+                  class="m-0 btn btn-primary">
+                  Pending
+                </button>
               </td>
             </tr>
           </tbody>
