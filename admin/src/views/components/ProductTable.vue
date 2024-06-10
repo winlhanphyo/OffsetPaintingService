@@ -8,6 +8,20 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
     <div class="card-header pb-0">
       <div class="d-flex justify-content-between">
         <h6>Product Table</h6>
+        <div
+          class="pe-md-3 d-flex align-items-center ms-md-auto"
+        >
+          <div class="input-group">
+            <span class="input-group-text text-body">
+              <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Type here..."
+            />
+          </div>
+        </div>
         <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal"
           @click="changeLabel('Create')">Create</button>
       </div>
