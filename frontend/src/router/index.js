@@ -83,7 +83,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: '/product/search',
+    path: '/search',
     name: 'search',
     component: () => import('../views/ProductSearchView.vue')
   },

@@ -17,8 +17,10 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             </span>
             <input
               type="text"
+              v-model="searchName"
               class="form-control"
               placeholder="Type here..."
+              @keyup.enter="getProductData"
             />
           </div>
         </div>
@@ -288,56 +290,7 @@ import { getProduct, createProduct, updateProduct, deleteProduct, getCategory } 
 export default {
   data() {
     return {
-      products: [
-        // {
-        //   id: 1,
-        //   name: "John Michael",
-        //   productImage: require("@/assets/img/team-2.jpg"),
-        //   categoryName: "John Michael",
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12",
-        // },
-        // {
-        //   id: 2,
-        //   name: "Alexa Liras",
-        //   productImage: require("../../assets/img/team-3.jpg"),
-        //   categoryName: "John Michael",
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12",
-        // },
-        // {
-        //   id: 3,
-        //   name: "Laurent Perrier",
-        //   productImage: require("../../assets/img/team-4.jpg"),
-        //   categoryName: "John Michael",
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12",
-        // },
-        // {
-        //   id: 4,
-        //   name: "Michael Levi",
-        //   productImage: require("../../assets/img/team-3.jpg"),
-        //   categoryName: "Michael Levi",
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12",
-        // },
-        // {
-        //   id: 5,
-        //   name: "Richard Gran",
-        //   productImage: require("../../assets/img/team-2.jpg"),
-        //   categoryName: "Richard Gran",
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12",
-        // },
-        // {
-        //   id: 6,
-        //   name: "Miriam Eric",
-        //   productImage: require("../../assets/img/team-4.jpg"),
-        //   categoryName: "Miriam Eric",
-        //   createdAt: "2024/05/12",
-        //   updatedAt: "2024/05/12",
-        // },
-      ],
+      products: [],
       id: "",
       name: "",
       image: "",
@@ -346,7 +299,8 @@ export default {
       status: "",
       categoryList: [],
       modalLabel: "Create",
-      detailData: {}
+      detailData: {},
+      searchName: null
     };
   },
   mounted() {
@@ -356,7 +310,7 @@ export default {
   methods: {
     async getProductData() {
       const token = localStorage.getItem("token");
-      const res = await getProduct(token);
+      const res = await getProduct(token, this.searchName);
 
       this.products = res?.data?.data;
       this.products?.map((dist) => {
@@ -489,7 +443,7 @@ export default {
     },
     changeCategory (event) {
       this.categoryId = event.target.value;
-    }
+    },
   },
 };
 </script>

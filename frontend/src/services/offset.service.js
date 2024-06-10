@@ -39,11 +39,13 @@ export const getCategory = async (token) => {
  * get product API.
  * @param {*} data 
  * @param {*} token 
+ * @param {*} searchName 
  * @returns 
  */
-export const getProduct = async (token) => {
-  console.log("-------getProduct", token);
-  const res = await api.get('/product', token);
+export const getProduct = async (token, searchName=null) => {
+  const param = {};
+  searchName ? param.name = searchName : null;
+  const res = await api.get('/product', param, token);
   return res;
 }
 
@@ -54,7 +56,6 @@ export const getProduct = async (token) => {
  * @returns 
  */
 export const getProductDetail = async (token, id) => {
-  console.log("-------get product detail service", token);
   const res = await api.get(`/product/${id}`, token);
   return res;
 }
@@ -88,9 +89,10 @@ export const getMediaWithProductId = async (token, id) => {
  * @param {*} token 
  * @returns 
  */
-export const getArticle = async (token) => {
-  console.log("-------get article service", token);
-  const res = await api.get('/article', token);
+export const getArticle = async (token, searchName=null) => {
+  const param = {};
+  searchName ? param.name = searchName : null;
+  const res = await api.get('/article', param, token);
   return res;
 }
 

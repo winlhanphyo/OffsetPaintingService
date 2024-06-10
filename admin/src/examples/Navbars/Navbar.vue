@@ -44,8 +44,8 @@ const closeMenu = () => {
       <div
         class="mt-2 collapse navbar-collapse mt-sm-0 me-md-0 me-sm-4 justify-content-end"
         :class="isRTL ? 'px-0' : 'me-sm-4'"
-        id="navbar"
-      >
+        id="navbar">
+      <div class="username-label"> {{ username }} </div>
         <ul class="navbar-nav justify-content-end">
           <li
             class="nav-item dropdown d-flex align-items-center"
@@ -102,17 +102,33 @@ const closeMenu = () => {
 <script>
 export default {
   data() {
-    return { };
+    return {
+      username: null
+    };
   },
   mounted() {
-
+    const data = localStorage.getItem("user") || "";
+    if (data) {
+      const dist = JSON.parse(data);
+      this.username = dist?.firstName + " " + dist?.lastName;
+    }
+    
   },
   methods: {
     logout() {
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
+      localStorage.removeItem("user");
       this.$router.push("/signin");
     }
   },
 };
 </script>
+<style>
+.username-label {
+  color: white;
+  margin-right: 5px;
+  font-style: bold;
+  font-size: 16px;
+}
+</style>

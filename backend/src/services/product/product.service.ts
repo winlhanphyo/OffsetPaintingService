@@ -15,7 +15,7 @@ class ProductService {
 
       let mediaFindOption = status ?
       {
-        where: { 
+        where: {
           status
         }
       } : null;

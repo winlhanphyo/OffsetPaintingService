@@ -299,7 +299,6 @@ export default {
       if (this.media?.length > 0) {
         this.productDetail.productImage = this.media[0]?.url;
       }
-      console.log("--------productDetail", this.productDetail);
       const data = localStorage.getItem("cartData");
       if (data && JSON.parse(data)?.length > 0) {
         data.push(this.productDetail);

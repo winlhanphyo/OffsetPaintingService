@@ -4,17 +4,34 @@
       <h2>Search</h2>
       <div class="search">
         <div class="search-form">
-          <input type="search" name="top_search" id="top_search" class="form-control" placeholder="Products / Articles Search" autocomplete="off">
-          <button><span class="material-symbols-outlined"> search </span></button>
+          <!-- <input type="search" name="top_search" id="top_search" class="form-control" placeholder="Products / Articles Search" autocomplete="off">
+          <button><span class="material-symbols-outlined"> search </span></button> -->
+          {{ "Search Name: " + searchName }}
         </div>
         <div class="result">
           <ul class="tabs-nav" id="tabs-nav">
-            <li><a href="#tab1">Products <span>10</span></a></li>
-            <li><a href="#tab2">Articles <span>100</span></a></li>
+            <li><a href="#tab1">Products <span>{{ products?.length }}</span></a></li>
+            <li><a href="#tab2">Articles <span>{{ articles?.length }}</span></a></li>
           </ul>
           <div class="tab-content" id="tabs-content">
             <div id="tab1" class="inner">
-              <div class="col">
+              <div class="col" v-for="(item, index) in products" :key="'product' + index">
+                <div class="search-img">
+                  <a @click="$router.push(`/product/${item?.id}`)">
+                    <img :src="item?.productImage" alt="" />
+                  </a>
+                </div>
+                <div class="product-data">
+                  <a @click="$router.push(`/product/${item?.id}`)">
+                    <p class="products-name">{{ item?.name }}</p>
+                    <small>{{ item?.description }}</small>
+                    <p>in 
+                      <small class="font-italic products-category-name">{{ item?.category?.name }}</small>
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <!-- <div class="col">
                 <div class="search-img">
                   <a href="">
                     <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
@@ -77,58 +94,26 @@
                     </p>
                   </a>
                 </div>
-              </div>
-              <div class="col">
-                <div class="search-img">
-                  <a href="">
-                    <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product-data">
-                  <a href="">
-                    <p class="products-name">Design T Shirt</p>
-                    <small>T Shirt | Fruit of the Loom (USA)</small>
-                    <p>in 
-                      <small class="font-italic products-category-name">T Shirt Printing</small>
-                    </p>
-                  </a>
-                </div>
-              </div>
+              </div> -->
             </div>
             <div id="tab2" class="inner">
-              <div class="col">
+              <div class="col" v-for="(item, index) in articles" :key="'article' + index">
                 <div class="search-img">
-                  <a href="">
-                    <img src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg" alt="" />
+                  <a @click="$router.push(`/article/${item?.id}`)">
+                    <img :src="item.articleImage" alt="" />
                   </a>
                 </div>
                 <div class="product-data">
-                  <a href="">
-                    <p class="products-name">Design T Shirt</p>
-                    <small>T Shirt | Fruit of the Loom (USA)</small>
-                    <p>in 
-                      <small class="font-italic products-category-name">T Shirt Printing</small>
-                    </p>
+                  <a @click="$router.push(`/article/${item?.id}`)">
+                    <p class="products-name">{{ item?.name }}</p>
+                    <small>{{ item?.description }}</small>
+                    <!-- <p>in 
+                      <small class="font-italic products-category-name">{{ item }}</small>
+                    </p> -->
                   </a>
                 </div>
               </div>
-              <div class="col">
-                <div class="search-img">
-                  <a href="">
-                    <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
-                  </a>
-                </div>
-                <div class="product-data">
-                  <a href="">
-                    <p class="products-name">Design T Shirt</p>
-                    <small>T Shirt | Fruit of the Loom (USA)</small>
-                    <p>in 
-                      <small class="font-italic products-category-name">T Shirt Printing</small>
-                    </p>
-                  </a>
-                </div>
-              </div>
-              <div class="col">
+              <!-- <div class="col">
                 <div class="search-img">
                   <a href="">
                     <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
@@ -176,6 +161,22 @@
                   </a>
                 </div>
               </div>
+              <div class="col">
+                <div class="search-img">
+                  <a href="">
+                    <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
+                  </a>
+                </div>
+                <div class="product-data">
+                  <a href="">
+                    <p class="products-name">Design T Shirt</p>
+                    <small>T Shirt | Fruit of the Loom (USA)</small>
+                    <p>in 
+                      <small class="font-italic products-category-name">T Shirt Printing</small>
+                    </p>
+                  </a>
+                </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -187,12 +188,18 @@
 
 <script>
 import $ from "jquery";
+import { imgRoot } from "../../config";
+import { getProduct, getArticle } from "@/services/offset.service.js";
 
 export default {
   name: "AppProductSearch",
   components: {},
   data() {
-    return {};
+    return {
+      products: [],
+      articles: [],
+      searchName: null
+    };
   },
   mounted() {
     // Show the first tab and hide the rest
@@ -210,7 +217,39 @@ export default {
       $(activeTab).fadeIn();
       return false;
     });
-  }
+    this.getProductData();
+  },
+  methods: {
+    async getProductData() {
+      this.searchName = this.$route.query?.name;
+      const token = localStorage.getItem("token");
+      let res = await getProduct(token, this.searchName);
+      if (res?.data?.data) {
+        this.products = res.data.data;
+      }
+      this.products?.map((dist) => {
+        if (dist?.media?.length > 0) {
+          dist.productImage = imgRoot + dist.media[0]?.url;
+        }
+      });
+
+      res = await getArticle(token, this.searchName);
+      if (res?.data?.data) {
+        this.articles = res.data.data;
+      }
+      this.articles?.map((dist) => {
+        if (dist?.articleImage) {
+          dist.articleImage = imgRoot + dist.articleImage;
+        }
+      });
+    }
+  },
+  watch: {
+    $route(to, from) {
+      console.log("-----from", to, from);
+      this.getProductData();
+    },
+  },
 };
 </script>
 
@@ -223,6 +262,8 @@ export default {
   .search-form  {
     position: relative;
     width: 40%;
+    font-size: 15px;
+    font-weight: 700;
     @media screen and (max-width: 767.9px) {
       width: 100%;
     }
@@ -292,6 +333,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
+        cursor: pointer;
         @media screen and (max-width: 650px) {
           display: block;
         }
