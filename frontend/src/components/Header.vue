@@ -73,7 +73,19 @@
               >
             </li>
 
-            <li class="has-menu">
+            <li class="has-menu" v-if="user">
+              <a
+                :class="[checkActiveMenu('/login', '/register') ? 'active' : '']"
+                @click="clickLoginRegister()"
+                >{{ user?.firstName + " " + user?.lastName }}</a>
+              <ul :class="[activeLoginMenu ? 'sub-menu is-show sub-menu2' : 'sub-menu']" style="width: 75px;" >
+                <li>
+                  <span @click="logout()">Logout</span>
+                </li>
+              </ul>
+            </li>
+
+            <li class="has-menu" v-else>
               <a
                 :class="[checkActiveMenu('/login', '/register') ? 'active' : '']"
                 @click="clickLoginRegister()"
@@ -185,11 +197,14 @@ export default {
       ],
       mobileToggle: false,
       categories: this.$store.state.apiData?.categoryProducts,
+      user: null
     };
   },
   mounted() {
     this.$i18n.locale = this.$store.state.common?.data?.lang;
     this.getProductCategory();
+    this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+    console.log("user", this.user);
   },
   methods: {
     async getProductCategory() {
@@ -240,6 +255,11 @@ export default {
       this.mobileToggle = !this.mobileToggle;
       console.log("mobileToggle----", this.mobileToggle);
     },
+    logout() {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      this.user = null;
+    }
   },
   computed: {
     checkActiveMenu() {
@@ -264,6 +284,8 @@ export default {
       this.mobileToggle = false;
       this.$i18n.locale = this.$store.state.common?.data?.lang;
       this.langChecked = this.$store.state.common?.data?.lang === "eng" ? true : false;
+      this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+      console.log("user", this.user);
     },
   },
 };

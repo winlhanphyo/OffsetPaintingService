@@ -279,7 +279,11 @@ export default {
     },
   },
   mounted() {
-    console.log("----cart-----", this.cart, carts);
+    const data = localStorage.getItem("cartData");
+    if (data && JSON.parse(data)?.length > 0) {
+      this.cart = data;
+    }
+    console.log("--------cart", this.cart);
   },
 };
 </script>

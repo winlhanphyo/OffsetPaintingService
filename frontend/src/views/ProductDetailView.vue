@@ -188,7 +188,7 @@
                 </div>
               </div>
             </div>
-            <button class="start" id="openDialog">{{ $t("message.getStarted") }}</button>
+            <button class="start" @click="addToCart()">{{ $t("message.getStarted") }}</button>
           </div>
         </div>
       </div>
@@ -295,6 +295,18 @@ export default {
         }, 100);
       }
     },
+    addToCart() {
+      if (this.media?.length > 0) {
+        this.productDetail.productImage = this.media[0]?.url;
+      }
+      console.log("--------productDetail", this.productDetail);
+      const data = localStorage.getItem("cartData");
+      if (data && JSON.parse(data)?.length > 0) {
+        data.push(this.productDetail);
+      }
+      localStorage.setItem("cartData", JSON.stringify(data));
+      this.$router.push("/checkout");
+    }
   },
 };
 </script>

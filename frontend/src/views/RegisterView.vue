@@ -3,42 +3,65 @@
     <h2>Sign Up</h2>
     <div class="register">
       <div class="page-sub-header">
-        <h3 class="pb-1 m-0">{{ $t('message.registerTitle') }}</h3>
-        <small class="text-danger">* {{ $t('message.requiredInfo') }}</small>
+        <h3 class="pb-1 m-0">{{ $t("message.registerTitle") }}</h3>
+        <small class="text-danger">* {{ $t("message.requiredInfo") }}</small>
       </div>
 
       <div class="form">
-        <p class="d-inline-block">{{ $t('message.formMsg') }}</p>
+        <p class="d-inline-block">{{ $t("message.formMsg") }}</p>
         <div class="form-row">
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.firstName') }} <span>*</span></label>
+              <label for="" class="label"
+                >{{ $t("message.firstName") }} <span>*</span></label
+              >
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.firstName')" />
+                <input
+                  type="text"
+                  v-model="firstName"
+                  required
+                  :placeholder="$t('message.firstName')"
+                />
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.lastName') }}</label>
+              <label for="" class="label">{{ $t("message.lastName") }}</label>
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.lastName')" />
+                <input
+                  type="text"
+                  v-model="lastName"
+                  required
+                  :placeholder="$t('message.lastName')"
+                />
               </div>
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.address') }} <span>*</span></label>
+              <label for="" class="label"
+                >{{ $t("message.address") }} <span>*</span></label
+              >
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.address')" />
+                <input
+                  type="text"
+                  v-model="address"
+                  required
+                  :placeholder="$t('message.address')"
+                />
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.phone') }} <span>*</span></label>
+              <label for="" class="label">{{ $t("message.phone") }} <span>*</span></label>
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.phone')" />
+                <input
+                  type="text"
+                  v-model="phone"
+                  required
+                  :placeholder="$t('message.phone')"
+                />
               </div>
             </div>
           </div>
-
         </div>
 
         <div class="login-form">
@@ -46,42 +69,47 @@
           <div class="row">
             <div class="col col-blk">
               <div class="form-group">
-                <label for="email" class="col-form-label">{{ $t('message.email') }} <span>*</span></label>
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    value=""
-                    class="email_validate form-control"
-                    data-rule-required="true"
-                    data-msg-required="Email ID is required"
-                    data-rule-email="true"
-                    data-msg-email="Invalid email ID"
-                  />
+                <label for="email" class="col-form-label"
+                  >{{ $t("message.email") }} <span>*</span></label
+                >
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  v-model="email"
+                  class="email_validate form-control"
+                  data-rule-required="true"
+                  data-msg-required="Email ID is required"
+                  data-rule-email="true"
+                  data-msg-email="Invalid email ID"
+                />
               </div>
               <div class="form-group">
-                <label for="password" class="col-form-label">{{ $t('message.password') }} <span>*</span></label>
+                <label for="password" class="col-form-label"
+                  >{{ $t("message.password") }} <span>*</span></label
+                >
                 <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    value=""
-                    class="form-control"
-                    autocomplete="off"
-                    data-rule-required="true"
-                    data-msg-required="Password is required"
-                    data-rule-validpassword="true"
-                    data-msg-validpassword="Enter only Alphanumeric, dash or underscore"
-                  />
+                  type="password"
+                  name="password"
+                  id="password"
+                  v-model="password"
+                  class="form-control"
+                  autocomplete="off"
+                  data-rule-required="true"
+                  data-msg-required="Password is required"
+                  data-rule-validpassword="true"
+                  data-msg-validpassword="Enter only Alphanumeric, dash or underscore"
+                />
               </div>
               <div class="form-group">
                 <label for="confirmpassword" class="col-form-label"
-                  >{{ $t('message.confirmPassword') }} <span>*</span></label
+                  >{{ $t("message.confirmPassword") }} <span>*</span></label
                 >
                 <input
                   type="password"
                   name="confirmpassword"
                   id="confirmpassword"
+                  v-model="confirmpassword"
                   value=""
                   class="form-control"
                   autocomplete="off"
@@ -175,20 +203,93 @@
           </div>
         </div>
       </div>
-      <button class="submit-btn">{{ $t('message.submit') }}</button>
-      <button class="reset-btn">{{ $t('message.reset') }}</button>
+      <button class="submit-btn" @click="submit()">{{ $t("message.submit") }}</button>
+      <button class="reset-btn" @click="reset()">{{ $t("message.reset") }}</button>
     </div>
   </div>
 </template>
 
 <script>
+import Swal from "sweetalert2";
+import { register } from "@/services/offset.service";
+
 export default {
   name: "AppRegister",
   components: {},
   data() {
-    return {};
+    return {
+      firstName: "",
+      lastName: "",
+      address: "",
+      phone: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
+      formArr: ["firstName", "lastName", "address", "phone", "email", "password", "confirmpassword"],
+      errorArr: [
+        "FirstName is not valid",
+        "LastName is not valid",
+        "Address is not valid",
+        "Phone is not valid",
+        "Email is not valid",
+        "Password is not valid",
+        "Confirm Password is not valid",
+      ],
+    };
   },
-  methods: {},
+  methods: {
+    async submit() {
+      const obj = this;
+      for (let i = 0; i < this.formArr.length; i++) {
+        const dist = obj.formArr[i];
+        if (!obj[dist]) {
+          Swal.fire({
+            position: "bottom",
+            icon: "error",
+            title: this.errorArr[i],
+            showConfirmButton: false,
+            timerProgressBar: true,
+            toast: true,
+          });
+        } else if (dist === "password" || dist === "confirmpassword") {
+          Swal.fire({
+            position: "bottom",
+            icon: "error",
+            title: "Password and Confirm Password must be same.",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            toast: true,
+          });
+        }
+      }
+      const payload = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        phone: this.phone,
+        email: this.email,
+        password: this.password,
+      };
+      const res = await register(payload);
+      if (res?.data?.message) {
+        Swal.fire({
+          position: "bottom",
+          icon: "success",
+          title: res?.data?.message,
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
+        this.$router.push("/home");
+      }
+    },
+    reset() {
+      const obj = this;
+      this.formArr.map((dist) => {
+        obj[dist] = "";
+      });
+    },
+  },
 };
 </script>
 

@@ -46,7 +46,6 @@ class AuthService {
         lastName: req.body.lastName,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, 12),
-        dob: req.body.dob,
         address: req.body.address
       } as any;
       const createUser: any = await UserDbModel.create({ ...userData, createdAt: new Date().toISOString() });

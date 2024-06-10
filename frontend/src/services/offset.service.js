@@ -1,4 +1,28 @@
-import api from "../api";
+import axios from "axios";
+import api from "../api"
+// import { loginRoot } from "../../config";
+
+/**
+ * login API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const login = async (data) => {
+  const res = await axios.post('https://api.cicimm.net/api/login', data);
+  return res;
+}
+
+/**
+ * register API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const register = async (data) => {
+  const res = await axios.post('https://api.cicimm.net/api/signup', data);
+  return res;
+}
 
 /**
  * get category API.
@@ -7,7 +31,6 @@ import api from "../api";
  * @returns 
  */
 export const getCategory = async (token) => {
-  console.log("-------getCategory", token);
   const res = await api.get('/category', token);
   return res;
 }
