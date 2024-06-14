@@ -14,6 +14,26 @@ export const login = async (data) => {
 }
 
 /**
+ * forget password.
+ * @param {*} data 
+ * @returns 
+ */
+export const forgetPassword = async (data) => {
+  const res = await axios.post('https://api.cicimm.net/api/forget-password', data);
+  return res;
+}
+
+/**
+ * update password with token.
+ * @param {*} data 
+ * @returns 
+ */
+export const updatePassword = async (data) => {
+  const res = await axios.post('https://api.cicimm.net/api/password-reset-update', data);
+  return res;
+}
+
+/**
  * register API.
  * @param {*} token 
  * @param {*} data 
@@ -21,6 +41,15 @@ export const login = async (data) => {
  */
 export const register = async (data) => {
   const res = await axios.post('https://api.cicimm.net/api/signup', data);
+  return res;
+}
+
+/**
+ * contact us API.
+ * @param {*} data 
+ */
+export const contactUs = async (data) => {
+  const res = await axios.post('https://api.cicimm.net/api/v1/contact', data);
   return res;
 }
 
@@ -45,7 +74,7 @@ export const getCategory = async (token) => {
 export const getProduct = async (token, searchName=null) => {
   const param = {};
   searchName ? param.name = searchName : null;
-  const res = await api.get('/product', param, token);
+  const res = await api.get('/product/', param, token);
   return res;
 }
 
