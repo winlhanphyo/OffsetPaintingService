@@ -114,18 +114,18 @@
         </li>
         <li 
           :class="[
-            step === 3 ? 'list-inline-item current' : 'step-list-item disabled',
+            step === 3 ? 'step-list-item current' : 'step-list-item disabled',
           ]"
         >
           <a
-            @click="handleContinue(2)"
+            @click="handleContinue(3)"
               :class="[
-                step === 2
+                step === 3
                   ? 'checkout_steps cart_step active'
                   : 'checkout_steps cart_step',
               ]"
               data-show="shipping"
-              data-step="2"
+              data-step="3"
             >
             <div class="step-list-index">3</div>
             <div class="step-list-label">Payment Details</div>
@@ -757,6 +757,7 @@ export default {
       }
       a {
         color: #fff;
+        cursor: pointer;
       }
       &::after {
         position: absolute;
