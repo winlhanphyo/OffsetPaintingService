@@ -469,7 +469,7 @@ footer {
     visibility: hidden;
     opacity: 0;
     height: 100%;
-    z-index: 1;
+    z-index: 2;
   }
 
   .overlay:target {
