@@ -27,7 +27,7 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: false
   },
   description: {
-    type: DataTypes.TEXT,
+    type: DataTypes.TEXT('long'),
     allowNull: false
   },
   status: {

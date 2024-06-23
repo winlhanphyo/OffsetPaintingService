@@ -19,7 +19,7 @@ module.exports = {
         allowNull: false
       },
       description: {
-        type: DataTypes.TEXT,
+        type: DataTypes.TEXT('long'),
         allowNull: false
       },
       categoryId: {
