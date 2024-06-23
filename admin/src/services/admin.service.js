@@ -50,10 +50,13 @@ export const deleteCategory = async (id, token) => {
  * get product API.
  * @param {*} data 
  * @param {*} token 
+ * @param {*} searchName 
  * @returns 
  */
-export const getProduct = async (token) => {
-  const res = await api.get('/product', token);
+export const getProduct = async (token, searchName=null) => {
+  const param = {};
+  searchName ? param.name = searchName : null;
+  const res = await api.get('/product', param, token);
   return res;
 }
 

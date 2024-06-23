@@ -299,8 +299,8 @@ export default {
       if (this.media?.length > 0) {
         this.productDetail.productImage = this.media[0]?.url;
       }
-      const data = JSON.parse(localStorage.getItem("cartData"));
-      if (data && data?.length > 0) {
+      const data = localStorage.getItem("cartData");
+      if (data && JSON.parse(data)?.length > 0) {
         data.push(this.productDetail);
         localStorage.setItem("cartData", JSON.stringify(data));
       } else {

@@ -72,7 +72,7 @@ const routes = [
     component: () => import('../views/ChangePassword.vue')
   },
   {
-    path: '/update-password',
+    path: '/forget-password-update/:userId/:token',
     name: 'updatePassword',
     component: () => import('../views/UpdatePassword.vue')
   },
@@ -83,7 +83,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: '/product/search',
+    path: '/search',
     name: 'search',
     component: () => import('../views/ProductSearchView.vue')
   },

@@ -14,6 +14,26 @@ export const login = async (data) => {
 }
 
 /**
+ * forget password.
+ * @param {*} data 
+ * @returns 
+ */
+export const forgetPassword = async (data) => {
+  const res = await axios.post('https://api.cicimm.net/api/forget-password', data);
+  return res;
+}
+
+/**
+ * update password with token.
+ * @param {*} data 
+ * @returns 
+ */
+export const updatePassword = async (data) => {
+  const res = await axios.post('https://api.cicimm.net/api/password-reset-update', data);
+  return res;
+}
+
+/**
  * register API.
  * @param {*} token 
  * @param {*} data 
@@ -21,6 +41,15 @@ export const login = async (data) => {
  */
 export const register = async (data) => {
   const res = await axios.post('https://api.cicimm.net/api/signup', data);
+  return res;
+}
+
+/**
+ * contact us API.
+ * @param {*} data 
+ */
+export const contactUs = async (data) => {
+  const res = await axios.post('https://api.cicimm.net/api/v1/contact', data);
   return res;
 }
 
@@ -39,11 +68,13 @@ export const getCategory = async (token) => {
  * get product API.
  * @param {*} data 
  * @param {*} token 
+ * @param {*} searchName 
  * @returns 
  */
-export const getProduct = async (token) => {
-  console.log("-------getProduct", token);
-  const res = await api.get('/product', token);
+export const getProduct = async (token, searchName=null) => {
+  const param = {};
+  searchName ? param.name = searchName : null;
+  const res = await api.get('/product/', param, token);
   return res;
 }
 
@@ -54,7 +85,6 @@ export const getProduct = async (token) => {
  * @returns 
  */
 export const getProductDetail = async (token, id) => {
-  console.log("-------get product detail service", token);
   const res = await api.get(`/product/${id}`, token);
   return res;
 }
@@ -88,9 +118,10 @@ export const getMediaWithProductId = async (token, id) => {
  * @param {*} token 
  * @returns 
  */
-export const getArticle = async (token) => {
-  console.log("-------get article service", token);
-  const res = await api.get('/article', token);
+export const getArticle = async (token, searchName=null) => {
+  const param = {};
+  searchName ? param.name = searchName : null;
+  const res = await api.get('/article', param, token);
   return res;
 }
 

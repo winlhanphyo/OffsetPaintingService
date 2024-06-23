@@ -82,11 +82,11 @@
           <div class="product-info">
             <div class="product-info-header">
               <h3 class="product-title">
-                Standard Business Cards - Promo
+                {{ data?.name }}
                 <span>(Business Cards)</span>
               </h3>
               <div class="product-count">
-                <strong>100</strong> {{ $t("message.qty") }}
+                <strong>{{ data?.count }}</strong> {{ $t("message.qty") }}
               </div>
               <div class="product-amount">
                 <strong>Ks 14,850.00</strong>
@@ -95,48 +95,48 @@
             <div class="product-info-detail">
               <div class="product-info-item">
                 <label>{{ $t("message.jobName") }}:</label>
-                <div>IBC_028</div>
+                <div>{{ data?.jobName }}</div>
               </div>
 
               <div class="product-info-detail">
                 <div class="product-info-item">
                   <label>{{ $t("message.size") }}:</label>
-                  <div>3.5" x 2.1" - Standard Business Card Size</div>
+                  <div>{{ data?.size }}</div>
                 </div>
               </div>
 
               <div class="product-info-detail">
                 <div class="product-info-item">
                   <label>{{ $t("message.material") }}:</label>
-                  <div>Artcard 250GSM</div>
+                  <div>{{ data?.material }}</div>
                 </div>
               </div>
 
               <div class="product-info-detail">
                 <div class="product-info-item">
                   <label>{{ $t("message.printingType") }}:</label>
-                  <div>Digital Press</div>
+                  <div>{{ data?.printingType }}</div>
                 </div>
               </div>
 
               <div class="product-info-detail">
                 <div class="product-info-item">
                   <label>{{ $t("message.printingSides") }}:</label>
-                  <div>One Side</div>
+                  <div>{{ data?.printingSide }}</div>
                 </div>
               </div>
 
               <div class="product-info-detail">
                 <div class="product-info-item">
                   <label>{{ $t("message.lamination") }}:</label>
-                  <div>None</div>
+                  <div>{{ data?.lamination }}</div>
                 </div>
               </div>
             </div>
             <hr />
             <div class="row">
               <a href="#">{{ $t("message.editOrder") }}</a>
-              <div class="tooltip" @click="handleCartDelete(index)">
+              <div class="tooltip" @click="deleteOrder(index)">
                 <i class="far fa-trash-alt"></i>
                 <span class="tooltiptext">Delete</span>
               </div>
@@ -619,25 +619,23 @@ export default {
   },
   methods: {
     handleContinue(data = null) {
-      console.log("handle continue");
       if (data) {
         this.step = data;
       } else if (this.step < 3) {
         this.step += 1;
       }
     },
-    handleCartDelete(index) {
-      console.log("-------cart", this.cart, index);
-      this.cart = this.cart.splice(index, 1);
+    deleteOrder(index) {
+      this.cart.splice(index, 1);
       localStorage.setItem("cartData", JSON.stringify(this.cart));
-    },
+    }
   },
   mounted() {
     const data = localStorage.getItem("cartData");
+    console.log("----------data", data);
     if (data && JSON.parse(data)?.length > 0) {
       this.cart = JSON.parse(data);
     }
-    console.log("--------cart", this.cart);
   },
 };
 </script>

@@ -128,7 +128,8 @@
               type="search"
               name="top_search"
               id="top_search"
-              value=""
+              v-model="searchName"
+              @keyup.enter="handleEnter()"
               class="form-control"
               :placeholder="$t('message.search')"
               autocomplete="off"
@@ -197,7 +198,8 @@ export default {
       ],
       mobileToggle: false,
       categories: this.$store.state.apiData?.categoryProducts,
-      user: null
+      user: null,
+      searchName: null
     };
   },
   mounted() {
@@ -207,6 +209,10 @@ export default {
     console.log("user", this.user);
   },
   methods: {
+    handleEnter() {
+      this.$router.push({ path: '/search', query: { name: this.searchName } });
+      this.searchName = null;
+    },
     async getProductCategory() {
       const token = localStorage.getItem("token") || "";
       await store.dispatch("GetCategoryProduct", token);
