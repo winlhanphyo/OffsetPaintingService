@@ -27,6 +27,30 @@ module.exports = {
           createdAt: '2024-05-12',
           updatedAt: '2024-05-12'
         },
+        {
+          productId: 2,
+          mediaId: 4,
+          createdAt: '2024-05-12',
+          updatedAt: '2024-05-12'
+        },
+        {
+          productId: 2,
+          mediaId: 5,
+          createdAt: '2024-05-12',
+          updatedAt: '2024-05-12'
+        },
+        {
+          productId: 2,
+          mediaId: 6,
+          createdAt: '2024-05-12',
+          updatedAt: '2024-05-12'
+        },
+        {
+          productId: 2,
+          mediaId: 7,
+          createdAt: '2024-05-12',
+          updatedAt: '2024-05-12'
+        },
       ], {});
   },
   down: (queryInterface: QueryInterface, Sequelize: any) => {

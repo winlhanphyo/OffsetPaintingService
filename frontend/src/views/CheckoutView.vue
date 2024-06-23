@@ -4,10 +4,19 @@
       <h1 class="cart-title">{{ $t("message.shoppingCartTitle") }}</h1>
       <div class="steps">
         <ul class="list-inline">
-          <li class="list-inline-item visited">
+          <li
+            class="list-inline-item visited"
+            :class="[
+              step === 1 ? 'list-inline-item visited' : 'list-inline-item disabled',
+            ]"
+          >
             <a
               @click="handleContinue(1)"
-              class="checkout_steps cart_step active"
+              :class="[
+                step === 1
+                  ? 'checkout_steps cart_step active'
+                  : 'checkout_steps cart_step',
+              ]"
               data-show="cart"
               data-step="1"
               ><span class="orderstep border bg-primary">1</span
@@ -24,20 +33,36 @@
               ><span class="step_title">Ship to Multiple Address</span></a
             >
           </li> -->
-          <li class="list-inline-item disabled">
+          <li
+            :class="[
+              step === 2 ? 'list-inline-item visited' : 'list-inline-item disabled',
+            ]"
+          >
             <a
               @click="handleContinue(2)"
-              class="checkout_steps shipping_step"
+              :class="[
+                step === 2
+                  ? 'checkout_steps cart_step active'
+                  : 'checkout_steps cart_step',
+              ]"
               data-show="shipping"
               data-step="2"
               ><span class="orderstep border">2</span
               ><span class="step_title">{{ $t("message.shoppingCartStep2") }}</span></a
             >
           </li>
-          <li class="list-inline-item disabled">
+          <li
+            :class="[
+              step === 3 ? 'list-inline-item visited' : 'list-inline-item disabled',
+            ]"
+          >
             <a
               @click="handleContinue(3)"
-              class="checkout_steps payment_step"
+              :class="[
+                step === 3
+                  ? 'checkout_steps cart_step active'
+                  : 'checkout_steps cart_step',
+              ]"
               data-show="payment"
               data-step="3"
               ><span class="orderstep border">3</span
@@ -49,7 +74,7 @@
     </div>
     <div class="page-body" v-if="step === 1">
       <div class="page-content">
-        <div class="product-container" v-for="data in cart" :key="data.id">
+        <div class="product-container" v-for="(data, index) in cart" :key="data.id">
           <div class="product-img">
             <img :src="data.image" />
           </div>
@@ -111,7 +136,7 @@
             <hr />
             <div class="row">
               <a href="#">{{ $t("message.editOrder") }}</a>
-              <div class="tooltip">
+              <div class="tooltip" @click="handleCartDelete(index)">
                 <i class="far fa-trash-alt"></i>
                 <span class="tooltiptext">Delete</span>
               </div>
@@ -120,24 +145,24 @@
         </div>
       </div>
       <div class="price-summary">
-          <div class="price-summary-title">
-            <h3>Price Summary</h3>
-            <hr />
-          </div>
-
-          <div class="price-summary-detail">
-            <div class="price-label">
-              {{ $t("message.subTotal") }}
-            </div>
-            <div class="price-amount">Ks 34,518.00</div>
-          </div>
-
-          <button @click="handleContinue()">{{ $t("message.continue") }}</button>
-          <a class="continue-link" @click="$router.push('/products')">
-            <i class="fa fa-arrow-left pr-2"></i>
-            {{ $t("message.continueShopping") }}
-          </a>
+        <div class="price-summary-title">
+          <h3>Price Summary</h3>
+          <hr />
         </div>
+
+        <div class="price-summary-detail">
+          <div class="price-label">
+            {{ $t("message.subTotal") }}
+          </div>
+          <div class="price-amount">Ks 34,518.00</div>
+        </div>
+
+        <button @click="handleContinue()">{{ $t("message.continue") }}</button>
+        <a class="continue-link" @click="$router.push('/products')">
+          <i class="fa fa-arrow-left pr-2"></i>
+          {{ $t("message.continueShopping") }}
+        </a>
+      </div>
     </div>
 
     <div v-if="step === 2">
@@ -252,19 +277,343 @@
       </div>
     </div>
 
-    <div class="page-body" v-if="step === 3">Step 3</div>
+    <div class="page-body" v-if="step === 3">
+    <div class="page-content">
+      <div class="card">
+        <div class="card-header">
+          <input
+            type="radio"
+            name="rdpaymenttype"
+            id="paymenttype26"
+            value="26"
+            class="custom-control-input"
+            data-toggle="collapse"
+          />
+          <label>2c2p</label>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>
+              <span style="color: rgb(47, 79, 79)">Credit/&nbsp;Debit Cards</span>
+            </li>
+            <li><span style="color: rgb(47, 79, 79)">MPU</span></li>
+            <li><span style="color: rgb(47, 79, 79)">KBZ Pay/ AYA Pay /CB Pay</span></li>
+          </ul>
+        </div>
+      </div>
 
+      <div class="card">
+        <div class="card-header">
+          <input
+            type="radio"
+            name="rdpaymenttype"
+            id="paymenttype26"
+            value="26"
+            class="custom-control-input"
+            data-toggle="collapse"
+          />
+          <label>KBZ pay</label>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>
+              <span style="color: rgb(47, 79, 79)">KBZPay (Desktop User) QR Code</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h3>အမှာစာ (Order) အတွက်အထူးညွှန်ကြားချက်</h3></div>
+        <div class="card-body">
+          <div class="form-group">
+            <textarea
+              name="OrdComments"
+              id="OrdComments"
+              rows="10"
+              cols="90"
+              class="form-control"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-12">
+          <b>IMPORTANT</b>: စာလုံးပေါင်း နှင့် ပါဝင်သောအကြောင်းအရာများ
+          မှန်ကန်ကြောင်းအတည်ပြုပါသည်။ Document Layout ကိုလည်း စိတ်ကျေနပ်ပါသည်။
+          ဒီမှာပေါ်သော Document အတိုင်းသာ ပုံနှိပ်နိုင်မည်ကို သိရှိပါသည်။ Order
+          မှာယူပြီးလျှင် ပြောင်းလဲမှု နှင့် စာလုံးပေါင်းမှားယွင်းမှုများကို
+          ပြင်ဆင်မှုပြုလုပ်၍ မရနိုင်တော့သည်ကို သိရှိပြီး ဖြစ်ပါသည်။
+        </div>
+      </div>
+    </div>
+
+<div class="price-summary">
+  <div class="card">
+        <div class="col-lg-4 checkoutRightSide">
+          <div class="shadow border-0 bg-white sticky-top">
+            <h3 class="mx-3 pt-3 border-bottom pb-2">Price Summary</h3>
+            <div class="productBlock mx-3 py-2 border-bottom">
+              <div class="order-details order_detail_summary">
+                <div
+                  class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
+                >
+                  <div class="col-2 p-0 text-center">
+                    <div class="order-img mb-0">
+                      <a class="thumbnail"
+                        ><img
+                          src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7324/118_3855_28142466_image_p157_common_thumb.jpg"
+                          height="150"
+                          width="150"
+                          alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7324/118_3855_28142466_image_p157_common_thumb.jpg"
+                          onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
+                          title=""
+                          class="img-fluid"
+                          loading="lazy"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="col-10">
+                    <div
+                      class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
+                    >
+                      <div class="col-7">
+                        <p
+                          class="mb-0 text-truncate"
+                          title="Standard Business Cards - Promo"
+                        >
+                          Standard Business Cards - Promo
+                        </p>
+                        <p class="mb-0 short-disc">
+                          <span class="text-muted">ရေတွက်</span> : 100
+                        </p>
+                      </div>
+                      <div class="col-5 text-right pr-0">
+                        <p
+                          class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
+                        >
+                          Ks17,000.00
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
+                >
+                  <div class="col-2 p-0 text-center">
+                    <div class="order-img mb-0">
+                      <a class="thumbnail"
+                        ><img
+                          src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/orders/5760/118_3855_28142466_image_p157_common_thumb.jpg"
+                          height="150"
+                          width="150"
+                          alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/orders/5760/118_3855_28142466_image_p157_common_thumb.jpg"
+                          onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
+                          title=""
+                          class="img-fluid"
+                          loading="lazy"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="col-10">
+                    <div
+                      class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
+                    >
+                      <div class="col-7">
+                        <p
+                          class="mb-0 text-truncate"
+                          title="Standard Business Cards - Promo"
+                        >
+                          Standard Business Cards - Promo
+                        </p>
+                        <p class="mb-0 short-disc">
+                          <span class="text-muted">ရေတွက်</span> : 100
+                        </p>
+                      </div>
+                      <div class="col-5 text-right pr-0">
+                        <p
+                          class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
+                        >
+                          Ks17,000.00
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
+                >
+                  <div class="col-2 p-0 text-center">
+                    <div class="order-img mb-0">
+                      <a class="thumbnail"
+                        ><img
+                          src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7380/98_3855_49888609_1_thumb.jpg"
+                          height="150"
+                          width="150"
+                          alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7380/98_3855_49888609_1_thumb.jpg"
+                          onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
+                          title=""
+                          class="img-fluid"
+                          loading="lazy"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="col-10">
+                    <div
+                      class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
+                    >
+                      <div class="col-7">
+                        <p class="mb-0 text-truncate" title="Deluxe Business Card">
+                          Deluxe Business Card
+                        </p>
+                        <p class="mb-0 short-disc">
+                          <span class="text-muted">ရေတွက်</span> : 100
+                        </p>
+                      </div>
+                      <div class="col-5 text-right pr-0">
+                        <p
+                          class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
+                        >
+                          Ks22,500.00
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="paymentDetailsStep">
+              <!-- <div class="px-3 pb-2 pt-3 coupon">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    name="couponcodeprice"
+                    id="couponcodeprice"
+                    value=""
+                    class="form-control border-right-0"
+                    size="100"
+                    placeholder="ကူပွန်ကုဒ်"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      type="button"
+                      name="redeem"
+                      id="redeem"
+                      value="လျှောက်ထားပါ"
+                      class="btn btn btn-secondary"
+                    >
+                      လျှောက်ထားပါ
+                    </button>
+                  </div>
+                </div>
+                <div class="d-flex" id="couponApplied">
+                  <div class="lh-1">
+                    <p class="m-0 d-none" id="coupon_lable"></p>
+                    <span class="success-block text-muted" id="discount_type"></span>
+                  </div>
+                  <button
+                    type="button"
+                    name="coupon_remove"
+                    id="coupon_remove"
+                    value="Redeem"
+                    class="btn btn-link ml-auto btn-sm px-0 pt-0 pb-1 align-self-start text-danger d-none"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <span
+                  class="error-block text-danger"
+                  id="couponcodereq"
+                  data-msg-require="ကူပွန်ကုဒ်လိုအပ်သည်"
+                  data-msg-invalid="<span>မမှန်ကန်သောကူပွန်ကုဒ်</span>"
+                  data-msg-notapplicable="<span>ကူပွန်ကို အသုံးမပြုနိုင်ပါ။</span>"
+                ></span>
+              </div> -->
+            </div>
+            <!--start display pricing-->
+            <div id="cart_pricetotal" class="cart-pricetotal px-3 mt-3">
+              <div class="shoppingCartStep">
+                <p
+                  class="d-flex justify-content-between align-items-center mb-0 pb-1 d-none"
+                >
+                  စုစုပေါင်း<span class="price">Ks56,500.00</span
+                  ><input type="hidden" name="subtotal" id="subtotal" value="56500.00" />
+                </p>
+              </div>
+              <div class="shippingStep">
+                <p class="d-flex justify-content-between align-items-center mb-0 pb-1">
+                  ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း<span class="price shipprice"
+                    >Ks3,000.00</span
+                  >
+                </p>
+              </div>
+              <div class="paymentDetailsStep">
+                <p class="d-flex justify-content-between align-items-center mb-0 pb-1">
+                  လျှော့စျေး<span class="price couponprice">Ks0.00</span
+                  ><input
+                    type="hidden"
+                    name="hidcouponAmt"
+                    id="hidcouponAmt"
+                    value="0.00"
+                  /><input
+                    type="hidden"
+                    name="hidcouponCode"
+                    id="hidcouponCode"
+                    value=""
+                  />
+                </p>
+                <p
+                  class="d-flex justify-content-between align-items-center font-lg pt-2 mt-2 border-top mb-3"
+                >
+                  စုစုပေါင်း <strong class="totalprice">Ks59,500.00</strong
+                  ><input
+                    type="hidden"
+                    name="total_amount_for_process_fees"
+                    id="total_amount_for_process_fees"
+                    value="NaN"
+                  />
+                </p>
+                <input type="hidden" name="appliedcoupon" id="appliedcoupon" value="" />
+              </div>
+            </div>
+            <!--end display pricing-->
+            <div class="paymentDetailsStep px-3 pb-2 pb-md-0"></div>
+            <!--Order Place Button-->
+            <div class="paymentDetailsStep">
+              <div class="ordercontinue px-3 pb-3 pt-0 w-100">
+                <input
+                  type="hidden"
+                  name="prod_out_stock_err"
+                  id="prod_out_stock_err"
+                  value=""
+                /><input type="hidden" name="datastep" id="datastep" value="2" /><button
+                  type="submit"
+                  name="BtnNext"
+                  id="BtnNext"
+                  value="Order Complete"
+                  class="btn btn-success btn-lg btn-block ld-ext-left"
+                  data-step="2"
+                  data-loading-text="စောင့်ပါ <i class='fa fa-sync-alt fa-spin'></i>"
+                >
+                  Order Complete <span class="ld ld-ring ld-spin"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+    </div>
   </div>
 </template>
 <script>
-import carts from "../const/cart.js";
+// import carts from "../const/cart.js";
 
 export default {
   name: "AppCheckout",
   components: {},
   data() {
     return {
-      cart: carts,
+      cart: [],
       step: 1,
     };
   },
@@ -277,11 +626,16 @@ export default {
         this.step += 1;
       }
     },
+    handleCartDelete(index) {
+      console.log("-------cart", this.cart, index);
+      this.cart = this.cart.splice(index, 1);
+      localStorage.setItem("cartData", JSON.stringify(this.cart));
+    },
   },
   mounted() {
     const data = localStorage.getItem("cartData");
     if (data && JSON.parse(data)?.length > 0) {
-      this.cart = data;
+      this.cart = JSON.parse(data);
     }
     console.log("--------cart", this.cart);
   },
@@ -473,49 +827,49 @@ export default {
     }
 
     .row {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-        a {
-          color: #f47920;
-          &:hover {
-            color: #d6600b;
-          }
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      a {
+        color: #f47920;
+        &:hover {
+          color: #d6600b;
         }
-        .tooltip {
-          position: relative;
-          display: inline-block;
-          cursor: pointer;
-          color: rgba(0, 0, 0, 0.5);
-        }
+      }
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.5);
+      }
 
-        .tooltip .tooltiptext {
-          visibility: hidden;
-          background-color: black;
-          color: #fff;
-          text-align: center;
-          border-radius: 6px;
-          padding: 5px 10px;
-          position: absolute;
-          z-index: 1;
-          top: 145%;
-          right: -26px;
-        }
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 10px;
+        position: absolute;
+        z-index: 1;
+        top: 145%;
+        right: -26px;
+      }
 
-        .tooltip .tooltiptext::after {
-          content: "";
-          position: absolute;
-          bottom: 100%;
-          left: 50%;
-          margin-left: -5px;
-          border-width: 5px;
-          border-style: solid;
-          border-color: transparent transparent black transparent;
-        }
+      .tooltip .tooltiptext::after {
+        content: "";
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+      }
 
-        .tooltip:hover .tooltiptext {
-          visibility: visible;
-        }
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+      }
     }
 
     .product-img {
@@ -600,6 +954,186 @@ export default {
           margin-right: 10px;
         }
       }
+    }
+  }
+}
+.page-body {
+  .card {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    h3 {
+      font-size: 20px;
+    }
+    .card-body {
+      padding: 0 1rem;
+      ul {
+        list-style-type: disc;
+        caret-color: rgb(244, 121, 32);
+        color: rgb(244, 121, 32);
+        padding-inline-start: 40px;
+        li {
+          list-style-type: disc;
+        }
+      }
+      textarea {
+        width: 93%;
+    padding: 10px;
+    height: 100px;
+    margin: 1rem 0;
+      }
+    }
+
+    .sticky-top {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      h3 {
+        padding: 1rem 0 0.5rem;
+        margin: 0 1rem 0.5rem;
+        border-bottom: 1px solid #dee2e6;
+      }
+      .productBlock {
+        padding: 0.5rem 0;
+        margin: 0 1rem;
+      }
+      .order_detail_summary {
+        max-height: 230px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        .row {
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+          &:first-child {
+            padding-top: 0;
+          }
+        }
+
+        .kit_cart_product {
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid #dee2e6 !important;
+          .col-2 {
+            -ms-flex: 0 0 16.666667%;
+            flex: 0 0 16.666667%;
+            max-width: 16.666667%;
+          }
+          .col-10 {
+            -ms-flex: 0 0 83.333333%;
+            flex: 0 0 83.333333%;
+            max-width: 83.333333%;
+            padding-right: 15px;
+            padding-left: 15px;
+          }
+          .align-items-start {
+            display: flex;
+            align-items: flex-start;
+            .col-7 {
+              -ms-flex: 0 0 58.333333%;
+              flex: 0 0 58.333333%;
+              max-width: 58.333333%;
+            }
+            .col-5 {
+              -ms-flex: 0 0 41.666667%;
+              flex: 0 0 41.666667%;
+              max-width: 41.666667%;
+              @media screen and (max-width: 767.9px) {
+      max-width: 53.666667%;
+    }
+            }
+          }
+          .justify-content-end {
+            display: flex;
+            -ms-flex-pack: end !important;
+            justify-content: flex-end !important;
+            padding-right: 35px;
+          }
+          .justify-content-between {
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+          }
+        }
+        .thumbnail {
+          border: none !important;
+          max-width: 150px !important;
+          max-height: 150px !important;
+          display: block;
+
+          img {
+            max-height: 150px;
+            border: 1px solid #dee2e6;
+            height: auto;
+          }
+        }
+      }
+      // .coupon {
+      //   position: relative;
+      //   padding: 1rem 0;
+      //   .input-group {
+      //     position: relative;
+      //     display: -ms-flexbox;
+      //     display: flex;
+      //     -ms-flex-wrap: wrap;
+      //     flex-wrap: wrap;
+      //     -ms-flex-align: stretch;
+      //     align-items: stretch;
+      //     width: 100%;
+      //   }
+      //   button {
+      //     border-top-left-radius: 0;
+      //     border-bottom-left-radius: 0;
+      //     position: relative;
+      //     z-index: 2;
+      //     background: #4c7da9;
+      //     border-color: #4c7da9;
+      //     color: #fff;
+      //   }
+      //   .btn:not(:disabled):not(.disabled) {
+      //     cursor: pointer;
+      //   }
+      // }
+      .cart-pricetotal {
+        padding: 1rem 0;
+        margin-top: 1rem;
+      }
+      .align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+.justify-content-between {
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+}
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+button, input {
+    overflow: visible;
+}
+.border-top {
+    border-top: 1px solid #dee2e6 !important;
+}
+.btn-success {
+  background: #003462;
+    border-color: #003462;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    border: 1px solid transparent;
+    color: #fff;
+    width: 100%;
+cursor: pointer;
+}
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
     }
   }
 }

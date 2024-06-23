@@ -299,12 +299,13 @@ export default {
       if (this.media?.length > 0) {
         this.productDetail.productImage = this.media[0]?.url;
       }
-      console.log("--------productDetail", this.productDetail);
-      const data = localStorage.getItem("cartData");
-      if (data && JSON.parse(data)?.length > 0) {
+      const data = JSON.parse(localStorage.getItem("cartData"));
+      if (data && data?.length > 0) {
         data.push(this.productDetail);
+        localStorage.setItem("cartData", JSON.stringify(data));
+      } else {
+        localStorage.setItem("cartData", JSON.stringify([this.productDetail]));
       }
-      localStorage.setItem("cartData", JSON.stringify(data));
       this.$router.push("/checkout");
     }
   },

@@ -129,6 +129,13 @@ module.exports = {
           createdAt: '2024-05-18',
           updatedAt: '2024-05-18'
         },
+        {
+          name: 'Caution',
+          createdUserId: 1,
+          categoryImage: 'upload/user/category/caution.png',
+          createdAt: '2024-05-18',
+          updatedAt: '2024-05-18'
+        },
       ], {});
 
   },

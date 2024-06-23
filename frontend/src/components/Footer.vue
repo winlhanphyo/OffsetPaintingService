@@ -412,6 +412,7 @@ footer {
     bottom: 20%;
     right: 8px;
     width: 50px;
+    z-index: 1;
     li {
       margin-bottom: 20px;
       transition: transform 0.3s ease-in-out;
