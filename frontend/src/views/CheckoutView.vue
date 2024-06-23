@@ -1,9 +1,10 @@
 <template>
   <div class="container">
+    <h2>{{ $t("message.shoppingCartTitle") }}</h2>
     <div class="page-header">
-      <h1 class="cart-title">{{ $t("message.shoppingCartTitle") }}</h1>
-      <div class="steps">
-        <ul class="list-inline">
+      
+      <!-- <div class="steps"> -->
+        <!-- <ul class="list-inline">
           <li
             class="list-inline-item visited"
             :class="[
@@ -22,7 +23,7 @@
               ><span class="orderstep border bg-primary">1</span
               ><span class="step_title">{{ $t("message.shoppingCartStep1") }}</span></a
             >
-          </li>
+          </li> -->
           <!-- <li class="list-inline-item d-none disabled">
             <a
               href="javascript:void(0)"
@@ -33,7 +34,7 @@
               ><span class="step_title">Ship to Multiple Address</span></a
             >
           </li> -->
-          <li
+          <!-- <li
             :class="[
               step === 2 ? 'list-inline-item visited' : 'list-inline-item disabled',
             ]"
@@ -69,8 +70,68 @@
               ><span class="step_title">{{ $t("message.shoppingCartStep3") }}</span></a
             >
           </li>
-        </ul>
-      </div>
+        </ul> -->
+      <!-- </div> -->
+      <ul class="step-list">
+        <li
+          :class="[
+            step === 1 ? 'step-list-item current' : 'step-list-item disabled',
+          ]"
+        >
+          <a
+            @click="handleContinue(1)"
+              :class="[
+                step === 1
+                  ? 'checkout_steps cart_step active'
+                  : 'checkout_steps cart_step',
+              ]"
+              data-show="cart"
+              data-step="1"
+            >
+            <div class="step-list-index">1</div>
+            <h1 class="step-list-label">Shopping Cart</h1>
+          </a>
+        </li>
+        <li 
+          :class="[
+            step === 2 ? 'step-list-item current' : 'step-list-item disabled',
+          ]"
+        >
+          <a
+            @click="handleContinue(2)"
+              :class="[
+                step === 2
+                  ? 'checkout_steps cart_step active'
+                  : 'checkout_steps cart_step',
+              ]"
+              data-show="shipping"
+              data-step="2"
+            >
+              <div class="step-list-index">2</div>
+              <div class="step-list-label">Shipping</div>
+          </a>
+          
+        </li>
+        <li 
+          :class="[
+            step === 3 ? 'list-inline-item current' : 'step-list-item disabled',
+          ]"
+        >
+          <a
+            @click="handleContinue(2)"
+              :class="[
+                step === 2
+                  ? 'checkout_steps cart_step active'
+                  : 'checkout_steps cart_step',
+              ]"
+              data-show="shipping"
+              data-step="2"
+            >
+            <div class="step-list-index">3</div>
+            <div class="step-list-label">Payment Details</div>
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="page-body" v-if="step === 1">
       <div class="page-content">
@@ -646,9 +707,8 @@ export default {
   align-items: center;
   flex-wrap: nowrap !important;
   justify-content: space-between !important;
-  background: #f47920;
   color: #fff;
-  padding: 0.5rem 0.9rem !important;
+  padding: 0.5rem 0 !important;
   border-bottom: 1px solid #ccc;
   margin-bottom: 1rem;
   @media screen and (max-width: 767.9px) {
@@ -666,40 +726,74 @@ export default {
     padding-left: 0;
     list-style: none;
   }
-  .steps ul li {
-    position: relative;
-    margin-right: 10px;
-    a {
-      margin-right: 10px;
-      cursor: pointer;
-      &:hover {
-        opacity: 0.7;
+  .step-list {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 50px 0 30px;
+    .step-list-item, .current {
+      background: #cbcbcb;
+      color: #fff;
+      padding: 1.3rem .5rem;
+      border: 1px solid #adabab;
+      position: relative;
+      height: 3.9rem;
+      align-items: center;
+      flex: 1 1 0;
+      text-align: center;
+      @media screen and (max-width: 767.9px) {
+        height: 40px;
       }
     }
-    .orderstep {
-      width: 25px;
-      height: 25px;
-      background: rgba(0, 0, 0, 0);
-      display: inline-block;
-      text-align: center;
-      line-height: 22px;
-      border-radius: 100%;
-      margin-right: 0.3rem;
-      background-color: #003462 !important;
-      color: #fff;
+    .current {
+      background: #009BDF;
+      color: #000;
+      height: 70px;
+      margin-top: -3px;
+      border: 1px solid #009BDF;
+      @media screen and (max-width: 767.9px) {
+        height: 50px;
+        margin-top: -5px;
+      }
+      a {
+        color: #fff;
+      }
+      &::after {
+        position: absolute;
+        display: block;
+        content: "";
+        height: 2rem;
+        width: 2rem;
+        bottom: -17%;
+        left: calc(47% - .5rem);
+        width: 0;
+        height: 0;
+        border-left: 20px solid rgba(0, 0, 0, 0);
+        border-right: 20px solid rgba(0, 0, 0, 0);
+        border-top: 20px solid #009BDF;
+        @media screen and (max-width: 767.9px) {
+          left: 11vw;
+        }
+        @media screen and (min-width: 550px) and (max-width: 767.9px) {
+          left: 12vw;
+        }
+      }
     }
-  }
-  .steps ul li:not(:last-child):after {
-    content: "";
-    width: 50px;
-    display: inline-block;
-    height: 3px;
-    background: #ccc;
-    right: 0;
-    left: auto;
-    top: 0;
-    margin: auto;
-    vertical-align: middle;
+    .step-list-index {
+      margin-bottom: .4rem;
+      font-size: 1.875rem;
+      line-height: 1.875rem;
+      @media screen and (max-width: 767.9px) {
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+      }
+    }
+    .step-list-label {
+      font-size: 1rem;
+      @media screen and (max-width: 767.9px) {
+        font-size: .625rem;
+      }
+    }
   }
   .list-inline-item {
     display: inline-block;
