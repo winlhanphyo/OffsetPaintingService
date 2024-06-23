@@ -127,7 +127,10 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem("token")) {
       console.log("existed storage")
       if (to.matched.some((record) => record.meta.userType === 'superAdmin')) {
-        if (localStorage.getItem("superAdmin") === 'superAdmin') {
+        const temp = localStorage.getItem("user") || null;
+        let userData = JSON.parse(temp);
+        console.log(userData);
+        if (userData?.type === 'superAdmin') {
           next();
           return;
         } else {

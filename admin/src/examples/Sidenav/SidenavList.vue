@@ -6,7 +6,13 @@ import { useStore } from "vuex";
 import SidenavItem from "./SidenavItem.vue";
 // import SidenavCard from "./SidenavCard.vue";
 
-const userData = localStorage.getItem("user") || null;
+const temp = localStorage.getItem("user") || null;
+let userData = null;
+if (temp) {
+  userData = JSON.parse(temp);
+}
+console.log("userDAta", userData);
+
 
 const store = useStore();
 const isRTL = computed(() => store.state.isRTL);
@@ -98,7 +104,7 @@ const getRoute = () => {
       </li>
 
       <li class="nav-item">
-        <sidenav-item v-if="userData?.type == 'superAdmin'"
+        <sidenav-item v-if="userData?.type === 'superAdmin'"
           to="/order"
           :class="getRoute() === 'order' ? 'active' : ''"
           :navText="isRTL ? 'الواقع الافتراضي' : 'Order'"
@@ -110,7 +116,7 @@ const getRoute = () => {
       </li>
 
       <li class="nav-item">
-        <sidenav-item v-if="userData?.type == 'superAdmin'"
+        <sidenav-item v-if="userData?.type === 'superAdmin'"
           to="/user"
           :class="getRoute() === 'user' ? 'active' : ''"
           navText="User"

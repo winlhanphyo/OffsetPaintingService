@@ -145,7 +145,6 @@ export default {
         .post(`${loginRoot}/login`, data)
         .then((res) => {
           const dist = res.data;
-          console.log("--------dist", dist);
           if (dist?.token) {
             localStorage.setItem("token", dist.token);
           }
