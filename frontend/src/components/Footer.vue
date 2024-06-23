@@ -135,21 +135,25 @@
           <img src="@/assets/images/common/facebook.png" alt="facebook">
         </a>
       </li>
-      <li>
-        <a href="#viber">
+      <li class="tooltip">
+        <a href="viber://chat?number=+959254006394">
           <img src="@/assets/images/common/viber.png" alt="viber">
+          <span class="tooltiptext">+959 254006394</span>
+        </a>
+      </li>
+      <li class="tooltip">
+        <a href="https://t.me/+959254006394" target="_blank">
+          <img src="@/assets/images/common/telegram.png" alt="telegram">
+          <span class="tooltiptext">+959 254006394</span>
+        </a>
+      </li>
+      <li class="tooltip">
+        <a href="tel:+959254006394">
+          <img src="@/assets/images/common/phone.png" alt="phone">
+          <span class="tooltiptext">+959 254006394</span>
         </a>
       </li>
     </ul>
-    <div id="viber" class="overlay">
-      <div class="popup">
-          <div class="popup-content">
-            <img src="@/assets/images/home/viber_icon.png" alt="viber">
-            <span><strong>U Soe Naing</strong><br>+959 254006394 +959 400065339</span>
-          </div>
-          <a class="close" href="#">&times;</a>
-      </div>
-    </div>
   </footer>
 </template>
 
@@ -419,6 +423,29 @@ footer {
       &:hover {
         opacity: 0.8;
         transform: scale(1.1);
+      }
+      &.tooltip {
+        position: relative;
+        display: inline-block;
+        .tooltiptext {
+          visibility: hidden;
+          width: 120px;
+          background-color: #ffe401;
+          color: #000;
+          text-align: center;
+          border-radius: 6px;
+          position: absolute;
+          z-index: 1;
+          right: 60px;
+          top: 6px;
+          padding: 10px;
+          box-shadow: 2px 2px 4px #000;
+        }
+        &:hover {
+          .tooltiptext {
+            visibility: visible;
+          }
+        }
       }
     }
   }
