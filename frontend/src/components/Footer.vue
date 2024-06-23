@@ -154,6 +154,15 @@
         </a>
       </li>
     </ul>
+    <div id="viber" class="overlay">
+      <div class="popup">
+          <div class="popup-content">
+            <img src="@/assets/images/home/viber_icon.png" alt="viber">
+            <span><strong>U Soe Naing</strong><br>+959 254006394</span>
+          </div>
+          <a class="close" href="#">&times;</a>
+      </div>
+    </div>
   </footer>
 </template>
 
