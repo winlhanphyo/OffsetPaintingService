@@ -72,9 +72,15 @@ export const getCategory = async (token) => {
  * @returns 
  */
 export const getProduct = async (token, searchName=null) => {
-  const param = {};
-  searchName ? param.name = searchName : null;
-  const res = await api.get('/product/', param, token);
+  let params = {};
+  searchName ? params.name = searchName : params = null;
+  let res = null;
+  if (!searchName) {
+    res = await axios.get('https://api.cicimm.net/api/v1/product', token);
+  } else {
+    res = await axios.get('https://api.cicimm.net/api/v1/product', {params});
+  }
+  
   return res;
 }
 
@@ -119,9 +125,15 @@ export const getMediaWithProductId = async (token, id) => {
  * @returns 
  */
 export const getArticle = async (token, searchName=null) => {
-  const param = {};
-  searchName ? param.name = searchName : null;
-  const res = await api.get('/article', param, token);
+  let params = {};
+  searchName ? params.name = searchName : params = null;
+  let res = null;
+  if (!searchName) {
+    res = await axios.get('https://api.cicimm.net/api/v1/article', token);
+  } else {
+    res = await axios.get('https://api.cicimm.net/api/v1/article', {params});
+  }
+  
   return res;
 }
 

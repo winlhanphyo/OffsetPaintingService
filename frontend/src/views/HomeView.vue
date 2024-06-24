@@ -177,6 +177,7 @@ import "slick-carousel";
 import store from "@/store";
 // import { getProduct } from "@/services/offset.service.js";
 import { imgRoot } from "./../../config";
+// import axios from "axios";
 
 export default {
   name: "HomeView",
@@ -203,15 +204,19 @@ export default {
       const token = localStorage.getItem("token");
       // const res = await getProduct(token);
 
+      // console.log("-------res", res);
+
       // this.products = res?.data?.data;
       await store.dispatch("GetProduct", token);
       this.products = await this.$store?.state?.apiData?.products;
+      // const res = await axios.get('https://api.cicimm.net/api/v1/product', token);
+      // console.log("-------res", res);
 
-      this.products?.map((dist) => {
-        if (dist?.media?.length > 0) {
-          dist.productImage = imgRoot + dist.media[0]?.url;
-        }
-      });
+      // this.products?.map((dist) => {
+      //   if (dist?.media?.length > 0) {
+      //     dist.productImage = imgRoot + dist.media[0]?.url;
+      //   }
+      // });
     },
     async getBanner() {
       const token = localStorage.getItem("token") || "";

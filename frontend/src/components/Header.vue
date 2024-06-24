@@ -129,14 +129,14 @@
               name="top_search"
               id="top_search"
               v-model="searchName"
-              @keyup.enter="handleEnter()"
+              @keyup.enter="handleEnter"
               class="form-control"
               :placeholder="$t('message.search')"
               autocomplete="off"
               data-searched=""
             />
             <button>
-              <span class="material-symbols-outlined"> search </span>
+              <span class="material-symbols-outlined" @click="handleEnter()"> search </span>
             </button>
           </div>
           <ul class="language">

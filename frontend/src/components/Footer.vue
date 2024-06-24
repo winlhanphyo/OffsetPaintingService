@@ -55,7 +55,8 @@
             </li>
             <li class="mail">
               <a href="mailto:cici.offset@gmail.com"
-                ><span class="material-symbols-outlined"> mail </span>cici.offset@gmail.com</a
+                ><span class="material-symbols-outlined"> mail </span
+                >cici.offset@gmail.com</a
               >
             </li>
           </ul>
@@ -70,7 +71,9 @@
                 ></a>
               </li>
               <li>
-                <a href="#viber"><span class="material-symbols-outlined">wifi_calling_1</span></a>
+                <a href="#viber"
+                  ><span class="material-symbols-outlined">wifi_calling_1</span></a
+                >
               </li>
             </ul>
           </div>
@@ -132,35 +135,35 @@
     <ul class="icon-fixed">
       <li>
         <a href="https://www.facebook.com/cicioffsetprinting">
-          <img src="@/assets/images/common/facebook.png" alt="facebook">
+          <img src="@/assets/images/common/facebook.png" alt="facebook" />
         </a>
       </li>
       <li class="tooltip">
-        <a href="viber://chat?number=+959254006394">
-          <img src="@/assets/images/common/viber.png" alt="viber">
+        <a @click="openViber('+959254006394')">
+          <img src="@/assets/images/common/viber.png" alt="viber" />
           <span class="tooltiptext">+959 254006394</span>
         </a>
       </li>
       <li class="tooltip">
-        <a href="https://t.me/+959254006394" target="_blank">
-          <img src="@/assets/images/common/telegram.png" alt="telegram">
+        <a @click="openTelegram('+959254006394')">
+          <img src="@/assets/images/common/telegram.png" alt="telegram" />
           <span class="tooltiptext">+959 254006394</span>
         </a>
       </li>
       <li class="tooltip">
-        <a href="tel:+959254006394">
-          <img src="@/assets/images/common/phone.png" alt="phone">
+        <a @click="phoneCall('+959254006394')">
+          <img src="@/assets/images/common/phone.png" alt="phone" />
           <span class="tooltiptext">+959 254006394</span>
         </a>
       </li>
     </ul>
     <div id="viber" class="overlay">
       <div class="popup">
-          <div class="popup-content">
-            <img src="@/assets/images/home/viber_icon.png" alt="viber">
-            <span><strong>U Soe Naing</strong><br>+959 254006394</span>
-          </div>
-          <a class="close" href="#">&times;</a>
+        <div class="popup-content">
+          <img src="@/assets/images/home/viber_icon.png" alt="viber" />
+          <span><strong>U Soe Naing</strong><br />+959 254006394</span>
+        </div>
+        <a class="close" href="#">&times;</a>
       </div>
     </div>
   </footer>
@@ -175,7 +178,20 @@ export default {
       activeMenu: false,
     };
   },
-  methods: {},
+  methods: {
+    phoneCall(phoneNumber) {
+      const phoneUrl = `tel:${phoneNumber}`;
+      window.location.href = phoneUrl;
+    },
+    openViber(phoneNumber) {
+      const viberUrl = `viber://chat?number=${encodeURIComponent(phoneNumber)}`;
+      window.location.href = viberUrl;
+    },
+    openTelegram(username) {
+      const telegramUrl = `https://t.me/${encodeURIComponent(username)}`;
+      window.location.href = telegramUrl;
+    },
+  },
 };
 </script>
 

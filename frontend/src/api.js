@@ -12,9 +12,9 @@ const doRequest = async (path, params, method, activeToken) => {
   const options = {
     method, headers: {}
   }
-  // console.log("chkparams", path, params, method, activeToken);
-  if (params) {
+  if (params && Object.keys(params).length > 0) {
     if (method == 'GET') {
+      console.log("param if----------", path, params, method);
       path += '?' + objectToQueryString(params)
       // console.log("chk options get", options)
     } else {
