@@ -667,6 +667,7 @@
   </div>
 </template>
 <script>
+import store from "@/store";
 // import carts from "../const/cart.js";
 
 export default {
@@ -676,24 +677,32 @@ export default {
     return {
       cart: [],
       step: 1,
+      preStep: 1
     };
   },
   methods: {
     handleContinue(data = null) {
       if (data) {
-        this.step = data;
+        if (data <= this.preStep) {
+          this.step = data;
+        }
       } else if (this.step < 3) {
         this.step += 1;
+        this.preStep = this.step;
       }
     },
-    deleteOrder(index) {
+    async deleteOrder(index) {
       this.cart.splice(index, 1);
       localStorage.setItem("cartData", JSON.stringify(this.cart));
+      let param = {
+        lang: this.lang,
+        cartLength: this.cart.length
+      };
+      await store.dispatch("commonData", param);
     }
   },
   mounted() {
     const data = localStorage.getItem("cartData");
-    console.log("----------data", data);
     if (data && JSON.parse(data)?.length > 0) {
       this.cart = JSON.parse(data);
     }

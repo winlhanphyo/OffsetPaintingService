@@ -3,7 +3,7 @@
     <div class="header-inner">
       <h1>
         <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')">
-          <img src="@/assets/images/common/logo.png" alt="Xenon Company Limited" />
+          <img src="@/assets/images/common/logo.png" alt="Ci Ci Offset" />
         </a>
       </h1>
       <div class="flex">
@@ -13,15 +13,13 @@
               <a
                 :class="[checkActiveMenu('/home') ? 'active' : '']"
                 @click="changeRoute('/')"
-                >{{ $t("message.home") }}</a
-              >
+                >{{ $t("message.home") }}</a>
             </li>
             <li class="has-menu">
               <a
                 :class="[checkActiveMenu('/product') ? 'active' : '']"
                 @click="resetMenu()"
-                >{{ $t("message.product") }}</a
-              >
+                >{{ $t("message.product") }}</a>
               <ul :class="[activeMenu ? 'sub-menu is-show' : 'sub-menu']">
                 <li>
                   <span @click="$router.push('/products')">All Products</span>
@@ -129,14 +127,14 @@
               name="top_search"
               id="top_search"
               v-model="searchName"
-              @keyup.enter="handleEnter"
+              @keyup.enter="handleEnter()"
               class="form-control"
               :placeholder="$t('message.search')"
               autocomplete="off"
               data-searched=""
             />
             <button>
-              <span class="material-symbols-outlined" @click="handleEnter()"> search </span>
+              <span class="material-symbols-outlined"> search </span>
             </button>
           </div>
           <ul class="language">
@@ -155,7 +153,7 @@
             <div class="material-symbols-outlined" @click="$router.push('/checkout')">
               shopping_cart
             </div>
-            <div class="number">0</div>
+            <div :class="[$store.state.common?.data?.cartLength > 0 ? 'blue-number' : 'number']">{{ $store.state.common?.data?.cartLength }}</div>
           </div>
         </div>
       </div>
@@ -199,11 +197,13 @@ export default {
       mobileToggle: false,
       categories: this.$store.state.apiData?.categoryProducts,
       user: null,
-      searchName: null
+      searchName: null,
     };
   },
   mounted() {
-    this.$i18n.locale = this.$store.state.common?.data?.lang;
+    if (this?.$i18n?.locale && this.$store.state.common?.data?.lang) {
+      this.$i18n.locale = this.$store.state.common?.data?.lang;
+    }
     this.getProductCategory();
     this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
     console.log("user", this.user);
@@ -223,9 +223,12 @@ export default {
       this.lang = this.langChecked ? "eng" : "myan";
       let param = {
         lang: this.lang,
+        cartLength: this.$store.state.common?.data?.cartLength
       };
       await store.dispatch("commonData", param);
-      this.$i18n.locale = this.lang;
+      if (this?.$i18n?.locale && this.lang) {
+        this.$i18n.locale = this.lang;
+      }
     },
     clickActiveDropDownMenu(i) {
       this.resetMenu(i);
@@ -288,10 +291,11 @@ export default {
       this.activeMenu = false;
       this.activeLoginMenu = false;
       this.mobileToggle = false;
-      this.$i18n.locale = this.$store.state.common?.data?.lang;
+      if (this?.$i18n?.locale && this.$store.state.common?.data?.lang) {
+        this.$i18n.locale = this.$store.state.common?.data?.lang;
+      }
       this.langChecked = this.$store.state.common?.data?.lang === "eng" ? true : false;
       this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
-      console.log("user", this.user);
     },
   },
 };
@@ -837,13 +841,26 @@ export default {
             align-items: center;
             justify-content: center;
           }
+          .blue-number {
+            position: absolute;
+            top: -13px;
+            right: -15px;
+            background: #009BDF;
+            color: #fff;
+            border-radius: 50px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
       }
     }
     &.fixed {
       position: sticky;
       top: 0;
-      z-index: 2;
+      z-index: 1;
       max-width: 100%;
       left: 0;
       right: 0;

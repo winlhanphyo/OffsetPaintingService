@@ -199,6 +199,7 @@
 <script>
 import $ from "jquery";
 import "slick-carousel";
+import store from "@/store";
 import { getProductDetail, getMediaWithProductId } from "@/services/offset.service.js";
 import { imgRoot } from "./../../config";
 
@@ -295,14 +296,20 @@ export default {
         }, 100);
       }
     },
-    addToCart() {
+    async addToCart() {
       if (this.media?.length > 0) {
         this.productDetail.productImage = this.media[0]?.url;
       }
-      const data = localStorage.getItem("cartData");
+      let data = localStorage.getItem("cartData");
       if (data && JSON.parse(data)?.length > 0) {
+        data = JSON.parse(localStorage.getItem("cartData"));
         data.push(this.productDetail);
         localStorage.setItem("cartData", JSON.stringify(data));
+        let param = {
+          lang: this.lang,
+          cartLength: data.length
+        };
+        await store.dispatch("commonData", param);
       } else {
         localStorage.setItem("cartData", JSON.stringify([this.productDetail]));
       }

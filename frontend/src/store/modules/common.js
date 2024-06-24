@@ -1,6 +1,7 @@
 const state = {
   data: {
-    lang: "en"
+    lang: "en",
+    cartLength: 0
   }
 };
 
