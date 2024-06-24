@@ -66,6 +66,16 @@ class BannerController {
     return data;
   }
 
+  /**
+   * delete banner.
+   * @param req 
+   * @param res 
+   */
+    deleteBanner(req: any, res: any) {
+      const data = bannerService.deleteBanner(req, res);
+      return data;
+    }
+
 }
 
 export const bannerController = new BannerController();
