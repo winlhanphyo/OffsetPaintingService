@@ -273,23 +273,39 @@ export default {
       }
       .slick-next {
         right: 87px;
+        @include for-tablet {
+          right: 35px;
+        }
         @media screen and (max-width: 767.9px) {
-          right: 44px;
+          right: 15px;
         }
       }
       .slick-prev:before,
       .slick-next:before {
         font-size: 30px;
+        @media screen and (max-width: 767.9px) {
+          font-size: 20px!important;
+        }
       }
       .slick-dots {
         bottom: 23px;
+        @media screen and (max-width: 767.9px) {
+          bottom: 12px;
+        }
         li {
+          @media screen and (max-width: 767.9px) {
+            width: 12px;
+            height: 12px;
+          }
           button {
             &::before {
               color: #fff;
               font-size: 15px;
+              @include for-tablet {
+                font-size: 8px;
+              }
               @media screen and (max-width: 767.9px) {
-                font-size: 10px;
+                font-size: 7px;
               }
             }
           }

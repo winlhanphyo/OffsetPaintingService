@@ -438,7 +438,7 @@ footer {
   }
   .icon-fixed {
     position: fixed;
-    bottom: 20%;
+    bottom: 8%;
     right: 8px;
     width: 50px;
     z-index: 1;
