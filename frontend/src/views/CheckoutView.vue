@@ -339,330 +339,333 @@
     </div>
 
     <div class="page-body" v-if="step === 3">
-    <div class="page-content">
-      <div class="card">
-        <div class="card-header">
-          <input
-            type="radio"
-            name="rdpaymenttype"
-            id="paymenttype26"
-            value="26"
-            class="custom-control-input"
-            data-toggle="collapse"
-          />
-          <label>2c2p</label>
-        </div>
-        <div class="card-body">
-          <ul>
-            <li>
-              <span style="color: rgb(47, 79, 79)">Credit/&nbsp;Debit Cards</span>
-            </li>
-            <li><span style="color: rgb(47, 79, 79)">MPU</span></li>
-            <li><span style="color: rgb(47, 79, 79)">KBZ Pay/ AYA Pay /CB Pay</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <input
-            type="radio"
-            name="rdpaymenttype"
-            id="paymenttype26"
-            value="26"
-            class="custom-control-input"
-            data-toggle="collapse"
-          />
-          <label>KBZ pay</label>
-        </div>
-        <div class="card-body">
-          <ul>
-            <li>
-              <span style="color: rgb(47, 79, 79)">KBZPay (Desktop User) QR Code</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header"><h3>အမှာစာ (Order) အတွက်အထူးညွှန်ကြားချက်</h3></div>
-        <div class="card-body">
-          <div class="form-group">
-            <textarea
-              name="OrdComments"
-              id="OrdComments"
-              rows="10"
-              cols="90"
-              class="form-control"
-            ></textarea>
+      <div class="page-content">
+        <div class="card">
+          <div class="card-header">
+            <input
+              type="radio"
+              name="rdpaymenttype"
+              id="paymenttype26"
+              value="26"
+              class="custom-control-input"
+              data-toggle="collapse"
+            />
+            <label>2c2p</label>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li>
+                <span style="color: rgb(47, 79, 79)">Credit/&nbsp;Debit Cards</span>
+              </li>
+              <li><span style="color: rgb(47, 79, 79)">MPU</span></li>
+              <li><span style="color: rgb(47, 79, 79)">KBZ Pay/ AYA Pay /CB Pay</span></li>
+            </ul>
           </div>
         </div>
-        <div class="col-12">
-          <b>IMPORTANT</b>: စာလုံးပေါင်း နှင့် ပါဝင်သောအကြောင်းအရာများ
-          မှန်ကန်ကြောင်းအတည်ပြုပါသည်။ Document Layout ကိုလည်း စိတ်ကျေနပ်ပါသည်။
-          ဒီမှာပေါ်သော Document အတိုင်းသာ ပုံနှိပ်နိုင်မည်ကို သိရှိပါသည်။ Order
-          မှာယူပြီးလျှင် ပြောင်းလဲမှု နှင့် စာလုံးပေါင်းမှားယွင်းမှုများကို
-          ပြင်ဆင်မှုပြုလုပ်၍ မရနိုင်တော့သည်ကို သိရှိပြီး ဖြစ်ပါသည်။
+
+        <div class="card">
+          <div class="card-header">
+            <input
+              type="radio"
+              name="rdpaymenttype"
+              id="paymenttype26"
+              value="26"
+              class="custom-control-input"
+              data-toggle="collapse"
+            />
+            <label>KBZ pay</label>
+          </div>
+          <div class="card-body">
+            <ul>
+              <li>
+                <span style="color: rgb(47, 79, 79)">KBZPay (Desktop User) QR Code</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>အမှာစာ (Order) အတွက်အထူးညွှန်ကြားချက်</h3></div>
+          <div class="card-body">
+            <div class="form-group">
+              <textarea
+                name="OrdComments"
+                id="OrdComments"
+                rows="10"
+                cols="90"
+                class="form-control"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-12">
+            <b>IMPORTANT</b>: စာလုံးပေါင်း နှင့် ပါဝင်သောအကြောင်းအရာများ
+            မှန်ကန်ကြောင်းအတည်ပြုပါသည်။ Document Layout ကိုလည်း စိတ်ကျေနပ်ပါသည်။
+            ဒီမှာပေါ်သော Document အတိုင်းသာ ပုံနှိပ်နိုင်မည်ကို သိရှိပါသည်။ Order
+            မှာယူပြီးလျှင် ပြောင်းလဲမှု နှင့် စာလုံးပေါင်းမှားယွင်းမှုများကို
+            ပြင်ဆင်မှုပြုလုပ်၍ မရနိုင်တော့သည်ကို သိရှိပြီး ဖြစ်ပါသည်။
+          </div>
         </div>
       </div>
-    </div>
 
-<div class="price-summary">
-  <div class="card">
-        <div class="col-lg-4 checkoutRightSide">
-          <div class="shadow border-0 bg-white sticky-top">
-            <h3 class="mx-3 pt-3 border-bottom pb-2">Price Summary</h3>
-            <div class="productBlock mx-3 py-2 border-bottom">
-              <div class="order-details order_detail_summary">
-                <div
-                  class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
-                >
-                  <div class="col-2 p-0 text-center">
-                    <div class="order-img mb-0">
-                      <a class="thumbnail"
-                        ><img
-                          src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7324/118_3855_28142466_image_p157_common_thumb.jpg"
-                          height="150"
-                          width="150"
-                          alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7324/118_3855_28142466_image_p157_common_thumb.jpg"
-                          onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
-                          title=""
-                          class="img-fluid"
-                          loading="lazy"
-                      /></a>
-                    </div>
-                  </div>
-                  <div class="col-10">
-                    <div
-                      class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
-                    >
-                      <div class="col-7">
-                        <p
-                          class="mb-0 text-truncate"
-                          title="Standard Business Cards - Promo"
-                        >
-                          Standard Business Cards - Promo
-                        </p>
-                        <p class="mb-0 short-disc">
-                          <span class="text-muted">ရေတွက်</span> : 100
-                        </p>
-                      </div>
-                      <div class="col-5 text-right pr-0">
-                        <p
-                          class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
-                        >
-                          Ks17,000.00
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
-                >
-                  <div class="col-2 p-0 text-center">
-                    <div class="order-img mb-0">
-                      <a class="thumbnail"
-                        ><img
-                          src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/orders/5760/118_3855_28142466_image_p157_common_thumb.jpg"
-                          height="150"
-                          width="150"
-                          alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/orders/5760/118_3855_28142466_image_p157_common_thumb.jpg"
-                          onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
-                          title=""
-                          class="img-fluid"
-                          loading="lazy"
-                      /></a>
-                    </div>
-                  </div>
-                  <div class="col-10">
-                    <div
-                      class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
-                    >
-                      <div class="col-7">
-                        <p
-                          class="mb-0 text-truncate"
-                          title="Standard Business Cards - Promo"
-                        >
-                          Standard Business Cards - Promo
-                        </p>
-                        <p class="mb-0 short-disc">
-                          <span class="text-muted">ရေတွက်</span> : 100
-                        </p>
-                      </div>
-                      <div class="col-5 text-right pr-0">
-                        <p
-                          class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
-                        >
-                          Ks17,000.00
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
-                >
-                  <div class="col-2 p-0 text-center">
-                    <div class="order-img mb-0">
-                      <a class="thumbnail"
-                        ><img
-                          src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7380/98_3855_49888609_1_thumb.jpg"
-                          height="150"
-                          width="150"
-                          alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7380/98_3855_49888609_1_thumb.jpg"
-                          onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
-                          title=""
-                          class="img-fluid"
-                          loading="lazy"
-                      /></a>
-                    </div>
-                  </div>
-                  <div class="col-10">
-                    <div
-                      class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
-                    >
-                      <div class="col-7">
-                        <p class="mb-0 text-truncate" title="Deluxe Business Card">
-                          Deluxe Business Card
-                        </p>
-                        <p class="mb-0 short-disc">
-                          <span class="text-muted">ရေတွက်</span> : 100
-                        </p>
-                      </div>
-                      <div class="col-5 text-right pr-0">
-                        <p
-                          class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
-                        >
-                          Ks22,500.00
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <div class="price-summary">
+        <div class="card">
+          <div class="col-lg-4 checkoutRightSide">
+            <div class="shadow border-0 bg-white sticky-top">
+              <div class="price-summary-title">
+                <h3>Price Summary</h3>
+                <hr />
               </div>
-            </div>
-            <div class="paymentDetailsStep">
-              <!-- <div class="px-3 pb-2 pt-3 coupon">
-                <div class="input-group">
-                  <input
-                    type="text"
-                    name="couponcodeprice"
-                    id="couponcodeprice"
-                    value=""
-                    class="form-control border-right-0"
-                    size="100"
-                    placeholder="ကူပွန်ကုဒ်"
-                  />
-                  <div class="input-group-append">
-                    <button
-                      type="button"
-                      name="redeem"
-                      id="redeem"
-                      value="လျှောက်ထားပါ"
-                      class="btn btn btn-secondary"
-                    >
-                      လျှောက်ထားပါ
-                    </button>
+              <div class="productBlock mx-3 py-2 border-bottom">
+                <div class="order-details order_detail_summary">
+                  <div
+                    class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
+                  >
+                    <div class="col-2 p-0 text-center">
+                      <div class="order-img mb-0">
+                        <a class="thumbnail"
+                          ><img
+                            src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7324/118_3855_28142466_image_p157_common_thumb.jpg"
+                            height="150"
+                            width="150"
+                            alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7324/118_3855_28142466_image_p157_common_thumb.jpg"
+                            onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
+                            title=""
+                            class="img-fluid"
+                            loading="lazy"
+                        /></a>
+                      </div>
+                    </div>
+                    <div class="col-10">
+                      <div
+                        class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
+                      >
+                        <div class="col-7">
+                          <p
+                            class="mb-0 text-truncate"
+                            title="Standard Business Cards - Promo"
+                          >
+                            Standard Business Cards - Promo
+                          </p>
+                          <p class="mb-0 short-disc">
+                            <span class="text-muted">ရေတွက်</span> : 100
+                          </p>
+                        </div>
+                        <div class="col-5 text-right pr-0">
+                          <p
+                            class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
+                          >
+                            Ks17,000.00
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
+                  >
+                    <div class="col-2 p-0 text-center">
+                      <div class="order-img mb-0">
+                        <a class="thumbnail"
+                          ><img
+                            src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/orders/5760/118_3855_28142466_image_p157_common_thumb.jpg"
+                            height="150"
+                            width="150"
+                            alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/orders/5760/118_3855_28142466_image_p157_common_thumb.jpg"
+                            onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
+                            title=""
+                            class="img-fluid"
+                            loading="lazy"
+                        /></a>
+                      </div>
+                    </div>
+                    <div class="col-10">
+                      <div
+                        class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
+                      >
+                        <div class="col-7">
+                          <p
+                            class="mb-0 text-truncate"
+                            title="Standard Business Cards - Promo"
+                          >
+                            Standard Business Cards - Promo
+                          </p>
+                          <p class="mb-0 short-disc">
+                            <span class="text-muted">ရေတွက်</span> : 100
+                          </p>
+                        </div>
+                        <div class="col-5 text-right pr-0">
+                          <p
+                            class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
+                          >
+                            Ks17,000.00
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
+                  >
+                    <div class="col-2 p-0 text-center">
+                      <div class="order-img mb-0">
+                        <a class="thumbnail"
+                          ><img
+                            src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7380/98_3855_49888609_1_thumb.jpg"
+                            height="150"
+                            width="150"
+                            alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7380/98_3855_49888609_1_thumb.jpg"
+                            onerror="this.parentNode.classList.add('imgPlaceHolder'); this.classList.add('noImageCls');"
+                            title=""
+                            class="img-fluid"
+                            loading="lazy"
+                        /></a>
+                      </div>
+                    </div>
+                    <div class="col-10">
+                      <div
+                        class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
+                      >
+                        <div class="col-7">
+                          <p class="mb-0 text-truncate" title="Deluxe Business Card">
+                            Deluxe Business Card
+                          </p>
+                          <p class="mb-0 short-disc">
+                            <span class="text-muted">ရေတွက်</span> : 100
+                          </p>
+                        </div>
+                        <div class="col-5 text-right pr-0">
+                          <p
+                            class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
+                          >
+                            Ks22,500.00
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="d-flex" id="couponApplied">
-                  <div class="lh-1">
-                    <p class="m-0 d-none" id="coupon_lable"></p>
-                    <span class="success-block text-muted" id="discount_type"></span>
-                  </div>
-                  <button
-                    type="button"
-                    name="coupon_remove"
-                    id="coupon_remove"
-                    value="Redeem"
-                    class="btn btn-link ml-auto btn-sm px-0 pt-0 pb-1 align-self-start text-danger d-none"
-                  >
-                    Remove
-                  </button>
-                </div>
-                <span
-                  class="error-block text-danger"
-                  id="couponcodereq"
-                  data-msg-require="ကူပွန်ကုဒ်လိုအပ်သည်"
-                  data-msg-invalid="<span>မမှန်ကန်သောကူပွန်ကုဒ်</span>"
-                  data-msg-notapplicable="<span>ကူပွန်ကို အသုံးမပြုနိုင်ပါ။</span>"
-                ></span>
-              </div> -->
-            </div>
-            <!--start display pricing-->
-            <div id="cart_pricetotal" class="cart-pricetotal px-3 mt-3">
-              <div class="shoppingCartStep">
-                <p
-                  class="d-flex justify-content-between align-items-center mb-0 pb-1 d-none"
-                >
-                  စုစုပေါင်း<span class="price">Ks56,500.00</span
-                  ><input type="hidden" name="subtotal" id="subtotal" value="56500.00" />
-                </p>
-              </div>
-              <div class="shippingStep">
-                <p class="d-flex justify-content-between align-items-center mb-0 pb-1">
-                  ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း<span class="price shipprice"
-                    >Ks3,000.00</span
-                  >
-                </p>
               </div>
               <div class="paymentDetailsStep">
-                <p class="d-flex justify-content-between align-items-center mb-0 pb-1">
-                  လျှော့စျေး<span class="price couponprice">Ks0.00</span
-                  ><input
-                    type="hidden"
-                    name="hidcouponAmt"
-                    id="hidcouponAmt"
-                    value="0.00"
-                  /><input
-                    type="hidden"
-                    name="hidcouponCode"
-                    id="hidcouponCode"
-                    value=""
-                  />
-                </p>
-                <p
-                  class="d-flex justify-content-between align-items-center font-lg pt-2 mt-2 border-top mb-3"
-                >
-                  စုစုပေါင်း <strong class="totalprice">Ks59,500.00</strong
-                  ><input
-                    type="hidden"
-                    name="total_amount_for_process_fees"
-                    id="total_amount_for_process_fees"
-                    value="NaN"
-                  />
-                </p>
-                <input type="hidden" name="appliedcoupon" id="appliedcoupon" value="" />
+                <!-- <div class="px-3 pb-2 pt-3 coupon">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="couponcodeprice"
+                      id="couponcodeprice"
+                      value=""
+                      class="form-control border-right-0"
+                      size="100"
+                      placeholder="ကူပွန်ကုဒ်"
+                    />
+                    <div class="input-group-append">
+                      <button
+                        type="button"
+                        name="redeem"
+                        id="redeem"
+                        value="လျှောက်ထားပါ"
+                        class="btn btn btn-secondary"
+                      >
+                        လျှောက်ထားပါ
+                      </button>
+                    </div>
+                  </div>
+                  <div class="d-flex" id="couponApplied">
+                    <div class="lh-1">
+                      <p class="m-0 d-none" id="coupon_lable"></p>
+                      <span class="success-block text-muted" id="discount_type"></span>
+                    </div>
+                    <button
+                      type="button"
+                      name="coupon_remove"
+                      id="coupon_remove"
+                      value="Redeem"
+                      class="btn btn-link ml-auto btn-sm px-0 pt-0 pb-1 align-self-start text-danger d-none"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  <span
+                    class="error-block text-danger"
+                    id="couponcodereq"
+                    data-msg-require="ကူပွန်ကုဒ်လိုအပ်သည်"
+                    data-msg-invalid="<span>မမှန်ကန်သောကူပွန်ကုဒ်</span>"
+                    data-msg-notapplicable="<span>ကူပွန်ကို အသုံးမပြုနိုင်ပါ။</span>"
+                  ></span>
+                </div> -->
               </div>
-            </div>
-            <!--end display pricing-->
-            <div class="paymentDetailsStep px-3 pb-2 pb-md-0"></div>
-            <!--Order Place Button-->
-            <div class="paymentDetailsStep">
-              <div class="ordercontinue px-3 pb-3 pt-0 w-100">
-                <input
-                  type="hidden"
-                  name="prod_out_stock_err"
-                  id="prod_out_stock_err"
-                  value=""
-                /><input type="hidden" name="datastep" id="datastep" value="2" /><button
-                  type="submit"
-                  name="BtnNext"
-                  id="BtnNext"
-                  value="Order Complete"
-                  class="btn btn-success btn-lg btn-block ld-ext-left"
-                  data-step="2"
-                  data-loading-text="စောင့်ပါ <i class='fa fa-sync-alt fa-spin'></i>"
-                >
-                  Order Complete <span class="ld ld-ring ld-spin"></span>
-                </button>
+              <!--start display pricing-->
+              <div id="cart_pricetotal" class="cart-pricetotal px-3 mt-3">
+                <div class="shoppingCartStep">
+                  <p
+                    class="d-flex justify-content-between align-items-center mb-0 pb-1 d-none"
+                  >
+                    စုစုပေါင်း<span class="price">Ks56,500.00</span
+                    ><input type="hidden" name="subtotal" id="subtotal" value="56500.00" />
+                  </p>
+                </div>
+                <div class="shippingStep">
+                  <p class="d-flex justify-content-between align-items-center mb-0 pb-1">
+                    ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း<span class="price shipprice"
+                      >Ks3,000.00</span
+                    >
+                  </p>
+                </div>
+                <div class="paymentDetailsStep">
+                  <p class="d-flex justify-content-between align-items-center mb-0 pb-1">
+                    လျှော့စျေး<span class="price couponprice">Ks0.00</span
+                    ><input
+                      type="hidden"
+                      name="hidcouponAmt"
+                      id="hidcouponAmt"
+                      value="0.00"
+                    /><input
+                      type="hidden"
+                      name="hidcouponCode"
+                      id="hidcouponCode"
+                      value=""
+                    />
+                  </p>
+                  <p
+                    class="d-flex justify-content-between align-items-center font-lg pt-2 mt-2 border-top mb-3"
+                  >
+                    စုစုပေါင်း <strong class="totalprice">Ks59,500.00</strong
+                    ><input
+                      type="hidden"
+                      name="total_amount_for_process_fees"
+                      id="total_amount_for_process_fees"
+                      value="NaN"
+                    />
+                  </p>
+                  <input type="hidden" name="appliedcoupon" id="appliedcoupon" value="" />
+                </div>
+              </div>
+              <!--end display pricing-->
+              <div class="paymentDetailsStep px-3 pb-2 pb-md-0"></div>
+              <!--Order Place Button-->
+              <div class="paymentDetailsStep">
+                <div class="ordercontinue px-3 pb-3 pt-0 w-100">
+                  <input
+                    type="hidden"
+                    name="prod_out_stock_err"
+                    id="prod_out_stock_err"
+                    value=""
+                  /><input type="hidden" name="datastep" id="datastep" value="2" /><button
+                    type="submit"
+                    name="BtnNext"
+                    id="BtnNext"
+                    value="Order Complete"
+                    class="btn btn-success btn-lg btn-block ld-ext-left"
+                    data-step="2"
+                    data-loading-text="စောင့်ပါ <i class='fa fa-sync-alt fa-spin'></i>"
+                  >
+                    Order Complete <span class="ld ld-ring ld-spin"></span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-</div>
     </div>
   </div>
 </template>
@@ -933,9 +936,9 @@ export default {
       justify-content: space-between;
       margin-top: 15px;
       a {
-        color: #f47920;
+        color: #009bdf;
         &:hover {
-          color: #d6600b;
+          color: #000;
         }
       }
       .tooltip {
@@ -1002,6 +1005,10 @@ export default {
     @media screen and (min-width: 768px) and (max-width: 1280px) {
       width: 32%;
     }
+    .card {
+      box-shadow: none;
+      padding: 0;
+    }
     .price-summary-detail {
       display: flex;
       justify-content: space-between;
@@ -1029,8 +1036,8 @@ export default {
     button {
       width: 100%;
       margin: 20px 0;
-      background: #f47920;
-      border-color: #f47920;
+      background: #009bdf;
+      border-color: #009bdf;
       padding: 0.5rem 1rem;
       font-size: 1.25rem;
       line-height: 1.5;
@@ -1039,7 +1046,7 @@ export default {
       border: 1px solid rgba(0, 0, 0, 0);
       cursor: pointer;
       &:hover {
-        background: #d6600b;
+        background: #000;
       }
     }
     .continue-link {
@@ -1051,7 +1058,7 @@ export default {
         transition: all 0.3s ease-in;
       }
       &:hover {
-        color: #d6600b;
+        color: #009bdf;
         .pr-2 {
           margin-right: 10px;
         }
@@ -1070,18 +1077,19 @@ export default {
       padding: 0 1rem;
       ul {
         list-style-type: disc;
-        caret-color: rgb(244, 121, 32);
-        color: rgb(244, 121, 32);
+        caret-color: #009bdf;
+        color: #009bdf;
         padding-inline-start: 40px;
+        line-height: 2;
         li {
           list-style-type: disc;
         }
       }
       textarea {
         width: 93%;
-    padding: 10px;
-    height: 100px;
-    margin: 1rem 0;
+        padding: 10px;
+        height: 100px;
+        margin: 1rem 0;
       }
     }
 
@@ -1090,19 +1098,16 @@ export default {
       position: sticky;
       top: 0;
       z-index: 1;
-      h3 {
-        padding: 1rem 0 0.5rem;
-        margin: 0 1rem 0.5rem;
-        border-bottom: 1px solid #dee2e6;
-      }
       .productBlock {
         padding: 0.5rem 0;
-        margin: 0 1rem;
       }
       .order_detail_summary {
         max-height: 230px;
         overflow-y: auto;
         overflow-x: hidden;
+        @media screen and (max-width: 767.9px) {
+          overflow-x: auto;
+        }
         .row {
           padding-top: 0.5rem;
           padding-bottom: 0.5rem;
@@ -1110,7 +1115,6 @@ export default {
             padding-top: 0;
           }
         }
-
         .kit_cart_product {
           display: flex;
           align-items: center;
@@ -1140,8 +1144,8 @@ export default {
               flex: 0 0 41.666667%;
               max-width: 41.666667%;
               @media screen and (max-width: 767.9px) {
-      max-width: 53.666667%;
-    }
+                max-width: 53.666667%;
+              }
             }
           }
           .justify-content-end {
@@ -1199,43 +1203,51 @@ export default {
         margin-top: 1rem;
       }
       .align-items-center {
-    -ms-flex-align: center !important;
-    align-items: center !important;
-}
+        -ms-flex-align: center !important;
+        align-items: center !important;
+      }
 
-.justify-content-between {
-    -ms-flex-pack: justify !important;
-    justify-content: space-between !important;
-}
-.d-flex {
-    display: -ms-flexbox !important;
-    display: flex !important;
-}
-button, input {
-    overflow: visible;
-}
-.border-top {
-    border-top: 1px solid #dee2e6 !important;
-}
-.btn-success {
-  background: #003462;
-    border-color: #003462;
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: .3rem;
-    border: 1px solid transparent;
-    color: #fff;
-    width: 100%;
-cursor: pointer;
-}
-.text-truncate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
+      .justify-content-between {
+        -ms-flex-pack: justify !important;
+        justify-content: space-between !important;
+      }
+      .d-flex {
+        display: -ms-flexbox !important;
+        display: flex !important;
+      }
+      button, input {
+        overflow: visible;
+      }
+      .border-top {
+        border-top: 1px solid #dee2e6 !important;
+      }
+      .btn-success {
+        background: #009bdf;
+        border-color: #009bdf;
+        padding: .5rem 1rem;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        border-radius: .3rem;
+        border: 1px solid transparent;
+        color: #fff;
+        width: 100%;
+        cursor: pointer;
+        &:hover {
+          background: #000;
+        }
+      }
+      .text-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 12vw;
+        @media screen and (max-width: 767.9px) {
+          max-width: 28vw;
+        }
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+          max-width: 9vw;
+        }
+      }
     }
   }
 }

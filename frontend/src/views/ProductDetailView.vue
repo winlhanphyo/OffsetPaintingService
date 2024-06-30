@@ -497,12 +497,13 @@ export default {
         padding: 9px;
         margin-left: 20px;
         font-size: 15px;
-        background: #000;
+        background: #009bdf;
         color: #fff;
         cursor: pointer;
         border-radius: 5px;
+        border: none;
         &:hover {
-          opacity: 0.7;
+          background: #000;
         }
       }
       .start {
