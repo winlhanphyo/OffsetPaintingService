@@ -192,9 +192,9 @@ export default {
         color: #fff;
         cursor: pointer;
         border-radius: 5px;
+        border: none;
         &:hover {
-          color: #f47920;
-          background: #fff;
+          background: #009BDF;
         }
       }
       .forget-password-btn {
@@ -206,9 +206,7 @@ export default {
         border-radius: 5px;
         background: #000;
         &:hover {
-          color: #f47920;
-          background: #fff;
-          border: 2px solid #000;
+          background: #009BDF;
         }
       }
     }

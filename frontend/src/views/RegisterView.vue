@@ -497,9 +497,10 @@ export default {
         color: #fff;
         cursor: pointer;
         border-radius: 5px;
+        border: 2px solid #000;
         &:hover {
-          color: #f47920;
-          background: #fff;
+          background: #009BDF;
+          border: 2px solid #009BDF;
         }
       }
       .reset-btn {
@@ -510,9 +511,9 @@ export default {
         cursor: pointer;
         border-radius: 5px;
         &:hover {
-          color: #f47920;
-          background: #fff;
-          border: 2px solid #000;
+          color: #fff;
+          background: #009BDF;
+          border: 2px solid #009BDF;
         }
       }
     }
