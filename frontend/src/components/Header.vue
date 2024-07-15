@@ -532,7 +532,7 @@ export default {
                     content: "\e5cf";
                     position: absolute;
                     font-family: "Material Symbols Outlined";
-                    top: 12px;
+                    top: 9px;
                     right: 9px;
                     font-size: 20px;
                   }

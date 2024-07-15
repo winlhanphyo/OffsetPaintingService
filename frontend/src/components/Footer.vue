@@ -467,6 +467,7 @@ footer {
           box-shadow: 2px 2px 4px #000;
         }
         &:hover {
+          cursor: pointer;
           .tooltiptext {
             visibility: visible;
           }
