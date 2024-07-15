@@ -24,8 +24,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             />
           </div>
         </div>
-        <button type="button" class="m-0 btn btn-info" data-bs-target="#editModalToggle" data-bs-toggle="modal"
-          @click="changeLabel('Create')">Create</button>
+        <a class="m-0 btn btn-info" href="/product/create">Create</a>
       </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
