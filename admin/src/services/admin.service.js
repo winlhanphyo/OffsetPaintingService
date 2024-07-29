@@ -94,6 +94,17 @@ export const deleteProduct = async (id, token) => {
 }
 
 /**
+ * get product by id.
+ * @param {*} id 
+ * @param {*} token 
+ * @returns 
+ */
+export const getProductById = async (id, token) => {
+  const res = await api.get(`/product/${id}`, {}, token);
+  return res;
+}
+
+/**
  * get user API.
  * @param {*} data 
  * @param {*} token 
@@ -244,5 +255,27 @@ export const getBanner = async (token) => {
  */
 export const updateBanner = async (id, data, token) => {
   const res = await api.post(`/banner/update/${id}`, data, token, true);
+  return res;
+}
+
+/**
+ * create banner API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const createBanner = async (data, token) => {
+  const res = await api.post(`/banner`, data, token, true);
+  return res;
+}
+
+/**
+ * delete category API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const deleteBanner = async (id, token) => {
+  const res = await api.deleteData(`/banner/${id}`, token);
   return res;
 }

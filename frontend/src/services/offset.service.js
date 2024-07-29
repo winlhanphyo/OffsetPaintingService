@@ -1,6 +1,6 @@
 import axios from "axios";
-import api from "../api"
-// import { loginRoot } from "../../config";
+import api from "../api";
+import { loginRoot, apiRoot } from "../../config";
 
 /**
  * login API.
@@ -9,7 +9,7 @@ import api from "../api"
  * @returns 
  */
 export const login = async (data) => {
-  const res = await axios.post('https://api.cicimm.net/api/login', data);
+  const res = await axios.post(`${loginRoot}/login`, data);
   return res;
 }
 
@@ -19,7 +19,7 @@ export const login = async (data) => {
  * @returns 
  */
 export const forgetPassword = async (data) => {
-  const res = await axios.post('https://api.cicimm.net/api/forget-password', data);
+  const res = await axios.post(`${loginRoot}forget-password`, data);
   return res;
 }
 
@@ -29,7 +29,7 @@ export const forgetPassword = async (data) => {
  * @returns 
  */
 export const updatePassword = async (data) => {
-  const res = await axios.post('https://api.cicimm.net/api/password-reset-update', data);
+  const res = await axios.post(`${loginRoot}/password-reset-update`, data);
   return res;
 }
 
@@ -40,7 +40,7 @@ export const updatePassword = async (data) => {
  * @returns 
  */
 export const register = async (data) => {
-  const res = await axios.post('https://api.cicimm.net/api/signup', data);
+  const res = await axios.post(`${loginRoot}/signup`, data);
   return res;
 }
 
@@ -49,7 +49,7 @@ export const register = async (data) => {
  * @param {*} data 
  */
 export const contactUs = async (data) => {
-  const res = await axios.post('https://api.cicimm.net/api/v1/contact', data);
+  const res = await axios.post(`${apiRoot}/contact`, data);
   return res;
 }
 
@@ -76,9 +76,9 @@ export const getProduct = async (token, searchName=null) => {
   searchName ? params.name = searchName : params = null;
   let res = null;
   if (!searchName) {
-    res = await axios.get('https://api.cicimm.net/api/v1/product', token);
+    res = await axios.get(`${apiRoot}/product`, token);
   } else {
-    res = await axios.get('https://api.cicimm.net/api/v1/product', {params});
+    res = await axios.get(`${apiRoot}product`, {params});
   }
   
   return res;
@@ -129,9 +129,9 @@ export const getArticle = async (token, searchName=null) => {
   searchName ? params.name = searchName : params = null;
   let res = null;
   if (!searchName) {
-    res = await axios.get('https://api.cicimm.net/api/v1/article', token);
+    res = await axios.get(`${apiRoot}/article`, token);
   } else {
-    res = await axios.get('https://api.cicimm.net/api/v1/article', {params});
+    res = await axios.get(`${apiRoot}/article`, {params});
   }
   
   return res;

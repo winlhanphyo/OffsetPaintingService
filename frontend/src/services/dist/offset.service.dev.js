@@ -9,9 +9,9 @@ var _axios = _interopRequireDefault(require("axios"));
 
 var _api = _interopRequireDefault(require("../api"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _config = require("../../config");
 
-// import { loginRoot } from "../../config";
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /**
  * login API.
@@ -26,7 +26,7 @@ var login = function login(data) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return regeneratorRuntime.awrap(_axios["default"].post('https://api.cicimm.net/api/login', data));
+          return regeneratorRuntime.awrap(_axios["default"].post("".concat(_config.loginRoot, "/login"), data));
 
         case 2:
           res = _context.sent;
@@ -55,7 +55,7 @@ var forgetPassword = function forgetPassword(data) {
       switch (_context2.prev = _context2.next) {
         case 0:
           _context2.next = 2;
-          return regeneratorRuntime.awrap(_axios["default"].post('https://api.cicimm.net/api/forget-password', data));
+          return regeneratorRuntime.awrap(_axios["default"].post("".concat(_config.loginRoot, "forget-password"), data));
 
         case 2:
           res = _context2.sent;
@@ -84,7 +84,7 @@ var updatePassword = function updatePassword(data) {
       switch (_context3.prev = _context3.next) {
         case 0:
           _context3.next = 2;
-          return regeneratorRuntime.awrap(_axios["default"].post('https://api.cicimm.net/api/password-reset-update', data));
+          return regeneratorRuntime.awrap(_axios["default"].post("".concat(_config.loginRoot, "/password-reset-update"), data));
 
         case 2:
           res = _context3.sent;
@@ -114,7 +114,7 @@ var register = function register(data) {
       switch (_context4.prev = _context4.next) {
         case 0:
           _context4.next = 2;
-          return regeneratorRuntime.awrap(_axios["default"].post('https://api.cicimm.net/api/signup', data));
+          return regeneratorRuntime.awrap(_axios["default"].post("".concat(_config.loginRoot, "/signup"), data));
 
         case 2:
           res = _context4.sent;
@@ -142,7 +142,7 @@ var contactUs = function contactUs(data) {
       switch (_context5.prev = _context5.next) {
         case 0:
           _context5.next = 2;
-          return regeneratorRuntime.awrap(_axios["default"].post('https://api.cicimm.net/api/v1/contact', data));
+          return regeneratorRuntime.awrap(_axios["default"].post("".concat(_config.apiRoot, "/contact"), data));
 
         case 2:
           res = _context5.sent;
@@ -216,7 +216,7 @@ var getProduct = function getProduct(token) {
           }
 
           _context7.next = 7;
-          return regeneratorRuntime.awrap(_axios["default"].get('https://api.cicimm.net/api/v1/product', token));
+          return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/product"), token));
 
         case 7:
           res = _context7.sent;
@@ -225,7 +225,7 @@ var getProduct = function getProduct(token) {
 
         case 10:
           _context7.next = 12;
-          return regeneratorRuntime.awrap(_axios["default"].get('https://api.cicimm.net/api/v1/product', {
+          return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "product"), {
             params: params
           }));
 
@@ -363,7 +363,7 @@ var getArticle = function getArticle(token) {
           }
 
           _context11.next = 7;
-          return regeneratorRuntime.awrap(_axios["default"].get('https://api.cicimm.net/api/v1/article', token));
+          return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/article"), token));
 
         case 7:
           res = _context11.sent;
@@ -372,7 +372,7 @@ var getArticle = function getArticle(token) {
 
         case 10:
           _context11.next = 12;
-          return regeneratorRuntime.awrap(_axios["default"].get('https://api.cicimm.net/api/v1/article', {
+          return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/article"), {
             params: params
           }));
 

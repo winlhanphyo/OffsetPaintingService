@@ -6,7 +6,8 @@ import { db } from '../db.provider';
 
 export interface IOrderModel {
   id: number;
-  mediaId: number;
+  productId: number;
+  quantity: number;
   amount: number;
   createdAt: Date;
   updatedAt: Date;
@@ -18,13 +19,17 @@ const modelAttributes: DbModelFieldInit<Partial<IOrderModel>> = {
     primaryKey: true,
     autoIncrement: true
   },
-  mediaId: {
+  productId: {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'media',
+      model: 'product',
       key: 'id'
     }
+  },
+  quantity: {
+    type: DataTypes.INTEGER,
+    allowNull: false
   },
   amount: {
     type: DataTypes.DOUBLE,
@@ -35,9 +40,9 @@ const modelAttributes: DbModelFieldInit<Partial<IOrderModel>> = {
 @associative
 export class OrderDetailDbModel extends Model {
   static associate({
-    MediaDbModel
+    ProductDbModel
   }: any) {
-    this.belongsTo(MediaDbModel, { foreignKey: 'mediaId', as: 'mediaData', targetKey: 'id' });
+    this.belongsTo(ProductDbModel, { foreignKey: 'productId', as: 'productData', targetKey: 'id' });
   }
 }
 

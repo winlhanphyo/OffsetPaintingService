@@ -45,79 +45,30 @@ class OrderService {
   async createOrder(req: any, res: any) {
     try {
       const orderData = req.body;
-      const orderDetailData = await OrderDetailDbModel.bulkCreate(orderData.orderDetail);
-      const mediaList: any = [];
+      const orderDetailData = orderData.orderDetail;
+      const orderList = [];
       for (let i = 0; i < orderDetailData.length; i++) {
         const dist: any = orderDetailData[i];
-        const media = await MediaDbModel.findOne({
+        const product = await ProductDbModel.findOne({
           where: {
-            id: dist.mediaId,
+            id: dist.productId,
           }
         });
-        mediaList.push({
-          price_data: {
-            currency: "eur",
-            product_data: {
-              name: media?.dataValues?.name
-            },
-            unit_amount: dist?.amount * 100,
-          },
-          quantity: 1
+        orderList.push({
+          productId: dist.productId,
+          amount: dist?.amount,
+          quantity: orderData?.qty
         });
       }
-
-      const result = await this.checkOut(mediaList, req, orderDetailData, res);
+      const res = await OrderDetailDbModel.bulkCreate(orderData.orderDetail);
+      const result = await this.orderCreateData(req, res);
       return result;
+
     } catch (e: any) {
       console.log("-----Create Order API error----", e);
       return res.status(400).json({
         message: e.toString()
       });
-    }
-  }
-
-  /**
-   * checkOut
-   * @param mediaList 
-   * @param req 
-   * @param orderDetailData 
-   * @param res 
-   * @returns 
-   */
-  async checkOut(mediaList: any, req: any, orderDetailData: any, res: any) {
-    try {
-      const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-      const domainUrl = req?.body?.domainUrl;
-      const result = await this.orderCreateData(req, orderDetailData);
-
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        line_items: mediaList,
-        mode: "payment",
-        payment_intent_data: {
-          metadata: {
-            orderId: result?.dataValues?.id.toString(),
-          },
-        },
-        // shipping_address_collection: {
-        //   allowed_countries: ['US', 'SG', "IT"],
-        // },
-        // custom_text: {
-        //   shipping_address: {
-        //     message: 'Please note that we can\'t guarantee 2-day delivery for PO boxes at this time.',
-        //   },
-        //   submit: {
-        //     message: 'We\'ll email you instructions on how to get started.',
-        //   },
-        // },
-        success_url: domainUrl + "/payment/success",
-        cancel_url: domainUrl + "/payment/cancel",
-      });
-
-      return res.json({ id: session.id });
-    } catch (err: any) {
-      console.log('Stripe API Error', err);
-      throw err.toString();
     }
   }
 
@@ -147,8 +98,6 @@ class OrderService {
       customer: req.headers['userid'],
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      country: req.body.country,
-      company: req.body.company,
       address: req.body.address,
       additionalInfo: req.body.additionalInfo,
       city: req.body.city,

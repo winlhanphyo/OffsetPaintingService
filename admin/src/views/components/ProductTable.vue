@@ -105,8 +105,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 <button
                   type="button"
                   class="m-0 btn btn-primary"
-                  data-bs-target="#editModalToggle"
-                  data-bs-toggle="modal" @click="changeLabel('Update', item)">
+                  @click="changeLabel('Update', item)">
                   Edit
                 </button>
                 <button
@@ -345,12 +344,13 @@ export default {
         this.image = "";
         this.categoryId = "";
       } else {
-        this.id = data?.id;
-        this.name = data?.name;
-        this.categoryId = data?.categoryId;
-        this.image = "";
-        this.description = data?.description;
-        this.status = data?.status;
+        // this.id = data?.id;
+        // this.name = data?.name;
+        // this.categoryId = data?.categoryId;
+        // this.image = "";
+        // this.description = data?.description;
+        // this.status = data?.status;
+        this.$router.push(`/product/update/${data.id}`);
       }
     },
     showDeleteDialog(data) {
