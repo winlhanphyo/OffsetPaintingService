@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div class="card">
@@ -9,7 +8,61 @@
       </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
-      <div class="product-create"> 
+      <div class="product-create">
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="productName">Product Name:</label>
+            <input type="text" class="form-control" id="product-name" v-model="name" />
+          </div>
+          <div class="form-group col-sm-4 p-2">
+            <label for="categoryName">Category Name:</label>
+            <select
+              class="form-select"
+              @change="changeCategory($event)"
+              v-model="categoryId"
+            >
+              <option value="" disabled>Select Category Menu</option>
+              <option
+                v-for="(item, i) in categoryList"
+                :key="'categoryList' + i"
+                :value="item.value"
+              >
+                {{ item?.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="image">Image:</label>
+            <input
+              class="form-control"
+              type="file"
+              id="formFile"
+              @change="handleFileUpload"
+            />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="productName">Status:</label>
+            <select class="form-select" @change="changeStatus($event)" v-model="status">
+              <option value="">None</option>
+              <option value="Hot">Hot</option>
+              <option value="Sale">Sale</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-4 p-2">
+            <label for="categoryName">Description:</label>
+            <textarea
+              id="w3review"
+              name="w3review"
+              rows="4"
+              v-model="description"
+            ></textarea>
+          </div>
+        </div>
+
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="printing">Printing Type:</label>
@@ -22,11 +75,11 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="quantity">Quantity:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" />
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="sheet">Sheet:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" />
           </div>
         </div>
         <div class="d-flex mb-3">
@@ -60,17 +113,17 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="width">Width:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" />
           </div>
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="height">Height:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" />
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="depth">Depth:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" />
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="size">(Ratio) Full Size:</label>
@@ -90,42 +143,7 @@
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Ratio Width:</label>
-            <input type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <label for="productName">Product Name:</label>
-            <input type="text" class="form-control" id="product-name" v-model="name"/>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="categoryName">Category Name:</label>
-            <select class="form-select" @change="changeCategory($event)" v-model="categoryId">
-              <option value="" disabled>Select Category Menu</option>
-              <option v-for="(item, i) in categoryList" :key="'categoryList' + i" :value="item.value">{{ item?.name }}</option>
-            </select>
-          </div>
-
-
-          <div class="form-group col-sm-4 p-2">
-            <label for="image">Image:</label>
-            <input class="form-control" type="file" id="formFile" @change="handleFileUpload" />
-          </div>
-        </div>
-
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <label for="productName">Status:</label>
-            <select class="form-select" @change="changeStatus($event)" v-model="status">
-              <option value="">None</option>
-              <option value="Hot">Hot</option>
-              <option value="Sale">Sale</option>
-            </select>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="categoryName">Description:</label>
-            <textarea id="w3review" name="w3review" rows="4" v-model="description"></textarea>
+            <input type="text" class="form-control" />
           </div>
         </div>
 
@@ -134,7 +152,13 @@
             <!-- <label for="Ratio Width">Ratio Width:</label>
             <input type="text" class="form-control"> -->
             <button class="btn btn-secondary">Clear</button>
-            <button class="btn btn-primary" style="margin-left: 10px;" @click="submitProduct()">Submit</button>
+            <button
+              class="btn btn-primary"
+              style="margin-left: 10px"
+              @click="submitProduct()"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </div>
@@ -159,7 +183,7 @@ export default {
       status: "",
       categoryList: [],
       detailData: {},
-      searchName: null
+      searchName: null,
     };
   },
   mounted() {
@@ -174,8 +198,8 @@ export default {
       for (let i = 0; i < this.categories.length; i++) {
         arr.push({
           name: this.categories[i].name,
-          value: this.categories[i].id
-        })
+          value: this.categories[i].id,
+        });
       }
       console.log("------arr", arr);
       this.categoryList = arr;
@@ -188,37 +212,38 @@ export default {
     },
     async submitProduct() {
       const token = localStorage.getItem("token");
-        let formParam = new FormData();
-        formParam.append('name', this.name);
-        formParam.append('categoryId', this.categoryId);
-        formParam.append('description', this.description);
-        formParam.append('status', this.status);
+      let formParam = new FormData();
+      formParam.append("name", this.name);
+      formParam.append("categoryId", this.categoryId);
+      formParam.append("description", this.description);
+      formParam.append("status", this.status);
 
-        if (this.image) {
-          formParam.append('media', this.image);
-        }
+      if (this.image) {
+        formParam.append("media", this.image);
+      }
 
-       createProduct(formParam, token)
-          .then(() => {
-            Swal.fire({
-              title: "Success!",
-              text: "Product is created successfully!",
-              icon: "success"
-            }).then(() => {
-              this.$router.push("/product");
-            });
-          }).catch((err) => {
-            Swal.fire({
-              title: "Oops!",
-              text: err.toString(),
-              icon: "error"
-            });
+      createProduct(formParam, token)
+        .then(() => {
+          Swal.fire({
+            title: "Success!",
+            text: "Product is created successfully!",
+            icon: "success",
+          }).then(() => {
+            this.$router.push("/product");
           });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Oops!",
+            text: err.toString(),
+            icon: "error",
+          });
+        });
     },
-    changeStatus (event) {
+    changeStatus(event) {
       this.status = event.target.value;
     },
-    changeCategory (event) {
+    changeCategory(event) {
       this.categoryId = event.target.value;
     },
   },

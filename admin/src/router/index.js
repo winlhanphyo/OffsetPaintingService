@@ -16,6 +16,7 @@ import ChangePassword from "../views/ChangePassword.vue";
 import UpdatePassword from "../views/UpdatePassword.vue";
 import ProductCreate from "../views/components/ProductCreate.vue";
 import ProductUpdate from "../views/components/ProductUpdate.vue";
+import ProductDetail from "../views/components/ProductDetail.vue";
 
 const routes = [
   {
@@ -52,6 +53,12 @@ const routes = [
     path: "/product/create",
     name: "ProductCreate",
     component: ProductCreate,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/product/:id",
+    name: "ProductDetail",
+    component: ProductDetail,
     meta: { requiresAuth: true },
   },
   {
