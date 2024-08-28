@@ -1,29 +1,29 @@
 <template>
     <div class="order-view">
         <div class="order-header">
-            <h1>Your Order has been received.</h1>
+            <h1>{{ $t("message.receivedOrder") }}</h1>
         </div>
 
         <section class="order-status">
             <div class="order-id-status">
-                <p>Order:<strong> #5790</strong></p>
-                <p class="status pending">Pending</p>
+                <p>{{ $t("message.order") }}:<strong> #5790</strong></p>
+                <p class="status pending">{{ $t("message.pending") }}</p>
             </div>
-            <p class="order-time">Order Time: 27 Aug, 2024 07:52 PM</p>
-            <p class="order-amount">Total Amount: <strong>Ks34,500.00</strong></p>
+            <p class="order-time">{{ $t("message.orderTime") }}: <strong>Aug, 2024 07:52 PM</strong></p>
+            <p class="order-amount">{{ $t("message.totalAmount") }}: <strong>Ks34,500.00</strong></p>
         </section>
 
         <section class="order-error">
-            <p>Oops ... Your order is pending confirmation. Please check your payment details.</p>
+            <p>{{ $t("message.orderAlert") }}</p>
         </section>
 
         <section class="payment-details">
-            <h2>Payment Method / Instructions</h2>
+            <h2>{{ $t("message.paymentMethodInstruction") }}</h2>
             <ul>
-                <li>Payment Time: 27 Aug, 2024 07:52 PM</li>
-                <li>Payment Method: KBZ Pay</li>
-                <li>Payment ID: 123</li>
-                <li>Expiry Date: 12 Sep, 2024</li>
+                <li>{{ $t("message.paymentTime") }}: 27 Aug, 2024 07:52 PM</li>
+                <li>{{ $t("message.paymentMethod") }}: KBZ Pay</li>
+                <li>{{ $t("message.paymentID") }}: 123</li>
+                <li>{{ $t("message.ExpiryDate") }}: 12 Sep, 2024</li>
             </ul>
         </section>
 

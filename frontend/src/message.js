@@ -73,6 +73,19 @@ const messages = {
             shipping: "Shipping",
             pickUpFOC: "Pickup (FOC)",
             billingAddress: "Billing Address",
+
+            //order page
+            receivedOrder: "Your Order has been received.",
+            pending: "Pending",
+            order: "Order",
+            orderTime: "Order Time",
+            totalAmount: "Total Amount", 
+            orderAlert: "Oops ... Your order is pending confirmation. Please check your payment details.",
+            paymentMethodInstruction: "Payment Method / Instructions",
+            paymentTime: "Payment Time",
+            paymentMethod: "Payment Method",
+            paymentID: "Payment ID",
+            ExpiryDate: "Expire Date",
         },
     },
     // myanamr
@@ -147,7 +160,20 @@ const messages = {
             shippingMethod: "ပို့ဆောင်မှုနည်းလမ်း",
             shipping: "အရောက်ပို့ဆောင်ခြင်း",
             pickUpFOC: "သတ်မှတ်နေရာတွင်လာရွေးယူခြင်း (FOC)",
-            billingAddress: "ငွေတောင်းခံလွှာပို့ရန်လိပ်စာ"
+            billingAddress: "ငွေတောင်းခံလွှာပို့ရန်လိပ်စာ",
+            
+            //order page
+            receivedOrder: "သင်၏အော်ဒါအားလက်ခံရရှိပါသည်။",
+            pending: "စောင့်ဆိုင်းဆဲ",
+            order: "လုပ်ငန်းစဉ်အမှတ်",
+            orderTime: "လုပ်ငန်းစတင်ချိန်",
+            totalAmount: "စုစုပေါင်း ကျသင့်ငွေ",
+            orderAlert: "သင်၏အော်ဒါအားစိစစ်နေဆဲပါ။ ကျေးဇူးပြု၍ ငွေပေးချေမှုအား စောင့်ဆိုင်းပေးပါ။",
+            paymentMethodInstruction: "ငွေပေးချေမှု/လုပ်ငန်းစဉ်",
+            paymentTime: "ငွေပေးချေသည့်နေ့ရက်",
+            paymentMethod: "ငွေပေးချေမှုစနစ်",
+            paymentID: "ငွေလွှဲID",
+            ExpiryDate: "သတ်မှတ်ရက်",
         },
     },
 }
