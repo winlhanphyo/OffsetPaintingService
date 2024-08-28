@@ -10,6 +10,7 @@ const messages = {
             article: 'Article',
             shoppingcart: 'Shopping Cart',
             search: 'Search',
+            requestAQuota: ' Request A Quota',
 
             //register
             registerTitle: 'New Customer Register Here',
@@ -21,7 +22,9 @@ const messages = {
             confirmPassword: "Confirm Password",
 
             // login
-            forgetPassword: "Forgot password?",
+            forgetPassword: "Forgot Password?",
+            changePassword: "Change Password",
+            updatePassword: "Update Password",
 
 
             //contact us
@@ -35,6 +38,7 @@ const messages = {
             msg: "Message",
             submit: "Submit",
             reset: "Reset",
+            update: "Update",
 
             //product
             priceCalculator: "Price Calculator",
@@ -48,6 +52,9 @@ const messages = {
             firstAccordianHead: "First Accordian Head",
             getStarted: "Get Started",
 
+            // package
+            package: "Package",
+
             //title
             shoppingCartTitle: "Shopping Cart",
             shoppingCartStep1: "Shopping Cart",
@@ -59,6 +66,26 @@ const messages = {
             subTotal: "Sub Total",
             continue: "Continue",
             continueShopping: "Continue Shopping",
+            shippingPrice: "Shipping Price",
+
+            shippingAddress: "Shipping Address",
+            shippingMethod: "Shipping Method",
+            shipping: "Shipping",
+            pickUpFOC: "Pickup (FOC)",
+            billingAddress: "Billing Address",
+
+            //order page
+            receivedOrder: "Your Order has been received.",
+            pending: "Pending",
+            order: "Order",
+            orderTime: "Order Time",
+            totalAmount: "Total Amount", 
+            orderAlert: "Oops ... Your order is pending confirmation. Please check your payment details.",
+            paymentMethodInstruction: "Payment Method / Instructions",
+            paymentTime: "Payment Time",
+            paymentMethod: "Payment Method",
+            paymentID: "Payment ID",
+            ExpiryDate: "Expire Date",
         },
     },
     // myanamr
@@ -72,6 +99,7 @@ const messages = {
             article: 'ဆောင်းပါးများ',
             shoppingcart: 'Shopping Cart',
             search: 'ရှာပါ',
+            requestAQuota: 'စျေးနှုန်းတောင်းခံရန်',
 
             //register
             registerTitle: 'စျေးဝယ်သူအသစ် မှတ်ပုံတင်ရန် ',
@@ -84,6 +112,8 @@ const messages = {
 
             // login
             forgetPassword: "စကားဝှက်ကိုမေ့နေပါသလား?",
+            changePassword: "စကားဝှက်ကိုပြောင်းလိုပါသလား?",
+            updatePassword: "သင့်စကားဝှက်ကို အပ်ဒိတ်လုပ်လိုပါသလား။",
 
 
             //contact us
@@ -121,6 +151,29 @@ const messages = {
             subTotal: "စုစုပေါင်း",
             continue: "ဆက်လုပ်ရန်",
             continueShopping: "ထပ်၀ယ်ရန်",
+            shippingPrice: "ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း",
+
+            //package
+            package: "ပက်ကေ့များ",
+
+            shippingAddress: "ကုန်ပစ္စည်းပို့ဆောင်ရမည့်လိပ်စာအသေးစိတ်",
+            shippingMethod: "ပို့ဆောင်မှုနည်းလမ်း",
+            shipping: "အရောက်ပို့ဆောင်ခြင်း",
+            pickUpFOC: "သတ်မှတ်နေရာတွင်လာရွေးယူခြင်း (FOC)",
+            billingAddress: "ငွေတောင်းခံလွှာပို့ရန်လိပ်စာ",
+            
+            //order page
+            receivedOrder: "သင်၏အော်ဒါအားလက်ခံရရှိပါသည်။",
+            pending: "စောင့်ဆိုင်းဆဲ",
+            order: "လုပ်ငန်းစဉ်အမှတ်",
+            orderTime: "လုပ်ငန်းစတင်ချိန်",
+            totalAmount: "စုစုပေါင်း ကျသင့်ငွေ",
+            orderAlert: "သင်၏အော်ဒါအားစိစစ်နေဆဲပါ။ ကျေးဇူးပြု၍ ငွေပေးချေမှုအား စောင့်ဆိုင်းပေးပါ။",
+            paymentMethodInstruction: "ငွေပေးချေမှု/လုပ်ငန်းစဉ်",
+            paymentTime: "ငွေပေးချေသည့်နေ့ရက်",
+            paymentMethod: "ငွေပေးချေမှုစနစ်",
+            paymentID: "ငွေလွှဲID",
+            ExpiryDate: "သတ်မှတ်ရက်",
         },
     },
 }

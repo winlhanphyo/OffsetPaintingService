@@ -2,246 +2,20 @@
   <div class="container">
     <h2>{{ $t('message.product') }}</h2>
     <div class="product-list">
-      <div class="product-card">
+      <div class="product-card" v-for="(item, index) in products" :key="'product' + index">
         <div class="work-heading">
-          <h3>Design T Shirt</h3>
-          <p>Create your own t-shirt designs for friends, families, and events</p>
+          <h3>{{ item?.name }}</h3>
+          <p>{{ item?.description }}</p>
         </div>
         <div class="work-image-box">
-          <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
+          <img :src="item?.productImage" alt="" />
           <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
+            <a @click="$router.push(`/product/${item?.id}`)"
+              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Personalised T Shirt</h3>
-          <p>Create your own t-shirt designs for friends, families, and events</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Photography Prints</h3>
-          <p>Photographers Create it, we Print it, you Love it.</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Matt Canvas with Frame</h3>
-          <p>Canvas Printing with Frame</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Canves_print_1_400px.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>PP Paper Sticker ( ရေစိုခံ )</h3>
-          <p>PP Paper Sticker ( ရေစိုခံ )</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Water_Proof_400px.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Label Stickers</h3>
-          <p>Label Stickers</p>
-        </div>
-        <div class="work-image-box">
-          <img
-            src="@/assets/images/products/281_Label_sticker_main_image_1_400px20.jpg"
-            alt=""
-          />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-        <div class="ribbon">Hot Sales!</div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Vinyl Banner</h3>
-          <p>Vinyl Banner</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Vinyl_Banner_Small.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-        <div class="ribbon">HOT!</div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Standard Business Cards - Promo</h3>
-          <p>
-            Name cards made from standard paper (Art Carton 250 gsm) printed with the best
-            quality.
-          </p>
-        </div>
-        <div class="work-image-box">
-          <img
-            src="@/assets/images/products/Standard_Business_Cards_-_Promo_3_2copy.jpg"
-            alt=""
-          />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-        <div class="ribbon">HOT!</div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Baked with Love Sticker Set</h3>
-          <p>Baked with Love Sticker Set</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/CakeBox_Sticker_Small.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Covid 19 Floor Sticker-01</h3>
-          <p>Caution Sign Floor Sticker</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/CautionSign_01_Small13.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Deluxe Business Card</h3>
-          <p>
-            It offers the highest level printing. It comes with an option of luxurious
-            Paper and also with matte & gloss lamination finishing. It adds a layer of
-            depth to your branding and unique
-          </p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Business_Card_Small.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Baked with Love Sticker Set</h3>
-          <p>Birthday Party <b>labels Stickers</b></p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/BD_StickerSet_Small.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Feather Banner Stand</h3>
-          <p>Feather Banner Stand</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Feather_Banner_400px.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Graceful Greeting and Invitation Cards</h3>
-          <p>Give customers greeting/invitation cards for any occasion.</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Greeting_Card_400.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Paper Label Sticker - Promo</h3>
-          <p>Label Stickers</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/Paper_label_Sticker_400px.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="product-card">
-        <div class="work-heading">
-          <h3>Company Profile Book</h3>
-          <p>Company Profile</p>
-        </div>
-        <div class="work-image-box">
-          <img src="@/assets/images/products/company_profile_400px.jpg" alt="" />
-          <div class="details">
-            <a href=""
-              >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-            ></a>
-          </div>
-        </div>
-      </div>
+
     </div>
     <div class="pagination-container-awesome">
       <vue-awesome-paginate
@@ -257,23 +31,45 @@
 </template>
 
 <script>
+import store from "@/store";
+import { imgRoot } from "./../../config";
+
 export default {
   name: "AppProductList",
   components: {},
   data() {
     return {
       currentPage: 1,
+      products: []
     };
+  },
+  mounted() {
+    console.log("Mounted");
+    this.getProductData();
   },
   methods: {
     clickPaginate(page) {
       console.log("click paginate-------", page);
     },
+    async getProductData() {
+      const token = localStorage.getItem("token");
+      // const res = await getProduct(token);
+
+      // this.products = res?.data?.data;
+      await store.dispatch("GetProduct", token);
+      this.products = await this.$store?.state?.apiData?.products;
+
+      this.products?.map((dist) => {
+        if (dist?.media?.length > 0) {
+          dist.productImage = imgRoot + dist.media[0]?.url;
+        }
+      });
+  },
   },
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 .container {
   .product-list {
     display: flex;

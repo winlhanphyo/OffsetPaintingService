@@ -15,15 +15,15 @@ const store = useStore();
             {{ new Date().getFullYear() }}, made with
             <i class="fa fa-heart"></i> by
             <a
-              href="https://www.creative-tim.com"
+              href="https://cicimm.net/"
               class="font-weight-bold"
               target="_blank"
-              >Creative Tim</a
+              >Ci Ci</a
             >
             for a better web.
           </div>
         </div>
-        <div class="col-lg-6">
+        <!-- <div class="col-lg-6">
           <ul
             class="nav nav-footer justify-content-center justify-content-lg-end"
           >
@@ -60,7 +60,7 @@ const store = useStore();
               >
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </div>
   </footer>

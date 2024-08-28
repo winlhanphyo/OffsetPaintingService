@@ -39,8 +39,7 @@ onBeforeUnmount(() => {
       style="
         background-image: url(&quot;https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signup-cover.jpg&quot;);
         background-position: top;
-      "
-    >
+      ">
       <span class="mask bg-gradient-dark opacity-6"></span>
       <div class="container">
         <div class="row justify-content-center">
@@ -208,7 +207,7 @@ onBeforeUnmount(() => {
                 </div>
                 <p class="text-sm mt-3 mb-0">
                   Already have an account?
-                  <a href="javascript:;" class="text-dark font-weight-bolder"
+                  <a @click="$router.push('/signin')" class="text-dark font-weight-bolder"
                     >Sign in</a
                   >
                 </p>

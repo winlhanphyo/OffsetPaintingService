@@ -1,85 +1,90 @@
 <template>
   <div class="container" id="contact">
-    <h2>{{ $t('message.contactus') }}</h2>
+    <h2>{{ $t("message.contactus") }}</h2>
     <div class="contact">
       <div class="row">
         <div class="address">
           <p>
-            <span>Xenon Company Limited</span><br>
-            Main address :<br>
-            No. 55 Hla Theingi Street<br>
-            Industrial Zone 2<br>
-            Dagon Seikkan Township<br>
-            Yangon<br>
-            Tel: 09428304444, 09428305555<br>
-            Email: <a href="mailto:hello@xenonmm.com">hello@xenonmm.com</a>
+            <span>Ci Ci Company Limited</span><br />
+            No.565, Mann Aung Street, 3 Man Pyay Ward, Thaketa Township, Yangon.<br />
+            Tel : 09254006394, 09400065339<br />
+            Email : <a href="mailto:cici.offset@gmail.com">cici.offset@gmail.com</a>
           </p>
           <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.458696581868!2d96.28472107492203!3d16.853188983945664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c18cfb170bb19f%3A0xcfa5696f4b738826!2sXenon%20Company%20Limited!5e0!3m2!1sen!2smm!4v1712637412313!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-        <div class="address">
-          <p>
-            <span>Xenon Premium Printing 1</span><br>
-            No. 78, Anawrahta Road, Bet 39th & 40th Steet,<br>
-            Kyauktada Township, Yangon.<br>
-            Tel : 09428303333, 09451177799<br>
-            Email : <a href="mailto:retailshop1@xenonmm.com">retailshop1@xenonmm.com</a>
-          </p>
-          <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d122239.9477148521!2d96.0113673972656!3d16.776756900000017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1ec89efb0b5cf%3A0x95ecd9218dfabc16!2sXenon%20Premium%20Printing%201!5e0!3m2!1sen!2smm!4v1712651950163!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="address mdy-address">
-          <p>
-            <span>Xenon Premium Printing Mandalay</span><br>
-            No. 179, 35th Street, (bet 77 & 78 St), Maha Aung Myae Township, Mandalay.<br>
-            Tel : 095410011, 09428307777<br>
-            Email : <a href="mailto:mdy@xenonmm.com">mdy@xenonmm.com</a>
-          </p>
-          <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.104788353216!2d96.08510987505929!3d21.968940979926177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30cb6dff604e954d%3A0x493e3a680da6fb09!2sXenon%20Premium%20Printing%20Mandalay!5e0!3m2!1sen!2smm!4v1712652086612!5m2!1sen!2smm" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d954.9682909828629!2d96.19654627519941!3d16.782984796422678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1edb5481416c5%3A0xf30d85e67a8420c6!2sCi%20Ci%20Printing%20Services!5e0!3m2!1sen!2smm!4v1716029567315!5m2!1sen!2smm"
+              width="100%"
+              height="400"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>
       <div class="form">
-        <p class="d-inline-block">{{ $t('message.formMsg') }}</p>
+        <p class="d-inline-block">{{ $t("message.formMsg") }}</p>
         <div class="form-row">
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.company') }}</label>
+              <label for="" class="label">{{ $t("message.company") }}</label>
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.company')">
+                <input
+                  type="text"
+                  required
+                  name="company"
+                  :placeholder="$t('message.company')"
+                  v-model="company"
+                />
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.fullName') }} <span>*</span></label>
+              <label for="" class="label"
+                >{{ $t("message.fullName") }} <span>*</span></label
+              >
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.fullName')">
+                <input
+                  type="text"
+                  required
+                  name="fullName"
+                  v-model="fullName"
+                  :placeholder="$t('message.fullName')"
+                />
               </div>
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.email') }}<span>*</span></label>
+              <label for="" class="label">{{ $t("message.email") }}<span>*</span></label>
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.email')">
+                <input
+                  type="text"
+                  required
+                  name="email"
+                  v-model="email"
+                  :placeholder="$t('message.email')"
+                />
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.phone') }}</label>
+              <label for="" class="label">{{ $t("message.phone") }}</label>
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.phone')">
+                <input
+                  type="text"
+                  required
+                  name="phone"
+                  v-model="phone"
+                  :placeholder="$t('message.phone')"
+                />
               </div>
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.department') }}</label>
+              <label for="" class="label">{{ $t("message.department") }}</label>
               <div class="form-data">
-                <select>
+                <select v-model="department">
                   <option value="" selected disabled hidden>Select Departmant</option>
                   <option value="1">Sales</option>
                   <option value="2">Graphic Design</option>
@@ -91,18 +96,31 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="" class="label">{{ $t('message.orderNo') }}</label>
+              <label for="" class="label">{{ $t("message.orderNo") }}</label>
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.orderNo')">
+                <input
+                  type="text"
+                  required
+                  name="orderNo"
+                  v-model="orderNo"
+                  :placeholder="$t('message.orderNo')"
+                />
               </div>
             </div>
           </div>
           <div class="form-group textarea">
-            <label for="" class="label">{{ $t('message.msg') }} <span>*</span></label>
-            <textarea name="" id="" cols="20" rows="5"></textarea>
+            <label for="" class="label">{{ $t("message.msg") }} <span>*</span></label>
+            <textarea
+              required
+              name="msg"
+              v-model="msg"
+              :placeholder="$t('message.msg')"
+              cols="20"
+              rows="5"
+            ></textarea>
           </div>
-          <button class="submit-btn">{{ $t('message.submit') }}</button>
-          <button class="reset-btn">{{ $t('message.reset') }}</button>
+          <button class="submit-btn" @click="submit()">{{ $t("message.submit") }}</button>
+          <button class="reset-btn" @click="reset()">{{ $t("message.reset") }}</button>
         </div>
       </div>
     </div>
@@ -110,17 +128,72 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+import { contactUs } from "@/services/offset.service";
+
 export default {
   name: "AppContactUs",
   components: {},
   data() {
-    return {};
+    return {
+      email: "",
+      company: "",
+      fullName: "",
+      phone: "",
+      department: "",
+      orderNo: "",
+      msg: "",
+    };
   },
-  methods: {},
+  methods: {
+    async submit() {
+      const payload = {
+        email: this.email,
+        company: this.company,
+        fullName: this.fullName,
+        phone: this.phone,
+        department: this.department,
+        orderNo: this.department,
+        msg: this.msg,
+      };
+      const res = await contactUs(payload);
+      if (res?.data?.message) {
+        Swal.fire({
+          position: "bottom",
+          icon: "error",
+          title: "ContactUs Message is sent to admin email.",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
+        this.$router.push("/home");
+      } else {
+        Swal.fire({
+          position: "bottom",
+          icon: "error",
+          title: "Error is occurred.",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
+      }
+    },
+    reset() {
+      this.email = "";
+      this.company = "";
+      this.fullName = "";
+      this.phone = "";
+      this.department = "";
+      this.orderNo = "";
+      this.msg = "";
+    },
+  },
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 .wrapper {
   .container {
     .breadcrumb-container {
@@ -179,15 +252,14 @@ export default {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          width: calc(100% / 2);
+          width: 100%;
           margin-right: 30px;
           @media screen and (min-width: 768px) and (max-width: 1000px) {
             display: block;
-            width: 100%;
+            margin-right: 0;
           }
           @media screen and (max-width: 767.9px) {
             display: block;
-            width: 100%;
             margin: 0 0 20px;
           }
           p {
@@ -195,26 +267,21 @@ export default {
             font-size: 13px;
             line-height: 1.8;
             span {
-              color: #FF8C00;
+              color: #ff8c00;
               font-size: 15px;
             }
             a {
               &:hover {
-                color: #FF8C00;
+                color: #ff8c00;
               }
             }
             @media screen and (max-width: 767.9px) {
               margin-right: 0;
+              margin-bottom: 10px;
             }
           }
-          &:last-child {
-            margin-right: 0;
-          }
-          &.mdy-address {
-            width: 57%;
-            @media screen and (max-width: 767.9px) {
-              width: 100%;
-            }
+          .map {
+            width: 100%;
           }
           iframe {
             @media screen and (min-width: 768px) and (max-width: 1440px) {
@@ -244,6 +311,7 @@ export default {
           margin: 0 20px 20px 0;
           @media screen and (max-width: 767.9px) {
             width: 100%;
+            margin: 0 0 20px 0;
           }
           label {
             display: block;
@@ -253,7 +321,7 @@ export default {
             }
           }
           input {
-            width: calc( 100% - 22px);
+            width: calc(100% - 22px);
             padding: 10px;
             border: 1px solid rgba(0, 0, 0, 0.25);
             border-radius: 5px;
@@ -270,7 +338,7 @@ export default {
           &.textarea {
             width: 100%;
             textarea {
-              width: calc( 100% - 44px);
+              width: calc(100% - 44px);
               padding: 20px;
               resize: none;
               border: 1px solid rgba(0, 0, 0, 0.25);

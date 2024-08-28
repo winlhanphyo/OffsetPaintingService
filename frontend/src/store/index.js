@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import createPersistedState from "vuex-persistedstate";
 import common from "./modules/common";
+import apiData from "./modules/apiData";
 
 export default createStore({
   state: {
@@ -12,7 +13,8 @@ export default createStore({
   actions: {
   },
   modules: {
-    common
+    common,
+    apiData
   },
   plugins: [createPersistedState()],
 })

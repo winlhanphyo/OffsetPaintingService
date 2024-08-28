@@ -4,7 +4,15 @@ import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 
 import SidenavItem from "./SidenavItem.vue";
-import SidenavCard from "./SidenavCard.vue";
+// import SidenavCard from "./SidenavCard.vue";
+
+const temp = localStorage.getItem("user") || null;
+let userData = null;
+if (temp) {
+  userData = JSON.parse(temp);
+}
+console.log("userDAta", userData);
+
 
 const store = useStore();
 const isRTL = computed(() => store.state.isRTL);
@@ -35,9 +43,9 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
-          to="/tables"
-          :class="getRoute() === 'tables' ? 'active' : ''"
-          :navText="isRTL ? 'الجداول' : 'Tables'"
+          to="/banner"
+          :class="getRoute() === 'banner' ? 'active' : ''"
+          :navText="isRTL ? 'الجداول' : 'Banner'"
         >
           <template v-slot:icon>
             <i
@@ -49,9 +57,9 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
-          to="/billing"
-          :class="getRoute() === 'billing' ? 'active' : ''"
-          :navText="isRTL ? 'الفواتیر' : 'Billing'"
+          to="/category"
+          :class="getRoute() === 'category' ? 'active' : ''"
+          :navText="isRTL ? 'الفواتیر' : 'Category'"
         >
           <template v-slot:icon>
             <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
@@ -61,9 +69,9 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
-          to="/virtual-reality"
-          :class="getRoute() === 'virtual-reality' ? 'active' : ''"
-          :navText="isRTL ? 'الواقع الافتراضي' : 'Virtual Reality'"
+          to="/product"
+          :class="getRoute() === 'product' ? 'active' : ''"
+          :navText="isRTL ? 'الواقع الافتراضي' : 'Product'"
         >
           <template v-slot:icon>
             <i class="ni ni-app text-info text-sm opacity-10"></i>
@@ -73,9 +81,45 @@ const getRoute = () => {
 
       <li class="nav-item">
         <sidenav-item
-          to="/rtl-page"
-          :class="getRoute() === 'rtl-page' ? 'active' : ''"
-          navText="RTL"
+          to="/package"
+          :class="getRoute() === 'package' ? 'active' : ''"
+          :navText="isRTL ? 'الواقع الافتراضي' : 'Package'"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-app text-info text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
+        <sidenav-item
+          to="/article"
+          :class="getRoute() === 'article' ? 'active' : ''"
+          :navText="isRTL ? 'الواقع الافتراضي' : 'Article'"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-app text-info text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
+        <sidenav-item v-if="userData?.type === 'superAdmin'"
+          to="/order"
+          :class="getRoute() === 'order' ? 'active' : ''"
+          :navText="isRTL ? 'الواقع الافتراضي' : 'Order'"
+        >
+          <template v-slot:icon>
+            <i class="ni ni-app text-info text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
+        <sidenav-item v-if="userData?.type === 'superAdmin'"
+          to="/user"
+          :class="getRoute() === 'user' ? 'active' : ''"
+          navText="User"
         >
           <template v-slot:icon>
             <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
@@ -113,7 +157,7 @@ const getRoute = () => {
         </sidenav-item>
       </li>
 
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <sidenav-item
           to="/signin"
           :class="getRoute() === 'signin' ? 'active' : ''"
@@ -135,12 +179,12 @@ const getRoute = () => {
             <i class="ni ni-collection text-info text-sm opacity-10"></i>
           </template>
         </sidenav-item>
-      </li>
+      </li> -->
     </ul>
   </div>
 
   <div class="pt-3 mx-3 mt-3 sidenav-footer">
-    <sidenav-card
+    <!-- <sidenav-card
       :card="{
         title: 'Need Help?',
         description: 'Please check our docs',
@@ -159,6 +203,6 @@ const getRoute = () => {
           },
         ],
       }"
-    />
+    /> -->
   </div>
 </template>

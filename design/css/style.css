@@ -496,7 +496,7 @@ body .wrapper header .header-inner .search-blk .shopping .number {
 body .wrapper header.fixed {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   max-width: 100%;
   left: 0;
   right: 0;

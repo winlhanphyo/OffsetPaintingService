@@ -9,6 +9,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  object-fit: cover;
   font-size: $avatar-font-size;
   border-radius: $border-radius-lg;
   height: $avatar-height;

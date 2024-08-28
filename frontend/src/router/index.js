@@ -4,7 +4,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: () => import('../views/HomeView.vue')
+    component: () => import('../views/HomeView.vue'),
   },
   {
     path: '/about',
@@ -15,6 +15,11 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: () => import('../views/ContactUsView.vue')
+  },
+  {
+    path: '/quota',
+    name: 'quota',
+    component: () => import('../views/QuotaView.vue')
   },
   {
     path: '/article/:id',
@@ -42,9 +47,19 @@ const routes = [
     component: () => import('../views/ProductDetailView.vue')
   },
   {
+    path: '/package/:id',
+    name: 'package',
+    component: () => import('../views/PackageDetailView.vue')
+  },
+  {
     path: '/products',
     name: 'products',
     component: () => import('../views/ProductListView.vue')
+  },
+  {
+    path: '/packages',
+    name: 'packages',
+    component: () => import('../views/PackageListView.vue')
   },
   {
     path: '/forget-password',
@@ -52,9 +67,30 @@ const routes = [
     component: () => import('../views/ForgetPassword.vue')
   },
   {
+    path: '/change-password',
+    name: 'changePassword',
+    component: () => import('../views/ChangePassword.vue')
+  },
+  {
+    path: '/forget-password-update/:userId/:token',
+    name: 'updatePassword',
+    component: () => import('../views/UpdatePassword.vue')
+  },
+  {
     path: '/checkout',
     name: 'checkout',
-    component: () => import('../views/CheckoutView.vue')
+    component: () => import('../views/CheckoutView.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('../views/ProductSearchView.vue')
+  },
+  {
+    path: '/order',
+    name: 'order',
+    component: () => import('../views/OrderView.vue')
   },
   {
     path: "/",
@@ -70,5 +106,18 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (localStorage.getItem("token")) {
+      console.log("existed storage")
+      next();
+      return;
+    }
+    next("/login");
+  } else {
+    next();
+  }
+});
 
 export default router

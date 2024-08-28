@@ -10,7 +10,7 @@
             <div class="form-group">
               <label for="" class="label">{{ $t('message.email') }} <span>*</span></label>
               <div class="form-data">
-                <input type="text" :placeholder="$t('message.email')" />
+                <input type="text" required name="email" :placeholder="$t('message.email')" v-model="email" />
               </div>
             </div>
           </div>
@@ -20,13 +20,13 @@
               <div class="form-group">
                 <label for="" class="label">{{ $t('message.password') }} <span>*</span></label>
                 <div class="form-data">
-                  <input type="password" :placeholder="$t('message.password')" />
+                  <input type="password" required name="password" :placeholder="$t('message.password')" v-model="password" />
                 </div>
               </div>
             </div>
           </div>
           <div class="btn-container">
-            <button class="submit-btn">Login</button>
+            <button class="submit-btn" @click="submit()">Login</button>
             <a class="forget-password-btn"
               data-type="iframe"
               data-width="500"
@@ -42,17 +42,48 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
+import { login } from "@/services/offset.service";
+
 export default {
   name: "AppLoginRegister",
   components: {},
   data() {
-    return {};
+    return {
+      email: "",
+      password: ""
+    };
   },
-  methods: {},
+  methods: {
+    async submit() {
+      const payload = {
+        email: this.email,
+        password: this.password
+      };
+      const res = await login(payload);
+      if (res?.data?.token) {
+        const token = res?.data?.token;
+        const user = res?.data?.user;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        this.$router.push("/home");
+      } else {
+        Swal.fire({
+            position: "bottom",
+            icon: "error",
+            title: "Username or Password is incorrect.",
+            showConfirmButton: false,
+            // timer: 3000,
+            timerProgressBar: true,
+            toast: true,
+          });
+      }
+    }
+  },
 };
 </script>
 
-<style lang="postcss">
+<style scoped lang="scss">
 .wrapper {
   .container {
     .breadcrumb-container {
@@ -161,9 +192,9 @@ export default {
         color: #fff;
         cursor: pointer;
         border-radius: 5px;
+        border: none;
         &:hover {
-          color: #f47920;
-          background: #fff;
+          background: #009BDF;
         }
       }
       .forget-password-btn {
@@ -175,9 +206,7 @@ export default {
         border-radius: 5px;
         background: #000;
         &:hover {
-          color: #f47920;
-          background: #fff;
-          border: 2px solid #000;
+          background: #009BDF;
         }
       }
     }
