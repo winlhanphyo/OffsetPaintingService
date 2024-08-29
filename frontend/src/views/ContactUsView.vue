@@ -86,12 +86,7 @@
               <div class="form-data">
                 <select v-model="department">
                   <option value="" selected disabled hidden>Select Departmant</option>
-                  <option value="1">Sales</option>
-                  <option value="2">Graphic Design</option>
-                  <option value="3">Customer Assistance</option>
-                  <option value="4">Direct Mailing Question</option>
-                  <option value="5">Testimonials</option>
-                  <option value="6">Request Reorder</option>
+                  <option v-for="item in departments" :key="item?.id" :value="item?.name">{{ item?.name }}</option>
                 </select>
               </div>
             </div>
@@ -143,17 +138,70 @@ export default {
       department: "",
       orderNo: "",
       msg: "",
+      departments: [
+        {
+          id: 1,
+          name: "Graphic Design"
+        },
+        {
+          id: 2,
+          name: "Customer Assistance"
+        },
+        {
+          id: 3,
+          name: "Direct Mailing Question"
+        },
+        {
+          id: 4,
+          name: "Testimonials"
+        },
+        {
+          id: 5,
+          name: "Request Reorder"
+        },
+      ]
     };
   },
   methods: {
     async submit() {
+      if (!this.email) {
+        Swal.fire({
+          position: "bottom",
+          icon: "error",
+          title: "Email Address is required",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
+      } else if (!this.fullName) {
+        Swal.fire({
+          position: "bottom",
+          icon: "error",
+          title: "Full Name is required",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
+      } else if (!this.msg) {
+        Swal.fire({
+          position: "bottom",
+          icon: "error",
+          title: "Message is required",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
+      }
       const payload = {
         email: this.email,
         company: this.company,
         fullName: this.fullName,
         phone: this.phone,
         department: this.department,
-        orderNo: this.department,
+        orderNo: this.orderNo,
         msg: this.msg,
       };
       const res = await contactUs(payload);
