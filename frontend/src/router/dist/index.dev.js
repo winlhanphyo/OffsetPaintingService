@@ -38,6 +38,14 @@ var routes = [{
     });
   }
 }, {
+  path: '/quota',
+  name: 'quota',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/QuotaView.vue'));
+    });
+  }
+}, {
   path: '/article/:id',
   name: 'articleDetail',
   component: function component() {
@@ -78,6 +86,14 @@ var routes = [{
     });
   }
 }, {
+  path: '/package/:id',
+  name: 'package',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/PackageDetailView.vue'));
+    });
+  }
+}, {
   path: '/products',
   name: 'products',
   component: function component() {
@@ -86,11 +102,35 @@ var routes = [{
     });
   }
 }, {
+  path: '/packages',
+  name: 'packages',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/PackageListView.vue'));
+    });
+  }
+}, {
   path: '/forget-password',
   name: 'forgetPassword',
   component: function component() {
     return Promise.resolve().then(function () {
       return _interopRequireWildcard(require('../views/ForgetPassword.vue'));
+    });
+  }
+}, {
+  path: '/change-password',
+  name: 'changePassword',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/ChangePassword.vue'));
+    });
+  }
+}, , {
+  path: '/update-password',
+  name: 'updatePassword',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/UpdatePassword.vue'));
     });
   }
 }, {

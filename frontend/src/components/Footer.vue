@@ -35,102 +35,53 @@
               >
                 <span class="material-symbols-outlined"> location_on </span>
                 <span>
-                  <b>Xenon Company Limited</b><br />
+                  <b>Ci Ci Company Limited</b><br />
                   Main address :<br />
-                  No. 55 Hla Theingi Street<br />
-                  Industrial Zone 2<br />
-                  Dagon Seikkan Township<br />
-                  Yangon
+                  No.565, Mann Aung Street<br />
+                  3 Man Pyay Ward<br />
+                  Thaketa Township, Yangon.
                 </span>
               </a>
             </li>
             <li class="phone">
-              <a href="tel:09977666888"
+              <a href="tel:09254006394"
                 ><span class="material-symbols-outlined">phone_iphone</span
-                ><span>09977 666 888</span></a
+                ><span>09 254006394</span></a
+              >
+              <a href="tel:09400065339"
+                ><span class="material-symbols-outlined">phone_iphone</span
+                ><span>09 400065339</span></a
               >
             </li>
             <li class="mail">
-              <a href="mailto:hello@xenonmm.com"
-                ><span class="material-symbols-outlined"> mail </span>hello@xenonmm.com</a
+              <a href="mailto:cici.offset@gmail.com"
+                ><span class="material-symbols-outlined"> mail </span
+                >cici.offset@gmail.com</a
               >
             </li>
           </ul>
         </div>
-        <div class="col ft-link">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="">Artwork Guidelines</a></li>
-            <li><a href="">Download Templates</a></li>
-            <li><a href="">Privacy & Security Policy</a></li>
-            <li><a href="">FAQs</a></li>
-            <li><a href="">Request a Quote</a></li>
-            <li><a href="">Terms & Conditions</a></li>
-          </ul>
-        </div>
-        <div class="col ft-link">
-          <h3>Product Category</h3>
-          <h4>Business Cards</h4>
-          <ul>
-            <li>
-              <a href="">Standard Business Cards - Promo<span>SALE!</span></a>
-            </li>
-            <li><a href="">Deluxe Business Card</a></li>
-          </ul>
-          <h4>Large Format Printing</h4>
-          <ul>
-            <li>
-              <a href="">Vinyl Banner<span>HOT!</span></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-link">
-      <div class="footer-inner">
-        <div class="row">
-          <div class="extra-link">
+        <div class="col extra-link">
+          <div class="extra">
             <p class="title">Follow Us:</p>
             <ul class="row">
               <li>
-                <a href="https://www.facebook.com/XenonCompanyLimited/" title="Facebook"
+                <a href="https://www.facebook.com/cicioffsetprinting" title="Facebook"
                   ><i class="fab fa-facebook-f"></i
                 ></a>
               </li>
               <li>
-                <a href=""><i class="fab fa-instagram"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fab fa-twitter"></i></a>
-              </li>
-              <li>
-                <a href=""><i class="fab fa-pinterest-p"></i></a>
+                <a href="#viber"
+                  ><span class="material-symbols-outlined">wifi_calling_1</span></a
+                >
               </li>
             </ul>
           </div>
-          <div class="extra-link payment">
+          <div class="extra payment">
             <p class="title">We Accept:</p>
             <ul class="row">
               <li>
-                <a href="#" title="Visa">
-                  <img
-                    alt="visa"
-                    class="img-fluid"
-                    src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/Visa.jpg"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" title="master">
-                  <img
-                    alt="master"
-                    class="img-fluid"
-                    src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/Master_Card.jpg"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" title="mpu">
+                <a title="mpu">
                   <img
                     alt="mpu"
                     class="img-fluid"
@@ -139,7 +90,7 @@
                 </a>
               </li>
               <li>
-                <a href="#" title="kbzpay">
+                <a title="kbzpay">
                   <img
                     alt="kbz-pay"
                     class="img-fluid"
@@ -148,7 +99,7 @@
                 </a>
               </li>
               <li>
-                <a href="#" title="aya bank">
+                <a title="aya bank">
                   <img
                     alt="aya-bank"
                     class="img-fluid"
@@ -157,29 +108,11 @@
                 </a>
               </li>
               <li>
-                <a href="#" title="cb bank">
+                <a title="cb bank">
                   <img
                     alt="cb bank"
                     class="img-fluid"
                     src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/CB_Bank.jpg"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" title="123">
-                  <img
-                    alt="123"
-                    class="img-fluid"
-                    src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/123.jpg"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="#" title="m-many">
-                  <img
-                    alt="m-many"
-                    class="img-fluid"
-                    src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/contentimages/images/M_Ks.jpg"
                   />
                 </a>
               </li>
@@ -188,13 +121,49 @@
         </div>
       </div>
     </div>
-    <div class="footer-inner">
-      <div class="row ft-blk">
-        <p>Copyright &copy; Dream Holdings., Ltd. All Rights Reserved.</p>
-        <ul class="terms">
-          <li><a href="">Privacy</a></li>
-          <li><a href="">Terms & Conditions</a></li>
-        </ul>
+    <div class="ft-copyright">
+      <div class="footer-inner">
+        <div class="row ft-blk">
+          <p>Copyright &copy; Ci Ci., Ltd. All Rights Reserved.</p>
+          <ul class="terms">
+            <li><a href="">Privacy</a></li>
+            <li><a href="">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ul class="icon-fixed">
+      <li>
+        <a href="https://www.facebook.com/cicioffsetprinting">
+          <img src="@/assets/images/common/facebook.png" alt="facebook" />
+        </a>
+      </li>
+      <li class="tooltip">
+        <a @click="openViber('+959254006394')">
+          <img src="@/assets/images/common/viber.png" alt="viber" />
+          <span class="tooltiptext">+959 254006394</span>
+        </a>
+      </li>
+      <li class="tooltip">
+        <a @click="openTelegram('+959254006394')">
+          <img src="@/assets/images/common/telegram.png" alt="telegram" />
+          <span class="tooltiptext">+959 254006394</span>
+        </a>
+      </li>
+      <li class="tooltip">
+        <a @click="phoneCall('+959254006394')">
+          <img src="@/assets/images/common/phone.png" alt="phone" />
+          <span class="tooltiptext">+959 254006394</span>
+        </a>
+      </li>
+    </ul>
+    <div id="viber" class="overlay">
+      <div class="popup">
+        <div class="popup-content">
+          <img src="@/assets/images/home/viber_icon.png" alt="viber" />
+          <span><strong>U Soe Naing</strong><br />+959 254006394</span>
+        </div>
+        <a class="close" href="#">&times;</a>
       </div>
     </div>
   </footer>
@@ -209,20 +178,32 @@ export default {
       activeMenu: false,
     };
   },
-  methods: {},
+  methods: {
+    phoneCall(phoneNumber) {
+      const phoneUrl = `tel:${phoneNumber}`;
+      window.location.href = phoneUrl;
+    },
+    openViber(phoneNumber) {
+      const viberUrl = `viber://chat?number=${encodeURIComponent(phoneNumber)}`;
+      window.location.href = viberUrl;
+    },
+    openTelegram(username) {
+      const telegramUrl = `https://t.me/${encodeURIComponent(username)}`;
+      window.location.href = telegramUrl;
+    },
+  },
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 @import "@/assets/scss/mixins.scss";
+
+// $primary-color: #2c2c2c;  // Tomato color
 
 footer {
   padding: 40px 0 0;
-  background: rgb(44 44 44);
+  background-color: #2c2c2c;
   color: #fff;
-  @media screen and (max-width: 767.9px) {
-    padding: 40px 0 10px;
-  }
   a {
     color: #fff;
   }
@@ -316,6 +297,7 @@ footer {
             text-decoration: none;
             pointer-events: none;
             cursor: default;
+            margin-bottom: 12px;
             @media screen and (max-width: 767.9px) {
               cursor: pointer;
               pointer-events: auto;
@@ -357,6 +339,65 @@ footer {
             }
           }
         }
+        &.extra-link {
+          width: 25%;
+          @media screen and (max-width: 767.9px) {
+            width: 100%;
+            margin-top: 20px;
+          }
+          .extra {
+            display: block;
+            @media screen and (max-width: 767.9px) {
+              display: block;
+            }
+            .title {
+              margin-right: 15px;
+              font-size: 22px;
+            }
+            .row {
+              justify-content: flex-start;
+            }
+            li {
+              margin-right: 15px;
+              font-size: 22px;
+              background: rgba(255, 255, 255, 0.3294117647);
+              border-radius: 5px;
+              @media screen and (max-width: 767.9px) {
+                margin-right: 10px;
+                margin-bottom: 10px;
+              }
+              a {
+                display: flex;
+                justify-content: center;
+                width: 20px;
+                padding: 9px 11px;
+                &:hover {
+                  opacity: 0.7;
+                }
+              }
+            }
+            &.payment {
+              @media screen and (max-width: 767.9px) {
+                .row {
+                  justify-content: flex-start;
+                }
+              }
+              li {
+                background: none;
+                border-radius: inherit;
+                margin: 0 10px 10px 0;
+                a {
+                  width: 50px;
+                  padding: 0;
+                  cursor: pointer;
+                  @media screen and (max-width: 767.9px) {
+                    width: 40px;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       &.ft-blk {
         align-items: center;
@@ -382,7 +423,7 @@ footer {
       }
     }
   }
-  .footer-link {
+  .ft-copyright {
     background: rgba(255, 255, 255, 0.3294117647);
     padding: 15px 0;
     margin-top: 10px;
@@ -390,55 +431,108 @@ footer {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      .extra-link {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        @media screen and (max-width: 767.9px) {
-          display: block;
+      @media screen and (max-width: 767.9px) {
+        justify-content: flex-start;
+      }
+    }
+  }
+  .icon-fixed {
+    position: fixed;
+    bottom: 8%;
+    right: 8px;
+    width: 50px;
+    z-index: 1;
+    li {
+      margin-bottom: 20px;
+      transition: transform 0.3s ease-in-out;
+      &:hover {
+        opacity: 0.8;
+        transform: scale(1.1);
+      }
+      &.tooltip {
+        position: relative;
+        display: inline-block;
+        .tooltiptext {
+          visibility: hidden;
+          width: 120px;
+          background-color: #ffe401;
+          color: #000;
+          text-align: center;
+          border-radius: 6px;
+          position: absolute;
+          z-index: 1;
+          right: 60px;
+          top: 6px;
+          padding: 10px;
+          box-shadow: 2px 2px 4px #000;
         }
-        .title {
-          margin-right: 15px;
-          font-size: 22px;
-        }
-        li {
-          margin-right: 15px;
-          font-size: 22px;
-          background: rgba(255, 255, 255, 0.3294117647);
-          border-radius: 5px;
-          @media screen and (max-width: 767.9px) {
-            margin-right: 10px;
-            margin-bottom: 10px;
-          }
-          a {
-            display: block;
-            width: 20px;
-            padding: 9px 14px;
-            &:hover {
-              opacity: 0.7;
-            }
-          }
-        }
-        &.payment {
-          @media screen and (max-width: 767.9px) {
-            .row {
-              justify-content: flex-start;
-            }
-          }
-          li {
-            background: none;
-            border-radius: inherit;
-            a {
-              width: 50px;
-              padding: 0;
-              @media screen and (max-width: 767.9px) {
-                width: 40px;
-              }
-            }
+        &:hover {
+          cursor: pointer;
+          .tooltiptext {
+            visibility: visible;
           }
         }
       }
     }
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    height: 100%;
+    z-index: 2;
+  }
+
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .popup {
+    margin: 240px auto;
+    padding: 20px;
+    background: #fff;
+    color: #000;
+    border-radius: 5px;
+    width: 210px;
+    position: relative;
+    transition: all 5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup-content {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    img {
+      width: 30%;
+      display: block;
+      margin: 0 auto;
+    }
+    span {
+      display: block;
+      margin-top: 20px;
+      font-size: 20px;
+      line-height: 1.8;
+    }
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
   }
 }
 </style>

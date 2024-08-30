@@ -1,18 +1,18 @@
 <script setup>
-import AuthorsTable from "./components/AuthorsTable.vue";
-import ProjectsTable from "./components/ProjectsTable.vue";
+import UserTable from "./components/UserTable.vue";
+// import ProjectsTable from "./components/ProjectsTable.vue";
 </script>
 <template>
   <div class="py-4 container-fluid">
     <div class="row">
       <div class="col-12">
-        <authors-table />
+        <user-table />
       </div>
     </div>
-    <div class="mt-4 row">
+    <!-- <div class="mt-4 row">
       <div class="col-12">
         <projects-table />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>

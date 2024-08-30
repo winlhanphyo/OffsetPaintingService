@@ -16,6 +16,7 @@ var messages = {
       article: 'Article',
       shoppingcart: 'Shopping Cart',
       search: 'Search',
+      requestAQuota: ' Request A Quota',
       //register
       registerTitle: 'New Customer Register Here',
       requiredInfo: "Required Information",
@@ -48,6 +49,8 @@ var messages = {
       total: "Total",
       firstAccordianHead: "First Accordian Head",
       getStarted: "Get Started",
+      // package
+      "package": "Package",
       //title
       shoppingCartTitle: "Shopping Cart",
       shoppingCartStep1: "Shopping Cart",
@@ -58,7 +61,13 @@ var messages = {
       editOrder: "Edit Order",
       subTotal: "Sub Total",
       "continue": "Continue",
-      continueShopping: "Continue Shopping"
+      continueShopping: "Continue Shopping",
+      shippingPrice: "Shipping Price",
+      shippingAddress: "Shipping Address",
+      shippingMethod: "Shipping Method",
+      shipping: "Shipping",
+      pickUpFOC: "Pickup (FOC)",
+      billingAddress: "Billing Address"
     }
   },
   // myanamr
@@ -72,6 +81,7 @@ var messages = {
       article: 'ဆောင်းပါးများ',
       shoppingcart: 'Shopping Cart',
       search: 'ရှာပါ',
+      requestAQuota: 'စျေးနှုန်းတောင်းခံရန်',
       //register
       registerTitle: 'စျေးဝယ်သူအသစ် မှတ်ပုံတင်ရန် ',
       requiredInfo: 'လိုအပ်သည့်သတင်းအချက်အလက်',
@@ -82,6 +92,8 @@ var messages = {
       confirmPassword: "စကားဝှက်ကိုအတည်ပြုပါ",
       // login
       forgetPassword: "စကားဝှက်ကိုမေ့နေပါသလား?",
+      changePassword: "စကားဝှက်ကိုပြောင်းလိုပါသလား?",
+      updatePassword: "သင့်စကားဝှက်ကို အပ်ဒိတ်လုပ်လိုပါသလား။",
       //contact us
       formMsg: "ကျေးဇူးပြု၍ အောက်ပါအချက်အလက်များကို ဖြည့်ပါ။",
       company: "ကုမ္ပဏီ",
@@ -114,7 +126,15 @@ var messages = {
       editOrder: "အော်ဒါကိုပြင်ရန်",
       subTotal: "စုစုပေါင်း",
       "continue": "ဆက်လုပ်ရန်",
-      continueShopping: "ထပ်၀ယ်ရန်"
+      continueShopping: "ထပ်၀ယ်ရန်",
+      shippingPrice: "ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း",
+      //package
+      "package": "ပက်ကေ့များ",
+      shippingAddress: "ကုန်ပစ္စည်းပို့ဆောင်ရမည့်လိပ်စာအသေးစိတ်",
+      shippingMethod: "ပို့ဆောင်မှုနည်းလမ်း",
+      shipping: "အရောက်ပို့ဆောင်ခြင်း",
+      pickUpFOC: "သတ်မှတ်နေရာတွင်လာရွေးယူခြင်း (FOC)",
+      billingAddress: "ငွေတောင်းခံလွှာပို့ရန်လိပ်စာ"
     }
   }
 };

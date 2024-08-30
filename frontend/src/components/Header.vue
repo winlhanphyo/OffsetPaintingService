@@ -2,9 +2,9 @@
   <header>
     <div class="header-inner">
       <h1>
-        <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')"
-          ><img src="@/assets/images/common/logo.png" alt="Xenon Company Limited"
-        /></a>
+        <a :class="[checkActiveMenu('/home') ? 'active' : '']" @click="changeRoute('/')">
+          <img src="@/assets/images/common/logo.png" alt="Ci Ci Offset" />
+        </a>
       </h1>
       <div class="flex">
         <nav :class="[mobileToggle ? 'gnav is-show' : 'gnav']">
@@ -13,249 +13,30 @@
               <a
                 :class="[checkActiveMenu('/home') ? 'active' : '']"
                 @click="changeRoute('/')"
-                >{{ $t('message.home') }}</a
-              >
+                >{{ $t("message.home") }}</a>
             </li>
             <li class="has-menu">
               <a
                 :class="[checkActiveMenu('/product') ? 'active' : '']"
                 @click="resetMenu()"
-                >{{ $t('message.product') }}</a
-              >
+                >{{ $t("message.product") }}</a>
               <ul :class="[activeMenu ? 'sub-menu is-show' : 'sub-menu']">
                 <li>
                   <span @click="$router.push('/products')">All Products</span>
                 </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(0)">Promotion Printing</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[0]">
-                    <li>
+                <li v-for="(item, index) in categories" :key="'category' + index">
+                  <span @click="clickActiveDropDownMenu(index)">{{ item?.name }}</span>
+                  <ul class="dropdown-menu" v-if="activeDropDownMenu[index]">
+                    <li v-for="(data, i) in item?.product" :key="'product' + i">
                       <a @click="changeRoute()" class="dropdown-item"
-                        >DTF Film for T Shirt</a
+                        >{{ data?.name }}<span class="badge-info">SALE!</span></a
                       >
                     </li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(1)">Business Cards</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[1]">
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Standard Business Cards - Promo<span class="badge-info"
-                          >SALE!</span
-                        ></a
-                      >
-                    </li>
-                    <li>
+                    <!-- <li>
                       <a @click="changeRoute()" class="dropdown-item"
                         >Deluxe Business Card</a
                       >
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(2)">Large Format Printing</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[2]">
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Vinyl Banner<span class="badge-info">HOT!</span></a
-                      >
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Backlit Printing<span class="badge-info">UV</span></a
-                      >
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Building Printing</a
-                      >
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item">Event Backdrop</a>
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Billboard Printing</a
-                      >
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Reflective Printing</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(3)">Marketing Materials</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[3]">
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Company Profile Book</a
-                      >
-                    </li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Flyer</a></li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item">Poster Sheet</a>
-                    </li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Brochures</a></li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item">Poster Board</a>
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item">Table Tent Card</a>
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item">Spin Wheel</a>
-                    </li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Booklet</a></li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item">Spiral Note Book</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(4)">Sticker</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[4]">
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Ezy Film ( UV DTF )</a
-                      >
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >PP Paper Sticker ( ရေစိုခံ )</a
-                      >
-                    </li>
-                    <li><a @click="changeRoute()" class="dropdown-item">Sticker</a></li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Label Stickers<span class="badge-info">Hot Sales!</span></a
-                      >
-                    </li>
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >Paper Label Sticker - Promo</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(5)">Caution Sign Sticker</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[5]">
-                    <li><a @click="changeRoute()">Covid 19 Floor Sticker-01</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-02</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-03</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-04</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sign Board-05</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Floor Sticker-06</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-07</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-08</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-09</a></li>
-                    <li><a @click="changeRoute()">Covid 19 Caution Sticker-10</a></li>
-                    <li>
-                      <a @click="changeRoute()">Covid 19 Caution Sign Table Top-11</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(6)">T Shirt Printing</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[6]">
-                    <li><a @click="changeRoute()">Design T Shirt</a></li>
-                    <li><a @click="changeRoute()">Personalised T Shirt</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(7)">Display Standee</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[7]">
-                    <li><a @click="changeRoute()">Life Size Cut Out</a></li>
-                    <li>
-                      <a @click="changeRoute()">Aluminium Lightbox (Customize Size)</a>
-                    </li>
-                    <li><a @click="changeRoute()">X Stand</a></li>
-                    <li><a @click="changeRoute()">Tripod Display Stand</a></li>
-                    <li><a @click="changeRoute()">Door Shape Banner Stand</a></li>
-                    <li><a @click="changeRoute()">Spin Wheel</a></li>
-                    <li><a @click="changeRoute()">Portable Counter</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(8)">Stickers - ReadyMade</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[8]">
-                    <li><a @click="changeRoute()">Baked with Love Sticker Set</a></li>
-                    <li><a @click="changeRoute()">Baked with Love Sticker Set</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(9)">Flag</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[9]">
-                    <li><a @click="changeRoute()">Feather Banner Stand</a></li>
-                    <li><a @click="changeRoute()">J Flag Stand</a></li>
-                    <li><a @click="changeRoute()">Rectangle Flag</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(10)">Menu</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[10]">
-                    <li><a @click="changeRoute()">Menu Book</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(11)">Business Stationery</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[11]">
-                    <li><a @click="changeRoute()">Greeting Cards</a></li>
-                    <li><a @click="changeRoute()">Document printing</a></li>
-                    <li><a @click="changeRoute()">Letterhead</a></li>
-                    <li><a @click="changeRoute()">Certificated</a></li>
-                    <li><a @click="changeRoute()">ID Card</a></li>
-                    <li><a @click="changeRoute()">Lanyard</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(12)">Canvas Print</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[12]">
-                    <li><a @click="changeRoute()">Matt Canvas with Frame</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(13)">Decorative Printing</span>
-                  <ul v-if="activeDropDownMenu[13]">
-                    <li><a @click="changeRoute()">Wall Paper</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(14)">Photo Print</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[14]">
-                    <li><a @click="changeRoute()">Acrylic UV Print</a></li>
-                    <li><a @click="changeRoute()">Metal UV Print</a></li>
-                    <li><a @click="changeRoute()">Photopaper Printing</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(15)">Souvenir & Gift</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[15]">
-                    <li><a @click="changeRoute()">Tote Bag</a></li>
-                    <li><a @click="changeRoute()">Aluminium Bottle</a></li>
-                    <li><a @click="changeRoute()">Ceramic Coaster</a></li>
-                    <li><a @click="changeRoute()">Pillow Case</a></li>
-                    <li><a @click="changeRoute()">Coffee Mug</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <span @click="clickActiveDropDownMenu(16)">POP Display</span>
-                  <ul class="dropdown-menu" v-if="activeDropDownMenu[16]">
-                    <li><a @click="changeRoute()">Wobbler</a></li>
-                    <li>
-                      <a @click="changeRoute()">1mm PVC Rigid Printing with Sticker</a>
-                    </li>
-                    <li>
-                      <a @click="changeRoute()">0.5mm PVC Rigid Printing with Sticker</a>
-                    </li>
-                    <li><a @click="changeRoute()">Dangler</a></li>
-                    <li>
-                      <a @click="changeRoute()">All in one Board Printing with Sticker</a>
-                    </li>
-                    <li><a @click="changeRoute()">PP Board Printing with Sticker</a></li>
+                    </li> -->
                   </ul>
                 </li>
               </ul>
@@ -264,48 +45,70 @@
               <a
                 :class="[checkActiveMenu('/about') ? 'active' : '']"
                 @click="changeRoute('/about')"
-                >{{ $t('message.aboutus') }}</a
+                >{{ $t("message.aboutus") }}</a
               >
             </li>
             <li>
               <a
                 :class="[checkActiveMenu('/contact') ? 'active' : '']"
                 @click="changeRoute('/contact')"
-                >{{ $t('message.contactus') }}</a
+                >{{ $t("message.contactus") }}</a
               >
             </li>
             <li>
               <a
                 :class="[checkActiveMenu('/article') ? 'active' : '']"
                 @click="changeRoute('/article')"
-                >{{ $t('message.article') }}</a
+                >{{ $t("message.article") }}</a
               >
             </li>
-            <li class="has-menu">
+
+            <li>
+              <a
+                :class="[checkActiveMenu('/quota') ? 'active' : '']"
+                @click="changeRoute('/quota')"
+                >{{ $t("message.requestAQuota") }}</a
+              >
+            </li>
+
+            <li class="has-menu" v-if="user">
               <a
                 :class="[checkActiveMenu('/login', '/register') ? 'active' : '']"
                 @click="clickLoginRegister()"
-                >Login / Register</a >
+                >{{ user?.firstName + " " + user?.lastName }}</a>
+              <ul :class="[activeLoginMenu ? 'sub-menu is-show sub-menu2' : 'sub-menu']" style="width: 75px;" >
+                <li>
+                  <span @click="logout()">Logout</span>
+                </li>
+              </ul>
+            </li>
+
+            <li class="has-menu" v-else>
+              <a
+                :class="[checkActiveMenu('/login', '/register') ? 'active' : '']"
+                @click="clickLoginRegister()"
+                >Login / Register</a
+              >
               <ul :class="[activeLoginMenu ? 'sub-menu is-show sub-menu2' : 'sub-menu']">
                 <li>
                   <span @click="$router.push('/login')">Login</span>
                 </li>
                 <li>
                   <span @click="$router.push('/register')">Register</span>
-                  <!-- <ul class="dropdown-menu" v-if="activeDropDownMenu[0]">
-                    <li>
-                      <a @click="changeRoute()" class="dropdown-item"
-                        >DTF Film for T Shirt</a
-                      >
-                    </li>
-                  </ul> -->
                 </li>
               </ul>
             </li>
           </ul>
           <ul class="sp-language">
             <li><img src="@/assets/images/common/lang_burmese.png" alt="" /></li>
-            <li><input type="checkbox" v-model="langChecked" @change="handleLanguage()" class="toggle" /></li>
+            <li>
+              <input
+                type="checkbox"
+                v-model="langChecked"
+                @change="handleLanguage()"
+                class="toggle"
+              />
+            </li>
             <li><img src="@/assets/images/common/lang_usa.gif" alt="" /></li>
           </ul>
         </nav>
@@ -323,7 +126,8 @@
               type="search"
               name="top_search"
               id="top_search"
-              value=""
+              v-model="searchName"
+              @keyup.enter="handleEnter()"
               class="form-control"
               :placeholder="$t('message.search')"
               autocomplete="off"
@@ -335,21 +139,24 @@
           </div>
           <ul class="language">
             <li><img src="@/assets/images/common/lang_burmese.png" alt="" /></li>
-            <li><input type="checkbox" v-model="langChecked" @change="handleLanguage()" class="toggle" /></li>
+            <li>
+              <input
+                type="checkbox"
+                v-model="langChecked"
+                @change="handleLanguage()"
+                class="toggle"
+              />
+            </li>
             <li><img src="@/assets/images/common/lang_usa.gif" alt="" /></li>
           </ul>
           <div class="shopping">
-            <div class="material-symbols-outlined" @click="$router.push('/checkout')">shopping_cart</div>
-            <div class="number">0</div>
+            <div class="material-symbols-outlined" @click="$router.push('/checkout')">
+              shopping_cart
+            </div>
+            <div :class="[$store.state.common?.data?.cartLength > 0 ? 'blue-number' : 'number']">{{ $store.state.common?.data?.cartLength }}</div>
           </div>
         </div>
       </div>
-      <!-- <div class="search-dialog">
-        <div class="search-form"><input type="search" name="top_search" id="top_search" value="" class="form-control" placeholder="Search" autocomplete="off" data-searched="">
-          <button class="search-btn"><span class="material-symbols-outlined"> search </span></button>
-          <button class="close-btn">ESC</button>
-        </div>
-      </div> -->
     </div>
   </header>
 </template>
@@ -388,20 +195,40 @@ export default {
         false,
       ],
       mobileToggle: false,
+      categories: this.$store.state.apiData?.categoryProducts,
+      user: null,
+      searchName: null,
     };
   },
   mounted() {
-    this.$i18n.locale = this.$store.state.common?.data?.lang;
+    if (this?.$i18n?.locale && this.$store.state.common?.data?.lang) {
+      this.$i18n.locale = this.$store.state.common?.data?.lang;
+    }
+    this.getProductCategory();
+    this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
+    console.log("user", this.user);
   },
   methods: {
+    handleEnter() {
+      this.$router.push({ path: '/search', query: { name: this.searchName } });
+      this.searchName = null;
+    },
+    async getProductCategory() {
+      const token = localStorage.getItem("token") || "";
+      await store.dispatch("GetCategoryProduct", token);
+      this.categories = this.$store.state.apiData?.categoryProducts;
+    },
     async handleLanguage() {
       console.log("Checkbox state changed. Checked:", this.langChecked);
       this.lang = this.langChecked ? "eng" : "myan";
       let param = {
-        lang: this.lang
+        lang: this.lang,
+        cartLength: this.$store.state.common?.data?.cartLength
       };
       await store.dispatch("commonData", param);
-      this.$i18n.locale = this.lang;
+      if (this?.$i18n?.locale && this.lang) {
+        this.$i18n.locale = this.lang;
+      }
     },
     clickActiveDropDownMenu(i) {
       this.resetMenu(i);
@@ -437,6 +264,11 @@ export default {
       this.mobileToggle = !this.mobileToggle;
       console.log("mobileToggle----", this.mobileToggle);
     },
+    logout() {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      this.user = null;
+    }
   },
   computed: {
     checkActiveMenu() {
@@ -459,14 +291,17 @@ export default {
       this.activeMenu = false;
       this.activeLoginMenu = false;
       this.mobileToggle = false;
-      this.$i18n.locale = this.$store.state.common?.data?.lang;
+      if (this?.$i18n?.locale && this.$store.state.common?.data?.lang) {
+        this.$i18n.locale = this.$store.state.common?.data?.lang;
+      }
       this.langChecked = this.$store.state.common?.data?.lang === "eng" ? true : false;
+      this.user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
     },
   },
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 @import "@/assets/scss/mixins.scss";
 
 .wrapper {
@@ -502,16 +337,18 @@ export default {
         }
       }
       h1 {
-        width: auto;
+        width: 20%;
         @media screen and (max-width: 767.9px) {
-          width: 35px;
+          width: 50%;
           margin-left: 45px;
         }
-        img {
-          width: 70%;
+        @media screen and (min-width: 768px) and (max-width: 1440px) {
+          width: 27%;
+        }
+        a {
           cursor: pointer;
-          @media screen and (max-width: 767.9px) {
-            width: auto;
+          &:hover {
+            opacity: 0.7;
           }
         }
       }
@@ -524,17 +361,20 @@ export default {
           }
           li {
             font-weight: 500;
+            font-size: 12px;
             @media screen and (min-width: 768px) and (max-width: 1440px) {
-              font-size: 12px;
+              font-size: 11px;
             }
             a {
               padding: 12px 10px;
               position: relative;
               cursor: pointer;
               margin-right: 5px;
+              white-space: nowrap;
               @media screen and (min-width: 768px) and (max-width: 1440px) {
                 display: block;
                 padding: 7px 10px;
+                white-space: inherit;
               }
               @media screen and (max-width: 767.9px) {
                 display: block;
@@ -641,6 +481,8 @@ export default {
                       color: #000;
                       font-weight: normal;
                       display: block;
+                      margin: 0;
+                      padding: 12px 20px 12px 20px;
                       @media screen and (min-width: 768px) and (max-width: 1440px) {
                         padding: 9px 20px 9px 20px;
                         margin: 0;
@@ -690,7 +532,7 @@ export default {
                     content: "\e5cf";
                     position: absolute;
                     font-family: "Material Symbols Outlined";
-                    top: 12px;
+                    top: 9px;
                     right: 9px;
                     font-size: 20px;
                   }
@@ -747,7 +589,7 @@ export default {
                   content: "\e5cf";
                   position: absolute;
                   font-family: "Material Symbols Outlined";
-                  top: 10px;
+                  top: 9px;
                   right: 9px;
                   font-size: 20px;
                 }
@@ -856,7 +698,7 @@ export default {
         display: none;
         @media screen and (max-width: 767.9px) {
           position: fixed;
-          top: 26px;
+          top: 5vw;
           left: 10px;
           width: 35px;
           height: 28px;
@@ -999,13 +841,26 @@ export default {
             align-items: center;
             justify-content: center;
           }
+          .blue-number {
+            position: absolute;
+            top: -13px;
+            right: -15px;
+            background: #009BDF;
+            color: #fff;
+            border-radius: 50px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
       }
     }
     &.fixed {
       position: sticky;
       top: 0;
-      z-index: 1;
+      z-index: 2;
       max-width: 100%;
       left: 0;
       right: 0;
@@ -1022,7 +877,7 @@ export default {
         position: relative;
         max-width: 80%;
         margin: 0 auto;
-        
+
         input {
           width: 100%;
           padding: 10px 51px 10px 42px;

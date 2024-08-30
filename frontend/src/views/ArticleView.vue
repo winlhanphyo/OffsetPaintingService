@@ -1,95 +1,19 @@
+<script setup>
+// import ArgonPagination from "@/components/ArgonPagination.vue";
+// import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+</script>
+
 <template>
   <div class="container">
     <div class="article">
       <h2>{{ $t('message.article') }}</h2>
       <ul class="article-list">
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
+        <li v-for="(item, index) in articles" :key="index">
+          <a @click="$router.push(`/article/${item?.id}`)">
+            <img :src="item?.articleImage" alt="">
             <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
-            </p>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="">
-            <p>
-              <span class="title">Standard Business Card</span>
-              <span>2024/04/01</span>
+              <span class="title">{{ item?.name }}</span>
+              <span>{{ moment(item?.createdAt).format("YYYY-MM-DD") }}</span>
             </p>
           </a>
         </li>
@@ -100,17 +24,38 @@
 </template>
 
 <script>
+import moment from "moment";
+import store from "@/store";
+import { imgRoot } from "./../../config";
+
 export default {
   name: "AppArticle",
   components: {},
   data() {
-    return {};
+    return {
+      articles: []
+    };
   },
-  methods: {},
+  mounted() {
+    this.getArticle();
+  },
+  methods: {
+    async getArticle() {
+      const token = localStorage.getItem("token");
+      await store.dispatch("GetArticle", token);
+      this.articles = await this.$store?.state?.apiData?.articles;
+
+      this.articles?.map((dist) => {
+        if (dist?.articleImage) {
+          dist.articleImage = imgRoot + dist.articleImage;
+        }
+      });
+    }
+  },
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
   .container {
     .article {
       ul {

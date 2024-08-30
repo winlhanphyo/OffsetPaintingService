@@ -456,7 +456,7 @@ body {
         .slick-next {
           right: 87px;
           @include for-phone-only {
-            right: 44px;
+            right: 15px;
           }
         }
         .slick-prev:before, .slick-next:before {
@@ -464,7 +464,15 @@ body {
         }
         .slick-dots {
           bottom: 23px;
+          @include for-phone-only {
+            bottom: 10px;
+          }
           li {
+            @include for-phone-only {
+              width: 13px;
+              height: 13px;
+              margin: 0;
+            }
             button {
               &::before {
                 color: #fff;

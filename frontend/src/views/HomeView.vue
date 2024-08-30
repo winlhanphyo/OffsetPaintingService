@@ -1,257 +1,130 @@
 <template>
   <main>
-    <div class="slider">
+    <div v-if="banners?.length > 0" class="slider">
       <ul class="slider-item">
-        <li><img src="@/assets/images/home/SaiSai_Banner.jpg" alt="" /></li>
+        <li v-for="(item, index) in banners" :key="index">
+          <img v-if="index !== 1" :src="item?.image" alt="" style="width: 100%" />
+          <a v-if="index === 1" href=""><img :src="item?.image" alt="" /></a>
+        </li>
+        <!-- <li><img src="@/assets/images/home/SaiSai_Banner.jpg" alt="" /></li>
         <li>
           <a href=""><img src="@/assets/images/home/T_Shirt37.jpg" alt="" /></a>
         </li>
         <li><img src="@/assets/images/home/banner.jpg" alt="" /></li>
-        <li><img src="@/assets/images/home/Deliver_Banner.jpg" alt="" /></li>
+        <li><img src="@/assets/images/home/Deliver_Banner.jpg" alt="" /></li> -->
       </ul>
     </div>
     <div class="container">
-      <h2>{{ $t('message.product') }}</h2>
+      <div class="package">
+        <h2>{{ $t("message.package") }}</h2>
+        <div class="product-list package-list">
+
+          <div class="product-card" v-for="(item, index) in packages" :key="'package' + index">
+            <div class="work-heading">
+              <h3>{{ item?.name }}</h3>
+              <p>{{ item?.description }}</p>
+            </div>
+            <div class="work-image-box">
+              <img :src="item?.packageImage" alt="" />
+              <div class="details">
+                <a @click="$router.push(`/package/${item?.id}`)"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="product-card">
+            <div class="work-heading">
+              <h3>Design T Shirt</h3>
+              <p>Create your own t-shirt designs for friends, families, and events</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
+              <div class="details">
+                <a @click="$router.push('/package/1')"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Personalised T Shirt</h3>
+              <p>Create your own t-shirt designs for friends, families, and events</p>
+            </div>
+            <div class="work-image-box">
+              <img
+                src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg"
+                alt=""
+              />
+              <div class="details">
+                <a @click="$router.push('/package/1')"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Photography Prints</h3>
+              <p>Photographers Create it, we Print it, you Love it.</p>
+            </div>
+            <div class="work-image-box">
+              <img
+                src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg"
+                alt=""
+              />
+              <div class="details">
+                <a @click="$router.push('/package/1')"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="work-heading">
+              <h3>Matt Canvas with Frame</h3>
+              <p>Canvas Printing with Frame</p>
+            </div>
+            <div class="work-image-box">
+              <img src="@/assets/images/products/Canves_print_1_400px.jpg" alt="" />
+              <div class="details">
+                <a @click="$router.push('/package/1')"
+                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div> -->
+        </div>
+        <div class="link">
+          <div class="show-all">
+            <a @click="$router.push('/packages')"><span>Show All</span></a>
+          </div>
+        </div>
+      </div>
+
+      <h2>{{ $t("message.product") }}</h2>
       <div class="product-list">
-        <div class="product-card">
+        <div
+          class="product-card"
+          v-for="(item, index) in products"
+          :key="'product' + index"
+        >
           <div class="work-heading">
-            <h3>Design T Shirt</h3>
-            <p>Create your own t-shirt designs for friends, families, and events</p>
+            <h3>{{ item?.name }}</h3>
+            <p>{{ item?.description }}</p>
           </div>
           <div class="work-image-box">
-            <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
+            <img :src="item?.productImage" alt="" />
             <div class="details">
-              <a href=""
+              <a @click="$router.push(`/product/${item?.id}`)"
                 >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
               ></a>
             </div>
           </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Personalised T Shirt</h3>
-            <p>Create your own t-shirt designs for friends, families, and events</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Photography Prints</h3>
-            <p>Photographers Create it, we Print it, you Love it.</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Matt Canvas with Frame</h3>
-            <p>Canvas Printing with Frame</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Canves_print_1_400px.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>PP Paper Sticker ( ရေစိုခံ )</h3>
-            <p>PP Paper Sticker ( ရေစိုခံ )</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Water_Proof_400px.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Label Stickers</h3>
-            <p>Label Stickers</p>
-          </div>
-          <div class="work-image-box">
-            <img
-              src="@/assets/images/products/281_Label_sticker_main_image_1_400px20.jpg"
-              alt=""
-            />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-          <div class="ribbon">Hot Sales!</div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Vinyl Banner</h3>
-            <p>Vinyl Banner</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Vinyl_Banner_Small.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-          <div class="ribbon">HOT!</div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Standard Business Cards - Promo</h3>
-            <p>
-              Name cards made from standard paper (Art Carton 250 gsm) printed with the
-              best quality.
-            </p>
-          </div>
-          <div class="work-image-box">
-            <img
-              src="@/assets/images/products/Standard_Business_Cards_-_Promo_3_2copy.jpg"
-              alt=""
-            />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-          <div class="ribbon">SALE!</div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Baked with Love Sticker Set</h3>
-            <p>Baked with Love Sticker Set</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/CakeBox_Sticker_Small.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Covid 19 Floor Sticker-01</h3>
-            <p>Caution Sign Floor Sticker</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/CautionSign_01_Small13.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Deluxe Business Card</h3>
-            <p>
-              It offers the highest level printing. It comes with an option of luxurious
-              Paper and also with matte & gloss lamination finishing. It adds a layer of
-              depth to your branding and unique
-            </p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Business_Card_Small.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Baked with Love Sticker Set</h3>
-            <p>Birthday Party <b>labels Stickers</b></p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/BD_StickerSet_Small.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Feather Banner Stand</h3>
-            <p>Feather Banner Stand</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Feather_Banner_400px.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Graceful Greeting and Invitation Cards</h3>
-            <p>Give customers greeting/invitation cards for any occasion.</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Greeting_Card_400.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Paper Label Sticker - Promo</h3>
-            <p>Label Stickers</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/Paper_label_Sticker_400px.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="product-card">
-          <div class="work-heading">
-            <h3>Company Profile Book</h3>
-            <p>Company Profile</p>
-          </div>
-          <div class="work-image-box">
-            <img src="@/assets/images/products/company_profile_400px.jpg" alt="" />
-            <div class="details">
-              <a href=""
-                >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-              ></a>
-            </div>
-          </div>
+          <div v-if="item?.status === 'hot'" class="ribbon">Hot Sales!</div>
+          <div v-if="item?.status === 'sale'" class="ribbon">Sales!</div>
         </div>
       </div>
     </div>
@@ -301,6 +174,10 @@
 // @ is an alias to /src
 import $ from "jquery";
 import "slick-carousel";
+import store from "@/store";
+// import { getProduct } from "@/services/offset.service.js";
+import { imgRoot } from "./../../config";
+// import axios from "axios";
 
 export default {
   name: "HomeView",
@@ -308,32 +185,85 @@ export default {
   data() {
     return {
       activeMenu: false,
+      banners: [],
+      products: [],
+      packages: [],
     };
   },
   mounted() {
     console.log("Mounted");
-    $(".slider-item").slick({
-      arrows: true,
-      centerPadding: "0px",
-      dots: true,
-      slidesToShow: 1,
-      infinite: false,
-    });
+    this.getProductData();
+    this.getBanner();
+    this.getPackage();
   },
   beforeUnmount() {
     $(".slider-item").slick("unslick");
   },
-  methods: {},
+  methods: {
+    async getProductData() {
+      const token = localStorage.getItem("token");
+      // const res = await getProduct(token);
+
+      // console.log("-------res", res);
+
+      // this.products = res?.data?.data;
+      await store.dispatch("GetProduct", token);
+      this.products = await this.$store?.state?.apiData?.products;
+      // const res = await axios.get('https://api.cicimm.net/api/v1/product', token);
+      // console.log("-------res", res);
+
+      // this.products?.map((dist) => {
+      //   if (dist?.media?.length > 0) {
+      //     dist.productImage = imgRoot + dist.media[0]?.url;
+      //   }
+      // });
+    },
+    async getBanner() {
+      const token = localStorage.getItem("token") || "";
+      await store.dispatch("GetBanner", token);
+      this.banners = await this.$store?.state?.apiData?.banners;
+      // const res = await getBanner(token);
+      // this.banners = res?.data?.data;
+      this.banners?.map((dist) => {
+        dist.image = imgRoot + dist.image;
+      });
+      setTimeout(() => {
+        $(".slider-item").slick({
+          arrows: true,
+          centerPadding: "0px",
+          dots: true,
+          slidesToShow: 1,
+          infinite: true,
+        });
+      }, 500);
+
+    },
+    async getPackage() {
+      const token = localStorage.getItem("token") || "";
+      await store.dispatch("GetPackage", token);
+      this.packages = await this.$store?.state?.apiData?.packages;
+      // const res = await getBanner(token);
+      // this.banners = res?.data?.data;
+      this.packages?.map((dist) => {
+        dist.packageImage = imgRoot + dist.packageImage;
+      });
+      console.log("--------packages", this.packages);
+    },
+  },
 };
 </script>
 
-<style lang="postcss">
+<style lang="scss">
 @import "@/assets/scss/mixins.scss";
 .wrapper {
   main {
     .slider {
       ul {
         margin: 0;
+      }
+      .slick-slide img {
+        width: 100%;
+        object-fit: cover;
       }
       .slick-prev {
         left: 87px;
@@ -343,23 +273,39 @@ export default {
       }
       .slick-next {
         right: 87px;
+        @include for-tablet {
+          right: 35px;
+        }
         @media screen and (max-width: 767.9px) {
-          right: 44px;
+          right: 15px;
         }
       }
       .slick-prev:before,
       .slick-next:before {
         font-size: 30px;
+        @media screen and (max-width: 767.9px) {
+          font-size: 20px!important;
+        }
       }
       .slick-dots {
         bottom: 23px;
+        @media screen and (max-width: 767.9px) {
+          bottom: 12px;
+        }
         li {
+          @media screen and (max-width: 767.9px) {
+            width: 12px;
+            height: 12px;
+          }
           button {
             &::before {
               color: #fff;
               font-size: 15px;
+              @include for-tablet {
+                font-size: 8px;
+              }
               @media screen and (max-width: 767.9px) {
-                font-size: 10px;
+                font-size: 7px;
               }
             }
           }
@@ -477,6 +423,51 @@ export default {
             box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.8);
             padding: 7px;
             border-radius: 10px;
+          }
+        }
+      }
+      .package-list {
+        margin: 50px 0 10px;
+      }
+      .link {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin: 0 20px 25px 0;
+      }
+      .show-all {
+        background: #ffe401;
+        box-shadow: 0 10px 20px #307cff29;
+        color: #0c2773 !important;
+        border-radius: 25px;
+        display: inline-table;
+        align-items: center;
+        justify-content: space-between;
+        border: 0;
+        cursor: pointer;
+        font-size: 15px;
+        margin: 10px 0;
+        a {
+          display: block;
+          padding: 10px 20px;
+          &:hover {
+            span::before {
+              right: -6px;
+            }
+          }
+        }
+        span {
+          position: relative;
+          padding-right: 25px;
+          &::before {
+            position: absolute;
+            top: 0px;
+            right: 0;
+            width: 18px;
+            height: 18px;
+            content: "";
+            background: url(@/assets/images/home/arrow.svg) no-repeat center / 100%;
+            transition: all 0.3s ease-in;
           }
         }
       }
