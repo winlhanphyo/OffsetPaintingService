@@ -59,6 +59,7 @@ class ArticleService {
 
       const articleObj: IArticleModel = {
         name: req.body.name,
+        description: req.body.description,
         articleImage: image,
         createdUserId: req.headers['userid']
       } as any;
