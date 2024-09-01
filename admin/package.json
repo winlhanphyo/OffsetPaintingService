@@ -34,6 +34,7 @@
     "vue-flatpickr-component": "11.0.4",
     "vue-multiselect": "^3.0.0",
     "vue-router": "4.3.0",
+    "vue-select": "^4.0.0-beta.6",
     "vuex": "4.1.0"
   },
   "devDependencies": {

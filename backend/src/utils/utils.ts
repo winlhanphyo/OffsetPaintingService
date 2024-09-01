@@ -50,6 +50,26 @@ export const sendEmail = async (email: any, subject: any, text: any) => {
 
 export const sendContactUsEmail = async (email: any, subject: string, text: any) => {
   try {
+    // const transporter = nodemailer.createTransport({
+    //   // host: 'smtp.gmail.com',
+    //   // port: 587,
+    //   // secure: false,
+    //   // auth: {
+    //   //   user: "spprt.oscar@gmail.com",
+    //   //   pass: "cdbxlblhmnpobpyl"
+    //   // }
+    //   host: "oscar-admin.orionmmtecheng.com",
+    //   port: 465,
+    //   secure: true,
+    //   auth: {
+    //     user: "support@oscar-admin.orionmmtecheng.com",
+    //     pass: "he&#5nvAtZ%J"
+    //   },
+    // });
+
+//     inquiry@cicimm.net
+// tejta4-xIdzav-rajweb
+
     const transporter = nodemailer.createTransport({
       // host: 'smtp.gmail.com',
       // port: 587,
@@ -58,17 +78,17 @@ export const sendContactUsEmail = async (email: any, subject: string, text: any)
       //   user: "spprt.oscar@gmail.com",
       //   pass: "cdbxlblhmnpobpyl"
       // }
-      host: "oscar-admin.orionmmtecheng.com",
+      host: "cicimm.net",
       port: 465,
       secure: true,
       auth: {
-        user: "support@oscar-admin.orionmmtecheng.com",
-        pass: "he&#5nvAtZ%J"
+        user: "inquiry@cicimm.net",
+        pass: "tejta4-xIdzav-rajweb"
       },
     });
 
     await transporter.sendMail({
-      from: "oscar-admin.orionmmtecheng.com",
+      from: "inquiry@cicimm.net",
       to: email,
       subject: subject,
       text: text,

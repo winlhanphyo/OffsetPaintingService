@@ -140,9 +140,61 @@
             </select>
           </div>
         </div>
+
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Ratio Width:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Ratio Height:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Format:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Color F:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Color B:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Lam:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">BiType:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Paper Price:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Press Price:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Lam Sq Price:</label>
             <input type="text" class="form-control" />
           </div>
         </div>

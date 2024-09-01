@@ -127,7 +127,7 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="size">(Ratio) Full Size:</label>
-            <select name="size" id="size" class="form-select">
+            <!-- <select name="size" id="size" class="form-select">
               <option value="" selected disabled hidden>Choose Ratio Size</option>
               <option value="2">2 Ratio (S)</option>
               <option value="5">5 Ratio</option>
@@ -137,12 +137,72 @@
               <option value="9">9 Ratio</option>
               <option value="10">10 Ratio</option>
               <option value="11">11 Ratio</option>
-            </select>
+            </select> -->
+            <multi-select-with-add />
           </div>
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Ratio Width:</label>
+            <!-- <input type="text" class="form-control" /> -->
+                  <v-select
+                    v-model="selectedRatioWidth"
+                    :options="ratioWidthOptions"
+                    :multiple="true"
+                    :taggable="true"
+                    @new-option="addOption"
+                    placeholder="Select or add options"
+                  ></v-select>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Ratio Height:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Format:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Color F:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Color B:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Lam:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">BiType:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Paper Price:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Press Price:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Lam Sq Price:</label>
             <input type="text" class="form-control" />
           </div>
         </div>
@@ -169,10 +229,14 @@
 <script>
 // import moment from "moment";
 import Swal from "sweetalert2";
+import MultiSelectWithAdd from './MultiSelectWithAdd.vue';
 // import { imgRoot } from "../../../config.js";
 import { createProduct, getCategory } from "@/services/admin.service.js";
 
 export default {
+  components: {
+    MultiSelectWithAdd,
+  },
   data() {
     return {
       id: "",
@@ -184,12 +248,17 @@ export default {
       categoryList: [],
       detailData: {},
       searchName: null,
+      selectedRatioWidth: [],
+      ratioWidthOptions: []
     };
   },
   mounted() {
     this.getCategoryData();
   },
   methods: {
+    addOption(newOption) {
+      this.ratioWidthOptions.push(newOption);
+    },
     async getCategoryData() {
       const token = localStorage.getItem("token");
       const arr = [];

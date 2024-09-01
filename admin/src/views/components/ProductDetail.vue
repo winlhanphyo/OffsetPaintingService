@@ -12,11 +12,14 @@
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="productName">Product Name:</label>
-            <input type="text" class="form-control" id="product-name" v-model="name" />
+            <!-- <input type="text" class="form-control" id="product-name" v-model="name" /> -->
+            <div>
+              {{ name }}
+            </div>
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="categoryName">Category Name:</label>
-            <select
+            <!-- <select
               class="form-select"
               @change="changeCategory($event)"
               v-model="categoryId"
@@ -29,37 +32,41 @@
               >
                 {{ item?.name }}
               </option>
-            </select>
+            </select> -->
+            {{ categoryId }}
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="image">Image:</label>
-            <input
+            <img :src="item?.image" />
+            <!-- <input
               class="form-control"
               type="file"
               id="formFile"
               @change="handleFileUpload"
-            />
+            /> -->
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="productName">Status:</label>
-            <select class="form-select" @change="changeStatus($event)" v-model="status">
+            <div>{{ status }}</div>
+            <!-- <select class="form-select" @change="changeStatus($event)" v-model="status">
               <option value="">None</option>
               <option value="Hot">Hot</option>
               <option value="Sale">Sale</option>
-            </select>
+            </select> -->
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="categoryName">Description:</label>
-            <textarea
+            <div>{{ description }}</div>
+            <!-- <textarea
               id="w3review"
               name="w3review"
               rows="4"
               v-model="description"
-            ></textarea>
+            ></textarea> -->
           </div>
         </div>
 
@@ -140,17 +147,67 @@
             </select>
           </div>
         </div>
+
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Ratio Width:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Ratio Height:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Format:</label>
             <input type="text" class="form-control" />
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
-            <!-- <label for="Ratio Width">Ratio Width:</label>
-            <input type="text" class="form-control"> -->
+            <label for="Ratio Width">Color F:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Color B:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Lam:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">BiType:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Paper Price:</label>
+            <input type="text" class="form-control" />
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Press Price:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Lam Sq Price:</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+
+        <!-- <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
             <button class="btn btn-secondary">Clear</button>
             <button
               class="btn btn-primary"
@@ -160,7 +217,7 @@
               Submit
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -168,9 +225,9 @@
 
 <script>
 // import moment from "moment";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 // import { imgRoot } from "../../../config.js";
-import { updateProduct, getCategory, getProductById } from "@/services/admin.service.js";
+import { getCategory, getProductById } from "@/services/admin.service.js";
 
 export default {
   data() {
@@ -197,6 +254,8 @@ export default {
       this.image = "";
       this.description = data?.description;
       this.status = data?.status;
+
+      console.log("----------data", data);
     }
   },
   methods: {
@@ -217,39 +276,39 @@ export default {
       const file = event.target.files[0];
       this.image = file;
     },
-    async submitProduct() {
-      const token = localStorage.getItem("token");
-      let formParam = new FormData();
-      formParam.append("name", this.name);
-      formParam.append("categoryId", this.categoryId);
-      formParam.append("description", this.description);
-      formParam.append("status", this.status);
+    // async submitProduct() {
+    //   const token = localStorage.getItem("token");
+    //   let formParam = new FormData();
+    //   formParam.append("name", this.name);
+    //   formParam.append("categoryId", this.categoryId);
+    //   formParam.append("description", this.description);
+    //   formParam.append("status", this.status);
 
-      if (this.image) {
-        formParam.append("media", this.image);
-      }
+    //   if (this.image) {
+    //     formParam.append("media", this.image);
+    //   }
 
-      updateProduct(this.id, formParam, token)
-        .then(() => {
-          Swal.fire({
-            title: "Success!",
-            text: "Product is updated successfully!",
-            icon: "success",
-          }).then(() => {
-            this.$router.push("/product");
-          });
-        })
-        .catch((err) => {
-          Swal.fire({
-            title: "Oops!",
-            text: err.toString(),
-            icon: "error",
-          });
-        });
-    },
-    changeStatus(event) {
-      this.status = event.target.value;
-    },
+    //   updateProduct(this.id, formParam, token)
+    //     .then(() => {
+    //       Swal.fire({
+    //         title: "Success!",
+    //         text: "Product is updated successfully!",
+    //         icon: "success",
+    //       }).then(() => {
+    //         this.$router.push("/product");
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       Swal.fire({
+    //         title: "Oops!",
+    //         text: err.toString(),
+    //         icon: "error",
+    //       });
+    //     });
+    // },
+    // changeStatus(event) {
+    //   this.status = event.target.value;
+    // },
     changeCategory(event) {
       this.categoryId = event.target.value;
     },

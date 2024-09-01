@@ -73,7 +73,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">
-                    <a href="#detailModalToggle" @click="showDetailDialog(item)" data-bs-toggle="modal">{{
+                    <a @click="showDetailDialog(item)" data-bs-toggle="modal">{{
                       item?.name
                     }}</a>
                   </h6>
@@ -358,7 +358,8 @@ export default {
     },
     showDetailDialog(data) {
       console.log("------delete", data);
-      this.detailData = data;
+      // this.detailData = data;
+      this.$router.push(`/product/${data.id}`);
     },
     async submitProduct() {
       const token = localStorage.getItem("token");
