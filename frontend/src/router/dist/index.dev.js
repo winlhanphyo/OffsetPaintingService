@@ -125,8 +125,8 @@ var routes = [{
       return _interopRequireWildcard(require('../views/ChangePassword.vue'));
     });
   }
-}, , {
-  path: '/update-password',
+}, {
+  path: '/forget-password-update/:userId/:token',
   name: 'updatePassword',
   component: function component() {
     return Promise.resolve().then(function () {
@@ -140,6 +140,33 @@ var routes = [{
     return Promise.resolve().then(function () {
       return _interopRequireWildcard(require('../views/CheckoutView.vue'));
     });
+  },
+  meta: {
+    requiresAuth: true
+  }
+}, {
+  path: '/search',
+  name: 'search',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/ProductSearchView.vue'));
+    });
+  }
+}, {
+  path: '/payment',
+  name: 'payment',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/OrderPayment.vue'));
+    });
+  }
+}, {
+  path: '/order',
+  name: 'order',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/OrderView.vue'));
+    });
   }
 }, {
   path: "/",
@@ -151,6 +178,21 @@ var routes = [{
 var router = (0, _vueRouter.createRouter)({
   history: (0, _vueRouter.createWebHistory)(process.env.BASE_URL),
   routes: routes
+});
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAuth;
+  })) {
+    if (localStorage.getItem("token")) {
+      console.log("existed storage");
+      next();
+      return;
+    }
+
+    next("/login");
+  } else {
+    next();
+  }
 });
 var _default = router;
 exports["default"] = _default;

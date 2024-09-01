@@ -93,6 +93,11 @@ const routes = [
     component: () => import('../views/OrderPayment.vue')
   },
   {
+    path: '/order',
+    name: 'order',
+    component: () => import('../views/OrderView.vue')
+  },
+  {
     path: "/",
     redirect: "/home",
   },
