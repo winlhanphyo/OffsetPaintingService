@@ -299,9 +299,9 @@ export default {
         }
         &.active {
           cursor: pointer;
-          border-bottom: 2px solid #f47920;
+          border-bottom: 2px solid #009BDF;
           a {
-            color: #f47920;
+            color: #009BDF;
           }
         }
       }
