@@ -177,7 +177,7 @@ export const createArticle = async (data, token) => {
  * @returns 
  */
 export const updateArticle = async (id, data, token) => {
-  const res = await api.post(`/user/article/${id}`, data, token, true);
+  const res = await api.post(`/article/update/${id}`, data, token, true);
   return res;
 }
 

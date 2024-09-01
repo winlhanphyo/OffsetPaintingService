@@ -73,6 +73,8 @@ const messages = {
             shipping: "Shipping",
             pickUpFOC: "Pickup (FOC)",
             billingAddress: "Billing Address",
+            ScanQR: "Scan the QR Code to Make Payment"
+
         },
     },
     // myanamr
@@ -147,7 +149,10 @@ const messages = {
             shippingMethod: "ပို့ဆောင်မှုနည်းလမ်း",
             shipping: "အရောက်ပို့ဆောင်ခြင်း",
             pickUpFOC: "သတ်မှတ်နေရာတွင်လာရွေးယူခြင်း (FOC)",
-            billingAddress: "ငွေတောင်းခံလွှာပို့ရန်လိပ်စာ"
+            billingAddress: "ငွေတောင်းခံလွှာပို့ရန်လိပ်စာ",
+
+            //order-payment
+            ScanQR: "QR Scan ဖြင့်ငွေပေးချေပါ"
         },
     },
 }

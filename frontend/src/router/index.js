@@ -88,6 +88,11 @@ const routes = [
     component: () => import('../views/ProductSearchView.vue')
   },
   {
+    path: '/payment',
+    name: 'payment',
+    component: () => import('../views/OrderPayment.vue')
+  },
+  {
     path: "/",
     redirect: "/home",
   },
