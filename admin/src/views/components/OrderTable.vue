@@ -39,7 +39,9 @@
             <tr v-for="(order, index) in orders" :key="index">
               <td>
                 <div class="px-3 py-1">
-                  <p class="mb-0 text-sm">{{ order.fullName }}</p>
+                  <router-link :to="{ name: 'OrderDetail', params: { id: order.id } }" class="text-decoration-none">
+                    <p class="mb-0 text-sm">{{ order.fullName }}</p>
+                  </router-link>
                 </div>
               </td>
               <td class="align-middle text-center text-sm">
