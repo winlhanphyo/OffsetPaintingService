@@ -18,14 +18,18 @@
 
     </div>
     <div class="pagination-container-awesome">
-      <vue-awesome-paginate
+      <!-- <vue-awesome-paginate
         :total-items="100"
         :items-per-page="5"
         :max-pages-shown="5"
         v-model="currentPage"
         :on-click="clickPaginate"
         first-last-button="true"
-      />
+      /> -->
+      <ul class="pagination">
+        <li><a href="">❮ &nbsp;</a></li>
+        <li><a href="">&nbsp; ❯</a></li>
+      </ul>
     </div>
   </div>
 </template>
@@ -181,9 +185,19 @@ export default {
   }
 }
 
-.pagination-container {
+.pagination {
   display: flex;
   justify-content: center;
+}
+.pagination li a {
+  display: block;
+  padding: 10px;
+  background-color: #3498db;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.pagination li a:hover {
+  background-color: #2988c8;
 }
 .paginate-buttons {
   height: 40px;

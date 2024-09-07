@@ -449,6 +449,11 @@ footer {
         opacity: 0.8;
         transform: scale(1.1);
       }
+      a {
+        &:hover {
+          cursor: pointer;
+        }
+      }
       &.tooltip {
         position: relative;
         display: inline-block;
