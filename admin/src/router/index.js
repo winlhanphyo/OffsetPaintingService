@@ -17,6 +17,7 @@ import UpdatePassword from "../views/UpdatePassword.vue";
 import ProductCreate from "../views/components/ProductCreate.vue";
 import ProductUpdate from "../views/components/ProductUpdate.vue";
 import ProductDetail from "../views/components/ProductDetail.vue";
+import OrderDetail from "../views/components/OrderDetail.vue";
 
 const routes = [
   {
@@ -129,6 +130,11 @@ const routes = [
     path: "/update-password",
     name: "UpdatePassword",
     component: UpdatePassword,
+  },
+  {
+    path: "/order-detail",
+    name: "OrderDetail",
+    component: OrderDetail,
   },
   // {
   //   path: "/signup",
