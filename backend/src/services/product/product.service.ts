@@ -169,6 +169,26 @@ class ProductService {
         createdUserId: req.headers['userid']
       } as any;
 
+      req.body?.printingType ? productData.printingType = req.body.printingType : "";
+      req.body?.quantity ? productData.quantity = req.body.quantity : "";
+      req.body?.sheet ? productData.sheet = req.body.sheet : "";
+      req.body?.type ? productData.type = req.body.type : "";
+      req.body?.gsm ? productData.gsm = req.body.gsm : "";
+      req.body?.width ? productData.width = req.body.width : "";
+      req.body?.height ? productData.height = req.body.height : "";
+      req.body?.depth ? productData.depth = req.body.depth : "";
+      req.body?.ratioFullWidth ? productData.ratioFullWidth = req.body.ratioFullWidth : "";
+      req.body?.ratioWidth ? productData.ratioWidth = req.body.ratioWidth : "";
+      req.body?.ratioHeight ? productData.ratioHeight = req.body.ratioHeight : "";
+      req.body?.format ? productData.format = req.body.format : "";
+      req.body?.colorF ? productData.colorF = req.body.colorF : "";
+      req.body?.colorB ? productData.colorB = req.body.colorB : "";
+      req.body?.lam ? productData.lam = req.body.lam : "";
+      req.body?.biType ? productData.biType = req.body.biType : "";
+      req.body?.paperPrice ? productData.paperPrice = req.body.paperPrice : "";
+      req.body?.pressPrice ? productData.pressPrice = req.body.pressPrice : "";
+      req.body?.lamSqPrice ? productData.lamSqPrice = req.body.lamSqPrice : "";
+
       const createProduct: any = await ProductDbModel.create({ ...productData, createdAt: new Date().toISOString() });
 
       if (req?.files?.media?.length > 0) {
@@ -225,6 +245,26 @@ class ProductService {
         categoryId: req.body.categoryId,
         updatedUserId: req.headers['userid']
       } as any;
+
+      req.body?.printingType ? productData.printingType = req.body.printingType : "";
+      req.body?.quantity ? productData.quantity = req.body.quantity : "";
+      req.body?.sheet ? productData.sheet = req.body.sheet : "";
+      req.body?.type ? productData.type = req.body.type : "";
+      req.body?.gsm ? productData.gsm = req.body.gsm : "";
+      req.body?.width ? productData.width = req.body.width : "";
+      req.body?.height ? productData.height = req.body.height : "";
+      req.body?.depth ? productData.depth = req.body.depth : "";
+      req.body?.ratioFullWidth ? productData.ratioFullWidth = req.body.ratioFullWidth : "";
+      req.body?.ratioWidth ? productData.ratioWidth = req.body.ratioWidth : "";
+      req.body?.ratioHeight ? productData.ratioHeight = req.body.ratioHeight : "";
+      req.body?.format ? productData.format = req.body.format : "";
+      req.body?.colorF ? productData.colorF = req.body.colorF : "";
+      req.body?.colorB ? productData.colorB = req.body.colorB : "";
+      req.body?.lam ? productData.lam = req.body.lam : "";
+      req.body?.biType ? productData.biType = req.body.biType : "";
+      req.body?.paperPrice ? productData.paperPrice = req.body.paperPrice : "";
+      req.body?.pressPrice ? productData.pressPrice = req.body.pressPrice : "";
+      req.body?.lamSqPrice ? productData.lamSqPrice = req.body.lamSqPrice : "";
 
       const updateProduct = await ProductDbModel.update(productData, {
         where: { id: id as number }

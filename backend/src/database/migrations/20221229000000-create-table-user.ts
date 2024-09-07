@@ -33,7 +33,7 @@ export default {
             allowNull: false,
           },
           type: {
-            type: DataTypes.ENUM('superAdmin', 'admin', 'user'),
+            type: dataTypes.ENUM('super', 'admin', 'user'),
             allowNull: false,
             defaultValue: 'user'
           },

@@ -83,13 +83,13 @@ const routes = [
     path: "/order",
     name: "Order",
     component: Order,
-    meta: { requiresAuth: true, userType: 'superAdmin' },
+    meta: { requiresAuth: true, userType: 'super' },
   },
   {
     path: "/user",
     name: "User",
     component: User,
-    meta: { requiresAuth: true, userType: 'superAdmin' },
+    meta: { requiresAuth: true, userType: 'super' },
   },
   {
     path: "/billing",
@@ -147,11 +147,11 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (localStorage.getItem("token")) {
       console.log("existed storage")
-      if (to.matched.some((record) => record.meta.userType === 'superAdmin')) {
+      if (to.matched.some((record) => record.meta.userType === 'super')) {
         const temp = localStorage.getItem("user") || null;
         let userData = JSON.parse(temp);
         console.log(userData);
-        if (userData?.type === 'superAdmin') {
+        if (userData?.type === 'super') {
           next();
           return;
         } else {

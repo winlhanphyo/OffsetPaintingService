@@ -50,14 +50,14 @@ class ArticleService {
    * @param articleObj 
    * @returns 
    */
-  async createArticle(req: any, res: any): Promise<ArticleDbModel> {
+  async createArticle(req: any, res: any): Promise<any> {
     try {
       let image: string = req.body.articleImage;
       if (req.files?.articleImage?.length > 0) {
         image = req.files.articleImage[0].path?.split("\\").join("/");
       }
 
-      const articleObj: IArticleModel = {
+      const articleObj: any = {
         name: req.body.name,
         description: req.body.description,
         articleImage: image,
@@ -93,7 +93,7 @@ class ArticleService {
         return res.status(404).send("Article is not found");
       }
 
-      const articleObj: IArticleModel = {
+      const articleObj: any = {
         name: req.body.name,
         description: req.body.description,
         updatedUserId: req.headers['userid'],

@@ -41,7 +41,7 @@ const modelAttributes: DbModelFieldInit<Partial<IUserModel>> = {
     type: DataTypes.STRING,
   },
   type: {
-    type: DataTypes.ENUM('superAdmin', 'admin','user'),
+    type: DataTypes.ENUM('super', 'admin','user'),
     allowNull: false,
     defaultValue: 'user'
   },

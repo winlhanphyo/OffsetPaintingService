@@ -83,7 +83,7 @@ export default {
           lastName: 'Ci',
           email: 'admin@gmail.com',
           password: await bcrypt.hash("password", 12),
-          type: "superAdmin",
+          type: "super",
           address: "Wembley Stadium",
           phone: "+3912312",
           createdUserId: 1,

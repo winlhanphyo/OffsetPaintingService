@@ -9,6 +9,25 @@ export interface IProductModel {
   name: string;
   description: string;
   categoryId: number;
+  printingType: string;
+  quantity: string;
+  sheet: string;
+  type: string;
+  gsm: string;
+  width: string;
+  height: string;
+  depth: string;
+  ratioFullWidth: string;
+  ratioWidth: string;
+  ratioHeight: string;
+  format: string;
+  colorF: string;
+  colorB: string;
+  lam: string;
+  biType: string;
+  paperPrice: string;
+  pressPrice: string;
+  lamSqPrice: string;
   status: string;
   createdUserId: number;
   updatedUserId: number;
@@ -41,6 +60,82 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
       model: 'category',
       key: 'id'
     }
+  },
+  printingType: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  quantity: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  sheet: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  type: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  gsm: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  width: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  height: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  depth: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  ratioFullWidth: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  ratioWidth: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  ratioHeight: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  format: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  colorF: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  colorB: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  lam: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  biType: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  paperPrice: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  pressPrice: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  lamSqPrice: {
+    type: DataTypes.STRING,
+    allowNull: true
   },
   createdUserId: {
     type: DataTypes.INTEGER,

@@ -104,7 +104,7 @@ const getRoute = () => {
       </li>
 
       <li class="nav-item">
-        <sidenav-item v-if="userData?.type === 'superAdmin'"
+        <sidenav-item v-if="userData?.type === 'super'"
           to="/order"
           :class="getRoute() === 'order' ? 'active' : ''"
           :navText="isRTL ? 'الواقع الافتراضي' : 'Order'"
@@ -116,7 +116,7 @@ const getRoute = () => {
       </li>
 
       <li class="nav-item">
-        <sidenav-item v-if="userData?.type === 'superAdmin'"
+        <sidenav-item v-if="userData?.type === 'super'"
           to="/user"
           :class="getRoute() === 'user' ? 'active' : ''"
           navText="User"

@@ -233,6 +233,25 @@ export default {
       categoryId: "",
       description: "",
       status: "",
+
+      printingType: [],
+      quantity: "",
+      sheet: "",
+      type: [],
+      gsm: [],
+      width: "",
+      height: "",
+      depth: "",
+      ratioFullWidth: [],
+      ratioWidth: "",
+      ratioHeight: "",
+      format: [],
+      lam: [],
+      biType: [],
+      paperPrice: "",
+      pressPrice: "",
+      lamSqPrice: "",
+
       categoryList: [],
       detailData: {},
       searchName: null,
@@ -276,6 +295,24 @@ export default {
       formParam.append("categoryId", this.categoryId);
       formParam.append("description", this.description);
       formParam.append("status", this.status);
+
+      formParam.append("printingType", this.printingType);
+      formParam.append("quantity", this.quantity);
+      formParam.append("sheet", this.sheet);
+      formParam.append("type", this.type);
+      formParam.append("gsm", this.gsm);
+      formParam.append("width", this.width);
+      formParam.append("height", this.height);
+      formParam.append("depth", this.depth);
+      formParam.append("ratioFullWidth", this.ratioFullWidth);
+      formParam.append("ratioWidth", this.ratioWidth);
+      formParam.append("ratioHeight", this.ratioHeight);
+      formParam.append("format", this.format);
+      formParam.append("lam", this.lam);
+      formParam.append("biType", this.biType);
+      formParam.append("paperPrice", this.paperPrice);
+      formParam.append("pressPrice", this.pressPrice);
+      formParam.append("lamSqPrice", this.lamSqPrice);
 
       if (this.image) {
         formParam.append("media", this.image);

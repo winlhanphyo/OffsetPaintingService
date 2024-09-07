@@ -136,7 +136,7 @@
                     <label for="category-name" class="col-form-label">User Type</label>
                     <select class="form-select" v-model="type" @change="changetype($event)">
                       <option value="">Select User Type</option>
-                      <option value="superAdmin">Super Admin</option>
+                      <option value="super">Super Admin</option>
                       <option value="Admin">Admin</option>
                       <option value="User">User</option>
                     </select>

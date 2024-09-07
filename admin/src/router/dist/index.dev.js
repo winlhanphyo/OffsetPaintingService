@@ -90,7 +90,7 @@ var routes = [{
   component: _Order["default"],
   meta: {
     requiresAuth: true,
-    userType: 'superAdmin'
+    userType: 'super'
   }
 }, {
   path: "/user",
@@ -98,7 +98,7 @@ var routes = [{
   component: _User["default"],
   meta: {
     requiresAuth: true,
-    userType: 'superAdmin'
+    userType: 'super'
   }
 }, {
   path: "/billing",
@@ -151,9 +151,9 @@ router.beforeEach(function (to, from, next) {
       console.log("existed storage");
 
       if (to.matched.some(function (record) {
-        return record.meta.userType === 'superAdmin';
+        return record.meta.userType === 'super';
       })) {
-        if (localStorage.getItem("superAdmin") === 'superAdmin') {
+        if (localStorage.getItem("super") === 'super') {
           next();
           return;
         } else {

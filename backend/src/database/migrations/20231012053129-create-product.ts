@@ -30,6 +30,82 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: true
       },
+      printingType: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      quantity: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      sheet: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      gsm: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      width: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      height: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      depth: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      ratioFullWidth: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      ratioWidth: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      ratioHeight: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      format: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      colorF: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      colorB: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      lam: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      biType: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      paperPrice: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      pressPrice: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      lamSqPrice: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
       createdUserId: {
         type: DataTypes.INTEGER,
         allowNull: false

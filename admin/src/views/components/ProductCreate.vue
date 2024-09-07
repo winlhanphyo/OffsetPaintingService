@@ -138,21 +138,27 @@
               <option value="10">10 Ratio</option>
               <option value="11">11 Ratio</option>
             </select> -->
-            <multi-select-with-add />
+            <!-- <multi-select-with-add :data="ratioFullSize" :changeData="changeData" :propertyName="ratioFullSize" /> -->
+            <!-- <v-select
+              v-model="selectedRatioFullSize"
+              :options="ratioFullSizeoptions"
+              :multiple="true"
+              :taggable="true"
+              @new-option="addOption"
+              placeholder="Select or add Ratio Full Size">
+            </v-select> -->
           </div>
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Ratio Width:</label>
-            <!-- <input type="text" class="form-control" /> -->
-                  <v-select
-                    v-model="selectedRatioWidth"
-                    :options="ratioWidthOptions"
-                    :multiple="true"
-                    :taggable="true"
-                    @new-option="addOption"
-                    placeholder="Select or add options"
-                  ></v-select>
+              <v-select
+                v-model="selectedRatioWidth"
+                :options="ratioWidthOptions"
+                :multiple="true"
+                :taggable="true"
+                placeholder="Select or add options">
+              </v-select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
@@ -227,16 +233,15 @@
 </template>
 
 <script>
-// import moment from "moment";
-import Swal from "sweetalert2";
-import MultiSelectWithAdd from './MultiSelectWithAdd.vue';
+import vSelect from 'vue-select';
+// import Swal from "sweetalert2";
+// import MultiSelectWithAdd from './MultiSelectWithAdd.vue';
 // import { imgRoot } from "../../../config.js";
-import { createProduct, getCategory } from "@/services/admin.service.js";
+import { getCategory } from "@/services/admin.service.js";
+import "vue-select/dist/vue-select.css";
 
 export default {
-  components: {
-    MultiSelectWithAdd,
-  },
+  components: { vSelect },
   data() {
     return {
       id: "",
@@ -249,7 +254,25 @@ export default {
       detailData: {},
       searchName: null,
       selectedRatioWidth: [],
-      ratioWidthOptions: []
+      ratioWidthOptions: [],
+
+      printingType: [],
+      quantity: "",
+      sheet: "",
+      type: [],
+      gsm: [],
+      width: "",
+      height: "",
+      depth: "",
+      ratioFullWidth: [],
+      ratioWidth: "",
+      ratioHeight: "",
+      format: [],
+      lam: [],
+      biType: [],
+      paperPrice: "",
+      pressPrice: "",
+      lamSqPrice: "",
     };
   },
   mounted() {
@@ -258,7 +281,15 @@ export default {
   methods: {
     addOption(newOption) {
       this.ratioWidthOptions.push(newOption);
+
+      console.log("-------newOption", newOption);
+      console.log("-------ratioWidthOptions", this.ratioWidthOptions);
     },
+    // changeData(data, prop) {
+    //   const index = this;
+    //   index[prop] = data[prop];
+    //   console.log("------ratioFullSize", prop, index[prop]);
+    // },
     async getCategoryData() {
       const token = localStorage.getItem("token");
       const arr = [];
@@ -280,34 +311,55 @@ export default {
       console.log("------productImage", this.image);
     },
     async submitProduct() {
-      const token = localStorage.getItem("token");
-      let formParam = new FormData();
-      formParam.append("name", this.name);
-      formParam.append("categoryId", this.categoryId);
-      formParam.append("description", this.description);
-      formParam.append("status", this.status);
+      console.log('-----ratio width option', this.selectedRatioWidth);
 
-      if (this.image) {
-        formParam.append("media", this.image);
-      }
+      // const token = localStorage.getItem("token");
+      // let formParam = new FormData();
+      // formParam.append("name", this.name);
+      // formParam.append("categoryId", this.categoryId);
+      // formParam.append("description", this.description);
 
-      createProduct(formParam, token)
-        .then(() => {
-          Swal.fire({
-            title: "Success!",
-            text: "Product is created successfully!",
-            icon: "success",
-          }).then(() => {
-            this.$router.push("/product");
-          });
-        })
-        .catch((err) => {
-          Swal.fire({
-            title: "Oops!",
-            text: err.toString(),
-            icon: "error",
-          });
-        });
+      // formParam.append("printingType", this.printingType);
+      // formParam.append("quantity", this.quantity);
+      // formParam.append("sheet", this.sheet);
+      // formParam.append("type", this.type);
+      // formParam.append("gsm", this.gsm);
+      // formParam.append("width", this.width);
+      // formParam.append("height", this.height);
+      // formParam.append("depth", this.depth);
+      // formParam.append("ratioFullWidth", this.ratioFullWidth);
+      // formParam.append("ratioWidth", this.ratioWidth);
+      // formParam.append("ratioHeight", this.ratioHeight);
+      // formParam.append("format", this.format);
+      // formParam.append("lam", this.lam);
+      // formParam.append("biType", this.biType);
+      // formParam.append("paperPrice", this.paperPrice);
+      // formParam.append("pressPrice", this.pressPrice);
+      // formParam.append("lamSqPrice", this.lamSqPrice);
+
+      // formParam.append("status", this.status);
+
+      // if (this.image) {
+      //   formParam.append("media", this.image);
+      // }
+
+      // createProduct(formParam, token)
+      //   .then(() => {
+      //     Swal.fire({
+      //       title: "Success!",
+      //       text: "Product is created successfully!",
+      //       icon: "success",
+      //     }).then(() => {
+      //       this.$router.push("/product");
+      //     });
+      //   })
+      //   .catch((err) => {
+      //     Swal.fire({
+      //       title: "Oops!",
+      //       text: err.toString(),
+      //       icon: "error",
+      //     });
+      //   });
     },
     changeStatus(event) {
       this.status = event.target.value;
