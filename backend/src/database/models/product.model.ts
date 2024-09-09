@@ -17,7 +17,7 @@ export interface IProductModel {
   width: string;
   height: string;
   depth: string;
-  ratioFullWidth: string;
+  ratioFullSize: string;
   ratioWidth: string;
   ratioHeight: string;
   format: string;
@@ -74,11 +74,11 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   type: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   gsm: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   width: {
@@ -93,8 +93,8 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     type: DataTypes.STRING,
     allowNull: true
   },
-  ratioFullWidth: {
-    type: DataTypes.STRING,
+  ratioFullSize: {
+    type: DataTypes.JSON,
     allowNull: true
   },
   ratioWidth: {
@@ -106,23 +106,23 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   format: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   colorF: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   colorB: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   lam: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   biType: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   paperPrice: {

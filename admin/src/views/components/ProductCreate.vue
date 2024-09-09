@@ -66,7 +66,7 @@
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="printing">Printing Type:</label>
-            <select name="printing" id="printing" class="form-select">
+            <select name="printing" id="printing" class="form-select" v-model="printingType">
               <option value="" selected disabled hidden>Choose Printing Type</option>
               <option value="Flatten">Flatten</option>
               <option value="Book">Book</option>
@@ -75,17 +75,17 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="quantity">Quantity:</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="quantity" />
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="sheet">Sheet:</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" v-model="sheet" />
           </div>
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="type">Type:</label>
-            <select name="type" id="type" class="form-select">
+            <select name="type" id="type" class="form-select" v-model="type">
               <option value="" selected disabled hidden>Choose Type</option>
               <option value="AP">AP</option>
               <option value="AC">AC</option>
@@ -99,117 +99,142 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="gsm">Gsm:</label>
-            <select name="gsm" id="gsm" class="form-select">
-              <option value="" selected disabled hidden>Choose Gsm</option>
-              <option value="128">128gsm</option>
-              <option value="148">148gsm</option>
-              <option value="157">157gsm</option>
-              <option value="210">210gsm</option>
-              <option value="230">230gsm</option>
-              <option value="250">250gsm</option>
-              <option value="300">300gsm</option>
-              <option value="350">350gsm</option>
-            </select>
+            <v-select
+              v-model="selectedGSM"
+              :options="Gsmoptions"
+              :multiple="true"
+              :taggable="true"
+              placeholder="Select or add Ratio Full Size">
+            </v-select>
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="width">Width:</label>
-            <input type="text" class="form-control" />
+            <input type="text" v-model="width" class="form-control" />
           </div>
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="height">Height:</label>
-            <input type="text" class="form-control" />
+            <input type="text" v-model="height" class="form-control" />
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="depth">Depth:</label>
-            <input type="text" class="form-control" />
+            <input type="text" v-model="depth" class="form-control" />
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="size">(Ratio) Full Size:</label>
-            <!-- <select name="size" id="size" class="form-select">
-              <option value="" selected disabled hidden>Choose Ratio Size</option>
-              <option value="2">2 Ratio (S)</option>
-              <option value="5">5 Ratio</option>
-              <option value="6">6 Ratio</option>
-              <option value="6">6 Ratio (2)</option>
-              <option value="8">8 Ratio</option>
-              <option value="9">9 Ratio</option>
-              <option value="10">10 Ratio</option>
-              <option value="11">11 Ratio</option>
-            </select> -->
-            <!-- <multi-select-with-add :data="ratioFullSize" :changeData="changeData" :propertyName="ratioFullSize" /> -->
-            <!-- <v-select
+            <v-select
               v-model="selectedRatioFullSize"
-              :options="ratioFullSizeoptions"
+              :options="ratioFullSizeOptions"
               :multiple="true"
               :taggable="true"
-              @new-option="addOption"
               placeholder="Select or add Ratio Full Size">
-            </v-select> -->
+            </v-select>
           </div>
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Ratio Width:</label>
-              <v-select
-                v-model="selectedRatioWidth"
-                :options="ratioWidthOptions"
-                :multiple="true"
-                :taggable="true"
-                placeholder="Select or add options">
-              </v-select>
+            <input type="text" v-model="ratioWidth" class="form-control" />
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Ratio Height:</label>
-            <input type="text" class="form-control" />
+            <input type="text" v-model="ratioHeight" class="form-control" />
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Format:</label>
-            <input type="text" class="form-control" />
+            <v-select
+                v-model="selectedFormat"
+                :options="formatOptions"
+                :multiple="true"
+                :taggable="true"
+                placeholder="Select or add options">
+              </v-select>
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Color F:</label>
-            <input type="text" class="form-control" />
+            <v-select
+              v-model="selectedColorF"
+              :options="colorFOptions"
+              :multiple="true"
+              :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Color B:</label>
-            <input type="text" class="form-control" />
+            <v-select
+              v-model="selectedColorB"
+              :options="colorBOptions"
+              :multiple="true"
+              :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Lam:</label>
-            <input type="text" class="form-control" />
+            <v-select
+              v-model="selectedLam"
+              :options="lamOptions"
+              :multiple="true"
+              :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">BiType:</label>
-            <input type="text" class="form-control" />
+            <v-select
+              v-model="selectedBiType"
+              :options="biTypeOptions"
+              :multiple="true"
+              :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Paper Price:</label>
-            <input type="text" class="form-control" />
+            <v-select
+              v-model="selectedPaperPrice"
+              :options="paperPriceOptions"
+              :multiple="true"
+              :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Press Price:</label>
-            <input type="text" class="form-control" />
+            <v-select
+              v-model="selectedPressPrice"
+              :options="pressPriceOptions"
+              :multiple="true"
+              :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Lam Sq Price:</label>
-            <input type="text" class="form-control" />
+            <v-select
+              v-model="selectedLamSq"
+              :options="lamSqOptions"
+              :multiple="true"
+              :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
           </div>
         </div>
 
@@ -217,12 +242,11 @@
           <div class="form-group col-sm-4 p-2">
             <!-- <label for="Ratio Width">Ratio Width:</label>
             <input type="text" class="form-control"> -->
-            <button class="btn btn-secondary">Clear</button>
+            <button class="btn btn-secondary" @click="reset()">Clear</button>
             <button
               class="btn btn-primary"
               style="margin-left: 10px"
-              @click="submitProduct()"
-            >
+              @click="submitProduct()">
               Submit
             </button>
           </div>
@@ -234,10 +258,10 @@
 
 <script>
 import vSelect from 'vue-select';
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 // import MultiSelectWithAdd from './MultiSelectWithAdd.vue';
 // import { imgRoot } from "../../../config.js";
-import { getCategory } from "@/services/admin.service.js";
+import { getCategory, createProduct } from "@/services/admin.service.js";
 import "vue-select/dist/vue-select.css";
 
 export default {
@@ -253,22 +277,25 @@ export default {
       categoryList: [],
       detailData: {},
       searchName: null,
-      selectedRatioWidth: [],
-      ratioWidthOptions: [],
+      ratioFullSizeOptions: ["5 Ratio", "6 Ratio", "6 Ratio (2)"],
+      selectedFormat: [],
+      formatOptions: [],
+      lamOptions: ["None", "One Side", "Both Sides"],
+      Gsmoptions: ["128gsm", "148gsm", "157gsm", "210gsm", "230gsm", "250gsm", "300gsm", "350gsm"],
 
-      printingType: [],
+      selectedGsm: "",
+      printingType: "",
       quantity: "",
       sheet: "",
-      type: [],
+      type: "",
       gsm: [],
       width: "",
       height: "",
       depth: "",
-      ratioFullWidth: [],
+      selectedRatioFullSize: "",
       ratioWidth: "",
       ratioHeight: "",
-      format: [],
-      lam: [],
+      selectedLam: "",
       biType: [],
       paperPrice: "",
       pressPrice: "",
@@ -295,7 +322,7 @@ export default {
       const arr = [];
       const res = await getCategory(token);
       this.categories = res?.data?.data;
-      for (let i = 0; i < this.categories.length; i++) {
+      for (let i = 0; i < this.categories?.length; i++) {
         arr.push({
           name: this.categories[i].name,
           value: this.categories[i].id,
@@ -313,53 +340,53 @@ export default {
     async submitProduct() {
       console.log('-----ratio width option', this.selectedRatioWidth);
 
-      // const token = localStorage.getItem("token");
-      // let formParam = new FormData();
-      // formParam.append("name", this.name);
-      // formParam.append("categoryId", this.categoryId);
-      // formParam.append("description", this.description);
+      const token = localStorage.getItem("token");
+      let formParam = new FormData();
+      formParam.append("name", this.name);
+      formParam.append("categoryId", this.categoryId);
+      formParam.append("description", this.description);
 
-      // formParam.append("printingType", this.printingType);
-      // formParam.append("quantity", this.quantity);
-      // formParam.append("sheet", this.sheet);
-      // formParam.append("type", this.type);
-      // formParam.append("gsm", this.gsm);
-      // formParam.append("width", this.width);
-      // formParam.append("height", this.height);
-      // formParam.append("depth", this.depth);
-      // formParam.append("ratioFullWidth", this.ratioFullWidth);
-      // formParam.append("ratioWidth", this.ratioWidth);
-      // formParam.append("ratioHeight", this.ratioHeight);
-      // formParam.append("format", this.format);
-      // formParam.append("lam", this.lam);
-      // formParam.append("biType", this.biType);
-      // formParam.append("paperPrice", this.paperPrice);
-      // formParam.append("pressPrice", this.pressPrice);
-      // formParam.append("lamSqPrice", this.lamSqPrice);
+      formParam.append("printingType", this.printingType);
+      formParam.append("quantity", this.quantity);
+      formParam.append("sheet", this.sheet);
+      formParam.append("type", this.type);
+      formParam.append("gsm", this.selectedGSM);
+      formParam.append("width", this.width);
+      formParam.append("height", this.height);
+      formParam.append("depth", this.depth);
+      formParam.append("ratioFullSize", this.selectedRatioFullSize);
+      formParam.append("ratioWidth", this.ratioWidth);
+      formParam.append("ratioHeight", this.ratioHeight);
+      formParam.append("format", this.selectedFormat);
+      formParam.append("lam", this.selectedLam);
+      formParam.append("biType", this.selectedBiType);
+      formParam.append("paperPrice", this.selectedPaperPrice);
+      formParam.append("pressPrice", this.selectedPressPrice);
+      formParam.append("lamSqPrice", this.selectedLamSqPrice);
 
-      // formParam.append("status", this.status);
+      formParam.append("status", this.status);
 
-      // if (this.image) {
-      //   formParam.append("media", this.image);
-      // }
+      if (this.image) {
+        formParam.append("media", this.image);
+      }
 
-      // createProduct(formParam, token)
-      //   .then(() => {
-      //     Swal.fire({
-      //       title: "Success!",
-      //       text: "Product is created successfully!",
-      //       icon: "success",
-      //     }).then(() => {
-      //       this.$router.push("/product");
-      //     });
-      //   })
-      //   .catch((err) => {
-      //     Swal.fire({
-      //       title: "Oops!",
-      //       text: err.toString(),
-      //       icon: "error",
-      //     });
-      //   });
+      createProduct(formParam, token)
+        .then(() => {
+          Swal.fire({
+            title: "Success!",
+            text: "Product is created successfully!",
+            icon: "success",
+          }).then(() => {
+            this.$router.push("/product");
+          });
+        })
+        .catch((err) => {
+          Swal.fire({
+            title: "Oops!",
+            text: err.toString(),
+            icon: "error",
+          });
+        });
     },
     changeStatus(event) {
       this.status = event.target.value;

@@ -73,7 +73,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">
-                    <a @click="showDetailDialog(item)" data-bs-toggle="modal">{{
+                    <a @click="showDetailDialog(item)">{{
                       item?.name
                     }}</a>
                   </h6>

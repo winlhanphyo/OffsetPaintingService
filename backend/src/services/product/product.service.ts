@@ -177,7 +177,7 @@ class ProductService {
       req.body?.width ? productData.width = req.body.width : "";
       req.body?.height ? productData.height = req.body.height : "";
       req.body?.depth ? productData.depth = req.body.depth : "";
-      req.body?.ratioFullWidth ? productData.ratioFullWidth = req.body.ratioFullWidth : "";
+      req.body?.ratioFullSize ? productData.ratioFullSize = req.body.ratioFullSize : "";
       req.body?.ratioWidth ? productData.ratioWidth = req.body.ratioWidth : "";
       req.body?.ratioHeight ? productData.ratioHeight = req.body.ratioHeight : "";
       req.body?.format ? productData.format = req.body.format : "";
@@ -254,7 +254,7 @@ class ProductService {
       req.body?.width ? productData.width = req.body.width : "";
       req.body?.height ? productData.height = req.body.height : "";
       req.body?.depth ? productData.depth = req.body.depth : "";
-      req.body?.ratioFullWidth ? productData.ratioFullWidth = req.body.ratioFullWidth : "";
+      req.body?.ratioFullSize ? productData.ratioFullSize = req.body.ratioFullSize : "";
       req.body?.ratioWidth ? productData.ratioWidth = req.body.ratioWidth : "";
       req.body?.ratioHeight ? productData.ratioHeight = req.body.ratioHeight : "";
       req.body?.format ? productData.format = req.body.format : "";

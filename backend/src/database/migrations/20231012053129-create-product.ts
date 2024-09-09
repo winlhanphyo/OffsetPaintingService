@@ -43,11 +43,11 @@ module.exports = {
         allowNull: true
       },
       type: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       gsm: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       width: {
@@ -62,8 +62,8 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: true
       },
-      ratioFullWidth: {
-        type: DataTypes.STRING,
+      ratioFullSize: {
+        type: DataTypes.JSON,
         allowNull: true
       },
       ratioWidth: {
@@ -75,23 +75,23 @@ module.exports = {
         allowNull: true
       },
       format: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       colorF: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       colorB: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       lam: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       biType: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       paperPrice: {
