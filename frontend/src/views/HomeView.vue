@@ -212,11 +212,11 @@ export default {
       // const res = await axios.get('https://api.cicimm.net/api/v1/product', token);
       // console.log("-------res", res);
 
-      // this.products?.map((dist) => {
-      //   if (dist?.media?.length > 0) {
-      //     dist.productImage = imgRoot + dist.media[0]?.url;
-      //   }
-      // });
+      this.products?.map((dist) => {
+        if (dist?.media?.length > 0) {
+          dist.productImage = imgRoot + dist.media[0]?.url;
+        }
+      });
     },
     async getBanner() {
       const token = localStorage.getItem("token") || "";

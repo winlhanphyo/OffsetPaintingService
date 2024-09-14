@@ -116,23 +116,10 @@ class ProductService {
 
       console.log('product list', productList)
 
-      const videoData = await MediaDbModel.findOne({
-        where: {
-          type: "video"
-        },
-        order: Sequelize.literal('rand()')
-      });
-
       for (let i = 0; i < productList.length; i++) {
         const mediaData: any = productList[i]?.dataValues?.media;
         for (let j = 0; j < mediaData?.length; j++) {
-          if (mediaData[j]?.dataValues?.type === "video") {
-            mediaData[j].dataValues.cover = "upload/user/video/default.jpg";
-          } else if (mediaData[j].type === "music") {
-            mediaData[j].dataValues.cover = "upload/user/music/default.jpg";
-          } else if (mediaData[j].type === "text") {
-            mediaData[j].dataValues.cover = "upload/user/text/default.jpg";
-          } else if (mediaData[j].type === "photo") {
+          if (mediaData[j].type === "photo") {
             mediaData[j].dataValues.cover = mediaData[j]?.url;
           }
         }
@@ -140,8 +127,7 @@ class ProductService {
     
       return res.json({
         success: true,
-        data: productList,
-        video: videoData
+        data: productList
       });
 
     } catch (e: any) {
@@ -169,25 +155,37 @@ class ProductService {
         createdUserId: req.headers['userid']
       } as any;
 
-      req.body?.printingType ? productData.printingType = req.body.printingType : "";
-      req.body?.quantity ? productData.quantity = req.body.quantity : "";
-      req.body?.sheet ? productData.sheet = req.body.sheet : "";
-      req.body?.type ? productData.type = req.body.type : "";
-      req.body?.gsm ? productData.gsm = req.body.gsm : "";
-      req.body?.width ? productData.width = req.body.width : "";
-      req.body?.height ? productData.height = req.body.height : "";
-      req.body?.depth ? productData.depth = req.body.depth : "";
-      req.body?.ratioFullSize ? productData.ratioFullSize = req.body.ratioFullSize : "";
-      req.body?.ratioWidth ? productData.ratioWidth = req.body.ratioWidth : "";
-      req.body?.ratioHeight ? productData.ratioHeight = req.body.ratioHeight : "";
-      req.body?.format ? productData.format = req.body.format : "";
-      req.body?.colorF ? productData.colorF = req.body.colorF : "";
-      req.body?.colorB ? productData.colorB = req.body.colorB : "";
-      req.body?.lam ? productData.lam = req.body.lam : "";
-      req.body?.biType ? productData.biType = req.body.biType : "";
-      req.body?.paperPrice ? productData.paperPrice = req.body.paperPrice : "";
-      req.body?.pressPrice ? productData.pressPrice = req.body.pressPrice : "";
-      req.body?.lamSqPrice ? productData.lamSqPrice = req.body.lamSqPrice : "";
+      productData.printingType = req.body?.printingType ? req.body.printingType : "";
+      productData.quantity = req.body?.quantity ? req.body.quantity : "";
+      productData.sheet = req.body?.sheet ? req.body.sheet : false;
+      productData.type = req.body?.type ? req.body.type : "";
+      productData.gsm = req.body?.gsm ? req.body.gsm : "";
+      productData.width = req.body?.width ? req.body.width : "";
+      productData.height = req.body?.height ? req.body.height : "";
+      productData.depth = req.body?.depth ? req.body.depth : "";
+      productData.ratioFullSize = req.body?.ratioFullSize ? req.body.ratioFullSize : "";
+      productData.ratioWidth = req.body?.ratioWidth ? req.body.ratioWidth : "";
+      productData.ratioHeight = req.body?.ratioHeight ? req.body.ratioHeight : "";
+      productData.format = req.body?.format ? req.body.format : "";
+      productData.colorF = req.body?.colorF ? req.body.colorF : "";
+      productData.colorB = req.body?.colorB ? req.body.colorB : "";
+      productData.lam = req.body?.lam ? req.body.lam : "";
+      productData.biType = req.body?.biType ? req.body.biType : "";
+      productData.paperPrice = req.body?.paperPrice ? req.body.paperPrice : "";
+      productData.pressPrice = req.body?.pressPrice ? req.body.pressPrice : "";
+      productData.lamSqPrice = req.body?.lamSqPrice ? req.body.lamSqPrice : "";
+
+      productData.ctpPrice = req.body?.ctpPrice ? req.body.ctpPrice : "";
+      productData.waste = req.body?.waste ? req.body.waste : "";
+      productData.abbb = req.body?.abbb ? req.body.abbb : "";
+
+      productData.dieCut = req.body?.dieCut ? req.body.dieCut : "";
+      productData.gluding = req.body?.gluding ? req.body.gluding : "";
+      productData.plySet = req.body?.plySet ? req.body.plySet : "";
+      productData.biPrice = req.body?.biPrice ? req.body.biPrice : "";
+      productData.other = req.body?.other ? req.body.other : "";
+      productData.cover = req.body?.cover ? req.body.cover : "";
+      productData.remark = req.body?.remark ? req.body.remark : "";
 
       const createProduct: any = await ProductDbModel.create({ ...productData, createdAt: new Date().toISOString() });
 
@@ -246,25 +244,39 @@ class ProductService {
         updatedUserId: req.headers['userid']
       } as any;
 
-      req.body?.printingType ? productData.printingType = req.body.printingType : "";
-      req.body?.quantity ? productData.quantity = req.body.quantity : "";
-      req.body?.sheet ? productData.sheet = req.body.sheet : "";
-      req.body?.type ? productData.type = req.body.type : "";
-      req.body?.gsm ? productData.gsm = req.body.gsm : "";
-      req.body?.width ? productData.width = req.body.width : "";
-      req.body?.height ? productData.height = req.body.height : "";
-      req.body?.depth ? productData.depth = req.body.depth : "";
-      req.body?.ratioFullSize ? productData.ratioFullSize = req.body.ratioFullSize : "";
-      req.body?.ratioWidth ? productData.ratioWidth = req.body.ratioWidth : "";
-      req.body?.ratioHeight ? productData.ratioHeight = req.body.ratioHeight : "";
-      req.body?.format ? productData.format = req.body.format : "";
-      req.body?.colorF ? productData.colorF = req.body.colorF : "";
-      req.body?.colorB ? productData.colorB = req.body.colorB : "";
-      req.body?.lam ? productData.lam = req.body.lam : "";
-      req.body?.biType ? productData.biType = req.body.biType : "";
-      req.body?.paperPrice ? productData.paperPrice = req.body.paperPrice : "";
-      req.body?.pressPrice ? productData.pressPrice = req.body.pressPrice : "";
-      req.body?.lamSqPrice ? productData.lamSqPrice = req.body.lamSqPrice : "";
+      productData.printingType = req.body?.printingType ? req.body.printingType : "";
+      productData.quantity = req.body?.quantity ? req.body.quantity : "";
+      productData.sheet = req.body?.sheet ? req.body.sheet : false;
+      productData.type = req.body?.type ? req.body.type : "";
+      productData.gsm = req.body?.gsm ? req.body.gsm : "";
+      productData.width = req.body?.width ? req.body.width : "";
+      productData.height = req.body?.height ? req.body.height : "";
+      productData.depth = req.body?.depth ? req.body.depth : "";
+      productData.ratioFullSize = req.body?.ratioFullSize ? req.body.ratioFullSize : "";
+      productData.ratioWidth = req.body?.ratioWidth ? req.body.ratioWidth : "";
+      productData.ratioHeight = req.body?.ratioHeight ? req.body.ratioHeight : "";
+      productData.format = req.body?.format ? req.body.format : "";
+      productData.colorF = req.body?.colorF ? req.body.colorF : "";
+      productData.colorB = req.body?.colorB ? req.body.colorB : "";
+      productData.lam = req.body?.lam ? req.body.lam : "";
+      productData.biType = req.body?.biType ? req.body.biType : "";
+      productData.paperPrice = req.body?.paperPrice ? req.body.paperPrice : "";
+      productData.pressPrice = req.body?.pressPrice ? req.body.pressPrice : "";
+      productData.lamSqPrice = req.body?.lamSqPrice ? req.body.lamSqPrice : "";
+
+      productData.ctpPrice = req.body?.ctpPrice ? req.body.ctpPrice : "";
+      productData.waste = req.body?.waste ? req.body.waste : "";
+      productData.abbb = req.body?.abbb ? req.body.abbb : "";
+
+      productData.dieCut = req.body?.dieCut ? req.body.dieCut : "";
+      productData.gluding = req.body?.gluding ? req.body.gluding : "";
+      productData.plySet = req.body?.plySet ? req.body.plySet : "";
+      productData.biPrice = req.body?.biPrice ? req.body.biPrice : "";
+      productData.other = req.body?.other ? req.body.other : "";
+      productData.cover = req.body?.cover ? req.body.cover : "";
+      productData.remark = req.body?.remark ? req.body.remark : "";
+
+      console.log("-------product data", productData);
 
       const updateProduct = await ProductDbModel.update(productData, {
         where: { id: id as number }
@@ -386,6 +398,14 @@ class ProductService {
             foreignKey: "categoryId",
             as: "category"
           },
+          {
+            model: MediaDbModel,
+            as: 'media',
+            required: false
+            // order: Sequelize.literal('rand()'), // Order the media records randomly
+            // limit: 1, // Limit to only 1 random media record
+            // offset: Number(randomMediaOffset) // Use the random media offset
+          }
           // {
           //   model: UserDbModel,
           //   through: { attributes: [] },

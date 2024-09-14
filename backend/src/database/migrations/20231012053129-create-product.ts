@@ -35,12 +35,13 @@ module.exports = {
         allowNull: true
       },
       quantity: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       sheet: {
-        type: DataTypes.STRING,
-        allowNull: true
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: false
       },
       type: {
         type: DataTypes.JSON,
@@ -51,15 +52,15 @@ module.exports = {
         allowNull: true
       },
       width: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       height: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       depth: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       ratioFullSize: {
@@ -67,11 +68,11 @@ module.exports = {
         allowNull: true
       },
       ratioWidth: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       ratioHeight: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       format: {
@@ -103,6 +104,46 @@ module.exports = {
         allowNull: true
       },
       lamSqPrice: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      dieCut: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      gluding: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      plySet: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      biPrice: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      other: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      cover: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      remark: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      ctpPrice: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      waste: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      abbb: {
         type: DataTypes.STRING,
         allowNull: true
       },

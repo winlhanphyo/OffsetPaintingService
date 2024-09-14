@@ -14,7 +14,7 @@
             <label for="productName">Product Name:</label>
             <!-- <input type="text" class="form-control" id="product-name" v-model="name" /> -->
             <div>
-              {{ name }}
+              {{ detailData?.name }}
             </div>
           </div>
           <div class="form-group col-sm-4 p-2">
@@ -33,25 +33,19 @@
                 {{ item?.name }}
               </option>
             </select> -->
-            {{ categoryId }}
+            {{ detailData?.category?.name }}
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="image">Image:</label>
-            <img :src="item?.image" />
-            <!-- <input
-              class="form-control"
-              type="file"
-              id="formFile"
-              @change="handleFileUpload"
-            /> -->
+            <img v-if="detailData?.media?.length > 0" style="width: 200px;height: 200px;" :src="imgRoot + detailData?.media[0]?.url" />
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="productName">Status:</label>
-            <div>{{ status }}</div>
+            <div>{{ detailData?.status }}</div>
             <!-- <select class="form-select" @change="changeStatus($event)" v-model="status">
               <option value="">None</option>
               <option value="Hot">Hot</option>
@@ -60,7 +54,7 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="categoryName">Description:</label>
-            <div>{{ description }}</div>
+            <div>{{ detailData?.description }}</div>
             <!-- <textarea
               id="w3review"
               name="w3review"
@@ -72,175 +66,252 @@
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
-            <label for="printing">Printing Type:</label>
-            <select name="printing" id="printing" class="form-select">
-              <option value="" selected disabled hidden>Choose Printing Type</option>
-              <option value="Flatten">Flatten</option>
-              <option value="Book">Book</option>
-              <option value="Voucher">Voucher</option>
-            </select>
+            <label for="printingType">Printing Type:</label>
+            {{ detailData?.printingType }}
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="quantity">Quantity:</label>
-            <input type="text" class="form-control" />
+            <select name="quantity" id="quantity" class="form-select" v-model="quantity">
+              <option value="" selected disabled hidden>Choose Quantity</option>
+              <option v-for="item in quantityList" :value="item" :key="item">{{ item }}</option>
+            </select>
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="sheet">Sheet:</label>
-            <input type="text" class="form-control" />
+            <input name="sheet" v-if="detailData?.sheet" type="text" v-model="sheet" class="form-control" />
+            <label v-else>{{ 1 }}</label>
           </div>
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="type">Type:</label>
-            <select name="type" id="type" class="form-select">
-              <option value="" selected disabled hidden>Choose Type</option>
-              <option value="AP">AP</option>
-              <option value="AC">AC</option>
-              <option value="WF">WF</option>
-              <option value="DP">DP</option>
-              <option value="CB">CB</option>
-              <option value="Sticker">Sticker</option>
-              <option value="Khaki">Khaki</option>
-              <option value="Recycle">Recycle</option>
-            </select>
+            {{ detailData?.type }}
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="gsm">Gsm:</label>
-            <select name="gsm" id="gsm" class="form-select">
+            <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm">
               <option value="" selected disabled hidden>Choose Gsm</option>
-              <option value="128">128gsm</option>
-              <option value="148">148gsm</option>
-              <option value="157">157gsm</option>
-              <option value="210">210gsm</option>
-              <option value="230">230gsm</option>
-              <option value="250">250gsm</option>
-              <option value="300">300gsm</option>
-              <option value="350">350gsm</option>
+              <option v-for="item in gsmList" :value="item" :key="item">{{ item }}</option>
             </select>
           </div>
           <div class="form-group col-sm-4 p-2">
-            <label for="width">Width:</label>
-            <input type="text" class="form-control" />
+            <label for="width">Width Height Depth:</label>
+            <select name="width" id="width" class="form-select" v-model="widthHeight">
+              <option value="" selected disabled hidden>Choose Width And Height (Depth)</option>
+              <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
+            </select>
           </div>
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
-            <label for="height">Height:</label>
-            <input type="text" class="form-control" />
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="depth">Depth:</label>
-            <input type="text" class="form-control" />
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="size">(Ratio) Full Size:</label>
-            <select name="size" id="size" class="form-select">
+            <label for="ratioFullSize">(Ratio) Full Size:</label>
+            <select name="ratioFullSize" id="size" class="form-select" v-model="ratioFullSize">
               <option value="" selected disabled hidden>Choose Ratio Size</option>
-              <option value="2">2 Ratio (S)</option>
-              <option value="5">5 Ratio</option>
-              <option value="6">6 Ratio</option>
-              <option value="6">6 Ratio (2)</option>
-              <option value="8">8 Ratio</option>
-              <option value="9">9 Ratio</option>
-              <option value="10">10 Ratio</option>
-              <option value="11">11 Ratio</option>
+              <option v-for="item in ratioFullSizeList" :key="item" :value="item">{{ item }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="ratioWidth">Ratio Width Height:</label>
+            <select name="ratioWidth" id="ratioWidth" class="form-select" v-model="ratioWidthHeight">
+              <option value="" selected disabled hidden>Choose Ratio Width And Height</option>
+              <option v-for="item in ratioWidthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="format">Format:</label>
+            <select name="format" id="format" class="form-select" v-model="selectedFormat">
+              <option value="" selected disabled hidden>Choose Format</option>
+              <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
             </select>
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
-            <label for="Ratio Width">Ratio Width:</label>
-            <input type="text" class="form-control" />
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
-            <label for="Ratio Width">Ratio Height:</label>
-            <input type="text" class="form-control" />
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
-            <label for="Ratio Width">Format:</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <label for="Ratio Width">Color F:</label>
-            <input type="text" class="form-control" />
+            <label for="colorF">Color F:</label>
+            <select name="size" id="size" class="form-select" v-model="selectedColorF">
+              <option value="" selected disabled hidden>Choose ColorF</option>
+              <option v-for="item in colorFList" :key="item" :value="item">{{ item }}</option>
+            </select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Color B:</label>
-            <input type="text" class="form-control" />
+            <select name="colorB" id="colorB" class="form-select" v-model="selectedColorB">
+              <option value="" selected disabled hidden>Choose ColorB</option>
+              <option v-for="item in colorBList" :key="item" :value="item">{{ item }}</option>
+            </select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
-            <label for="Ratio Width">Lam:</label>
-            <input type="text" class="form-control" />
+            <label for="lam">Lam:</label>
+            <select name="lam" id="lam" class="form-select" v-model="selectedLam">
+              <option value="" selected disabled hidden>Choose Lam</option>
+              <option v-for="item in lamList" :key="item" :value="item">{{ item }}</option>
+            </select>
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
-            <label for="Ratio Width">BiType:</label>
-            <input type="text" class="form-control" />
+            <label for="biType">BiType:</label>
+            <select name="biType" id="biType" class="form-select" v-model="selectedBiType">
+              <option value="" selected disabled hidden>Choose Bi Type</option>
+              <option v-for="item in biTypeList" :key="item" :value="item">{{ item }}</option>
+            </select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Paper Price:</label>
-            <input type="text" class="form-control" />
+            {{ detailData?.paperPrice }}
           </div>
 
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Press Price:</label>
-            <input type="text" class="form-control" />
+            {{ detailData?.pressPrice }}
           </div>
         </div>
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Lam Sq Price:</label>
-            <input type="text" class="form-control" />
+            {{ detailData?.lamSqPrice }}
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="dieCut">Die Cut:</label>
+            <label>{{ detailData?.dieCut }}</label>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="gluding">Gluding:</label>
+            <label>{{ detailData?.gluding }}</label>
           </div>
         </div>
 
-        <!-- <div class="d-flex mb-3">
+        <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
-            <button class="btn btn-secondary">Clear</button>
+            <label for="plySet">Ply Set:</label>
+            <label>{{ detailData?.plySet }}</label>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="biType">Bi Price:</label>
+            <label>{{ detailData?.biPrice }}</label>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="other">Other:</label>
+            <label>{{ detailData?.other }}</label>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="cover">Cover:</label>
+            <label>{{ detailData?.cover }}</label>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="remark">Remark:</label>
+            <label>{{ detailData?.remark }}</label>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="ctpPrice">CTP Price:</label>
+            <label>{{ detailData?.ctpPrice }}</label>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="waste">Waste:</label>
+            <label>{{ detailData?.waste }}</label>
+          </div>
+          <div class="form-group col-sm-4 p-2">
+            <label for="abbb">1 (AB)2 (BB):</label>
+            <label>{{ detailData?.abbb }}</label>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width" class="totalPrice">Total Price:</label>
+            <label class="totalPrice">{{ totalPrice }}</label>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
             <button
               class="btn btn-primary"
               style="margin-left: 10px"
-              @click="submitProduct()"
+              @click="back()"
             >
-              Submit
+              Back
+            </button>
+            <button
+              class="btn btn-primary"
+              style="margin-left: 10px"
+              @click="calculate()"
+            >
+              Calculate
             </button>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
+  <DetailDialog ref="detailDialog" :data="detailDialogData" />
 </template>
 
 <script>
 // import moment from "moment";
 // import Swal from "sweetalert2";
-// import { imgRoot } from "../../../config.js";
+import DetailDialog from "../../components/DetailDialog.vue";
+import { imgRoot } from "../../../config.js";
 import { getCategory, getProductById } from "@/services/admin.service.js";
 
 export default {
+  components: {
+    DetailDialog
+  },
   data() {
     return {
-      id: "",
-      name: "",
-      image: "",
-      categoryId: "",
-      description: "",
-      status: "",
       categoryList: [],
       detailData: {},
       searchName: null,
+
+      formatList: [],
+      gsmList: [],
+      biTypeList: [],
+      lamList: [],
+      ratioFullSizeList: [],
+      quantityList: [],
+      colorBList: [],
+      colorFList: [],
+      widthHeightList: [],
+      ratioWidthHeightList: [],
+      imgRoot: imgRoot,
+
+      sheet: 1,
+      selectedGsm: "128",
+      quantity: "",
+      ratioFullSize: "",
+      ratioWidthHeight: "",
+      ratioWidth: "",
+      ratioHeight: "",
+      widthHeight: "",
+      selectedFormat: "",
+      selectedColorF: "",
+      selectedColorB: "",
+      selectedLam: "",
+      selectedBiType: "",
+      totalPrice: 0,
+      detailDialogData: {}
+
     };
   },
   async mounted() {
@@ -248,14 +319,55 @@ export default {
     this.id = this.$route?.params?.id;
     if (this.id) {
       const res = await getProductById(this.id);
-      const data = res?.data?.data;
-      this.name = data?.name;
-      this.categoryId = data?.categoryId;
-      this.image = "";
-      this.description = data?.description;
-      this.status = data?.status;
+      this.detailData = res?.data?.data;
+      this.formatList = this.detailData?.format ? JSON.parse(this.detailData.format) : [];
+      this.gsmList = this.detailData?.gsm ? JSON.parse(this.detailData.gsm) : [];
+      this.biTypeList = this.detailData?.biType ? JSON.parse(this.detailData.biType) : [];
+      this.lamList = this.detailData?.lam ? JSON.parse(this.detailData.lam) : [];
+      this.ratioFullSizeList = this.detailData?.ratioFullSize ? JSON.parse(this.detailData.ratioFullSize) : [];
+      this.colorBList = this.detailData?.colorB ? JSON.parse(this.detailData.colorB) : [];
+      this.colorFList = this.detailData?.colorF ? JSON.parse(this.detailData.colorF) : [];
 
-      console.log("----------data", data);
+      const widthList = this.detailData?.width ? JSON.parse(this.detailData.width) : [];
+      const heightList = this.detailData?.height ? JSON.parse(this.detailData.height) : [];
+      const depthList = this.detailData?.depth ? JSON.parse(this.detailData.depth) : [];
+      const ratioWidthList = this.detailData?.ratioWidth ? JSON.parse(this.detailData.ratioWidth) : [];
+      const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
+      this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+
+      widthList?.map((w) => {
+        heightList?.map(h => {
+          if (depthList?.length > 0) {
+            depthList?.map(d => {
+              if (w && h) {
+              this.widthHeightList.push({
+                value: w + " " + h + " " + d,
+                label: "width: " + w + "\" , height: " + h  + "\" , depth: " + d + "\""
+              });
+            }
+            });
+          } else {
+            if (w && h) {
+              this.widthHeightList.push({
+                value: w + " " + h,
+                label: "width: " + w + "\" , height: " + h + "\""
+              });
+            }
+          }
+        })
+      });
+
+      ratioWidthList?.map((w) => {
+        ratioHeightList?.map(h => {
+            if (w && h) {
+              this.ratioWidthHeightList.push({
+                value: w + " " + h,
+                label: "Ratio Width: " + w + "\" , Ratio Height: " + h + "\""
+              });
+            }
+        })
+      });
+
     }
   },
   methods: {
@@ -272,43 +384,175 @@ export default {
       }
       this.categoryList = arr;
     },
-    handleFileUpload(event) {
-      const file = event.target.files[0];
-      this.image = file;
+    calculate() {
+      this.detailDialogData = {};
+      let temp = 0;
+      let paper = 0;
+      let form = null;
+
+
+      if (this.detailData?.printingType === "Book") {
+        temp = (this.sheet/this.selectedFormat).toFixed(1);
+        if (temp < 1) {
+          form = 1;
+        } else {
+          form = temp;
+        }
+      } else {
+        form = 1;
+      }
+      let pressCost = 0;
+      const plateCtp = this.selectedColorF + this.selectedColorB;
+      let lamPerPrice = null;
+
+      const splitRatioWidthHeight = this.ratioWidthHeight?.split(" ");
+      if (splitRatioWidthHeight?.length > 0) {
+        this.ratioWidth = parseFloat(splitRatioWidthHeight[0]);
+        this.ratioHeight = parseFloat(splitRatioWidthHeight[1]);
+      }
+
+      const splitWidthHeight = this.widthHeight?.split(" ");
+      if (splitWidthHeight?.length > 0) {
+        this.width = parseFloat(splitWidthHeight[0]);
+        this.height = parseFloat(splitWidthHeight[1]);
+      }
+
+      if (!this.selectedLam) {
+        lamPerPrice = "";
+      } else if (this.selectedLam == "One Side") {
+        lamPerPrice = (1 * this.ratioWidth * this.ratioHeight * this.detailData?.lamSqPrice);
+      } else if (this.selectedLam == "Both Side") {
+        lamPerPrice = (2 * this.ratioWidth * this.ratioHeight * this.detailData?.lamSqPrice);
+      }
+
+      let vPround = 0;
+      if (!this.detailData?.plySet || this.detailData?.plySet <= 0) {
+        if (this.sheet <= 2) {
+          vPround = (this.quantity * this.sheet * 100);
+        } else {
+          vPround = (this.quantity * this.sheet * 50);
+        }
+      } else {
+        vPround = (this.quantity * this.sheet * this.detailData?.plySet);
+      }
+
+
+      let vCounter = 0;
+      if (!this.detailData?.plySet || this.detailData?.plySet <= 0) {
+        if (this.sheet <= 2) {
+          vCounter = ((this.quantity * 100) / this.selectedFormat) * this.sheet;
+        } else {
+          vCounter = ((this.quantity * 50) / this.selectedFormat) * this.sheet;
+        }
+      } else {
+        vCounter = (this.quantity * (this.detailData?.plySet * this.sheet)) / this.selectedFormat;
+      }
+
+      // condition 1000
+      let vRound = 1000;
+      if (vCounter > 1000) {
+        vRound = this.roundUp(vCounter, 500);
+      }
+      if (this.detailData?.printingType === "Book") {
+        paper = (this.quantity * form) + (form * this.detailData.waste);
+      } else if (this.detailData?.printingType === "Voucher") {
+        paper = (vPround/this.selectedFormat) + (this.sheet * this.detailData.waste);
+      } else {
+        // flatten
+        paper = (this.quantity / this.selectedFormat) + (form * this.detailData.waste);
+      }
+
+      // press per cost not know
+      const lamTotalCost = (paper * lamPerPrice);
+      const paperTotalCost = (paper * this.detailData?.paperPrice);
+      const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
+      const bindingTotalCost = (this.detailData?.biPrice * this.quantity);
+      const dieCutTotal = (this.detailData?.dieCut * this.quantity);
+      const gludingTotal = (this.detailData?.gluding * this.quantity);
+      const coverTotal = (this.detailData?.cover * this.quantity);
+
+      let bCounter = 0;
+      if (this.quantity <= 1000) {
+        bCounter = 1000;
+      } else {
+        bCounter = this.roundUp(this.quantity, 500);
+      }
+
+      let fCounter = 0;
+      temp = this.roundUp((((this.quantity * this.sheet) / this.selectedFormat), 500) * this.detailData?.abbb, 500);
+
+      if (temp <= 1000) {
+        fCounter = 1000;
+      } else {
+        fCounter = this.roundUp(((this.quantity * this.sheet) / this.selectedFormat) * this.detailData?.abbb, 500);
+      }
+
+      if (this.detailData.printingType === "Voucher") {
+        pressCost = vRound * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice;
+      } else if (this.detailData.printingType === "Flatten") {
+        pressCost = (form * fCounter) * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice;
+      } else {
+        pressCost = (form * bCounter) * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice * this.detailData?.abbb;;
+      }
+
+      const allTotal = pressCost + lamTotalCost + paperTotalCost + ctpTotalCost + bindingTotalCost + dieCutTotal +
+      gludingTotal + coverTotal;
+
+      const perCost = (allTotal/this.quantity).toFixed(1);
+
+
+
+      // console.log("-------paper", paper);
+      // console.log("-------plateCtp", plateCtp);
+      // console.log("-------lamPerPrice", lamPerPrice);
+      // console.log("-------lamTotalCost", lamTotalCost);
+      // console.log("-------paperTotalCost", paperTotalCost);
+      // console.log("-------ctpTotalCost", ctpTotalCost);
+      // console.log("-------bindingTotalCost", bindingTotalCost);
+      // console.log("-------dieCutTotal", dieCutTotal);
+      // console.log("-------gludingTotal", gludingTotal);
+      // console.log("-------coverTotal", coverTotal);
+      // console.log("-------allTotal", allTotal);
+      // console.log("-------vCounter", vCounter);
+      // console.log("-------vRound", vRound);
+      // console.log("-------vPround", vPround);
+      // console.log("-------bCounter", bCounter);
+      // console.log("-------form", form);
+      // console.log("-------perCost", perCost);
+      // console.log("-------fCounter", fCounter);
+      // console.log("-------pressCost", pressCost);
+
+      this.detailDialogData.paper = paper;
+      this.detailDialogData.plateCtp = plateCtp;
+      this.detailDialogData.lamPerPrice = lamPerPrice;
+      this.detailDialogData.lamTotalCost = lamTotalCost;
+      this.detailDialogData.paperTotalCost = paperTotalCost;
+      this.detailDialogData.ctpTotalCost = ctpTotalCost;
+      this.detailDialogData.bindingTotalCost = bindingTotalCost;
+      this.detailDialogData.dieCutTotal = dieCutTotal;
+      this.detailDialogData.gludingTotal = gludingTotal;
+      this.detailDialogData.coverTotal = coverTotal;
+      this.detailDialogData.allTotal = allTotal;
+      this.detailDialogData.vCounter = vCounter;
+      this.detailDialogData.vRound = vRound;
+      this.detailDialogData.vPround = vPround;
+      this.detailDialogData.bCounter = bCounter;
+      this.detailDialogData.form = form;
+      this.detailDialogData.perCost = perCost;
+      this.detailDialogData.pressCost = pressCost;
+      this.detailDialogData.fCounter = fCounter;
+
+      this.totalPrice = allTotal;
+
+
+      this.$refs.detailDialog.openModal();
     },
-    // async submitProduct() {
-    //   const token = localStorage.getItem("token");
-    //   let formParam = new FormData();
-    //   formParam.append("name", this.name);
-    //   formParam.append("categoryId", this.categoryId);
-    //   formParam.append("description", this.description);
-    //   formParam.append("status", this.status);
-
-    //   if (this.image) {
-    //     formParam.append("media", this.image);
-    //   }
-
-    //   updateProduct(this.id, formParam, token)
-    //     .then(() => {
-    //       Swal.fire({
-    //         title: "Success!",
-    //         text: "Product is updated successfully!",
-    //         icon: "success",
-    //       }).then(() => {
-    //         this.$router.push("/product");
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       Swal.fire({
-    //         title: "Oops!",
-    //         text: err.toString(),
-    //         icon: "error",
-    //       });
-    //     });
-    // },
-    // changeStatus(event) {
-    //   this.status = event.target.value;
-    // },
+    roundUp(value, roundTo) {
+      return Math.ceil(value / roundTo) * roundTo;
+    },
+    back() {
+      this.$router.push("/product");
+    },
     changeCategory(event) {
       this.categoryId = event.target.value;
     },
@@ -316,7 +560,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product-create {
   padding: 1.5rem;
   font-size: 1rem;
@@ -338,5 +582,11 @@ textarea {
   border: 1px solid #d2d6da;
   border-radius: 0.5rem;
   resize: none !important;
+}
+
+.totalPrice {
+  color: red;
+  font-weight: 700;
+  font-size: 20px;
 }
 </style>

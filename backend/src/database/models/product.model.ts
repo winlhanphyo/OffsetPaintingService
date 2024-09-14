@@ -11,7 +11,7 @@ export interface IProductModel {
   categoryId: number;
   printingType: string;
   quantity: string;
-  sheet: string;
+  sheet: boolean;
   type: string;
   gsm: string;
   width: string;
@@ -29,6 +29,16 @@ export interface IProductModel {
   pressPrice: string;
   lamSqPrice: string;
   status: string;
+  dieCut: string;
+  gluding: string;
+  plySet: string;
+  biPrice: string;
+  other: string;
+  cover: string;
+  remark: string;
+  ctpPrice: string;
+  waste: string;
+  abbb: string;
   createdUserId: number;
   updatedUserId: number;
   createdAt: Date;
@@ -66,11 +76,11 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   quantity: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   sheet: {
-    type: DataTypes.STRING,
+    type: DataTypes.BOOLEAN,
     allowNull: true
   },
   type: {
@@ -82,15 +92,15 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   width: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   height: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   depth: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   ratioFullSize: {
@@ -98,11 +108,11 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   ratioWidth: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   ratioHeight: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   format: {
@@ -134,6 +144,46 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   lamSqPrice: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  dieCut: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  gluding: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  plySet: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  biPrice: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  other: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  cover: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  remark: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  ctpPrice: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  waste: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  abbb: {
     type: DataTypes.STRING,
     allowNull: true
   },
