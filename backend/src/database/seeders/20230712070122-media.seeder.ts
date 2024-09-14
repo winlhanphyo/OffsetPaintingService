@@ -9,22 +9,22 @@ module.exports = {
     return queryInterface.bulkInsert(DataBaseTableNames.MEDIA,
       [
         {
-          name: "TShirt 1",
-          url: 'upload/user/product/tshirt1.png',
+          name: "Product 1",
+          url: 'upload/user/product/1.png',
           status: "available",
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'
         },
         {
-          name: "TShirt 2",
-          url: 'upload/user/product/tshirt2.png',
+          name: "Product 2",
+          url: 'upload/user/product/2.png',
           status: "available",
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'
         },
         {
-          name: "TShirt 3",
-          url: 'upload/user/product/tshirt3.png',
+          name: "Product 3",
+          url: 'upload/user/product/3.png',
           status: "available",
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'
