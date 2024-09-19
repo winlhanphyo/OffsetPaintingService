@@ -322,7 +322,7 @@ export default {
       const arr = [];
       const res = await getCategory(token);
       this.categories = res?.data?.data;
-      for (let i = 0; i < this.categories.length; i++) {
+      for (let i = 0; i < this.categories?.length; i++) {
         arr.push({
           name: this.categories[i].name,
           value: this.categories[i].id
