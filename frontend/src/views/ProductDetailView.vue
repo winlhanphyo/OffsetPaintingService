@@ -75,16 +75,21 @@
             <div class="form-group">
               <label for="" class="label">{{ $t("message.size") }}</label>
               <div class="form-data">
-                <input
+                <!-- <input
                   type="text"
                   placeholder="3.5 x 2.1 - Standard Business Card Size"
-                />
+                /> -->
+                <select name="width" id="width" class="form-select" v-model="widthHeight">
+                  <option value="" selected disabled hidden>Choose Width And Height (Depth)</option>
+                  <option value="">None</option>
+                  <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
+                </select>
               </div>
             </div>
             <div class="form-group">
               <label for="" class="label">{{ $t("message.quantity") }}</label>
               <div class="form-data">
-                <select name="" id="">
+                <!-- <select name="" id="">
                   <option value="100">100</option>
                   <option value="200">200</option>
                   <option value="200">200</option>
@@ -96,7 +101,8 @@
                   <option value="800">800</option>
                   <option value="900">900</option>
                   <option value="1000">1000</option>
-                </select>
+                </select> -->
+                <input type="number" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity" name="quantity" />
               </div>
             </div>
             <div class="form-group">
@@ -120,10 +126,14 @@
                 </select>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" v-if="lamList?.length > 0">
               <label for="" class="label">{{ $t("message.lamination") }}</label>
               <div class="form-data">
-                <input type="text" placeholder="None" />
+                <!-- <input type="text" placeholder="None" />  -->
+                <select name="lam" id="lam" class="form-select" v-model="selectedLam">
+                  <option value="" hidden>Choose Lam</option>
+                  <option v-for="item in lamList" :key="item" :value="item">{{ item }}</option>
+                </select>
               </div>
             </div>
             <div class="total">
@@ -210,6 +220,11 @@ export default {
     return {
       productDetail: {},
       media: [],
+      widthHeightList: [],
+      widthHeight: "",
+      quantity: "",
+      lamList: [],
+      selectedLam: "",
     };
   },
   mounted() {
@@ -278,6 +293,32 @@ export default {
         this.productDetail.productImage = this.productDetail?.productImage
           ? imgRoot + this.productDetail?.productImage
           : "";
+        const widthList = this.productDetail?.width ? JSON.parse(this.productDetail.width) : [];
+        const heightList = this.productDetail?.height ? JSON.parse(this.productDetail.height) : [];
+        const depthList = this.productDetail?.depth ? JSON.parse(this.productDetail.depth) : [];
+        this.lamList = this.productDetail?.lam ? JSON.parse(this.productDetail.lam) : [];
+
+        widthList?.map((w) => {
+        heightList?.map(h => {
+          if (depthList?.length > 0) {
+            depthList?.map(d => {
+              if (w && h) {
+              this.widthHeightList.push({
+                value: w + " " + h + " " + d,
+                label: "width: " + w + "\" , height: " + h  + "\" , depth: " + d + "\""
+              });
+            }
+            });
+          } else {
+            if (w && h) {
+              this.widthHeightList.push({
+                value: w + " " + h,
+                label: "width: " + w + "\" , height: " + h + "\""
+              });
+            }
+          }
+        })
+      });
       }
     },
     async getMediaWithProductData() {
