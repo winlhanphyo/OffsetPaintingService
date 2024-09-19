@@ -8,6 +8,7 @@ export interface IOrderModel {
   id: number;
   productId: number;
   quantity: number;
+  productDetail: string;
   amount: number;
   createdAt: Date;
   updatedAt: Date;
@@ -29,6 +30,10 @@ const modelAttributes: DbModelFieldInit<Partial<IOrderModel>> = {
   },
   quantity: {
     type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  productDetail: {
+    type: DataTypes.JSON,
     allowNull: false
   },
   amount: {

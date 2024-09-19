@@ -14,9 +14,17 @@ module.exports = {
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      mediaId: {
+      productId: {
         type: DataTypes.INTEGER,
         allowNull: false
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      productDetail: {
+        type: DataTypes.JSON,
+        allowNull: true
       },
       amount: {
         type: DataTypes.DECIMAL(15, 2),

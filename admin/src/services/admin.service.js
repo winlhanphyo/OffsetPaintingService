@@ -105,6 +105,17 @@ export const getProductById = async (id, token) => {
 }
 
 /**
+ * delete media product image.
+ * @param {*} id 
+ * @param {*} token 
+ * @returns 
+ */
+export const deleteMedia = async (id, token) => {
+  const res = await api.deleteData(`/media/${id}`, token);
+  return res;
+}
+
+/**
  * get user API.
  * @param {*} data 
  * @param {*} token 

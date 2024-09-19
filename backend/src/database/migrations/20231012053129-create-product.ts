@@ -35,7 +35,7 @@ module.exports = {
         allowNull: true
       },
       quantity: {
-        type: DataTypes.JSON,
+        type: DataTypes.BOOLEAN,
         allowNull: true
       },
       sheet: {

@@ -156,7 +156,7 @@ class ProductService {
       } as any;
 
       productData.printingType = req.body?.printingType ? req.body.printingType : "";
-      productData.quantity = req.body?.quantity ? req.body.quantity : "";
+      productData.quantity = req.body?.quantity ? req.body.quantity : false;
       productData.sheet = req.body?.sheet ? req.body.sheet : false;
       productData.type = req.body?.type ? req.body.type : "";
       productData.gsm = req.body?.gsm ? req.body.gsm : "";
@@ -245,7 +245,7 @@ class ProductService {
       } as any;
 
       productData.printingType = req.body?.printingType ? req.body.printingType : "";
-      productData.quantity = req.body?.quantity ? req.body.quantity : "";
+      productData.quantity = req.body?.quantity ? req.body.quantity : false;
       productData.sheet = req.body?.sheet ? req.body.sheet : false;
       productData.type = req.body?.type ? req.body.type : "";
       productData.gsm = req.body?.gsm ? req.body.gsm : "";
@@ -317,9 +317,14 @@ class ProductService {
             ]
           }) as any;
 
-          // Associate media with product
           if (updatedProductInstance) {
-            await updatedProductInstance.setMedia(media);
+            const productMediaData = media.map((m: any) => ({
+              productId: id,
+              mediaId: m.id
+            }));
+        
+            // Insert new associations to ProductMediaDbModel
+            await ProductMediaDbModel.bulkCreate(productMediaData);
           }
         }
       }

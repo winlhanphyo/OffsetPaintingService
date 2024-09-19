@@ -39,7 +39,14 @@
               type="file"
               id="formFile"
               @change="handleFileUpload"
+              ref="fileInput"
+              multiple
             />
+            <!-- Image Preview with "X" remove button -->
+            <div v-for="(img, index) in images" :key="index" class="image-container">
+              <img :src="img.preview" alt="Image Preview" class="image-preview">
+              <button class="remove-button" @click="removeImage(index)">×</button>
+            </div>
           </div>
         </div>
 
@@ -63,13 +70,14 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="qty">Quantity:</label>
-            <v-select
+            <!-- <v-select
               v-model="quantity"
               :options="qtyOptions"
               :multiple="true"
               :taggable="true"
               placeholder="Select or add Quantity">
-            </v-select>
+            </v-select> -->
+            <input type="checkbox" id="qty" v-model="quantity" />
           </div>
         </div>
 
@@ -339,8 +347,8 @@
 // import moment from "moment";
 import vSelect from 'vue-select';
 import Swal from "sweetalert2";
-// import { imgRoot } from "../../../config.js";
-import { updateProduct, getCategory, getProductById } from "@/services/admin.service.js";
+import { imgRoot } from "../../../config.js";
+import { updateProduct, getCategory, getProductById, deleteMedia } from "@/services/admin.service.js";
 import "vue-select/dist/vue-select.css";
 
 export default {
@@ -349,7 +357,7 @@ export default {
     return {
       id: "",
       name: "",
-      image: "",
+      images: [],
       categoryId: "",
       description: "",
       status: "",
@@ -375,7 +383,7 @@ export default {
 
       selectedGsm: [],
       printingType: "",
-      quantity: [],
+      quantity: "",
       sheet: "",
       type: "",
       width: [],
@@ -415,7 +423,16 @@ export default {
       console.log("-----------detail data", data);
       this.name = data?.name;
       this.categoryId = data?.categoryId;
-      this.image = "";
+      if (data?.media?.length > 0) {
+        for (const dist of data.media) {
+          console.log("------media", dist);
+          this.images.push({
+            id: 1,
+            file: null,
+            preview: imgRoot + dist?.url
+          });
+        }
+      }
       this.description = data?.description;
       this.status = data?.status;
 
@@ -433,7 +450,10 @@ export default {
       this.depth = data?.depth ? JSON.parse(data.depth) : [];
       this.ratioWidth = data?.ratioWidth ? JSON.parse(data.ratioWidth) : [];
       this.ratioHeight = data?.ratioHeight ? JSON.parse(data.ratioHeight) : [];
-      this.quantity = data?.quantity ? JSON.parse(data.quantity) : [];
+      // this.quantity = data?.quantity ? JSON.parse(data.quantity) : [];
+      this.quantity = data?.quantity;
+      this.sheet = data?.sheet;
+      
 
       this.paperPrice = data?.paperPrice ? data.paperPrice : "";
       this.pressPrice = data?.pressPrice ? data.pressPrice : "";
@@ -468,9 +488,29 @@ export default {
       }
       this.categoryList = arr;
     },
-    handleFileUpload(event) {
-      const file = event.target.files[0];
-      this.image = file;
+    handleFileUpload() {
+      const files = this.$refs.fileInput.files;
+      
+      if (files) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const reader = new FileReader();
+          
+          reader.onload = (e) => {
+            this.images.push({
+              file: file,           // Store the file object
+              preview: e.target.result // Store the base64 image string (preview)
+            });
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    },
+    removeImage(index) {
+      if (this.images[index]?.id) {
+        deleteMedia(this.images[index].id);
+      }
+      this.images.splice(index, 1);
     },
     async submitProduct() {
       const token = localStorage.getItem("token");
@@ -480,8 +520,9 @@ export default {
       this.description && formParam.append("description", this.description);
 
       this.printingType && formParam.append("printingType", this.printingType);
-      this.quantity?.length > 0 && formParam.append("quantity", JSON.stringify(this.quantity));
-      this.sheet && formParam.append("sheet", this.sheet);
+      // this.quantity?.length > 0 && formParam.append("quantity", JSON.stringify(this.quantity));
+      formParam.append("quantity", this.quantity);
+      formParam.append("sheet", this.sheet);
       this.type && formParam.append("type", this.type);
       this.selectedGsm?.length > 0 && formParam.append("gsm", JSON.stringify(this.selectedGsm));
       this.width?.length > 0 && formParam.append("width", JSON.stringify(this.width));
@@ -513,8 +554,10 @@ export default {
 
       formParam.append("status", this.status);
 
-      if (this.image) {
-        formParam.append("media", this.image);
+      for (const file of this.images) {
+        if (file?.file) {
+          formParam.append('media', file?.file);
+        }
       }
 
       updateProduct(this.id, formParam, token)
@@ -570,5 +613,40 @@ textarea {
   border: 1px solid #d2d6da;
   border-radius: 0.5rem;
   resize: none !important;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+.image-preview {
+  max-width: 100px;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remove-button:hover {
+  background-color: #cc0000;
 }
 </style>

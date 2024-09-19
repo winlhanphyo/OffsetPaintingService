@@ -36,9 +36,9 @@
             {{ detailData?.category?.name }}
           </div>
 
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-4 p-2" v-if="detailData?.media?.length > 0">
             <label for="image">Image:</label>
-            <img v-if="detailData?.media?.length > 0" style="width: 200px;height: 200px;" :src="imgRoot + detailData?.media[0]?.url" />
+            <img v-for="item in detailData.media" :key="item?.id" style="width: 100px;height: 100px; object-fit: cover;margin-left: 15px;" :src="imgRoot + item?.url" />
           </div>
         </div>
 
@@ -55,12 +55,6 @@
           <div class="form-group col-sm-4 p-2">
             <label for="categoryName">Description:</label>
             <div>{{ detailData?.description }}</div>
-            <!-- <textarea
-              id="w3review"
-              name="w3review"
-              rows="4"
-              v-model="description"
-            ></textarea> -->
           </div>
         </div>
 
@@ -71,14 +65,12 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="quantity">Quantity:</label>
-            <select name="quantity" id="quantity" class="form-select" v-model="quantity">
-              <option value="" selected disabled hidden>Choose Quantity</option>
-              <option v-for="item in quantityList" :value="item" :key="item">{{ item }}</option>
-            </select>
+            <input name="sheet" v-if="detailData?.quantity" type="number" v-model="quantity" class="form-control" />
+            <label v-else>{{ 1 }}</label>
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="sheet">Sheet:</label>
-            <input name="sheet" v-if="detailData?.sheet" type="text" v-model="sheet" class="form-control" />
+            <input name="sheet" v-if="detailData?.sheet" type="number" v-model="sheet" class="form-control" />
             <label v-else>{{ 1 }}</label>
           </div>
         </div>
@@ -289,7 +281,7 @@ export default {
       biTypeList: [],
       lamList: [],
       ratioFullSizeList: [],
-      quantityList: [],
+      // quantityList: [],
       colorBList: [],
       colorFList: [],
       widthHeightList: [],
@@ -333,7 +325,7 @@ export default {
       const depthList = this.detailData?.depth ? JSON.parse(this.detailData.depth) : [];
       const ratioWidthList = this.detailData?.ratioWidth ? JSON.parse(this.detailData.ratioWidth) : [];
       const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
-      this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+      // this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
 
       widthList?.map((w) => {
         heightList?.map(h => {

@@ -10,14 +10,16 @@ module.exports = {
     return queryInterface.bulkInsert(DataBaseTableNames.ORDER_DETAIL,
       [
         {
-          mediaId: 1,
-          amount: 10,
+          productId: 1,
+          quantity: 1,
+          amount: 10000,
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'
         },
         {
-          mediaId: 2,
-          amount: 10,
+          productId: 2,
+          quantity: 1,
+          amount: 10000,
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'
         },
