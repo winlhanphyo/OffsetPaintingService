@@ -121,11 +121,12 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
           </tbody>
         </table>
         <argon-pagination>
-          <argon-pagination-item prev />
-          <argon-pagination-item label="1" active />
+          <argon-pagination-item prev @click="clickPaginate(currentPage - 1)" :disabled="disabledPreviousBtn" />
+          <!-- <argon-pagination-item label="1" active />
           <argon-pagination-item label="2" />
-          <argon-pagination-item label="3" />
-          <argon-pagination-item next />
+          <argon-pagination-item label="3" /> -->
+          {{ currentPage }} of {{ lastPage }}
+          <argon-pagination-item next @click="clickPaginate(currentPage + 1)" :disabled="disabledNextBtn" />
         </argon-pagination>
         <div
           class="modal fade"
@@ -298,7 +299,10 @@ export default {
       categoryList: [],
       modalLabel: "Create",
       detailData: {},
-      searchName: null
+      searchName: null,
+      total: 1,
+      currentPage: 1,
+      lastPage: 1
     };
   },
   mounted() {
@@ -306,11 +310,31 @@ export default {
     this.getCategoryData();
   },
   methods: {
+    async clickPaginate(page=1) {
+      const token = localStorage.getItem("token");
+      page = Number(page) || 1;
+      let params = {
+        size: 10,
+        page
+      };
+      console.log("click paginate-------", params);
+      if (this.searchName) {
+        params.name = this.searchName;
+      }
+      const res = await getProduct(token, null, params);
+      this.products = res?.data?.data;
+      this.total = res?.data?.count;
+      this.lastPage = (this.total % 10 === 0 || page === 1) ? page : page + 1;
+      console.log("------------products", this.products);
+    },
     async getProductData() {
       const token = localStorage.getItem("token");
       const res = await getProduct(token, this.searchName);
 
       this.products = res?.data?.data;
+      this.total = res?.data?.count;
+      let page = this.total <= 10 ? 1 : this.total / 10;
+      this.lastPage = (this.total % 10 === 0 || page === 1) ? page : page + 1;
       this.products?.map((dist) => {
         if (dist?.media?.length > 0) {
           dist.productImage = imgRoot + dist.media[0]?.url;
@@ -328,14 +352,11 @@ export default {
           value: this.categories[i].id
         })
       }
-      console.log("------arr", arr);
       this.categoryList = arr;
     },
     handleFileUpload(event) {
       const file = event.target.files[0];
       this.image = file;
-
-      console.log("------productImage", this.image);
     },
     changeLabel(text, data=null) {
       this.modalLabel = text;
@@ -445,6 +466,28 @@ export default {
       this.categoryId = event.target.value;
     },
   },
+  computed: {
+    disabledNextBtn() {
+      const temp = this.total /(this.currentPage * 10);
+      if (this.total % 10 === 0) {
+        if (temp < 2) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (temp < 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    disabledPreviousBtn() {
+      console.log("current page", this.currentPage, typeof this.currentPage);
+      return (this.currentPage > 1) ? false : true;
+    }
+  }
 };
 </script>
 

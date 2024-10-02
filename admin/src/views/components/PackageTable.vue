@@ -1,6 +1,6 @@
 <script setup>
-import ArgonPagination from "@/components/ArgonPagination.vue";
-import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+// import ArgonPagination from "@/components/ArgonPagination.vue";
+// import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 </script>
 
 <template>
@@ -106,13 +106,13 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
             
           </tbody>
         </table>
-        <argon-pagination>
+        <!-- <argon-pagination>
           <argon-pagination-item prev />
           <argon-pagination-item label="1" active />
           <argon-pagination-item label="2" />
           <argon-pagination-item label="3" />
           <argon-pagination-item next />
-        </argon-pagination>
+        </argon-pagination> -->
         <div
           class="modal fade"
           id="editModalToggle"

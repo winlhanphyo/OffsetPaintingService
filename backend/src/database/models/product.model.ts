@@ -39,6 +39,7 @@ export interface IProductModel {
   ctpPrice: string;
   waste: string;
   abbb: string;
+  toggles: string;
   createdUserId: number;
   updatedUserId: number;
   createdAt: Date;
@@ -185,6 +186,10 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
   },
   abbb: {
     type: DataTypes.STRING,
+    allowNull: true
+  },
+  toggles: {
+    type: DataTypes.JSON,
     allowNull: true
   },
   createdUserId: {

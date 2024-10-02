@@ -147,6 +147,10 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: true
       },
+      toggles: {
+        type: DataTypes.JSON,
+        allowNull: true
+      },
       createdUserId: {
         type: DataTypes.INTEGER,
         allowNull: false

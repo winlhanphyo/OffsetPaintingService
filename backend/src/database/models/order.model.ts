@@ -9,16 +9,14 @@ export interface IOrdertModel {
   customer: number;
   firstName: string;
   lastName: string;
-  country: string;
-  company: string;
   address: string;
-  additionalInfo: string;
-  city: string;
-  postalCode: string;
   phone: string;
   status: string;
   totalAmount: string;
   orderDetailId: string;
+  orderInstruction: string;
+  shippingMethod: string;
+  paymentScreenshot: string;
   paymentDone: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -46,23 +44,7 @@ const modelAttributes: DbModelFieldInit<Partial<IOrdertModel>> = {
     type: DataTypes.STRING,
     allowNull: false
   },
-  company: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
   address: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  additionalInfo: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  city: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  postalCode: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -82,6 +64,18 @@ const modelAttributes: DbModelFieldInit<Partial<IOrdertModel>> = {
     type: DataTypes.STRING,
     allowNull: false,
     defaultValue: false
+  },
+  orderInstruction: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  shippingMethod: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  paymentScreenshot: {
+    type: DataTypes.STRING,
+    allowNull: false
   },
   paymentDone: {
     type: DataTypes.BOOLEAN,

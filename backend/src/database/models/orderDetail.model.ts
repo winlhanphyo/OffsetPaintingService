@@ -7,6 +7,7 @@ import { db } from '../db.provider';
 export interface IOrderModel {
   id: number;
   productId: number;
+  designImage: string;
   quantity: number;
   productDetail: string;
   amount: number;
@@ -28,13 +29,17 @@ const modelAttributes: DbModelFieldInit<Partial<IOrderModel>> = {
       key: 'id'
     }
   },
+  designImage: {
+    type: DataTypes.INTEGER,
+    allowNull: true
+  },
   quantity: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
   productDetail: {
     type: DataTypes.JSON,
-    allowNull: false
+    allowNull: true
   },
   amount: {
     type: DataTypes.DOUBLE,

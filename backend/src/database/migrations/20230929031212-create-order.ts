@@ -26,27 +26,7 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false
       },
-      country: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      company: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
       address: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      additionalInfo: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      city: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      postalCode: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -66,6 +46,18 @@ module.exports = {
         type: DataTypes.JSON,
         allowNull: false,
         defaultValue: false
+      },
+      orderInstruction: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      shippingMethod: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      paymentScreenshot: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       paymentDone: {
         type: DataTypes.BOOLEAN,

@@ -17,14 +17,14 @@
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="productName">Product Name:</label>
-              <ToggleSwitch v-model="toggles.productName" />
+              <!-- <ToggleSwitch v-model="toggles.productName" /> -->
             </div>
             <input type="text" class="form-control" id="product-name" v-model="name" />
           </div>
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="categoryName">Category Name:</label>
-              <ToggleSwitch v-model="toggles.category" />
+              <!-- <ToggleSwitch v-model="toggles.category" /> -->
             </div>
             <select class="form-select" style="height: 40px;" @change="changeCategory($event)" v-model="categoryId">
               <option value="" disabled>Select Category Menu</option>
@@ -37,7 +37,7 @@
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="image">Image:</label>
-              <ToggleSwitch v-model="toggles.image" />
+              <!-- <ToggleSwitch v-model="toggles.image" /> -->
             </div>
             <input
               class="form-control"
@@ -59,7 +59,7 @@
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="productName">Status:</label>
-              <ToggleSwitch v-model="toggles.status" />
+              <!-- <ToggleSwitch v-model="toggles.status" /> -->
             </div>
             <select class="form-select" @change="changeStatus($event)" v-model="status">
               <option value="">None</option>
@@ -67,25 +67,18 @@
               <option value="Sale">Sale</option>
             </select>
           </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="categoryName">Description:</label>
-            <textarea
-              id="w3review"
-              name="w3review"
-              rows="4"
-              v-model="description"
-            ></textarea>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="qty">Quantity:</label>
-            <ToggleSwitch v-model="quantity" />
-          </div>
+
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="categoryName">Description:</label>
-              <ToggleSwitch v-model="toggles.description" />
+              <!-- <ToggleSwitch v-model="toggles.description" /> -->
             </div>
             <textarea id="w3review" name="w3review" rows="4" v-model="description"></textarea>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="qty">Quantity:</label>
+            <ToggleSwitch v-model="quantity" />
           </div>
         </div>
 
@@ -152,7 +145,7 @@
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="height">Height:</label>
-              <ToggleSwitch v-model="toggles.height" />
+              <!-- <ToggleSwitch v-model="toggles.height" /> -->
             </div>
             <v-select v-model="height" :options="heightOptions" :multiple="true" :taggable="true"
               placeholder="Select or add Height">
@@ -163,7 +156,7 @@
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="depth">Depth:</label>
-              <ToggleSwitch v-model="toggles.depth" />
+              <!-- <ToggleSwitch v-model="toggles.depth" /> -->
             </div>
             <v-select v-model="depth" :options="depthOptions" :multiple="true" :taggable="true"
               placeholder="Select or add Depth">
@@ -192,7 +185,7 @@
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="ratioHeight">Ratio Height:</label>
-              <ToggleSwitch v-model="toggles.ratioHeight" />
+              <!-- <ToggleSwitch v-model="toggles.ratioHeight" /> -->
             </div>
             <v-select v-model="ratioHeight" :options="ratioHeightOptions" :multiple="true" :taggable="true"
               placeholder="Select or add Ratio Heigth">
@@ -405,45 +398,45 @@ export default {
       ratioHeightOptions: [],
       ratioDepthOptions: [],
       toggles: {
-        productName: false,
-        category: false,
-        image: false,
-        status: false,
-        quantity: false,
-        description: false,
-        printingType: false,
-        biType: false,
-        type: false,
-        gsm: false,
-        width: false,
-        height: false,
-        depth: false,
-        selectedRatioFullSize: false,
-        ratioWidth: false,
-        ratioHeight: false,
-        format: false,
-        selectedColorF: false,
-        selectedColorB: false,
-        selectedLam: false,
-        lamSqPrice: false,
-        paperPrice: false,
-        pressPrice: false,
-        biPrice: false,
-        dieCut: false,
-        gluding: false,
-        plySet: false,
-        other: false,
-        cover: false,
-        remark: false,
-        ctpPrice: false,
-        waste: false,
-        abbb: false,
+        productName: true,
+        category: true,
+        image: true,
+        status: true,
+        quantity: true,
+        description: true,
+        printingType: true,
+        biType: true,
+        type: true,
+        gsm: true,
+        width: true,
+        height: true,
+        depth: true,
+        selectedRatioFullSize: true,
+        ratioWidth: true,
+        ratioHeight: true,
+        format: true,
+        selectedColorF: true,
+        selectedColorB: true,
+        selectedLam: true,
+        lamSqPrice: true,
+        paperPrice: true,
+        pressPrice: true,
+        biPrice: true,
+        dieCut: true,
+        gluding: true,
+        plySet: true,
+        other: true,
+        cover: true,
+        remark: true,
+        ctpPrice: true,
+        waste: true,
+        abbb: true,
       },
 
       selectedGsm: [],
       printingType: "",
-      quantity: false,
-      sheet: false,
+      quantity: true,
+      sheet: true,
       type: "",
       gsm: [],
       width: [],
@@ -564,6 +557,7 @@ export default {
       this.ctpPrice && formParam.append("ctpPrice", this.ctpPrice);
       this.waste && formParam.append("waste", this.waste);
       this.abbb && formParam.append("abbb", this.abbb);
+      this.toggles && formParam.append("toggles", JSON.stringify(this.toggles));
 
       formParam.append("status", this.status);
 

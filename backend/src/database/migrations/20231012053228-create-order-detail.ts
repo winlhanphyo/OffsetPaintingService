@@ -18,13 +18,17 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      quantity: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
       productDetail: {
         type: DataTypes.JSON,
         allowNull: true
+      },
+      designImage: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
       amount: {
         type: DataTypes.DECIMAL(15, 2),

@@ -65,7 +65,7 @@
           </div>
           <div class="form-group col-sm-4 p-2">
             <label for="quantity">Quantity:</label>
-            <input name="sheet" v-if="detailData?.quantity" type="number" v-model="quantity" class="form-control" />
+            <input name="sheet" v-if="toggles?.quantity" type="number" v-model="quantity" class="form-control" />
             <label v-else>{{ 1 }}</label>
           </div>
           <div class="form-group col-sm-4 p-2">
@@ -319,6 +319,7 @@ export default {
       this.ratioFullSizeList = this.detailData?.ratioFullSize ? JSON.parse(this.detailData.ratioFullSize) : [];
       this.colorBList = this.detailData?.colorB ? JSON.parse(this.detailData.colorB) : [];
       this.colorFList = this.detailData?.colorF ? JSON.parse(this.detailData.colorF) : [];
+      this.detailData?.toggles ? this.toggles = JSON.parse(this.detailData.toggles) : "";
 
       const widthList = this.detailData?.width ? JSON.parse(this.detailData.width) : [];
       const heightList = this.detailData?.height ? JSON.parse(this.detailData.height) : [];

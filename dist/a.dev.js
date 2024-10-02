@@ -1,267 +1,324 @@
 "use strict";
 
+var _index = require("./index.mjs");
+
 document.addEventListener("DOMContentLoaded", function () {
   var links = document.querySelectorAll('.nav-link');
   var allContent = document.querySelectorAll('.content');
+  var allImages = document.querySelectorAll('.main-img');
   var logo = document.getElementById('logo');
   var menuBtn = document.querySelectorAll('.menu-btn');
-  var closeBtn = document.querySelector('.close-btn');
-  var overlay = document.querySelector('#overlay');
-  var gnav = document.querySelector('.gnav');
-  var menuItems = document.querySelectorAll('.gnav-box-item');
   var menuTab = document.querySelectorAll('.menu-links');
-  var lastScrollTop = 0; // Hide all content initially
+  var gnav = document.querySelector('.gnav');
+  var overlay = document.querySelector('#overlay');
+  var windowHeight = window.innerHeight - 50;
+  var mediaQuery = window.matchMedia("(max-width: 768px)");
+  var lastScrollTop = 0; // 初期状態で全てのコンテンツを非表示にする
 
   function hideAllContent() {
     allContent.forEach(function (div) {
       return div.style.display = 'none';
     });
-  } // Show content based on ID
+    links.forEach(function (link) {
+      return link.classList.remove('active');
+    });
+    allImages.forEach(function (img) {
+      return img.style.display = 'none';
+    });
+  } // IDに基づいてコンテンツを表示する関数
 
 
   function showContentById(id) {
     hideAllContent();
     var targetDiv = document.getElementById(id);
+    var targetLink = Array.from(document.getElementsByClassName("nav-link-" + id));
+    var targetImage = Array.from(document.getElementsByClassName(id + "-img"));
 
     if (targetDiv) {
+      targetImage.forEach(function (img) {
+        return img.style.display = 'block';
+      });
+      targetLink.forEach(function (link) {
+        return link.classList.add('active');
+      });
       targetDiv.style.display = 'block';
     } else {
-      // If no ID matches, show default content ("world")
+      // IDが一致しない場合はデフォルトコンテンツ ("world") を表示する
       var defaultContent = document.getElementById('world');
 
       if (defaultContent) {
         defaultContent.style.display = 'block';
       }
-    } // Handle changes for "product" page styling
+    } // "product" ページのスタイリングを処理する
 
 
     if (id === 'product') {
-      logo.classList.add('product-logo');
-      menuBtn.forEach(function (btn) {
-        return btn.classList.add('product-menu');
-      });
+      if (logo) {
+        logo.classList.add('product-logo');
+      }
+
+      if (menuBtn.length > 0) {
+        menuBtn.forEach(function (btn) {
+          return btn.classList.add('product-menu');
+        });
+      }
     } else {
-      logo.classList.remove('product-logo');
-      menuBtn.forEach(function (btn) {
-        return btn.classList.remove('product-menu');
+      if (logo) {
+        logo.classList.remove('product-logo');
+      }
+
+      if (menuBtn.length > 0) {
+        menuBtn.forEach(function (btn) {
+          return btn.classList.remove('product-menu');
+        });
+      }
+    }
+  }
+
+  function showLinkById(id) {
+    var targetLink = Array.from(document.getElementsByClassName("nav-link-" + id));
+    links.forEach(function (link) {
+      return link.classList.remove('active');
+    });
+
+    if (targetLink) {
+      targetLink.forEach(function (link) {
+        return link.classList.add('active');
       });
     }
-  } // Get content ID from URL path
+  } // URLパスからコンテンツIDを取得する関数
 
 
   function getContentIdFromUrl() {
-    var pathname = window.location.pathname; // Adjust the conditions based on your URL structure
+    var pathname = window.location.pathname; // URL構造に基づいて条件を調整する
 
     if (pathname.endsWith('/look')) {
       return 'look';
     } else if (pathname.endsWith('/product')) {
       return 'product';
     } else if (pathname === '/' || pathname === '/onegravity/') {
-      return 'world'; // Default content for base URL
+      return 'world';
     } else {
-      return 'world'; // Fallback to world content if no match
+      return 'world';
     }
-  }
-
-  function addClassToBodyBasedOnUrl() {
-    var pathname = window.location.pathname;
-
-    if (pathname.includes('/about') || pathname.includes('/stockist') || pathname.includes('/news')) {
-      document.body.classList.add('other-page'); // Add class if URL matches
-
-      hideMenuTab(); // Hide menu tab if on these pages
-    } else {
-      document.body.classList.remove('other-page'); // Remove class otherwise
-
-      showMenuTab(); // Show menu tab for other pages
-    }
-  } // Function to hide menu tab
-
-
-  function hideMenuTab() {
-    menuTab.forEach(function (tab) {
-      tab.style.display = 'none'; // Hide menu tab
-    });
-  } // Function to show menu tab
-
-
-  function showMenuTab() {
-    menuTab.forEach(function (tab) {
-      tab.style.display = ''; // Show menu tab (reset display property)
-    });
-  } // Attach click events to links
+  } // リンクにクリックイベントを設定する
 
 
   links.forEach(function (link) {
     link.addEventListener('click', function (event) {
       event.preventDefault();
       var contentId = this.getAttribute('data-target');
-      showContentById(contentId); // Update the URL without reloading the page
+      captureScreen(contentId);
+      showLinkById(contentId); // ページをリロードせずにURLを更新する
 
       history.pushState({
         id: contentId
       }, '', this.href);
     });
-  }); // Handle browser navigation (back/forward buttons)
+  });
+
+  function captureScreen(contentId) {
+    var content = $("body").get(0); // html2canvasを使ってHTML要素を画像に変換
+
+    html2canvas(content).then(function (snapshotCanvas) {
+      var canvasWrapper = $("#canvas");
+      canvasWrapper.empty();
+      var canvas = $("<canvas>");
+      canvas.attr("width", canvasWrapper.width());
+      canvas.attr("height", canvasWrapper.height());
+      var ctx = canvas.get(0).getContext('2d');
+      var scrollTop = $(window).scrollTop(); // スナップショットの内容をCanvasに描画
+
+      var x = $(snapshotCanvas).width() > $("body").width() ? ($("body").width() - $(snapshotCanvas).width()) / 2 : 0;
+      ctx.drawImage(snapshotCanvas, x, -1 * scrollTop, $(snapshotCanvas).width(), $(snapshotCanvas).height());
+      var dataURL = canvas.get(0).toDataURL('image/png');
+      var img = $("<img>").attr("src", dataURL).attr("id", "screen-image");
+      $(".image-container").append(img);
+      animation(contentId);
+    });
+  }
+
+  function animation(contentId) {
+    $("#canvas").show();
+    var curtains = new _index.Curtains({
+      container: "canvas",
+      watchScroll: false,
+      pixelRatio: Math.min(1.5, window.devicePixelRatio)
+    });
+    var planeElements = document.getElementsByClassName("image-container");
+    var slideshowState = {
+      activeTextureIndex: 4,
+      nextTextureIndex: 2,
+      maxTextures: 5,
+      isChanging: false,
+      transitionTimer: 0
+    };
+    curtains.onError(function () {
+      document.body.classList.add("no-curtains", "image-1");
+    }).onContextLost(function () {
+      curtains.restoreContext();
+    });
+    curtains.disableDrawing();
+    var vs = "\n\t\t\tprecision mediump float;\n\t\t\tattribute vec3 aVertexPosition;\n\t\t\tattribute vec2 aTextureCoord;\n\t\t\tuniform mat4 uMVMatrix;\n\t\t\tuniform mat4 uPMatrix;\n\t\t\tvarying vec3 vVertexPosition;\n\t\t\tvarying vec2 vTextureCoord;\n\t\t\tvarying vec2 vActiveTextureCoord;\n\t\t\tvarying vec2 vNextTextureCoord;\n\t\t\tuniform mat4 activeTexMatrix;\n\t\t\tuniform mat4 nextTexMatrix;\n\t\t\tuniform float uTransitionTimer;\n\t\t\tvoid main() {\n\t\t\t\tgl_Position = uPMatrix  uMVMatrix  vec4(aVertexPosition, 1.0);\n\t\t\t\tvTextureCoord = aTextureCoord;\n\t\t\t\tvActiveTextureCoord = (activeTexMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy;\n\t\t\t\tvNextTextureCoord = (nextTexMatrix * vec4(aTextureCoord, 0.0, 1.0)).xy;\n\t\t\t\tvVertexPosition = aVertexPosition;\n\t\t\t}\n\t\t";
+    var fs = "\n\t\t\tprecision mediump float;\n\t\t\tvarying vec3 vVertexPosition;\n\t\t\tvarying vec2 vTextureCoord;\n\t\t\tvarying vec2 vActiveTextureCoord;\n\t\t\tvarying vec2 vNextTextureCoord;\n\t\t\tuniform float uTransitionTimer;\n\t\t\tuniform sampler2D activeTex;\n\t\t\tuniform sampler2D nextTex;\n\t\t\tuniform sampler2D displacement;\n\t\t\tuniform float uTransitionDirection;\n\t\t\tvoid main() {\n\t\t\t\tvec4 displacementTexture = texture2D(displacement, vTextureCoord);\n\t\t\t\tfloat direction = uTransitionDirection == 1.0 ? 1.0 : -1.0;\n\t\t\t\tvec2 firstDisplacementCoords = vActiveTextureCoord - direction  displacementTexture.r  ((cos((uTransitionTimer + 90.0) / (90.0 / 3.141592)) + 1.0) / 1.25);\n\t\t\t\tvec4 firstDistortedColor = texture2D(activeTex, vec2(firstDisplacementCoords.x, vActiveTextureCoord.y));\n\t\t\t\tvec2 secondDisplacementCoords = vNextTextureCoord - direction  displacementTexture.r  ((cos(uTransitionTimer / (90.0 / 3.141592)) + 1.0) / 1.25);\n\t\t\t\tvec4 secondDistortedColor = texture2D(nextTex, vec2(secondDisplacementCoords.x, vNextTextureCoord.y));\n\t\t\t\tvec4 finalColor = mix(firstDistortedColor, secondDistortedColor, 1.0 - ((cos(uTransitionTimer / (90.0 / 3.141592)) + 1.0) / 2.0));\n\t\t\t\tfinalColor = vec4(finalColor.rgb * finalColor.a, finalColor.a);\n\t\t\t\tgl_FragColor = finalColor;\n\t\t\t}\n\t\t";
+    var params = {
+      vertexShader: vs,
+      fragmentShader: fs,
+      uniforms: {
+        transitionTimer: {
+          name: "uTransitionTimer",
+          type: "1f",
+          value: 0
+        },
+        transitionDirection: {
+          name: "uTransitionDirection",
+          type: "1f",
+          value: 1.0
+        }
+      }
+    };
+    var multiTexturesPlane = new _index.Plane(curtains, planeElements[0], params);
+    multiTexturesPlane.onLoading(function (texture) {
+      texture.setMinFilter(curtains.gl.LINEAR_MIPMAP_NEAREST);
+    }).onReady(function () {
+      var activeTex = multiTexturesPlane.createTexture({
+        sampler: "activeTex",
+        fromTexture: multiTexturesPlane.textures[slideshowState.activeTextureIndex]
+      });
+      var nextTex = multiTexturesPlane.createTexture({
+        sampler: "nextTex",
+        fromTexture: multiTexturesPlane.textures[slideshowState.nextTextureIndex]
+      });
+      var targetIndex = 1;
+      if (contentId == "look") targetIndex = 2;else if (contentId == "product") targetIndex = 3;
+
+      if (slideshowState.isChanging || targetIndex === slideshowState.activeTextureIndex) {
+        return;
+      } // Determine animation direction
+
+
+      var direction = targetIndex > slideshowState.activeTextureIndex ? 1.0 : -1.0;
+      multiTexturesPlane.uniforms.transitionDirection.value = direction;
+      window.scrollTo(0, 0);
+      curtains.enableDrawing();
+      slideshowState.isChanging = true;
+      slideshowState.nextTextureIndex = targetIndex;
+
+      if (slideshowState.nextTextureIndex > slideshowState.activeTextureIndex) {
+        multiTexturesPlane.uniforms.transitionDirection.value = 1.0;
+      } else {
+        multiTexturesPlane.uniforms.transitionDirection.value = -1.0;
+      }
+
+      nextTex.setSource(multiTexturesPlane.images[slideshowState.nextTextureIndex]);
+      setTimeout(function () {
+        curtains.disableDrawing();
+        slideshowState.isChanging = false;
+        slideshowState.activeTextureIndex = slideshowState.nextTextureIndex;
+        activeTex.setSource(multiTexturesPlane.images[slideshowState.activeTextureIndex]);
+        slideshowState.transitionTimer = 0;
+        showContentById(contentId);
+        $("#screen-image").remove();
+        $("#canvas").hide();
+        curtains.dispose();
+      }, 1700);
+    }).onRender(function () {
+      if (slideshowState.isChanging) {
+        slideshowState.transitionTimer += (90 - slideshowState.transitionTimer) * 0.04;
+
+        if (slideshowState.transitionTimer >= 88.5 && slideshowState.transitionTimer !== 90) {
+          slideshowState.transitionTimer = 90;
+          curtains.disableDrawing();
+          slideshowState.isChanging = false;
+        }
+      }
+
+      multiTexturesPlane.uniforms.transitionTimer.value = slideshowState.transitionTimer;
+    });
+  } // ブラウザのナビゲーション (戻る/進むボタン) を処理する
+
 
   window.addEventListener('popstate', function (event) {
     var id = event.state ? event.state.id : getContentIdFromUrl();
     showContentById(id || 'world');
-    addClassToBodyBasedOnUrl(); // Ensure the menu tab is hidden if needed
-  }); // Load content based on initial URL
+  }); // 初期URLに基づいてコンテンツをロードする
 
   function loadInitialContent() {
     var id = getContentIdFromUrl();
     showContentById(id);
-    addClassToBodyBasedOnUrl(); // Ensure the menu tab visibility is set correctly
-    // Ensuring default content is shown if none matches
+  }
 
-    if (!id) {
-      showContentById('world');
-    }
-  } // Call loadInitialContent when DOM is fully loaded
-
-
-  loadInitialContent(); // Function to open the menu
-
-  function openMenu() {
-    gnav.classList.remove('hide');
-    gnav.classList.add('show');
-    menuBtn.forEach(function (btn) {
-      return btn.classList.add('active');
-    });
-    document.body.classList.add('menu-open');
-    overlay.classList.add('active');
-  } // Function to close the menu
-
-
-  function closeMenu() {
-    gnav.classList.remove('show');
-    gnav.classList.add('hide');
-    menuBtn.forEach(function (btn) {
-      return btn.classList.remove('active');
-    });
-    document.body.classList.remove('menu-open');
-    overlay.classList.remove('active');
-  } // Toggle menu function based on current state
-
-
-  function toggleMenu() {
-    if (gnav.classList.contains('show')) {
-      closeMenu(); // Close the menu
-    } else {
-      openMenu(); // Open the menu
-    }
-  } // Click event for each menu button
-
-
-  menuBtn.forEach(function (btn) {
-    btn.addEventListener('click', function (event) {
-      event.preventDefault();
-      toggleMenu();
-    });
-  }); // Click event for the close button inside the menu
-
-  closeBtn.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default action if button is a link
-
-    closeMenu();
-  }); // Click event for the overlay to close the menu
-
-  overlay.addEventListener('click', function () {
-    closeMenu();
-  }); // Click event for each gnav item
-
-  menuItems.forEach(function (item) {
-    item.addEventListener('click', function (event) {
-      closeMenu(); // Close the menu when an item is clicked
-    });
-  }); // Helper function to check and update the logo's visibility
-
-  function checkLogoVisibility() {
+  loadInitialContent();
+  window.addEventListener('scroll', function () {
     var scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-    if (scrollTop > window.innerHeight - 50) {
-      if (scrollTop > lastScrollTop) {
-        logo.style.top = '-90px';
-        logo.style.opacity = '0';
-        logo.classList.add('ease-out');
-        logo.classList.remove('ease-in');
+    if (mediaQuery.matches) {
+      if (scrollTop > lastScrollTop || scrollTop === 0) {
+        hideMenuTabs();
+        toggleHeader(true); // Show header
       } else {
-        logo.style.top = 'inherit';
-        logo.style.opacity = '1';
-        logo.classList.add('ease-in');
-        logo.classList.remove('ease-out');
+        showMenuTabs();
+        toggleHeader(false); // Hide header
       }
     } else {
-      logo.style.opacity = '0';
+      if (scrollTop <= lastScrollTop && scrollTop !== 0) {
+        toggleHeader(false); // Hide header
+      } else {
+        toggleHeader(true); // Show header
+      }
+    }
+
+    lastScrollTop = scrollTop;
+  });
+
+  function toggleHeader(show) {
+    var topValue = show ? '35px' : '-90px';
+
+    if (menuBtn && menuBtn.length > 0) {
+      menuBtn.forEach(function (btn) {
+        btn.style.top = topValue;
+        btn.classList.toggle('ease-in', show);
+        btn.classList.toggle('ease-out', !show);
+      });
+    }
+
+    if (logo) {
+      logo.style.top = topValue;
+      logo.classList.toggle('ease-in', show);
+      logo.classList.toggle('ease-out', !show);
     }
   }
 
-  window.addEventListener('scroll', function () {
-    var scrollTop = window.scrollY || document.documentElement.scrollTop;
-    var mediaQuery = window.matchMedia("(max-width: 768px)");
+  function showMenuTabs() {
+    menuTab.forEach(function (tab) {
+      tab.classList.add('show', 'ease-in');
+      tab.classList.remove('ease-out');
+    });
+  }
 
-    if (mediaQuery.matches) {
-      menuTab.forEach(function (tab) {
-        if (scrollTop !== 0 && scrollTop <= window.innerHeight - 50) {
-          tab.classList.add('hide');
-          tab.classList.remove('show');
-        } else if (scrollTop > window.innerHeight - 50) {
-          tab.classList.add('show');
-          tab.classList.remove('hide');
-        } else {
-          tab.classList.remove('hide');
-          tab.classList.remove('show');
-        }
-      });
-    } else {
-      menuTab.forEach(function (tab) {
-        tab.classList.remove('hide');
-        tab.classList.remove('show');
-      });
-    } // Control header sliding up/down
+  function hideMenuTabs() {
+    menuTab.forEach(function (tab) {
+      tab.classList.remove('show', 'ease-in', 'ease-out');
+    });
+  } // ウィンドウリサイズ時に全てのクラスを削除する関数
 
-
-    if (scrollTop > lastScrollTop) {
-      // Scrolling down - hide header
-      menuBtn.forEach(function (btn) {
-        btn.style.top = '-90px';
-        btn.classList.add('ease-out');
-        btn.classList.remove('ease-in');
-      });
-    } else {
-      // Scrolling up - show header
-      menuBtn.forEach(function (btn) {
-        btn.classList.add('ease-in');
-        btn.classList.remove('ease-out');
-        btn.style.top = 'inherit';
-      });
-    } // Control logo visibility based on scroll position
-
-
-    checkLogoVisibility();
-    lastScrollTop = scrollTop;
-  }); // Function to remove all classes on window resize
 
   function removeAllClasses() {
-    // Remove classes from logo
-    logo.classList.remove('product-logo', 'ease-in', 'ease-out'); // Remove classes from menu buttons
+    // ロゴからクラスを削除する
+    logo.classList.remove('product-logo', 'ease-in', 'ease-out'); // メニューボタンからクラスを削除する
 
     menuBtn.forEach(function (btn) {
       btn.classList.remove('product-menu', 'ease-in', 'ease-out', 'active');
-      btn.style.top = 'inherit'; // Reset any inline styles
-    }); // Remove classes from gnav and overlay
+      btn.style.top = 'inherit';
+    }); // gnavとオーバーレイからクラスを削除する
 
     gnav.classList.remove('show', 'hide');
-    overlay.classList.remove('active'); // Remove classes from menu tabs
+    overlay.classList.remove('active'); // メニュータブからクラスを削除する
 
     menuTab.forEach(function (tab) {
       tab.classList.remove('show', 'hide');
-      tab.style.display = ''; // Reset any inline styles
     });
-  } // Add event listener for window resize to remove all added classes
-
+  }
 
   window.addEventListener('resize', removeAllClasses);
 });

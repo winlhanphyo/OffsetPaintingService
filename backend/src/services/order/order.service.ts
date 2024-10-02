@@ -46,21 +46,24 @@ class OrderService {
     try {
       const orderData = req.body;
       const orderDetailData = orderData.orderDetail;
+
       const orderList = [];
       for (let i = 0; i < orderDetailData.length; i++) {
         const dist: any = orderDetailData[i];
-        const product = await ProductDbModel.findOne({
-          where: {
-            id: dist.productId,
-          }
-        });
+        // const product = await ProductDbModel.findOne({
+        //   where: {
+        //     id: dist.productId,
+        //   }
+        // });
         orderList.push({
           productId: dist.productId,
           amount: dist?.amount,
-          quantity: orderData?.qty
+          quantity: orderData?.qty,
+          designImage: orderData?.designImage,
+          productDetail: orderData?.productDetail
         });
       }
-      const res = await OrderDetailDbModel.bulkCreate(orderData.orderDetail);
+      const res = await OrderDetailDbModel.bulkCreate(orderList);
       const result = await this.orderCreateData(req, res);
       return result;
 
@@ -99,14 +102,16 @@ class OrderService {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       address: req.body.address,
-      additionalInfo: req.body.additionalInfo,
-      city: req.body.city,
-      postalCode: req.body.postalCode,
       phone: req.body.phone,
       status: req.body.status,
       totalAmount: req.body.totalAmount,
-      orderDetailId: JSON.stringify(orderDetailIds)
+      orderDetailId: JSON.stringify(orderDetailIds),
+      orderInstruction: req.body.orderInstruction,
+      shippingMethod: req.body.shippingMethod
     } as any;
+
+    req.body?.paymentScreenshot ? orderObj.paymentScreenshot = req.body?.paymentScreenshot : "";
+    orderObj.paymentDone = req.body?.paymentDone ? orderObj.paymentDone : false;
 
     const createOrder = await OrderDbModel.create({ ...orderObj, createdAt: new Date().toISOString() });
     // orderData.orderDetail = orderDetailIds;
@@ -145,16 +150,16 @@ class OrderService {
         customer: req.headers['userid'],
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        country: req.body.country,
-        company: req.body.company,
         address: req.body.address,
-        additionalInfo: req.body.additionalInfo,
-        city: req.body.city,
-        postalCode: req.body.postalCode,
         phone: req.body.phone,
         status: req.body.status,
-        totalAmount: req.body.totalAmount
+        totalAmount: req.body.totalAmount,
+        orderInstruction: req.body?.orderInstruction,
+        shippingMethod: req.body?.shippingMethod
       } as any;
+
+      req.body?.paymentScreenshot ? orderObj.paymentScreenshot = req.body?.paymentScreenshot : "";
+      orderObj.paymentDone = req.body?.paymentDone ? orderObj.paymentDone : false;
 
       orderObj.id = +req.params.id;
 

@@ -178,6 +178,7 @@ class ProductService {
       productData.ctpPrice = req.body?.ctpPrice ? req.body.ctpPrice : "";
       productData.waste = req.body?.waste ? req.body.waste : "";
       productData.abbb = req.body?.abbb ? req.body.abbb : "";
+      productData.toggles = req.body?.toggles ? req.body.toggles : "";
 
       productData.dieCut = req.body?.dieCut ? req.body.dieCut : "";
       productData.gluding = req.body?.gluding ? req.body.gluding : "";
@@ -267,6 +268,7 @@ class ProductService {
       productData.ctpPrice = req.body?.ctpPrice ? req.body.ctpPrice : "";
       productData.waste = req.body?.waste ? req.body.waste : "";
       productData.abbb = req.body?.abbb ? req.body.abbb : "";
+      productData.toggles = req.body?.toggles ? req.body.toggles : "";
 
       productData.dieCut = req.body?.dieCut ? req.body.dieCut : "";
       productData.gluding = req.body?.gluding ? req.body.gluding : "";
