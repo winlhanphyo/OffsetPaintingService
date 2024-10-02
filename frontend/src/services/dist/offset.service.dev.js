@@ -190,6 +190,7 @@ var getCategory = function getCategory(token) {
  * @param {*} data 
  * @param {*} token 
  * @param {*} searchName 
+ * @param {*} pageData 
  * @returns 
  */
 
@@ -198,6 +199,7 @@ exports.getCategory = getCategory;
 
 var getProduct = function getProduct(token) {
   var searchName,
+      pageData,
       params,
       res,
       _args7 = arguments;
@@ -206,36 +208,41 @@ var getProduct = function getProduct(token) {
       switch (_context7.prev = _context7.next) {
         case 0:
           searchName = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : null;
+          pageData = _args7.length > 2 && _args7[2] !== undefined ? _args7[2] : null;
           params = {};
-          searchName ? params.name = searchName : params = null;
+          console.log("-----pageData", pageData);
+          pageData ? params = pageData : "";
+          searchName ? params.name = searchName : "";
           res = null;
 
-          if (searchName) {
-            _context7.next = 10;
+          if (params) {
+            _context7.next = 14;
             break;
           }
 
-          _context7.next = 7;
+          console.log("-----not params", params);
+          _context7.next = 11;
           return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/product"), token));
 
-        case 7:
+        case 11:
           res = _context7.sent;
-          _context7.next = 13;
+          _context7.next = 18;
           break;
 
-        case 10:
-          _context7.next = 12;
-          return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "product"), {
+        case 14:
+          console.log("-----params", params);
+          _context7.next = 17;
+          return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/product"), {
             params: params
           }));
 
-        case 12:
+        case 17:
           res = _context7.sent;
 
-        case 13:
+        case 18:
           return _context7.abrupt("return", res);
 
-        case 14:
+        case 19:
         case "end":
           return _context7.stop();
       }

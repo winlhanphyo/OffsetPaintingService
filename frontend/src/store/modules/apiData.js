@@ -6,7 +6,8 @@ const state = {
   banners: [],
   packages: [],
   articles: [],
-  categoryProducts: []
+  categoryProducts: [],
+  productCount: 1
 };
 
 const getters = {
@@ -25,7 +26,8 @@ const actions = {
   },
   async GetProduct({ commit }, token) {
     const result = await getProduct(token);
-    const data = result?.data?.data;
+    console.log("------result", result.data);
+    const data = result?.data;
     await commit("setProduct", data);
   },
   async GetBanner({ commit }, token) {
@@ -56,7 +58,9 @@ const mutations = {
     state.categories = data;
   },
   setProduct(state, data) {
-    state.products = data;
+    state.products = data?.data;
+    state.productCount = data?.count;
+
   },
   setPackage(state, data) {
     state.packages = data;

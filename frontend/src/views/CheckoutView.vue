@@ -2,76 +2,6 @@
   <div class="container">
     <h2>{{ $t("message.shoppingCartTitle") }}</h2>
     <div class="page-header">
-      
-      <!-- <div class="steps"> -->
-        <!-- <ul class="list-inline">
-          <li
-            class="list-inline-item visited"
-            :class="[
-              step === 1 ? 'list-inline-item visited' : 'list-inline-item disabled',
-            ]"
-          >
-            <a
-              @click="handleContinue(1)"
-              :class="[
-                step === 1
-                  ? 'checkout_steps cart_step active'
-                  : 'checkout_steps cart_step',
-              ]"
-              data-show="cart"
-              data-step="1"
-              ><span class="orderstep border bg-primary">1</span
-              ><span class="step_title">{{ $t("message.shoppingCartStep1") }}</span></a
-            >
-          </li> -->
-          <!-- <li class="list-inline-item d-none disabled">
-            <a
-              href="javascript:void(0)"
-              class="checkout_steps splitshipping_step"
-              data-show="splitshipping"
-              data-step="2"
-              ><span class="orderstep border">2</span
-              ><span class="step_title">Ship to Multiple Address</span></a
-            >
-          </li> -->
-          <!-- <li
-            :class="[
-              step === 2 ? 'list-inline-item visited' : 'list-inline-item disabled',
-            ]"
-          >
-            <a
-              @click="handleContinue(2)"
-              :class="[
-                step === 2
-                  ? 'checkout_steps cart_step active'
-                  : 'checkout_steps cart_step',
-              ]"
-              data-show="shipping"
-              data-step="2"
-              ><span class="orderstep border">2</span
-              ><span class="step_title">{{ $t("message.shoppingCartStep2") }}</span></a
-            >
-          </li>
-          <li
-            :class="[
-              step === 3 ? 'list-inline-item visited' : 'list-inline-item disabled',
-            ]"
-          >
-            <a
-              @click="handleContinue(3)"
-              :class="[
-                step === 3
-                  ? 'checkout_steps cart_step active'
-                  : 'checkout_steps cart_step',
-              ]"
-              data-show="payment"
-              data-step="3"
-              ><span class="orderstep border">3</span
-              ><span class="step_title">{{ $t("message.shoppingCartStep3") }}</span></a
-            >
-          </li>
-        </ul> -->
-      <!-- </div> -->
       <ul class="step-list">
         <li
           :class="[
@@ -89,7 +19,7 @@
               data-step="1"
             >
             <div class="step-list-index">1</div>
-            <h1 class="step-list-label">Shopping Cart</h1>
+            <h1 class="step-list-label">{{ $t("message.shoppingCartStep1") }}</h1>
           </a>
         </li>
         <li 
@@ -108,7 +38,7 @@
               data-step="2"
             >
               <div class="step-list-index">2</div>
-              <div class="step-list-label">Shipping</div>
+              <div class="step-list-label">{{ $t("message.shoppingCartStep2") }}</div>
           </a>
           
         </li>
@@ -124,11 +54,11 @@
                   ? 'checkout_steps cart_step active'
                   : 'checkout_steps cart_step',
               ]"
-              data-show="shipping"
+              data-show="payment"
               data-step="3"
             >
             <div class="step-list-index">3</div>
-            <div class="step-list-label">Payment Details</div>
+            <div class="step-list-label">{{ $t("message.shoppingCartStep3") }}</div>
           </a>
         </li>
       </ul>
@@ -137,62 +67,84 @@
       <div class="page-content">
         <div class="product-container" v-for="(data, index) in cart" :key="data.id">
           <div class="product-img">
-            <img :src="data.image" />
+            <img :src="data.productImage" />
           </div>
 
           <div class="product-info">
             <div class="product-info-header">
               <h3 class="product-title">
                 {{ data?.name }}
-                <span>(Business Cards)</span>
+                <span>({{ data?.category?.name }})</span>
               </h3>
               <div class="product-count">
-                <strong>{{ data?.count }}</strong> {{ $t("message.qty") }}
+                <strong>{{ data?.qty }}</strong> {{ $t("message.qty") }}
               </div>
               <div class="product-amount">
-                <strong>Ks 14,850.00</strong>
+                <strong>Ks {{ data?.totalPrice }}</strong>
               </div>
             </div>
             <div class="product-info-detail">
-              <div class="product-info-item">
+              <!-- <div class="product-info-item">
                 <label>{{ $t("message.jobName") }}:</label>
                 <div>{{ data?.jobName }}</div>
-              </div>
+              </div> -->
 
-              <div class="product-info-detail">
+              <div class="product-info-detail" v-if="data.widthHeight">
                 <div class="product-info-item">
-                  <label>{{ $t("message.size") }}:</label>
-                  <div>{{ data?.size }}</div>
+                  <label>{{ $t("message.size") }}</label>
+                  <div>{{ data?.widthHeight }}</div>
                 </div>
               </div>
 
-              <div class="product-info-detail">
+              <div class="product-info-detail" v-if="data.selectedGsm">
                 <div class="product-info-item">
-                  <label>{{ $t("message.material") }}:</label>
-                  <div>{{ data?.material }}</div>
+                  <label>{{ $t("message.material") }}</label>
+                  <div>{{ data.selectedGsm }}</div>
                 </div>
               </div>
 
-              <div class="product-info-detail">
+              <div class="product-info-detail" v-if="data.printingType">
                 <div class="product-info-item">
-                  <label>{{ $t("message.printingType") }}:</label>
-                  <div>{{ data?.printingType }}</div>
+                  <label>{{ $t("message.printingType") }}</label>
+                  <div>{{ data.printingType }}</div>
                 </div>
               </div>
 
-              <div class="product-info-detail">
+              <div class="product-info-detail" v-if="data.selectedBiType">
                 <div class="product-info-item">
                   <label>{{ $t("message.printingSides") }}:</label>
-                  <div>{{ data?.printingSide }}</div>
+                  <div>{{ data?.selectedBiType }}</div>
                 </div>
               </div>
 
-              <div class="product-info-detail">
+              <div class="product-info-detail" v-if="data.selectedLam">
                 <div class="product-info-item">
-                  <label>{{ $t("message.lamination") }}:</label>
-                  <div>{{ data?.lamination }}</div>
+                  <label>{{ $t("message.lamination") }}</label>
+                  <div>{{ data?.selectedLam ? data?.selectedLam : "None" }}</div>
                 </div>
               </div>
+
+              <div class="product-info-detail" v-if="data.selectedLam">
+                <div class="product-info-item">
+                  <label>{{ $t("message.format") }}</label>
+                  <div>{{ data?.selectedLam ? data?.selectedLam : "None" }}</div>
+                </div>
+              </div>
+
+              <div class="product-info-detail" v-if="data.selectedColorF">
+                <div class="product-info-item">
+                  <label>{{ $t("message.colorF") }}</label>
+                  <div>{{ data?.selectedColorF ? data?.selectedColorF : "None" }}</div>
+                </div>
+              </div>
+
+              <div class="product-info-detail" v-if="data.selectedColorB">
+                <div class="product-info-item">
+                  <label>{{ $t("message.colorB") }}</label>
+                  <div>{{ data?.selectedColorB ? data?.selectedColorB : "None" }}</div>
+                </div>
+              </div>
+
             </div>
             <hr />
             <div class="row">
@@ -215,7 +167,7 @@
           <div class="price-label">
             {{ $t("message.subTotal") }}
           </div>
-          <div class="price-amount">Ks 34,518.00</div>
+          <div class="price-amount">Ks {{ total }}</div>
         </div>
 
         <button @click="handleContinue()">{{ $t("message.continue") }}</button>
@@ -233,16 +185,16 @@
             <div class="shipping-address">
               <h4>{{ $t("message.shippingAddress") }}</h4>
               <div class="shipping-customer-detail">
-                <strong> Win Lhan Phyo </strong>
+                <strong>{{ userData?.firstName + " " + userData?.lastName }}</strong>
                 <div class="shipping-customer-address">
-                  အမှတ်(၃၅) ၄လွှာ သဒ္ဒါရုံလမ်း <br />
-                  ၂မြောက် <br />
+                  {{ userData?.address }}<br />
+                  <!-- ၂မြောက် <br />
                   Yangon City Yangon Thaketa <br />
-                  Myanmar
+                  Myanmar -->
                 </div>
 
                 <div class="shipping-customer-phone">
-                  {{ $t("message.phone") }}: 09964764462
+                  {{ $t("message.phone") }} {{ userData?.phone }}
                 </div>
 
                 <div class="shipping-customer-btn-container">
@@ -257,10 +209,11 @@
                 <div>
                   <select class="shipping-customer-option">
                     <option selected>
-                      အမှတ်(၃၅) ၄လွှာ သဒ္ဒါရုံလမ်း <br />
+                      <!-- အမှတ်(၃၅) ၄လွှာ သဒ္ဒါရုံလမ်း <br />
                       ၂မြောက် <br />
                       Yangon City Yangon Thaketa <br />
-                      Myanmar
+                      Myanmar -->
+                      {{ userData?.address }}<br />
                     </option>
                   </select>
                 </div>
@@ -271,14 +224,15 @@
               <h4>{{ $t("message.shippingMethod") }}</h4>
 
               <div class="shipping-customer-btn-container">
-                <input type="radio" id="html" name="fav_language" value="HTML" />
-                <label for="html">{{ $t("message.shipping") }}</label> <br />
-                <input type="radio" id="css" name="fav_language" value="CSS" />
-                <label for="css">{{ $t("message.pickUpFOC") }} </label>
+                <input type="radio" id="shipping" v-model="shippingMethod" value="shipping" />
+                <label for="shipping">{{ $t("message.shipping") }}</label> <br />
+                
+                <input type="radio" id="pickUpFOC" v-model="shippingMethod" value="pickUpFOC" />
+                <label for="pickUpFOC">{{ $t("message.pickUpFOC") }} </label>
               </div>
 
               <select class="shipping-customer-option">
-                <option selected>Door to Door Delivery</option>
+                <option selected>{{shippingMethod === "shipping" ? "Door to Door Delivery" : "Ci Ci Printing Service"}}</option>
               </select>
             </div>
           </div>
@@ -293,13 +247,13 @@
           <div v-for="data in cart" :key="data.id">
             <div class="price-summary-detail">
               <div class="price-product-image">
-                <img :src="data.image" />
+                <img :src="data.productImage" />
               </div>
               <div class="price-label">
-                <div class="price-product-name">Standard Business</div>
-                <div class="price-product-qty">Qty: 100</div>
+                <div class="price-product-name">{{ data?.name }}</div>
+                <div class="price-product-qty">Qty: {{ data?.qty }}</div>
               </div>
-              <div class="price-amount">Ks 34,518.00</div>
+              <div class="price-amount">Ks {{ data?.totalPrice }}</div>
             </div>
             <hr />
           </div>
@@ -308,7 +262,7 @@
             <div class="price-label">
               {{ $t("message.subTotal") }}
             </div>
-            <div class="price-amount">Ks 34,518.00</div>
+            <div class="price-amount">Ks {{ total }}</div>
           </div>
 
           <div class="price-summary-detail">
@@ -340,7 +294,7 @@
 
     <div class="page-body" v-if="step === 3">
       <div class="page-content">
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-header">
             <input
               type="radio"
@@ -361,15 +315,16 @@
               <li><span style="color: rgb(47, 79, 79)">KBZ Pay/ AYA Pay /CB Pay</span></li>
             </ul>
           </div>
-        </div>
+        </div> -->
 
         <div class="card">
           <div class="card-header">
             <input
               type="radio"
+              v-model="selectedPayment"
               name="rdpaymenttype"
               id="paymenttype26"
-              value="26"
+              value="kpay"
               class="custom-control-input"
               data-toggle="collapse"
             />
@@ -393,6 +348,7 @@
                 id="OrdComments"
                 rows="10"
                 cols="90"
+                v-model="orderInstruction"
                 class="form-control"
               ></textarea>
             </div>
@@ -418,13 +374,12 @@
               <div class="productBlock mx-3 py-2 border-bottom">
                 <div class="order-details order_detail_summary">
                   <div
-                    class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
-                  >
+                    class="row m-0 border-bottom py-2 align-items-center kit_cart_product" v-for="data in cart" :key="data.id">
                     <div class="col-2 p-0 text-center">
                       <div class="order-img mb-0">
                         <a class="thumbnail"
                           ><img
-                            src="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7324/118_3855_28142466_image_p157_common_thumb.jpg"
+                            :src="data?.productImage"
                             height="150"
                             width="150"
                             alt="https://d3pyarv4eotqu4.cloudfront.net/xenonmmon/images/usertemplates/7324/118_3855_28142466_image_p157_common_thumb.jpg"
@@ -437,32 +392,28 @@
                     </div>
                     <div class="col-10">
                       <div
-                        class="row justify-content-between flex-nowrap narrow-gutter align-items-start"
-                      >
+                        class="row justify-content-between flex-nowrap narrow-gutter align-items-start">
                         <div class="col-7">
                           <p
                             class="mb-0 text-truncate"
-                            title="Standard Business Cards - Promo"
-                          >
-                            Standard Business Cards - Promo
+                            :title="data?.name">
+                            {{ data?.name }}
                           </p>
                           <p class="mb-0 short-disc">
-                            <span class="text-muted">ရေတွက်</span> : 100
+                            <span class="text-muted">{{ $t("message.quantity") }}</span> : {{ data?.qty }}
                           </p>
                         </div>
                         <div class="col-5 text-right pr-0">
                           <p
-                            class="mb-0 d-flex align-items-center flex-wrap justify-content-end"
-                          >
-                            Ks17,000.00
+                            class="mb-0 d-flex align-items-center flex-wrap justify-content-end">
+                            Ks{{ data?.totalPrice }}
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="row m-0 border-bottom py-2 align-items-center kit_cart_product"
-                  >
+                  <!-- <div
+                    class="row m-0 border-bottom py-2 align-items-center kit_cart_product">
                     <div class="col-2 p-0 text-center">
                       <div class="order-img mb-0">
                         <a class="thumbnail"
@@ -542,7 +493,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="paymentDetailsStep">
@@ -599,7 +550,7 @@
                   <p
                     class="d-flex justify-content-between align-items-center mb-0 pb-1 d-none"
                   >
-                    စုစုပေါင်း<span class="price">Ks56,500.00</span
+                    စုစုပေါင်း<span class="price">Ks{{ total }}</span
                     ><input type="hidden" name="subtotal" id="subtotal" value="56500.00" />
                   </p>
                 </div>
@@ -626,10 +577,9 @@
                     />
                   </p>
                   <p
-                    class="d-flex justify-content-between align-items-center font-lg pt-2 mt-2 border-top mb-3"
-                  >
-                    စုစုပေါင်း <strong class="totalprice">Ks59,500.00</strong
-                    ><input
+                    class="d-flex justify-content-between align-items-center font-lg pt-2 mt-2 border-top mb-3">
+                    စုစုပေါင်း <strong class="totalprice">Ks{{ total }}</strong>
+                    <input
                       type="hidden"
                       name="total_amount_for_process_fees"
                       id="total_amount_for_process_fees"
@@ -649,15 +599,16 @@
                     name="prod_out_stock_err"
                     id="prod_out_stock_err"
                     value=""
-                  /><input type="hidden" name="datastep" id="datastep" value="2" /><button
-                    type="submit"
+                  /><input type="hidden" name="datastep" id="datastep" value="2" />
+                  <button
+                    type="button"
                     name="BtnNext"
                     id="BtnNext"
                     value="Order Complete"
                     class="btn btn-success btn-lg btn-block ld-ext-left"
                     data-step="2"
                     data-loading-text="စောင့်ပါ <i class='fa fa-sync-alt fa-spin'></i>"
-                  >
+                    @click="orderComplete()">
                     Order Complete <span class="ld ld-ring ld-spin"></span>
                   </button>
                 </div>
@@ -680,7 +631,12 @@ export default {
     return {
       cart: [],
       step: 1,
-      preStep: 1
+      preStep: 1,
+      userData: {},
+      total: 0,
+      shippingMethod: "shipping",
+      orderInstruction: "",
+      selectedPayment: "kpay"
     };
   },
   methods: {
@@ -702,12 +658,24 @@ export default {
         cartLength: this.cart.length
       };
       await store.dispatch("commonData", param);
+    },
+    orderComplete() {
+      console.log("-------cart", this.cart);
+      console.log("-------userData", this.userData);
+      console.log("-------shipping method", this.shippingMethod);
+      console.log("-------order instruction", this.orderInstruction);
+      console.log("-------total", this.total);
     }
   },
   mounted() {
     const data = localStorage.getItem("cartData");
+    const dist = localStorage.getItem("user") || {};
     if (data && JSON.parse(data)?.length > 0) {
       this.cart = JSON.parse(data);
+    }
+    this.total = this.cart.reduce((accumulator, item) => accumulator + item.totalPrice, 0);
+    if (dist && JSON.parse(dist)) {
+      this.userData = JSON.parse(dist);
     }
   },
 };

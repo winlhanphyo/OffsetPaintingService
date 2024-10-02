@@ -27,8 +27,9 @@
         first-last-button="true"
       /> -->
       <ul class="pagination">
-        <li><a href="">❮ &nbsp;</a></li>
-        <li><a href="">&nbsp; ❯</a></li>
+        <li><a @click="clickPaginate(currentPage - 1)" :class="[disabledPreviousBtn ? 'disable-btn' : '']">❮ &nbsp;</a></li>
+        {{ currentPage }} of {{ lastPage }} page
+        <li><a @click="clickPaginate(currentPage + 1)" :class="[disabledNextBtn ? 'disable-btn' : '']">&nbsp; ❯</a></li>
       </ul>
     </div>
   </div>
@@ -36,6 +37,7 @@
 
 <script>
 import store from "@/store";
+import { getProduct } from "@/services/offset.service";
 import { imgRoot } from "./../../config";
 
 export default {
@@ -44,6 +46,8 @@ export default {
   data() {
     return {
       currentPage: 1,
+      lastPage: 1,
+      total: 1,
       products: []
     };
   },
@@ -52,8 +56,22 @@ export default {
     this.getProductData();
   },
   methods: {
-    clickPaginate(page) {
-      console.log("click paginate-------", page);
+    async clickPaginate(page=1) {
+      const token = localStorage.getItem("token");
+      page = Number(page) || 1;
+      // let searchNameData =  || searchName.current.value;
+      // searchName.current.value = searchNameData;
+      let params = {
+        size: 10,
+        page
+      };
+      console.log("click paginate-------", params);
+      // if (searchNameData) {
+      //   params.name = searchNameData
+      // }
+      const result = await getProduct(token, null, params);
+      this.products = result?.data?.data;
+      console.log("------------products", this.products);
     },
     async getProductData() {
       const token = localStorage.getItem("token");
@@ -62,6 +80,9 @@ export default {
       // this.products = res?.data?.data;
       await store.dispatch("GetProduct", token);
       this.products = await this.$store?.state?.apiData?.products;
+      this.total = await this.$store?.state?.apiData?.productCount;
+
+      console.log('--------apiData', this.$store?.state?.apiData);
 
       this.products?.map((dist) => {
         if (dist?.media?.length > 0) {
@@ -70,6 +91,28 @@ export default {
       });
   },
   },
+  computed: {
+    disabledNextBtn() {
+      const temp = this.total /(this.currentPage * 10);
+      if (this.total % 10 === 0) {
+        if (temp < 2) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (temp < 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    disabledPreviousBtn() {
+      console.log("current page", this.currentPage, typeof this.currentPage);
+      return (this.currentPage > 1) ? false : true;
+    }
+  }
 };
 </script>
 
@@ -218,5 +261,8 @@ export default {
 }
 .active-page:hover {
   background-color: #2988c8;
+}
+.disable-btn {
+  background-color: #99aebb !important;
 }
 </style>

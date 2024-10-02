@@ -33,69 +33,6 @@
               </div>
             </div>
           </div>
-
-          <!-- <div class="product-card">
-            <div class="work-heading">
-              <h3>Design T Shirt</h3>
-              <p>Create your own t-shirt designs for friends, families, and events</p>
-            </div>
-            <div class="work-image-box">
-              <img src="@/assets/images/products/Fabrix_T_Shirt_01_40091.jpg" alt="" />
-              <div class="details">
-                <a @click="$router.push('/package/1')"
-                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="work-heading">
-              <h3>Personalised T Shirt</h3>
-              <p>Create your own t-shirt designs for friends, families, and events</p>
-            </div>
-            <div class="work-image-box">
-              <img
-                src="@/assets/images/products/Personalised_T_Shirt_400px54.jpg"
-                alt=""
-              />
-              <div class="details">
-                <a @click="$router.push('/package/1')"
-                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="work-heading">
-              <h3>Photography Prints</h3>
-              <p>Photographers Create it, we Print it, you Love it.</p>
-            </div>
-            <div class="work-image-box">
-              <img
-                src="@/assets/images/products/Satin_Photo_Print_1200802286.jpg"
-                alt=""
-              />
-              <div class="details">
-                <a @click="$router.push('/package/1')"
-                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="work-heading">
-              <h3>Matt Canvas with Frame</h3>
-              <p>Canvas Printing with Frame</p>
-            </div>
-            <div class="work-image-box">
-              <img src="@/assets/images/products/Canves_print_1_400px.jpg" alt="" />
-              <div class="details">
-                <a @click="$router.push('/package/1')"
-                  >View details <i class="fa fa-arrow-circle-right" aria-hidden="true"></i
-                ></a>
-              </div>
-            </div>
-          </div> -->
         </div>
         <div class="link">
           <div class="show-all">
@@ -127,6 +64,11 @@
           <div v-if="item?.status === 'sale'" class="ribbon">Sales!</div>
         </div>
       </div>
+      <div class="link">
+          <div class="show-all">
+            <a @click="$router.push('/products')"><span>Show All</span></a>
+          </div>
+        </div>
     </div>
     <div class="company-info">
       <div class="container">

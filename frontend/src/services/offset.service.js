@@ -69,16 +69,21 @@ export const getCategory = async (token) => {
  * @param {*} data 
  * @param {*} token 
  * @param {*} searchName 
+ * @param {*} pageData 
  * @returns 
  */
-export const getProduct = async (token, searchName=null) => {
+export const getProduct = async (token, searchName=null, pageData=null) => {
   let params = {};
-  searchName ? params.name = searchName : params = null;
+  console.log("-----pageData", pageData);
+  pageData ? params = pageData : "";
+  searchName ? params.name = searchName : "";
   let res = null;
-  if (!searchName) {
+  if (!params) {
+    console.log("-----not params", params);
     res = await axios.get(`${apiRoot}/product`, token);
   } else {
-    res = await axios.get(`${apiRoot}product`, {params});
+    console.log("-----params", params);
+    res = await axios.get(`${apiRoot}/product`, {params});
   }
   
   return res;
