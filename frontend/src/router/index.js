@@ -98,6 +98,11 @@ const routes = [
     component: () => import('../views/OrderView.vue')
   },
   {
+    path: '/productAddtionalInfo',
+    name: 'productAddtionalInfo',
+    component: () => import('../views/ProductAdditionalInfo.vue')
+  },
+  {
     path: "/",
     redirect: "/home",
   },
