@@ -349,7 +349,7 @@
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <button class="btn btn-secondary" @click="back()">Back</button>
-            <button class="btn btn-primary" style="margin-left: 10px" @click="submitProduct()">
+            <button class="btn btn-primary" style="margin-left: 10px" :disabled="disabledBtn" @click="submitProduct()">
               Submit
             </button>
           </div>
@@ -462,7 +462,8 @@ export default {
       remark: "",
       ctpPrice: "",
       waste: "",
-      abbb: ""
+      abbb: "",
+      disabledBtn: false,
     };
   },
   mounted() {
@@ -481,9 +482,11 @@ export default {
     //   console.log("------ratioFullSize", prop, index[prop]);
     // },
     async getCategoryData() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const arr = [];
       const res = await getCategory(token);
+      localStorage.removeItem("setAllLoading");
       this.categories = res?.data?.data;
       for (let i = 0; i < this.categories?.length; i++) {
         arr.push({
@@ -519,6 +522,8 @@ export default {
       this.$router.push("/product");
     },
     async submitProduct() {
+      this.disabledBtn = true;
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       let formParam = new FormData();
       this.name && formParam.append("name", this.name);
@@ -569,6 +574,8 @@ export default {
 
       createProduct(formParam, token)
         .then(() => {
+          localStorage.removeItem("setAllLoading");
+          this.disabledBtn = false;
           Swal.fire({
             title: "Success!",
             text: "Product is created successfully!",
@@ -578,6 +585,8 @@ export default {
           });
         })
         .catch((err) => {
+          localStorage.removeItem("setAllLoading");
+          this.disabledBtn = false;
           Swal.fire({
             title: "Oops!",
             text: err.toString(),

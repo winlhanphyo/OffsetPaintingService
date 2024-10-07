@@ -19,6 +19,7 @@ import Sidenav from "./examples/Sidenav";
 // import Configurator from "@/examples/Configurator.vue";
 import Navbar from "@/examples/Navbars/Navbar.vue";
 import AppFooter from "@/examples/Footer.vue";
+import Loading from '@/examples/Loading.vue';
 
 const store = useStore();
 const isNavFixed = computed(() => store.state.isNavFixed);
@@ -59,6 +60,7 @@ const navClasses = computed(() => {
     <navbar :class="[navClasses]" v-if="showNavbar" />
 
     <router-view />
+    <Loading ref="loading" />
 
     <app-footer v-show="showFooter" />
 

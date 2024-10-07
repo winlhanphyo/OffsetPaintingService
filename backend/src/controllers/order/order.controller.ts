@@ -77,7 +77,7 @@ class OrderController {
     let offset = Number(req.query.page) - 1 || 0;
     const size = Number(req.query.size) || PAGINATION_LIMIT;
     let page = offset * size;
-    const userId = req.headers['userid'];
+    const userId = req.params.id;
     let otherFindOptions = undefined;
 
     if (userId) {

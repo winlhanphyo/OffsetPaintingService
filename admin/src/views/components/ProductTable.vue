@@ -311,6 +311,7 @@ export default {
   },
   methods: {
     async clickPaginate(page=1) {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       page = Number(page) || 1;
       let params = {
@@ -322,15 +323,18 @@ export default {
         params.name = this.searchName;
       }
       const res = await getProduct(token, null, params);
+      localStorage.removeItem("setAllLoading");
       this.products = res?.data?.data;
       this.total = res?.data?.count;
       this.lastPage = (this.total % 10 === 0 || page === 1) ? page : page + 1;
       console.log("------------products", this.products);
     },
     async getProductData() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const res = await getProduct(token, this.searchName);
 
+      localStorage.removeItem("setAllLoading");
       this.products = res?.data?.data;
       this.total = res?.data?.count;
       let page = this.total <= 10 ? 1 : this.total / 10;

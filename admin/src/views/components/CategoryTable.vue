@@ -100,7 +100,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" ref="Close" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
-                <button type="button" class="btn btn-primary" @click="submitCategory()">{{modalLabel}}</button>
+                <button type="button" class="btn btn-primary" :disabled="disabledBtn" @click="submitCategory()">{{modalLabel}}</button>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@
               <div class="modal-footer">
                 <button type="button" ref="Close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-danger" data-bs-target="#deleteModalToggle" data-bs-toggle="modal"
-                  @click="clickDeleteCategory()">Delete</button>
+                  :disabled="disabledBtn" @click="clickDeleteCategory()">Delete</button>
               </div>
             </div>
           </div>
@@ -141,7 +141,8 @@ export default {
       id: "",
       name: "",
       categoryImage: "",
-      modalLabel: "Create"
+      modalLabel: "Create",
+      disabledBtn: false,
     };
   },
   mounted() {
@@ -149,8 +150,11 @@ export default {
   },
   methods: {
     async getCategoryData() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const res = await getCategory(token);
+
+      localStorage.removeItem("setAllLoading");
       this.categories = res?.data?.data;
       this.categories?.map((dist) => {
         dist.categoryImage = imgRoot + dist.categoryImage;
@@ -180,6 +184,8 @@ export default {
       this.id = data?.id;
     },
     async submitCategory() {
+      this.disabledBtn = true;
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       document.getElementById('close').click();
       if (this.modalLabel === 'Create') {
@@ -189,6 +195,8 @@ export default {
 
        createCategory(formParam, token)
           .then(() => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Success!",
               text: "Category is created successfully!",
@@ -197,6 +205,8 @@ export default {
               this.getCategoryData();
             });
           }).catch((err) => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Oops!",
               text: err.toString(),

@@ -174,7 +174,7 @@
                 >
                   Close
                 </button>
-                <button type="button" class="btn btn-primary" @click="submitArticle()">
+                <button type="button" class="btn btn-primary" :disabled="disabledBtn" @click="submitArticle()">
                   {{ modalLabel }}
                 </button>
               </div>
@@ -208,6 +208,7 @@
                   class="btn btn-danger"
                   data-bs-target="#deleteModalToggle"
                   data-bs-toggle="modal"
+                  :disabled="disabledBtn"
                   @click="clickDeleteArticle()"
                 >
                   Delete
@@ -241,6 +242,7 @@ export default {
       description: "",
       articleImage: "",
       modalLabel: "Create",
+      disabledBtn: false,
     };
   },
   mounted() {
@@ -248,8 +250,10 @@ export default {
   },
   methods: {
     async getArticleData() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const res = await getArticle(token);
+      localStorage.removeItem("setAllLoading");
       this.articles = res?.data?.data;
       this.articles?.map((dist) => {
         dist.articleImage = imgRoot + dist.articleImage;
@@ -277,6 +281,7 @@ export default {
       this.id = data?.id;
     },
     async submitArticle() {
+      this.disabledBtn = true;
       const token = localStorage.getItem("token");
       document.getElementById("close").click();
       if (this.modalLabel === "Create") {
@@ -287,6 +292,8 @@ export default {
 
         createArticle(formParam, token)
           .then(() => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Success!",
               text: "Article is created successfully!",
@@ -296,6 +303,8 @@ export default {
             });
           })
           .catch((err) => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Oops!",
               text: err.toString(),
@@ -330,9 +339,12 @@ export default {
       }
     },
     async clickDeleteArticle() {
+      this.disabledBtn = true;
       const token = localStorage.getItem("token");
       deleteArticle(this.id, token)
         .then(() => {
+          localStorage.removeItem("setAllLoading");
+          this.disabledBtn = false;
           Swal.fire({
             title: "Success!",
             text: "Article is deleted successfully!",
@@ -342,6 +354,8 @@ export default {
           });
         })
         .catch((err) => {
+          localStorage.removeItem("setAllLoading");
+          this.disabledBtn = false;
           Swal.fire({
             title: "Oops!",
             text: err.toString(),

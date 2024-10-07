@@ -126,8 +126,11 @@ export default {
       console.log(`Status for ${order.fullName} updated to ${order.status}`);
     },
     async getOrder() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const res = await getOrder(token, this.searchName);
+
+      localStorage.removeItem("setAllLoading");
 
       this.orders = res?.data?.data;
       this.total = res?.data?.count;

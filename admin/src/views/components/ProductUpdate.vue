@@ -347,7 +347,7 @@
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <button class="btn btn-secondary" @click="back()">Back</button>
-            <button class="btn btn-primary" style="margin-left: 10px" @click="submitProduct()">
+            <button class="btn btn-primary" style="margin-left: 10px" :disabled="disabledBtn" @click="submitProduct()">
               Submit
             </button>
           </div>
@@ -460,17 +460,20 @@ export default {
 
       ctpPrice: "",
       waste: "",
-      abbb: ""
+      abbb: "",
+      disabledBtn: false
     };
   },
   async mounted() {
+    localStorage.setItem("setAllLoading", true);
     this.getCategoryData();
     this.id = this.$route?.params?.id;
     console.log("------id", this.id);
     if (this.id) {
       const res = await getProductById(this.id);
       const data = res?.data?.data;
-      console.log("-----------detail data", data);
+      localStorage.removeItem("setAllLoading");
+      this.disabledBtn = false;
       this.name = data?.name;
       this.categoryId = data?.categoryId;
       if (data?.media?.length > 0) {
@@ -564,6 +567,8 @@ export default {
       this.images.splice(index, 1);
     },
     async submitProduct() {
+      this.disabledBtn = true;
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       let formParam = new FormData();
       this.name && formParam.append("name", this.name);
@@ -614,6 +619,8 @@ export default {
 
       updateProduct(this.id, formParam, token)
         .then(() => {
+          localStorage.removeItem("setAllLoading");
+          this.disabledBtn = false;
           Swal.fire({
             title: "Success!",
             text: "Product is updated successfully!",
@@ -623,6 +630,8 @@ export default {
           });
         })
         .catch((err) => {
+          localStorage.removeItem("setAllLoading");
+          this.disabledBtn = false;
           Swal.fire({
             title: "Oops!",
             text: err.toString(),

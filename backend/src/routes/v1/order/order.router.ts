@@ -5,7 +5,7 @@ const router = new Router();
 
 console.log('---------order router-------');
 
-router.get('/user', orderController.getUserOrder);
+router.get('/user/:id', orderController.getUserOrder);
 router.post('/update/:id', orderController.updateOrder);
 router.get('/:id', orderController.detailOrder);
 router.delete('/:id', orderController.deleteOrder);

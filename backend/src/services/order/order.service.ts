@@ -331,7 +331,6 @@ class OrderService {
   async deleteOrder(req: any, res: any): Promise<OrderDbModel> {
     try {
       const id = req.params.id;
-      const userId = req.headers["userid"];
       const detailOrder = await this.getOrderById(id);
       if (!detailOrder) {
         return res.status(400).json({

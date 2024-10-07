@@ -196,8 +196,10 @@ export default {
   },
   methods: {
     async getUserData() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const res = await getUser(token);
+      localStorage.removeItem("setAllLoading");
 
       this.users = res?.data?.data;
     },

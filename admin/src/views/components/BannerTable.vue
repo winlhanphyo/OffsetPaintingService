@@ -188,8 +188,10 @@ export default {
   },
   methods: {
     async getBannerData() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const res = await getBanner(token);
+      localStorage.removeItem("setAllLoading");
       this.banners = res?.data?.data;
       this.banners?.map((dist) => {
         dist.image = imgRoot + dist.image;
@@ -220,6 +222,8 @@ export default {
 
         createBanner(formParam, token)
           .then(() => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Success!",
               text: "Banner is created successfully!",
@@ -229,6 +233,8 @@ export default {
             });
           })
           .catch((err) => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Oops!",
               text: err.toString(),
