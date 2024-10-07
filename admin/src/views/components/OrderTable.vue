@@ -96,12 +96,12 @@ export default {
   data() {
     return {
       orders: [
-        { fullName: 'John Michael', address: 'Yangon', amount: 100, status: 'New' },
-        { fullName: 'Alexa Liras', address: 'Bago', amount: 200, status: 'New' },
-        { fullName: 'Laurent Perrier', address: 'Nay Pyi Daw', amount: 150, status: 'New' },
-        { fullName: 'Michael Levi', address: 'Mandalay', amount: 250, status: 'New' },
-        { fullName: 'Richard Gran', address: 'Magway', amount: 175, status: 'New' },
-        { fullName: 'Miriam Eric', address: 'Maw La Myaing', amount: 120, status: 'New' }
+        // { fullName: 'John Michael', address: 'Yangon', amount: 100, status: 'New' },
+        // { fullName: 'Alexa Liras', address: 'Bago', amount: 200, status: 'New' },
+        // { fullName: 'Laurent Perrier', address: 'Nay Pyi Daw', amount: 150, status: 'New' },
+        // { fullName: 'Michael Levi', address: 'Mandalay', amount: 250, status: 'New' },
+        // { fullName: 'Richard Gran', address: 'Magway', amount: 175, status: 'New' },
+        // { fullName: 'Miriam Eric', address: 'Maw La Myaing', amount: 120, status: 'New' }
       ],
       id: "",
       name: "",

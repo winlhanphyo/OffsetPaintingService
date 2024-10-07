@@ -214,7 +214,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 <button
                   type="button"
                   class="btn btn-danger"
-                  data-bs-target="#exampleModalToggle2"
+                  data-bs-target="#deleteModalToggle"
                   data-bs-toggle="modal" @click="clickDeleteProduct()">
                   Delete
                 </button>
