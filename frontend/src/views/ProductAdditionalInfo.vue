@@ -49,9 +49,9 @@
 
         <div class="form-group">
           <label>စက္ကူအမျိုးအစား</label>
-          <div class="radio-group">
-            <input type="radio" id="artcard" name="paper-type" />
-            <label for="artcard">Artcard 250GSM</label>
+          <div class="radio">
+            <input id="first" type="radio" name="numbers" value="first">
+            <label for="first">First</label>
           </div>
         </div>
 
@@ -796,7 +796,7 @@ h1 {
   margin-bottom: 20px;
 
   select {
-    width: 100%;
+    width: 92%;
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.25);
   }
@@ -810,7 +810,7 @@ label {
 
 input[type="text"],
 select {
-  width: 100%;
+  width: 90%;
   padding: 5px;
   border: 1px solid #ccc;
 }
@@ -872,5 +872,46 @@ button.secondary {
 button.primary {
   background-color: #003366;
   color: white;
+}
+
+/* Custom radio buttons */
+input[type="radio"]+label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px;
+  margin-right: 15px;
+  font-size: 13px;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin-right: 14px;
+    position: absolute;
+    top: -3px;
+    left: 0;
+    border: 1px solid #003366;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+}
+
+input[type="radio"] {
+  display: none !important;
+  display: inline;
+
+  &:checked+label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 1.5px;
+    left: 4.5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #003366;
+  }
 }
 </style>
