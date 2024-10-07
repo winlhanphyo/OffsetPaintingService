@@ -78,6 +78,9 @@
                 >{{ user?.firstName + " " + user?.lastName }}</a>
               <ul :class="[activeLoginMenu ? 'sub-menu is-show sub-menu2' : 'sub-menu']" style="width: 75px;" >
                 <li>
+                  <span @click="myOrder()">My Order</span>
+                </li>
+                <li>
                   <span @click="logout()">Logout</span>
                 </li>
               </ul>
@@ -268,6 +271,9 @@ export default {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
       this.user = null;
+    },
+    myOrder() {
+      this.$router.push("/userOrder");
     }
   },
   computed: {

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteBanner = exports.createBanner = exports.updateBanner = exports.getBanner = exports.deletePackage = exports.updatePackage = exports.createPackage = exports.getPackage = exports.deleteArticle = exports.updateArticle = exports.createArticle = exports.getArticle = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.deleteMedia = exports.getProductById = exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProduct = exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategory = void 0;
+exports.getOrderById = exports.deleteOrder = exports.updateOrder = exports.createOrder = exports.getOrder = exports.deleteBanner = exports.createBanner = exports.updateBanner = exports.getBanner = exports.deletePackage = exports.updatePackage = exports.createPackage = exports.getPackage = exports.deleteArticle = exports.updateArticle = exports.createArticle = exports.getArticle = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.deleteMedia = exports.getProductById = exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProduct = exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategory = void 0;
 
 var _api = _interopRequireDefault(require("../api"));
 
@@ -794,5 +794,162 @@ var deleteBanner = function deleteBanner(id, token) {
     }
   });
 };
+/**
+ * get order API.
+ * @param {*} data 
+ * @param {*} token 
+ * @param {*} searchName 
+ * @returns 
+ */
+
 
 exports.deleteBanner = deleteBanner;
+
+var getOrder = function getOrder(token) {
+  var searchName,
+      param,
+      res,
+      _args27 = arguments;
+  return regeneratorRuntime.async(function getOrder$(_context27) {
+    while (1) {
+      switch (_context27.prev = _context27.next) {
+        case 0:
+          searchName = _args27.length > 1 && _args27[1] !== undefined ? _args27[1] : null;
+          param = {};
+          searchName ? param.name = searchName : null;
+          _context27.next = 5;
+          return regeneratorRuntime.awrap(_api["default"].get('/order', param, token));
+
+        case 5:
+          res = _context27.sent;
+          return _context27.abrupt("return", res);
+
+        case 7:
+        case "end":
+          return _context27.stop();
+      }
+    }
+  });
+};
+/**
+ * create order API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+
+
+exports.getOrder = getOrder;
+
+var createOrder = function createOrder(data, token) {
+  var res;
+  return regeneratorRuntime.async(function createOrder$(_context28) {
+    while (1) {
+      switch (_context28.prev = _context28.next) {
+        case 0:
+          _context28.next = 2;
+          return regeneratorRuntime.awrap(_api["default"].post("/order", data, token, true));
+
+        case 2:
+          res = _context28.sent;
+          return _context28.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context28.stop();
+      }
+    }
+  });
+};
+/**
+ * update order API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+
+
+exports.createOrder = createOrder;
+
+var updateOrder = function updateOrder(id, data, token) {
+  var res;
+  return regeneratorRuntime.async(function updateOrder$(_context29) {
+    while (1) {
+      switch (_context29.prev = _context29.next) {
+        case 0:
+          _context29.next = 2;
+          return regeneratorRuntime.awrap(_api["default"].post("/order/update/".concat(id), data, token, true));
+
+        case 2:
+          res = _context29.sent;
+          return _context29.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context29.stop();
+      }
+    }
+  });
+};
+/**
+ * delete order API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+
+
+exports.updateOrder = updateOrder;
+
+var deleteOrder = function deleteOrder(id, token) {
+  var res;
+  return regeneratorRuntime.async(function deleteOrder$(_context30) {
+    while (1) {
+      switch (_context30.prev = _context30.next) {
+        case 0:
+          _context30.next = 2;
+          return regeneratorRuntime.awrap(_api["default"].deleteData("/order/".concat(id), token));
+
+        case 2:
+          res = _context30.sent;
+          return _context30.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context30.stop();
+      }
+    }
+  });
+};
+/**
+ * get order by id.
+ * @param {*} id 
+ * @param {*} token 
+ * @returns 
+ */
+
+
+exports.deleteOrder = deleteOrder;
+
+var getOrderById = function getOrderById(id, token) {
+  var res;
+  return regeneratorRuntime.async(function getOrderById$(_context31) {
+    while (1) {
+      switch (_context31.prev = _context31.next) {
+        case 0:
+          _context31.next = 2;
+          return regeneratorRuntime.awrap(_api["default"].get("/order/".concat(id), {}, token));
+
+        case 2:
+          res = _context31.sent;
+          return _context31.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context31.stop();
+      }
+    }
+  });
+};
+
+exports.getOrderById = getOrderById;

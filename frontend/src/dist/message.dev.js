@@ -103,7 +103,8 @@ var messages = {
       paymentTime: "Payment Time",
       paymentMethod: "Payment Method",
       paymentID: "Payment ID",
-      ExpiryDate: "Expire Date"
+      ExpiryDate: "Expire Date",
+      myOrder: "My Order"
     }
   },
   // myanamr
@@ -203,7 +204,8 @@ var messages = {
       paymentTime: "ငွေပေးချေသည့်နေ့ရက်",
       paymentMethod: "ငွေပေးချေမှုစနစ်",
       paymentID: "ငွေလွှဲID",
-      ExpiryDate: "သတ်မှတ်ရက်"
+      ExpiryDate: "သတ်မှတ်ရက်",
+      myOrder: "ကျနော့် Order"
     }
   }
 };

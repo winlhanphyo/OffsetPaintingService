@@ -148,7 +148,7 @@
             </div>
             <hr />
             <div class="row">
-              <a href="#">{{ $t("message.editOrder") }}</a>
+              <a @click="$router.push(`/productAddtionalInfo/${index}`)">{{ $t("message.editOrder") }}</a>
               <div class="tooltip" @click="deleteOrder(index)">
                 <i class="far fa-trash-alt"></i>
                 <span class="tooltiptext">Delete</span>
@@ -621,7 +621,9 @@
   </div>
 </template>
 <script>
+import Swal from "sweetalert2";
 import store from "@/store";
+import { createOrder } from "@/services/offset.service";
 // import carts from "../const/cart.js";
 
 export default {
@@ -659,12 +661,77 @@ export default {
       };
       await store.dispatch("commonData", param);
     },
-    orderComplete() {
+    async orderComplete() {
       console.log("-------cart", this.cart);
       console.log("-------userData", this.userData);
       console.log("-------shipping method", this.shippingMethod);
       console.log("-------order instruction", this.orderInstruction);
       console.log("-------total", this.total);
+
+      const payload = {
+        customer: this.userData?.id,
+        firstName: this.userData?.firstName,
+        lastName: this.userData?.lastName,
+        address: this.userData?.address,
+        phone: this.userData?.phone,
+        status: this.userData?.status,
+        totalAmount: this.total,
+        orderInstruction: this.orderInstruction,
+        shippingMethod: this.shippingMethod
+      };
+
+      // req.body?.paymentScreenshot ? payload.paymentScreenshot = req.body?.paymentScreenshot : "";
+      // payload.paymentDone = req.body?.paymentDone ? payload.paymentDone : false;
+      const orderDetail = [];
+
+      this.cart.map((dist) => {
+        orderDetail.push({
+          productId: dist?.id,
+          amount: dist?.totalPrice,
+          quantity: dist?.qty,
+          productDetail: dist
+        });
+      });
+      payload.orderDetail = orderDetail;
+
+      // payload.orderDetail = {
+      //   productId: dist.productId,
+      //   amount: dist?.amount,
+      //   quantity: orderData?.qty,
+      //   designImage: orderData?.designImage,
+      //   productDetail: orderData?.productDetail
+      // }
+
+      const res = await createOrder(payload);
+      if (res?.data?.message) {
+        localStorage.removeItem("cartData");
+        this.cart = [];
+        // let param = {
+        //   lang: this.lang,
+        //   cartLength: this.cart.length
+        // };
+        await store.dispatch("resetDetailData");
+        Swal.fire({
+          position: "bottom",
+          icon: "success",
+          title: "Order is created successfully.",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
+        this.$router.push("/home");
+      } else {
+        Swal.fire({
+          position: "bottom",
+          icon: "error",
+          title: "Error is occurred.",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
+      }
     }
   },
   mounted() {

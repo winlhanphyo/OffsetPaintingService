@@ -169,6 +169,22 @@ var routes = [{
     });
   }
 }, {
+  path: '/productAddtionalInfo/:id',
+  name: 'productAddtionalInfo',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/ProductAdditionalInfo.vue'));
+    });
+  }
+}, {
+  path: '/userOrder',
+  name: 'userOrder',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/UserOrderView.vue'));
+    });
+  }
+}, {
   path: "/",
   redirect: "/home"
 }, {

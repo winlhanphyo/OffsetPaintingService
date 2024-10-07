@@ -63,8 +63,8 @@ class OrderController {
    */
   async detailOrder(req: Request, res: Response) {
     const id = +req.params.id;
-    const userId = req.headers["userid"];
-    const orderData = await orderService.getOrderById(id, res, userId);
+    // const userId = req.headers["userid"];
+    const orderData = await orderService.getOrderById(id, res);
     return orderData;
   }
 

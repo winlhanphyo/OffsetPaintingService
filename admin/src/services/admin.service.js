@@ -290,3 +290,61 @@ export const deleteBanner = async (id, token) => {
   const res = await api.deleteData(`/banner/${id}`, token);
   return res;
 }
+
+/**
+ * get order API.
+ * @param {*} data 
+ * @param {*} token 
+ * @param {*} searchName 
+ * @returns 
+ */
+export const getOrder = async (token, searchName=null) => {
+  const param = {};
+  searchName ? param.name = searchName : null;
+  const res = await api.get('/order', param, token);
+  return res;
+}
+
+/**
+ * create order API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const createOrder = async (data, token) => {
+  const res = await api.post("/order", data, token, true);
+  return res;
+}
+
+/**
+ * update order API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const updateOrder = async (id, data, token) => {
+  const res = await api.post(`/order/update/${id}`, data, token, true);
+  return res;
+}
+
+/**
+ * delete order API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const deleteOrder = async (id, token) => {
+  const res = await api.deleteData(`/order/${id}`, token);
+  return res;
+}
+
+/**
+ * get order by id.
+ * @param {*} id 
+ * @param {*} token 
+ * @returns 
+ */
+export const getOrderById = async (id, token) => {
+  const res = await api.get(`/order/${id}`, {}, token);
+  return res;
+}

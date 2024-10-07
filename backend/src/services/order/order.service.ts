@@ -58,14 +58,18 @@ class OrderService {
         orderList.push({
           productId: dist.productId,
           amount: dist?.amount,
-          quantity: orderData?.qty,
-          designImage: orderData?.designImage,
-          productDetail: orderData?.productDetail
+          quantity: dist?.quantity,
+          designImage: dist?.designImage,
+          productDetail: dist?.productDetail
         });
       }
-      const res = await OrderDetailDbModel.bulkCreate(orderList);
-      const result = await this.orderCreateData(req, res);
-      return result;
+      const response = await OrderDetailDbModel.bulkCreate(orderList);
+      const result = await this.orderCreateData(req, response);
+      return res.json({
+        success: true,
+        message: 'Order is created successfully',
+        data: result
+      });
 
     } catch (e: any) {
       console.log("-----Create Order API error----", e);
@@ -98,7 +102,7 @@ class OrderService {
 
     const orderDetailIds = orderDetailData.map((data: any) => data?.dataValues?.id);
     const orderObj: any = {
-      customer: req.headers['userid'],
+      customer: req.body.customer,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       address: req.body.address,
@@ -184,7 +188,7 @@ class OrderService {
    * @param order_id 
    * @returns 
    */
-  async getOrderById(order_id: number, res: any = null, userId: any = null): Promise<any> {
+  async getOrderById(order_id: number, res: any = null): Promise<any> {
     try {
       const orderData = await OrderDbModel.findOne({
         where: {
@@ -208,27 +212,27 @@ class OrderService {
       const orderDetailId = orderData?.dataValues?.orderDetailId || [];
       const orderDetail = await OrderDetailDbModel.findAll({
         where: { id: orderDetailId },
-        include: [
-          {
-            model: MediaDbModel,
-            foreignKey: "id",
-            as: "mediaData"
-          }
-        ]
+        // include: [
+        //   {
+        //     model: MediaDbModel,
+        //     foreignKey: "id",
+        //     as: "mediaData"
+        //   }
+        // ]
       });
 
-      for (let i = 0; i < orderDetail.length; i++) {
-        let mediaList = orderDetail[i]?.dataValues;
-        if (mediaList?.mediaData?.dataValues?.type === "video") {
-          mediaList.mediaData.dataValues.cover = "upload/user/video/default.jpg";
-        } else if (mediaList?.mediaData?.dataValues?.type === "music") {
-          mediaList.mediaData.dataValues.cover = "upload/user/music/default.jpg";
-        } else if (mediaList?.mediaData?.dataValues?.type === "text") {
-          mediaList.mediaData.dataValues.cover = "upload/user/text/default.jpg";
-        } else if (mediaList?.mediaData?.dataValues?.type === "photo") {
-          mediaList.mediaData.dataValues.cover = mediaList?.mediaData?.dataValues.url;
-        }
-      }
+      // for (let i = 0; i < orderDetail.length; i++) {
+      //   let mediaList = orderDetail[i]?.dataValues;
+      //   if (mediaList?.mediaData?.dataValues?.type === "video") {
+      //     mediaList.mediaData.dataValues.cover = "upload/user/video/default.jpg";
+      //   } else if (mediaList?.mediaData?.dataValues?.type === "music") {
+      //     mediaList.mediaData.dataValues.cover = "upload/user/music/default.jpg";
+      //   } else if (mediaList?.mediaData?.dataValues?.type === "text") {
+      //     mediaList.mediaData.dataValues.cover = "upload/user/text/default.jpg";
+      //   } else if (mediaList?.mediaData?.dataValues?.type === "photo") {
+      //     mediaList.mediaData.dataValues.cover = mediaList?.mediaData?.dataValues.url;
+      //   }
+      // }
 
       if (orderDetail) {
         orderData.dataValues.orderDetail = orderDetail;

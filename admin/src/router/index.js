@@ -132,7 +132,7 @@ const routes = [
     component: UpdatePassword,
   },
   {
-    path: "/order-detail",
+    path: "/order/:id",
     name: "OrderDetail",
     component: OrderDetail,
   },

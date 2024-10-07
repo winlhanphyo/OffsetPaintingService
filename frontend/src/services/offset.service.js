@@ -54,6 +54,15 @@ export const contactUs = async (data) => {
 }
 
 /**
+ * create order API.
+ * @param {*} data 
+ */
+export const createOrder = async (data, token) => {
+  const res = await api.post(`/order`, data, token);
+  return res;
+}
+
+/**
  * get category API.
  * @param {*} data 
  * @param {*} token 

@@ -43,7 +43,7 @@ export class MediaDbModel extends Model {
     OrderDetailDbModel
   }: any) {
     this.belongsToMany(ProductDbModel, { through: ProductMediaDbModel, as: 'products', foreignKey: 'mediaId' });
-    this.hasMany(OrderDetailDbModel, { foreignKey: 'mediaId', as: 'mediaData' });
+    // this.hasMany(OrderDetailDbModel, { foreignKey: 'mediaId', as: 'mediaData' });
     // this.hasMany(OrderDetailDbModel, { foreignKey: 'mediaId', as: 'media' });
   }
 }

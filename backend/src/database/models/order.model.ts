@@ -54,7 +54,8 @@ const modelAttributes: DbModelFieldInit<Partial<IOrdertModel>> = {
   },
   status: {
     type: DataTypes.ENUM('new','shipping', 'complete'),
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'new'
   },
   totalAmount: {
     type: DataTypes.DECIMAL(15, 2),
@@ -75,7 +76,7 @@ const modelAttributes: DbModelFieldInit<Partial<IOrdertModel>> = {
   },
   paymentScreenshot: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   paymentDone: {
     type: DataTypes.BOOLEAN,

@@ -57,7 +57,7 @@ module.exports = {
       },
       paymentScreenshot: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       paymentDone: {
         type: DataTypes.BOOLEAN,

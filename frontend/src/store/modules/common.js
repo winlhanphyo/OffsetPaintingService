@@ -27,7 +27,8 @@ const mutations = {
   resetCommonData(state, common) {
     console.log("------common", common);
     state.data = {
-      lang: 'en'
+      lang: 'en',
+      cartLength: 0
     };
   }
 };

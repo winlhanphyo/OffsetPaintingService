@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var state = {
   data: {
-    lang: "en"
+    lang: "en",
+    cartLength: 0
   }
 };
 var getters = {
@@ -57,9 +58,10 @@ var mutations = {
     });
   },
   resetCommonData: function resetCommonData(state, common) {
-    console.log("---common", common);
+    console.log("------common", common);
     state.data = {
-      lang: 'en'
+      lang: 'en',
+      cartLength: 0
     };
   }
 };

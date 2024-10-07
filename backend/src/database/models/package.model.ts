@@ -65,7 +65,7 @@ export class PackageDbModel extends Model {
     OrderDetailDbModel
   }: any) {
     this.belongsToMany(ProductDbModel, { through: PackageProductDbModel, as: 'product', foreignKey: 'packageId' });
-    this.hasMany(OrderDetailDbModel, { foreignKey: 'packageId', as: 'packageData' });
+    // this.hasMany(OrderDetailDbModel, { foreignKey: 'packageId', as: 'packageData' });
     this.belongsTo(UserDbModel, { foreignKey: 'createdUserId', as: 'createdProductyByUser', targetKey: 'id' });
     this.belongsTo(UserDbModel, { foreignKey: 'updatedUserId', as: 'updatedProductByUser', targetKey: 'id' });
   }

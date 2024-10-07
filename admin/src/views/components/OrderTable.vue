@@ -1,3 +1,8 @@
+<script setup>
+import ArgonPagination from "@/components/ArgonPagination.vue";
+import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
+</script>
+
 <template>
   <div class="card">
     <div class="card-header pb-0">
@@ -39,16 +44,16 @@
             <tr v-for="(order, index) in orders" :key="index">
               <td>
                 <div class="px-3 py-1">
-                  <router-link :to="{ name: 'OrderDetail', params: { id: order.id } }" class="text-decoration-none">
-                    <p class="mb-0 text-sm">{{ order.fullName }}</p>
+                  <router-link :to="`/order/${order.id}`" class="text-decoration-none">
+                    <p class="mb-0 text-sm">{{ order.firstName + ' ' + order.lastName}}</p>
                   </router-link>
                 </div>
               </td>
               <td class="align-middle text-center text-sm">
-                <p class="text-sm mb-0">{{ order.address }}</p>
+                <p class="text-sm mb-0">{{ order?.address }}</p>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-sm">{{ order.amount }}</span>
+                <span class="text-secondary text-sm">{{ order?.totalAmount || 0 }}</span>
               </td>
               <td class="select-width">
                 <select class="form-select mx-0" aria-label="Default select example" v-model="order.status"
@@ -68,12 +73,25 @@
             </tr>
           </tbody>
         </table>
+        <argon-pagination>
+          <argon-pagination-item prev @click="clickPaginate(currentPage - 1)" :disabled="disabledPreviousBtn" />
+          <!-- <argon-pagination-item label="1" active />
+          <argon-pagination-item label="2" />
+          <argon-pagination-item label="3" /> -->
+          {{ currentPage }} of {{ lastPage }}
+          <argon-pagination-item next @click="clickPaginate(currentPage + 1)" :disabled="disabledNextBtn" />
+        </argon-pagination>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// import moment from "moment";
+// import Swal from "sweetalert2";
+// import { imgRoot } from "../../../config.js";
+import { getOrder } from "@/services/admin.service.js";
+
 export default {
   data() {
     return {
@@ -84,12 +102,82 @@ export default {
         { fullName: 'Michael Levi', address: 'Mandalay', amount: 250, status: 'New' },
         { fullName: 'Richard Gran', address: 'Magway', amount: 175, status: 'New' },
         { fullName: 'Miriam Eric', address: 'Maw La Myaing', amount: 120, status: 'New' }
-      ]
+      ],
+      id: "",
+      name: "",
+      image: "",
+      categoryId: "",
+      description: "",
+      status: "",
+      categoryList: [],
+      modalLabel: "Create",
+      detailData: {},
+      searchName: null,
+      total: 1,
+      currentPage: 1,
+      lastPage: 1
     };
+  },
+  mounted() {
+    this.getOrder();
   },
   methods: {
     updateStatus(order) {
       console.log(`Status for ${order.fullName} updated to ${order.status}`);
+    },
+    async getOrder() {
+      const token = localStorage.getItem("token");
+      const res = await getOrder(token, this.searchName);
+
+      this.orders = res?.data?.data;
+      this.total = res?.data?.count;
+      let page = this.total <= 10 ? 1 : this.total / 10;
+      this.lastPage = (this.total % 10 === 0 || page === 1) ? page : page + 1;
+      console.log("------orders", this.orders);
+      // this.products?.map((dist) => {
+      //   if (dist?.media?.length > 0) {
+      //     dist.productImage = imgRoot + dist.media[0]?.url;
+      //   }
+      // });
+    },
+    async clickPaginate(page=1) {
+      const token = localStorage.getItem("token");
+      page = Number(page) || 1;
+      let params = {
+        size: 10,
+        page
+      };
+      console.log("click paginate-------", params);
+      if (this.searchName) {
+        params.name = this.searchName;
+      }
+      const res = await getOrder(token, null, params);
+      this.orders = res?.data?.data;
+      this.total = res?.data?.count;
+      this.lastPage = (this.total % 10 === 0 || page === 1) ? page : page + 1;
+      console.log("------------orders", this.orders);
+    },
+  },
+  computed: {
+    disabledNextBtn() {
+      const temp = this.total /(this.currentPage * 10);
+      if (this.total % 10 === 0) {
+        if (temp < 2) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (temp < 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    disabledPreviousBtn() {
+      console.log("current page", this.currentPage, typeof this.currentPage);
+      return (this.currentPage > 1) ? false : true;
     }
   }
 };

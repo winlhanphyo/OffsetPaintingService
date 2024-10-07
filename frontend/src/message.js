@@ -107,6 +107,7 @@ const messages = {
             paymentMethod: "Payment Method",
             paymentID: "Payment ID",
             ExpiryDate: "Expire Date",
+            myOrder: "My Order",
         },
     },
     // myanamr
@@ -217,6 +218,7 @@ const messages = {
             paymentMethod: "ငွေပေးချေမှုစနစ်",
             paymentID: "ငွေလွှဲID",
             ExpiryDate: "သတ်မှတ်ရက်",
+            myOrder: "ကျနော့် Order",
         },
     },
 }
