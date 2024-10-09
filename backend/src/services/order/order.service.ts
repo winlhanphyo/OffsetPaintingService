@@ -184,6 +184,43 @@ class OrderService {
   }
 
   /**
+   * update Order data.
+   * @param req 
+   * @param res 
+   */
+  async paymentOrder(req: any, res: any): Promise<any> {
+    try {
+      const id = +req.params.id;
+      const detailOrder = await orderService.getOrderById(id);
+
+      if (!detailOrder) {
+        return res.status(404).send("Order is not found");
+      }
+
+      const orderObj: any = {} as any;
+
+      req.body?.paymentScreenshot ? orderObj.paymentScreenshot = req.body?.paymentScreenshot : "";
+      orderObj.paymentDone = true;
+
+      orderObj.id = +req.params.id;
+
+      const updateOrderData = await OrderDbModel.update(orderObj, {
+        where: { id: orderObj.id as number }
+      });
+
+      return res.json({
+        message: 'Payment is done successfully',
+        data: updateOrderData
+      });
+    } catch (e: any) {
+      console.log('------payment API error----', e);
+      return res.status(400).json({
+        message: e.toString()
+      });
+    }
+  }
+
+  /**
    * get Order by Id.
    * @param order_id 
    * @returns 

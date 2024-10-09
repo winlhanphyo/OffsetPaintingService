@@ -104,7 +104,9 @@ var messages = {
       paymentMethod: "Payment Method",
       paymentID: "Payment ID",
       ExpiryDate: "Expire Date",
-      myOrder: "My Order"
+      myOrder: "My Order",
+      designImage: "Design File",
+      paymentImage: "Upload Kpay Payment Image"
     }
   },
   // myanamr
@@ -205,7 +207,9 @@ var messages = {
       paymentMethod: "ငွေပေးချေမှုစနစ်",
       paymentID: "ငွေလွှဲID",
       ExpiryDate: "သတ်မှတ်ရက်",
-      myOrder: "ကျနော့် Order"
+      myOrder: "ကျနော့် Order",
+      designImage: "ဒီဇိုင်းဖိုင်",
+      paymentImage: "Kpay payment screenshoot ကို တင်ပေးပါ"
     }
   }
 };

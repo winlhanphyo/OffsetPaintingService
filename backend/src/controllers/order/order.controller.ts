@@ -57,6 +57,17 @@ class OrderController {
   }
 
   /**
+   * update payment Order.
+   * @param req 
+   * @param res 
+   * @returns 
+  */
+  async paymentOrder(req: Request, res: Response) {
+    const updatePostData = await orderService.paymentOrder(req, res);
+    return updatePostData;
+  }
+
+  /**
    * order Detail
    * @param req 
    * @param res 

@@ -23,7 +23,7 @@ module.exports = {
         allowNull: true
       },
       designImage: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.TEXT('long'),
         allowNull: true
       },
       quantity: {

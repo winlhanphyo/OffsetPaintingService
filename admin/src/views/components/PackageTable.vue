@@ -187,6 +187,7 @@
                   class="btn btn-primary"
                   data-bs-target="#editModalToggle"
                   data-bs-toggle="modal"
+                  :disabled="disabledBtn"
                   @click="submitPackage()">
                   {{ modalLabel }}
                 </button>
@@ -216,6 +217,7 @@
                   type="button"
                   class="btn btn-danger"
                   data-bs-target="#exampleModalToggle2"
+                  :disabled="disabledBtn"
                   data-bs-toggle="modal" @click="clickdeletePackage()">
                   Delete
                 </button>
@@ -308,6 +310,7 @@ export default {
       productList: [],
       modalLabel: "Create",
       detailData: {},
+      disabledBtn: false
     };
   },
   mounted() {
@@ -316,9 +319,10 @@ export default {
   },
   methods: {
     async getPackageData() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const res = await getPackage(token);
-
+      localStorage.removeItem("setAllLoading");
       this.packages = res?.data?.data;
       this.packages?.map((dist) => {
         console.log("dist", dist);
@@ -375,6 +379,8 @@ export default {
       this.detailData = data;
     },
     async submitPackage() {
+      this.disabledBtn = true;
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       document.getElementById('close').click();
       console.log("product value", this.productValue);
@@ -394,6 +400,8 @@ export default {
 
        createPackage(formParam, token)
           .then(() => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Success!",
               text: "Package is created successfully!",
@@ -402,6 +410,8 @@ export default {
               this.getPackageData();
             });
           }).catch((err) => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Oops!",
               text: err.toString(),
@@ -420,6 +430,8 @@ export default {
 
        updatePackage(this.id, formParam, token)
           .then(() => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Success!",
               text: "Package is updated successfully!",
@@ -428,6 +440,8 @@ export default {
               this.getPackageData();
             });
           }).catch((err) => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Oops!",
               text: err.toString(),
@@ -437,9 +451,13 @@ export default {
       }
     },
     async clickdeletePackage() {
+      localStorage.setItem("setAllLoading", true);
+      this.disabledBtn = true;
       const token = localStorage.getItem("token");
       deletePackage(this.id, token)
           .then(() => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Success!",
               text: "Package is deleted successfully!",
@@ -448,6 +466,8 @@ export default {
               this.getPackageData();
             });
           }).catch((err) => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Oops!",
               text: err.toString(),

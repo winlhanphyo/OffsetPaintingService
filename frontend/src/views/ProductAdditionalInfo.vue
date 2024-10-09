@@ -92,8 +92,8 @@
             <div class="form-group" v-if="toggles?.quantity">
               <label for="" class="label">{{ $t("message.quantity") }}</label>
               <div class="form-data">
-                <input type="number" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
-                  name="quantity" @input="calculate()" />
+                <input type="number" class="form-select" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
+                  name="quantity" @input="calculate()" style="width: 89%;padding: 10px;border: 1px solid rgba(0, 0, 0, 0.25);" />
               </div>
             </div>
             <div class="form-group" v-if="toggles?.sheet">
@@ -278,6 +278,24 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="" class="label">{{ $t("message.designImage") }}</label>
+              <div class="form-data">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="formFile"
+                  @change="handleFileUpload"
+                  ref="fileInput"
+                />
+              </div>
+            </div>
+             <!-- Image Preview with "X" remove button -->
+             <div class="image-container" v-if="images?.preview">
+              <img :src="images?.preview" alt="Image Preview" class="image-preview">
+              <button class="remove-button" @click="removeImage()">×</button>
+            </div>
+
         <div class="total">စုစုပေါင်း : Ks{{ totalPrice }}</div>
       </div>
     </div>
@@ -338,6 +356,10 @@ export default {
       selectedLam: "",
       selectedBiType: "",
       totalPrice: 0,
+      images: {
+        file: null,
+        preview: null
+      },
 
       toggles: {
         productName: true,
@@ -380,6 +402,28 @@ export default {
     this.getProductDetailData();
   },
   methods: {
+    handleFileUpload() {
+      const file = this.$refs.fileInput.files[0]; // Get the first (and only) file
+      
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+          this.images = {
+            file: file,
+            preview: e.target.result
+          };
+        };
+        reader.readAsDataURL(file); // Convert to base64
+      }
+    },
+    removeImage() {
+      this.images = {
+        file: null,
+        preview: null
+      };
+      this.$refs.fileInput.value = null;
+    },
     async getProductDetailData() {
       const index = this.$route.params.id;
       let data = localStorage.getItem("cartData");
@@ -395,6 +439,8 @@ export default {
           if (item.qty) {
             this.quantity = item.qty;
           }
+
+          this.images = item?.images ? JSON.parse(item.images) : this.images;
           this.formatList = this.detailData?.format ? JSON.parse(this.detailData.format) : [];
           this.gsmList = this.detailData?.gsm ? JSON.parse(this.detailData.gsm) : [];
           this.biTypeList = this.detailData?.biType ? JSON.parse(this.detailData.biType) : [];
@@ -703,6 +749,7 @@ export default {
         if (data[index]?.media?.length > 0) {
           cart.productImage = data[index].media[0]?.url;
         }
+        this.images?.file ? cart.images = JSON.stringify(this.images) : null;
         data[index] = cart;
         localStorage.setItem("cartData", JSON.stringify(data));
         let param = {
@@ -913,5 +960,41 @@ input[type="radio"] {
     border-radius: 50%;
     background: #003366;
   }
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  /* margin-left: 33%; */
+}
+
+.image-preview {
+  max-width: 100px;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remove-button:hover {
+  background-color: #cc0000;
 }
 </style>

@@ -193,84 +193,103 @@
               </div>
             </div>
 
-            <div class="form-group" v-if="toggles?.lamSqPrice" @change="calculate()">
+            <div class="form-group" v-if="toggles?.lamSqPrice">
               <label for="" class="label">{{ $t("message.lamSqPrice") }}</label>
               <div class="form-data">
                 {{ detailData?.lamSqPrice }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.paperPrice" @change="calculate()">
+            <div class="form-group" v-if="toggles?.paperPrice">
               <label for="" class="label">{{ $t("message.paperPrice") }}</label>
               <div class="form-data">
                 {{ detailData?.paperPrice }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.pressPrice" @change="calculate()">
+            <div class="form-group" v-if="toggles?.pressPrice">
               <label for="" class="label">{{ $t("message.pressPrice") }}</label>
               <div class="form-data">
                 {{ detailData?.pressPrice }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.biPrice" @change="calculate()">
+            <div class="form-group" v-if="toggles?.biPrice">
               <label for="" class="label">{{ $t("message.biPrice") }}</label>
               <div class="form-data">
                 {{ detailData?.biPrice }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.dieCut" @change="calculate()">
+            <div class="form-group" v-if="toggles?.dieCut">
               <label for="" class="label">{{ $t("message.dieCut") }}</label>
               <div class="form-data">
                 {{ detailData?.dieCut }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.gluding" @change="calculate()">
+            <div class="form-group" v-if="toggles?.gluding">
               <label for="" class="label">{{ $t("message.gluding") }}</label>
               <div class="form-data">
                 {{ detailData?.gluding }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.plySet" @change="calculate()">
+            <div class="form-group" v-if="toggles?.plySet">
               <label for="" class="label">{{ $t("message.plySet") }}</label>
               <div class="form-data">
                 {{ detailData?.plySet }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.other" @change="calculate()">
+            <div class="form-group" v-if="toggles?.other">
               <label for="" class="label">{{ $t("message.other") }}</label>
               <div class="form-data">
                 {{ detailData?.other }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.cover" @change="calculate()">
+            <div class="form-group" v-if="toggles?.cover">
               <label for="" class="label">{{ $t("message.cover") }}</label>
               <div class="form-data">
                 {{ detailData?.cover }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.remark" @change="calculate()">
+            <div class="form-group" v-if="toggles?.remark">
               <label for="" class="label">{{ $t("message.remark") }}</label>
               <div class="form-data">
                 {{ detailData?.remark }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.ctpPrice" @change="calculate()">
+            <div class="form-group" v-if="toggles?.ctpPrice">
               <label for="" class="label">{{ $t("message.ctpPrice") }}</label>
               <div class="form-data">
                 {{ detailData?.ctpPrice }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.waste" @change="calculate()">
+            <div class="form-group" v-if="toggles?.waste">
               <label for="" class="label">{{ $t("message.waste") }}</label>
               <div class="form-data">
                 {{ detailData?.waste }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.abbb" @change="calculate()">
+            <div class="form-group" v-if="toggles?.abbb">
               <label for="" class="label">{{ $t("message.abbb") }}</label>
               <div class="form-data">
                 {{ detailData?.abbb }}
               </div>
             </div>
+
+            <div class="form-group">
+              <label for="" class="label">{{ $t("message.designImage") }}</label>
+              <div class="form-data">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="formFile"
+                  @change="handleFileUpload"
+                  ref="fileInput"
+                />
+              </div>
+            </div>
+            <!-- Image Preview with "X" remove button -->
+            <div class="image-container" v-if="images?.preview">
+              <img :src="images?.preview" alt="Image Preview" class="image-preview">
+              <button class="remove-button" @click="removeImage()">×</button>
+            </div>
+
             <div class="total">
               <span>{{ $t("message.total") }} : Ks {{ totalPrice }}</span>
             </div>
@@ -381,6 +400,10 @@ export default {
       selectedLam: "",
       selectedBiType: "",
       totalPrice: 0,
+      images: {
+        file: null,
+        preview: null
+      },
 
       toggles: {
         productName: true,
@@ -415,7 +438,7 @@ export default {
         remark: true,
         ctpPrice: true,
         waste: true,
-        abbb: true,
+        abbb: true
       },
     };
   },
@@ -475,6 +498,28 @@ export default {
         $(activeTab).fadeIn();
         return false;
       });
+    },
+    handleFileUpload() {
+      const file = this.$refs.fileInput.files[0]; // Get the first (and only) file
+      
+      if (file) {
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+          this.images = {
+            file: file,
+            preview: e.target.result
+          };
+        };
+        reader.readAsDataURL(file); // Convert to base64
+      }
+    },
+    removeImage() {
+      this.images = {
+        file: null,
+        preview: null
+      };
+      this.$refs.fileInput.value = null;
     },
     async getProductDetailData() {
       const id = this.$route.params.id;
@@ -758,6 +803,7 @@ export default {
       });
       cart.totalPrice = this.totalPrice;
       cart.qty = this.quantity;
+      this.images?.file ? cart.images = JSON.stringify(this.images) : null;
       let data = localStorage.getItem("cartData");
       if (data && JSON.parse(data)?.length > 0) {
         data = JSON.parse(localStorage.getItem("cartData"));
@@ -1016,5 +1062,41 @@ export default {
       }
     }
   }
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 33%;
+}
+
+.image-preview {
+  max-width: 100px;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.remove-button:hover {
+  background-color: #cc0000;
 }
 </style>

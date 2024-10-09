@@ -10,6 +10,12 @@
 
     <div class="row">
       <div class="col-lg-6">
+        <img :src="detailData?.payment" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
         <div class="card mb-4">
           <div class="card-header bg-primary text-white">
             <h5 class="mb-0">Order Information</h5>
@@ -40,6 +46,8 @@
           </div>
         </div>
       </div>
+
+      
     </div>
 
     <div class="row mt-4">
@@ -133,9 +141,11 @@ export default {
   },
   methods: {
     async getProductDetailData() {
+      localStorage.setItem("setAllLoading", true);
       const id = this.$route.params.id;
       const token = localStorage.getItem("token");
       const res = await getOrderById(id, token);
+      localStorage.removeItem("setAllLoading");
       if (res?.data?.data) {
         this.detailData = res?.data?.data;
         console.log("------detail data", this.detailData);
