@@ -1,194 +1,268 @@
 <template>
-  <div class="order-view">
-    <div class="order-header">
-      <h1>{{ $t("message.myOrder") }}</h1>
-    </div>
-
-    <section class="order-status">
-      <div class="order-id-status">
-        <p>{{ $t("message.order") }}:<strong> #5790</strong></p>
-        <p class="status pending">{{ $t("message.pending") }}</p>
+  <div>
+    <header>
+      <select>
+        <option>status</option>
+      </select>
+      <div class="search-container">
+        <!-- <input type="text" placeholder="ထုတ်ကုန် ရှာပါ အမည်"> -->
+        <button class="search-btn">🔍</button>
       </div>
-      <p class="order-time">{{ $t("message.orderTime") }}: <strong>Aug, 2024 07:52 PM</strong></p>
-      <p class="order-amount">{{ $t("message.totalAmount") }}: <strong>Ks34,500.00</strong></p>
-    </section>
-
-    <!-- <section class="order-error">
-      <p>{{ $t("message.orderAlert") }}</p>
-    </section>
-
-    <section class="payment-details">
-      <h2>{{ $t("message.paymentMethodInstruction") }}</h2>
-      <ul>
-        <li>{{ $t("message.paymentTime") }}: 27 Aug, 2024 07:52 PM</li>
-        <li>{{ $t("message.paymentMethod") }}: KBZ Pay</li>
-        <li>{{ $t("message.paymentID") }}: 123</li>
-        <li>{{ $t("message.ExpiryDate") }}: 12 Sep, 2024</li>
-      </ul>
-    </section>
-
-    <section class="cards-section">
-      <div class="card" @click="viewOrders">
-        <div class="card-icon">
-          <i class="fa fa-clipboard-list"></i>
+      <!-- <div class="view-controls">
+        <button class="grid-view">⋮⋮</button>
+        <button class="list-view">☰</button>
+      </div> -->
+    </header>
+    <main class="cards-container">
+      <div class="order-card" v-for="(order, index) in orders" :key="index">
+        <div class="order-header">
+          <span class="order-id">အမှာစာ: #{{ order.id }} {{ order.status }}</span>
+          <span class="order-date">ရက်စွဲ : {{ order.date }}</span>
+          <span class="order-total">စုစုပေါင်းငွေ: {{ order.total }}</span>
+          <span class="order-delivery">ခန့်မှန်းရက်စွဲ - {{ order.deliveryDate }}</span>
         </div>
-        <div class="card-content">
-          <h3>My Orders</h3>
-          <p>Check your order history and details.</p>
+        <div class="order-content">
+          <div class="product-image">
+            <!-- <img :src="order.imageUrl" :alt="order.productName"> -->
+            <img src="/img/Fabrix_T_Shirt_01_40091.0dd21194.jpg?height=400&width=300" :alt="order.productName">
+          </div>
+          <div class="product-details">
+            <h3>{{ order.productName }}</h3>
+            <p class="product-size">{{ order.productSize }}</p>
+            <p class="product-code">အမည်: {{ order.productCode }}</p>
+            <p class="product-quantity">အရေအတွက်: {{ order.quantity }}</p>
+            <p class="proof-status">{{ order.proofStatus }}</p>
+            <button class="reorder-btn" @click="reorder(order.id)">Reorder </button>
+          </div>
+          <div class="favorite-icon"></div>
+          <div class="favorite-icon" @click="toggleBookmark(order.id)">
+            <svg v-if="!order.bookmarked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon star-filled">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
         </div>
-      </div>
-
-      <div class="card" @click="viewSavedDesigns">
-        <div class="card-icon">
-          <i class="fa fa-save"></i>
-        </div>
-        <div class="card-content">
-          <h3>My Saved Designs</h3>
-          <p>View your saved designs and download PDF previews.</p>
-        </div>
-      </div>
-
-      <div class="card" @click="contactSupport">
-        <div class="card-icon">
-          <i class="fa fa-comments"></i>
-        </div>
-        <div class="card-content">
-          <h3>Contact Support</h3>
-          <p>Need help? Reach out to our support team for assistance.</p>
+        <div class="order-footer">
+          <button class="reorder-btn-large" @click="reorder(order.id)">Reorder</button>
+          <button class="view-details-btn" @click="viewDetails(order.id)">View details</button>
         </div>
       </div>
-    </section> -->
+    </main>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'OrderView',
-  methods: {
-    viewOrders() {
+<script setup>
+import { ref } from 'vue'
 
-    },
-    viewSavedDesigns() {
+const orders = ref([
+  {
+    id: '5807',
+    status: 'Pending',
+    date: '02 Oct, 2024 17:49',
+    total: 'Ks34,500.00',
+    deliveryDate: '18 Oct, 2024',
+    imageUrl: '/placeholder.svg?height=150&width=150',
+    productName: 'Standard Business Cards - Promo',
+    productSize: '[3.5" x 2.1" - Standard Business Card Size]',
+    productCode: 'IBC_028',
+    quantity: 100,
+    proofStatus: 'Proof Approved'
+  },
+  {
+    id: '5808',
+    status: 'Processing',
+    date: '03 Oct, 2024 10:30',
+    total: 'Ks45,000.00',
+    deliveryDate: '20 Oct, 2024',
+    imageUrl: '/placeholder.svg?height=150&width=150',
+    productName: 'Premium Business Cards - Glossy',
+    productSize: '[3.5" x 2.1" - Standard Business Card Size]',
+    productCode: 'IBC_029',
+    quantity: 200,
+    proofStatus: 'Proof Pending'
+  }
+])
 
-    },
-    contactSupport() {
+const reorder = (orderId) => {
+  console.log('Reorder clicked for order:', orderId)
+}
 
-    }
+const viewDetails = (orderId) => {
+  console.log('View details clicked for order:', orderId)
+}
+const toggleBookmark = (orderId) => {
+  const order = orders.value.find(o => o.id === orderId)
+  if (order) {
+    order.bookmarked = !order.bookmarked
   }
 }
 </script>
 
 <style scoped>
-.order-view {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+body {
   font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+header {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+select, input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-btn {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.view-controls button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.cards-container {
+  display: flex;
+  gap: 20px;
+}
+
+.order-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .order-card {
+    width: calc(50% - 10px);
+  }
 }
 
 .order-header {
-  background-color: #ff6600;
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-.order-status {
-  margin: 20px 0;
-  padding: 15px;
-  background-color: #f4f4f4;
-  border-radius: 5px;
-}
-
-.order-id-status {
   display: flex;
   justify-content: space-between;
-  font-size: 1.2em;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+  flex-wrap: wrap;
 }
 
-.order-id-status .pending {
-  color: red;
+.order-id {
+  font-weight: bold;
+  color: #4a90e2;
 }
 
-.order-error {
-  background-color: #ffe5e5;
-  color: #cc0000;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.payment-details {
-  margin-bottom: 20px;
-}
-
-.payment-details h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.payment-details ul {
-  list-style: none;
-  padding: 0;
-}
-
-.payment-details ul li {
-  margin-bottom: 5px;
-}
-
-.order-actions {
+.order-content {
   display: flex;
-  justify-content: space-around;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  position: relative;
 }
 
-.order-actions button {
-  padding: 10px 20px;
-  background-color: #007bff;
+.product-image {
+  width: 150px;
+  height: 150px;
+  background-color: #f0f0f0;
+  margin-right: 20px;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-details {
+  flex-grow: 1;
+}
+
+.product-details h3 {
+  margin-top: 0;
+  color: #4a90e2;
+}
+
+.product-size, .product-code, .product-quantity {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.proof-status {
+  color: green;
+  font-weight: bold;
+}
+
+.reorder-btn {
+  background-color: #4a90e2;
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
   cursor: pointer;
 }
 
-.order-actions button:hover {
-  background-color: #0056b3;
+.star-icon {
+  width: 24px;
+  height: 24px;
+  color: #ccc;
+  transition: color 0.3s ease;
 }
 
-.cards-section {
+.star-filled {
+  color: #ffd700;
+}
+
+.order-footer {
   display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
-.card {
-  background-color: #f4f4f4;
-  border-radius: 10px;
-  width: 30%;
-  padding: 10px;
-  margin: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.reorder-btn-large, .view-details-btn {
+  padding: 8px 16px;
+  border: 1px solid #4a90e2;
+  background-color: white;
+  color: #4a90e2;
+  border-radius: 4px;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card-icon {
-  font-size: 2.5em;
-  color: #ff6600;
-  margin-bottom: 15px;
-}
-
-.card-content h3 {
-  margin: 0;
-  font-size: 1.2em;
-}
-
-.card-content p {
-  color: #777;
-  font-size: 0.9em;
+.reorder-btn-large {
+  background-color: #4a90e2;
+  color: white;
 }
 </style>
