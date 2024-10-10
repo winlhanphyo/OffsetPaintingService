@@ -268,6 +268,7 @@ export default {
         phone: this.phone,
         email: this.email,
         password: this.password,
+        address: this.address
       };
       const res = await register(payload);
       if (res?.data?.message) {
