@@ -251,15 +251,17 @@ export default {
             timerProgressBar: true,
             toast: true,
           });
-        } else if (dist === "password" || dist === "confirmpassword") {
-          Swal.fire({
-            position: "bottom",
-            icon: "error",
-            title: "Password and Confirm Password must be same.",
-            showConfirmButton: false,
-            timerProgressBar: true,
-            toast: true,
-          });
+        } else if (dist === "confirmpassword") {
+          if (obj.password !== obj.confirmpassword) {
+            Swal.fire({
+              position: "bottom",
+              icon: "error",
+              title: "Password and Confirm Password must be same.",
+              showConfirmButton: false,
+              timerProgressBar: true,
+              toast: true
+            });
+          }
         }
       }
       const payload = {
