@@ -39,6 +39,7 @@ const modelAttributes: DbModelFieldInit<Partial<IUserModel>> = {
   },
   password: {
     type: DataTypes.STRING,
+    allowNull: false
   },
   type: {
     type: DataTypes.ENUM('super', 'admin','user'),
@@ -47,11 +48,11 @@ const modelAttributes: DbModelFieldInit<Partial<IUserModel>> = {
   },
   address: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: false
   },
   phone: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: false
   }
 };
 @associative
