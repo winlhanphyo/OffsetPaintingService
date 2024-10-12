@@ -9,6 +9,9 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
       <div class="d-flex justify-content-between">
         <h6>Order table</h6>
         <div class="pe-md-3 d-flex align-items-center ms-md-auto">
+          <button type="button" class="m-2 btn btn-primary" @click="downloadCSVData()">
+            Download
+          </button>
           <div class="input-group">
             <span class="input-group-text text-body">
               <i class="fas fa-search" aria-hidden="true"></i>
@@ -122,6 +125,22 @@ export default {
     this.getOrder();
   },
   methods: {
+    downloadCSVData() {
+      let csv = 'ID,Customer,Amount,Address,Status\n';
+      this.orders.forEach((row) => {
+        csv += `${row.id},`;
+        csv += `${row.firstName} ${row.lastName},`;
+        csv += `${row.totalAmount},`;
+        csv += `${row.address},`;
+        csv += `${row.status}\n`;
+      });
+
+      const anchor = document.createElement('a');
+      anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+      anchor.target = '_blank';
+      anchor.download = 'orderList.csv';
+      anchor.click();
+    },
     updateStatus(order) {
       console.log(`Status for ${order.fullName} updated to ${order.status}`);
     },
@@ -144,6 +163,7 @@ export default {
       // });
     },
     async clickPaginate(page=1) {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       page = Number(page) || 1;
       let params = {
@@ -155,6 +175,7 @@ export default {
         params.name = this.searchName;
       }
       const res = await getOrder(token, null, params);
+      localStorage.removeItem("setAllLoading");
       this.orders = res?.data?.data;
       this.total = res?.data?.count;
       this.lastPage = (this.total % 10 === 0 || page === 1) ? page : page + 1;

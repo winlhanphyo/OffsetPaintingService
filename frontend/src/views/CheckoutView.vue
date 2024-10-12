@@ -662,12 +662,6 @@ export default {
       await store.dispatch("commonData", param);
     },
     async orderComplete() {
-      console.log("-------cart", this.cart);
-      console.log("-------userData", this.userData);
-      console.log("-------shipping method", this.shippingMethod);
-      console.log("-------order instruction", this.orderInstruction);
-      console.log("-------total", this.total);
-
       const payload = {
         customer: this.userData?.id,
         firstName: this.userData?.firstName,
@@ -685,11 +679,14 @@ export default {
       const orderDetail = [];
 
       this.cart.map((dist) => {
+        const temp = dist?.images ? JSON.parse(dist.images) : null;
+        const designImage = temp?.preview;
         orderDetail.push({
           productId: dist?.id,
           amount: dist?.totalPrice,
           quantity: dist?.qty,
-          productDetail: dist
+          productDetail: dist,
+          designImage
         });
       });
       payload.orderDetail = orderDetail;
@@ -711,16 +708,17 @@ export default {
         //   cartLength: this.cart.length
         // };
         await store.dispatch("resetDetailData");
-        Swal.fire({
-          position: "bottom",
-          icon: "success",
-          title: "Order is created successfully.",
-          showConfirmButton: false,
-          // timer: 3000,
-          timerProgressBar: true,
-          toast: true,
-        });
-        this.$router.push("/home");
+        // Swal.fire({
+        //   position: "bottom",
+        //   icon: "success",
+        //   title: "Order is created successfully.",
+        //   showConfirmButton: false,
+        //   // timer: 3000,
+        //   timerProgressBar: true,
+        //   toast: true,
+        // });
+        const id = res?.data?.data?.id;
+        this.$router.push(`/payment/${id}`);
       } else {
         Swal.fire({
           position: "bottom",

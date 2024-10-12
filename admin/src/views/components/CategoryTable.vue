@@ -222,6 +222,8 @@ export default {
 
        updateCategory(this.id, formParam, token)
           .then(() => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Success!",
               text: "Category is updated successfully!",
@@ -230,6 +232,8 @@ export default {
               this.getCategoryData();
             });
           }).catch((err) => {
+            localStorage.removeItem("setAllLoading");
+            this.disabledBtn = false;
             Swal.fire({
               title: "Oops!",
               text: err.toString(),

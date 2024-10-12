@@ -88,7 +88,7 @@ const routes = [
     component: () => import('../views/ProductSearchView.vue')
   },
   {
-    path: '/payment',
+    path: '/payment/:id',
     name: 'payment',
     component: () => import('../views/OrderPayment.vue')
   },

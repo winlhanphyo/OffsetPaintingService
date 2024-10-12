@@ -30,7 +30,7 @@ const modelAttributes: DbModelFieldInit<Partial<IOrderModel>> = {
     }
   },
   designImage: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.TEXT('long'),
     allowNull: true
   },
   quantity: {

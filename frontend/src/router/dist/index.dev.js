@@ -153,7 +153,7 @@ var routes = [{
     });
   }
 }, {
-  path: '/payment',
+  path: '/payment/:id',
   name: 'payment',
   component: function component() {
     return Promise.resolve().then(function () {

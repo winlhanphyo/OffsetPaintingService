@@ -85,7 +85,11 @@ export default class Server {
     this.app.use(cors(corsOptions));
     // this.app.use(helmet());
     this.app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-    this.app.use(bodyParser.json());
+    // this.app.use(bodyParser.json());
+
+    this.app.use(bodyParser.json({ limit: '50mb' }));
+    this.app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
     this.app.use(bodyParser.urlencoded({ extended: true }));
 
     // this.app.use(multer({ storage: fileStorage, fileFilter }).fields([{ name: 'profile', maxCount: 1 }, { name: 'video', maxCount: 1 }]));

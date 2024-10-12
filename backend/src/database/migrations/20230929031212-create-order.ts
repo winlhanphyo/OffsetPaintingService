@@ -56,7 +56,7 @@ module.exports = {
         allowNull: false
       },
       paymentScreenshot: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT('long'),
         allowNull: true
       },
       paymentDone: {

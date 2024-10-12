@@ -108,6 +108,9 @@ const messages = {
             paymentID: "Payment ID",
             ExpiryDate: "Expire Date",
             myOrder: "My Order",
+
+            designImage: "Design File",
+            paymentImage: "Upload Kpay Payment Image",
         },
     },
     // myanamr
@@ -219,6 +222,9 @@ const messages = {
             paymentID: "ငွေလွှဲID",
             ExpiryDate: "သတ်မှတ်ရက်",
             myOrder: "ကျနော့် Order",
+
+            designImage: "ဒီဇိုင်းဖိုင်",
+            paymentImage: "Kpay payment screenshoot ကို တင်ပေးပါ",
         },
     },
 }

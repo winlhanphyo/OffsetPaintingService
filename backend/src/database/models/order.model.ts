@@ -75,7 +75,7 @@ const modelAttributes: DbModelFieldInit<Partial<IOrdertModel>> = {
     allowNull: false
   },
   paymentScreenshot: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT('long'),
     allowNull: true
   },
   paymentDone: {
