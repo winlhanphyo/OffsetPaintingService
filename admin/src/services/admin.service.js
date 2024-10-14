@@ -328,6 +328,17 @@ export const updateOrder = async (id, data, token) => {
 }
 
 /**
+ * update order status API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+export const updateOrderStatus = async (id, data, token) => {
+  const res = await api.post(`/order/update/status/${id}`, data, token, true);
+  return res;
+}
+
+/**
  * delete order API.
  * @param {*} token 
  * @param {*} data 

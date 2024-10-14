@@ -10,7 +10,7 @@ import { orderController } from "./controllers/order";
 import { config } from './config';
 import { router } from './routes';
 import authRouter from './routes/auth/auth.router';
-import { PRODUCT_PATH, CATEGORY_PATH, BANNER_PATH, PACKAGE_PATH, ARTICLE_PATH } from './utils/constant';
+import { PRODUCT_PATH, CATEGORY_PATH, BANNER_PATH, PACKAGE_PATH, ARTICLE_PATH, DESIGN_PATH } from './utils/constant';
 // import { userService } from './services/user';
 // const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
@@ -34,6 +34,10 @@ const fileStorage = multer.diskStorage({
     } else if (_file?.fieldname == "packageImage") {
       if (_file.mimetype.startsWith('image')) {
         cb(null, PACKAGE_PATH);
+      }
+    } else if (_file?.fieldname == "designImage") {
+      if (!_file.mimetype.endsWith('exe')) {
+        cb(null, DESIGN_PATH);
       }
     } else if (_file?.fieldname == "articleImage") {
       if (_file.mimetype.startsWith('image')) {
@@ -66,6 +70,8 @@ const fileFilter = async (_req: any, file: any, cb: any) => {
       return cb(new Error('Invalid file type. Only image files are allowed.'), false);
     }
   } else if (files?.media) {
+    cb(null, true);
+  } else if (files?.designImage) {
     cb(null, true);
   }
 }
@@ -111,6 +117,7 @@ export default class Server {
           { name: 'categoryImage', maxCount: 1 },
           { name: 'packageImage', maxCount: 1 },
           { name: 'articleImage', maxCount: 1 },
+          { name: 'designImage', maxCount: 1 },
           { name: 'media', maxCount: 6 }
         ])
           (req, res, (err) => {

@@ -42,37 +42,31 @@ class OrderService {
    * @param res 
    * @returns 
    */
-  async createOrder(req: any, res: any) {
+  async createOrderDetail(req: any, res: any) {
     try {
-      const orderData = req.body;
-      const orderDetailData = orderData.orderDetail;
-
-      const orderList = [];
-      for (let i = 0; i < orderDetailData.length; i++) {
-        const dist: any = orderDetailData[i];
-        // const product = await ProductDbModel.findOne({
-        //   where: {
-        //     id: dist.productId,
-        //   }
-        // });
-        orderList.push({
-          productId: dist.productId,
-          amount: dist?.amount,
-          quantity: dist?.quantity,
-          designImage: dist?.designImage,
-          productDetail: dist?.productDetail
-        });
+      let filename: string = "";
+      if (req.files?.designImage?.length > 0) {
+        filename = req.files.designImage[0].path?.split("\\").join("/");
       }
-      const response = await OrderDetailDbModel.bulkCreate(orderList);
-      const result = await this.orderCreateData(req, response);
+
+      const orderDetailObj = {
+        productId: req.body?.productId,
+        amount: req.body?.amount,
+        quantity: req.body?.quantity,
+        designImage: filename,
+        productDetail: req.body?.productDetail,
+        userId: req.body.customer
+      };
+      const response = await OrderDetailDbModel.create({ ...orderDetailObj, createdAt: new Date().toISOString() });
+
       return res.json({
         success: true,
-        message: 'Order is created successfully',
-        data: result
+        message: 'Order Detail is created successfully',
+        data: response
       });
 
     } catch (e: any) {
-      console.log("-----Create Order API error----", e);
+      console.log("-----Create Order Detail API error----", e);
       return res.status(400).json({
         message: e.toString()
       });
@@ -85,42 +79,48 @@ class OrderService {
    * @param orderDetailData 
    * @returns 
    */
-  async orderCreateData(req: any, orderDetailData: any) {
-    // for (let i = 0; i < orderDetailData.length; i++) {
-    //   const param = orderDetailData[i];
-    //   const product = await ProductDbModel.findOne(
-    //     {
-    //       where: {
-    //       id: param.product
-    //       }
-    //     });
-    //   if (param?.qty) {
-    //     product.count = Number(product.count) - Number(param.qty);
-    //     const response = await product.save();
-    //   }
-    // }
+  async orderCreateData(req: any, res: any): Promise<any> {
+    try {
+      const orderDetailIds = req.body.orderDetailIds;
 
-    const orderDetailIds = orderDetailData.map((data: any) => data?.dataValues?.id);
-    const orderObj: any = {
-      customer: req.body.customer,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      address: req.body.address,
-      phone: req.body.phone,
-      status: req.body.status,
-      totalAmount: req.body.totalAmount,
-      orderDetailId: JSON.stringify(orderDetailIds),
-      orderInstruction: req.body.orderInstruction,
-      shippingMethod: req.body.shippingMethod
-    } as any;
+      const orderObj: any = {
+        customer: req.body.customer,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        address: req.body.address,
+        phone: req.body.phone,
+        status: req.body.status,
+        totalAmount: req.body.totalAmount,
+        orderDetailId: JSON.stringify(orderDetailIds),
+        orderInstruction: req.body.orderInstruction,
+        shippingMethod: req.body.shippingMethod
+      } as any;
 
-    req.body?.paymentScreenshot ? orderObj.paymentScreenshot = req.body?.paymentScreenshot : "";
-    orderObj.paymentDone = req.body?.paymentDone ? orderObj.paymentDone : false;
+      req.body?.paymentScreenshot ? orderObj.paymentScreenshot = req.body?.paymentScreenshot : "";
+      orderObj.paymentDone = req.body?.paymentDone ? orderObj.paymentDone : false;
 
-    const createOrder = await OrderDbModel.create({ ...orderObj, createdAt: new Date().toISOString() });
-    // orderData.orderDetail = orderDetailIds;
-    // const result = await Order.insertMany(orderData);
-    return createOrder;
+      const createOrder = await OrderDbModel.create({ ...orderObj, createdAt: new Date().toISOString() });
+
+      const orderDetailObj: any = {};
+      orderDetailObj.orderId = createOrder?.dataValues?.id;
+
+      const updateOrderDetailData = await OrderDetailDbModel.update(orderDetailObj, {
+        where: { id: orderDetailIds }
+      });
+      console.log("-------update order detail data");
+      // orderData.orderDetail = orderDetailIds;
+      // const result = await Order.insertMany(orderData);
+      return res.json({
+        success: true,
+        message: 'Order is created successfully',
+        data: createOrder
+      });
+    } catch (e: any) {
+      console.log("-----Create Order API error----", e);
+      return res.status(400).json({
+        message: e.toString()
+      });
+    }
   }
 
   /**
@@ -133,6 +133,41 @@ class OrderService {
       const rootDir = path.join(__dirname, "../../" + dataPath);
       const filePath = path.join(rootDir, data);
       deleteFile(filePath);
+    }
+  }
+
+  /**
+   * update Order data.
+   * @param req 
+   * @param res 
+   */
+   async changeStatus(req: any, res: any): Promise<any> {
+    try {
+      const id = +req.params.id;
+      const detailOrder = await orderService.getOrderById(id);
+
+      if (!detailOrder) {
+        return res.status(404).send("Order is not found");
+      }
+
+      const orderObj: any = {} as any;
+      orderObj.status = req.body?.status ? req.body.status : false;
+
+      orderObj.id = +req.params.id;
+
+      const updateOrderData = await OrderDbModel.update(orderObj, {
+        where: { id: orderObj.id as number }
+      });
+
+      return res.json({
+        message: 'Order status is updated successfully',
+        data: updateOrderData
+      });
+    } catch (e: any) {
+      console.log('------update order status error----', e);
+      return res.status(400).json({
+        message: e.toString()
+      });
     }
   }
 
@@ -303,47 +338,31 @@ class OrderService {
   async getUserOrder(orderAttributes?: Array<any>, otherFindOptions?: FindOptions, offset?: number, limit?: number, res?: any): Promise<any> {
     try {
       limit = limit && limit > 0 ? limit : undefined;
-      let orderList = await OrderDbModel.findAll({
+      let orderList = await OrderDetailDbModel.findAll({
         ...otherFindOptions,
         attributes: orderAttributes,
         limit,
-        offset
+        offset,
+        include: [
+          {
+            model: OrderDbModel,
+            foreignKey: 'orderId',
+            as: 'orderData'
+          },
+          {
+            model: ProductDbModel,
+            foreignKey: 'productId',
+            as: 'productData',
+          },
+          {
+            model: UserDbModel,
+            foreignKey: 'userId',
+            as: 'userData',
+          }
+        ]
       });
 
-      const orderCount = await OrderDbModel.count();
-
-      for (let i = 0; i < orderList?.length; i++) {
-        let orderData = orderList[i];
-
-        const orderDetailId = orderData?.dataValues?.orderDetailId || [];
-        const orderDetail = await OrderDetailDbModel.findAll({
-          where: { id: orderDetailId },
-          include: [
-            {
-              model: MediaDbModel,
-              foreignKey: "id",
-              as: "mediaData"
-            }
-          ]
-        });
-
-        for (let i = 0; i < orderDetail.length; i++) {
-          let mediaList = orderDetail[i]?.dataValues;
-          if (mediaList?.mediaData?.dataValues?.type === "video") {
-            mediaList.mediaData.dataValues.cover = "upload/user/video/default.jpg";
-          } else if (mediaList?.mediaData?.dataValues?.type === "music") {
-            mediaList.mediaData.dataValues.cover = "upload/user/music/default.jpg";
-          } else if (mediaList?.mediaData?.dataValues?.type === "text") {
-            mediaList.mediaData.dataValues.cover = "upload/user/text/default.jpg";
-          } else if (mediaList?.mediaData?.dataValues?.type === "photo") {
-            mediaList.mediaData.dataValues.cover = mediaList?.mediaData?.dataValues.url;
-          }
-        }
-
-        if (orderDetail) {
-          orderData.dataValues.orderDetail = orderDetail;
-        }
-      }
+      const orderCount = await OrderDetailDbModel.count();
 
       return res.json({
         count: orderCount,

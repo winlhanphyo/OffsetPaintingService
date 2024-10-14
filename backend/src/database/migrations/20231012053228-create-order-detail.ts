@@ -18,12 +18,20 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false
       },
+      orderId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
       productDetail: {
         type: DataTypes.JSON,
         allowNull: true
       },
       designImage: {
-        type: DataTypes.TEXT('long'),
+        type: DataTypes.STRING,
         allowNull: true
       },
       quantity: {

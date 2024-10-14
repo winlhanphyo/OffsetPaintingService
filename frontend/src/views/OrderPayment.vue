@@ -32,9 +32,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-// import { useRoute } from 'vue-router';
-// import { paymentOrder } from "@/services/offset.service";
-// import Swal from 'sweetalert2';
+import router from '@/router/index';
+import { paymentOrder } from "@/services/offset.service";
+import Swal from 'sweetalert2';
 
 const qrCodeImage = require('@/assets/images/common/test_qr.jpg');
 
@@ -47,31 +47,40 @@ const images = ref({
 });
 
 const handleSubmit = async () => {
-  // const token = localStorage.getItem("token");
-  // // const route = useRoute(); // Access the current route object
-  // const id = $route.params.id;
-
-  // console.log("-------id", id); // Debugging: Ensure this logs the correct id
-  // if (images.value.preview) {
-  //   const payload = {
-  //     paymentScreenshot: images.value.preview
-  //   };
-  //   const res = await paymentOrder(id, payload, token);
-  //   if (res?.data?.message) {
-  //     localStorage.removeItem("cartData");
-  //   }
-  //   showAlert.value = true;
-  // } else {
-  //   Swal.fire({
-  //     position: "bottom",
-  //     icon: "error",
-  //     title: "Kpay screenshoot is required.",
-  //     showConfirmButton: false,
-  //     // timer: 3000,
-  //     timerProgressBar: true,
-  //     toast: true
-  //   });
-  // }
+  const token = localStorage.getItem("token");
+  const route = router.currentRoute.value; // Access current route
+  const id = route.params.id; // Access params like id
+  console.log('Route ID:', id); 
+  if (images.value.preview) {
+    const payload = {
+      paymentScreenshot: images.value.preview
+    };
+    const res = await paymentOrder(id, payload, token);
+    if (res?.data?.message) {
+      localStorage.removeItem("cartData");
+      // showAlert.value = true;
+      Swal.fire({
+        position: "bottom",
+        icon: "success",
+        title: "Kpay screenshot is sent successfully.",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        toast: true
+      });
+      router.push("/home");
+    }
+  } else {
+    Swal.fire({
+      position: "bottom",
+      icon: "error",
+      title: "Kpay screenshoot is required.",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      toast: true
+    });
+  }
 };
 
 const simulateQRCodeScan = () => {

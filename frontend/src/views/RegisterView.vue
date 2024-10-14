@@ -251,8 +251,9 @@ export default {
             timerProgressBar: true,
             toast: true,
           });
+          return;
         } else if (dist === "confirmpassword") {
-          if (obj.password !== obj.confirmpassword) {
+          if (this.password !== this.confirmpassword) {
             Swal.fire({
               position: "bottom",
               icon: "error",
@@ -261,6 +262,7 @@ export default {
               timerProgressBar: true,
               toast: true
             });
+            return;
           }
         }
       }

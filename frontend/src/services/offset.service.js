@@ -66,8 +66,26 @@ export const createOrder = async (data, token) => {
  * create order API.
  * @param {*} data 
  */
+export const createOrderDetail = async (data, token) => {
+  const res = await api.post(`/order/detail`, data, token);
+  return res;
+}
+
+/**
+ * get my order API.
+ * @param {*} data 
+ */
+export const getMyOrder = async (id, token) => {
+  const res = await api.get(`/order/user/${id}`, token);
+  return res;
+}
+
+/**
+ * create order API.
+ * @param {*} data 
+ */
 export const paymentOrder = async (id, data, token) => {
-  const res = await api.post(`/order/payment/${id}`, data, token);
+  const res = await axios.post(`${apiRoot}/order/payment/${id}`, data, token);
   return res;
 }
 

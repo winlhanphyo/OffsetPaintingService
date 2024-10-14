@@ -803,7 +803,15 @@ export default {
       });
       cart.totalPrice = this.totalPrice;
       cart.qty = this.quantity;
-      this.images?.file ? cart.images = JSON.stringify(this.images) : null;
+      if (this.images?.file) {
+        const cartImageData = {
+          preview: this.images.preview,
+          fileName: this.images.file.name,   // Optionally store file metadata
+          fileSize: this.images.file.size,   // File size in bytes
+          fileType: this.images.file.type    // MIME type of the file
+        };
+        cart.images = cartImageData;
+      }
       let data = localStorage.getItem("cartData");
       if (data && JSON.parse(data)?.length > 0) {
         data = JSON.parse(localStorage.getItem("cartData"));

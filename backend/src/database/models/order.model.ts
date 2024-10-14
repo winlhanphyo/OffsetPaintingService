@@ -53,7 +53,7 @@ const modelAttributes: DbModelFieldInit<Partial<IOrdertModel>> = {
     allowNull: false
   },
   status: {
-    type: DataTypes.ENUM('new','shipping', 'complete'),
+    type: DataTypes.ENUM('new','shipping', 'complete', "cancel"),
     allowNull: false,
     defaultValue: 'new'
   },

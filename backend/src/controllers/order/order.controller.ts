@@ -41,7 +41,17 @@ class OrderController {
    * @param res 
    */
   async createOrder(req: Request, res: Response) {
-    const result = await orderService.createOrder(req, res);
+    const result = await orderService.orderCreateData(req, res);
+    return result;
+  }
+
+  /**
+   * create Order.
+   * @param req 
+   * @param res 
+   */
+  async createOrderDetail(req: Request, res: Response) {
+    const result = await orderService.createOrderDetail(req, res);
     return result;
   }
 
@@ -53,6 +63,17 @@ class OrderController {
    */
   async updateOrder(req: Request, res: Response) {
     const updatePostData = await orderService.updateOrder(req, res);
+    return updatePostData;
+  }
+
+  /**
+   * update Order status.
+   * @param req 
+   * @param res 
+   * @returns 
+   */
+  async changeStatus(req: Request, res: Response) {
+    const updatePostData = await orderService.changeStatus(req, res);
     return updatePostData;
   }
 
@@ -94,7 +115,7 @@ class OrderController {
     if (userId) {
       otherFindOptions = {
         where: {
-          customer: userId
+          userId
         }
       };
     }

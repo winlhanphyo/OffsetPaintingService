@@ -16,10 +16,10 @@
     <main class="cards-container">
       <div class="order-card" v-for="(order, index) in orders" :key="index">
         <div class="order-header">
-          <span class="order-id">အမှာစာ: #{{ order.id }} {{ order.status }}</span>
-          <span class="order-date">ရက်စွဲ : {{ order.date }}</span>
-          <span class="order-total">စုစုပေါင်းငွေ: {{ order.total }}</span>
-          <span class="order-delivery">ခန့်မှန်းရက်စွဲ - {{ order.deliveryDate }}</span>
+          <span class="order-id">အမှာစာ: #{{ order?.id }} {{ order.status }}</span>
+          <span class="order-date">ရက်စွဲ : {{ order?.createdAt }}</span>
+          <span class="order-total">စုစုပေါင်းငွေ: {{ order?.amount }}</span>
+          <span class="order-delivery">ခန့်မှန်းရက်စွဲ - {{ order?.deliveryDate }}</span>
         </div>
         <div class="order-content">
           <div class="product-image">
@@ -29,7 +29,7 @@
           <div class="product-details">
             <h3>{{ order.productName }}</h3>
             <p class="product-size">{{ order.productSize }}</p>
-            <p class="product-code">အမည်: {{ order.productCode }}</p>
+            <p class="product-code">အမည်: {{ order?.userData?.firstName + " " + order?.userData?.lastName }}</p>
             <p class="product-quantity">အရေအတွက်: {{ order.quantity }}</p>
             <p class="proof-status">{{ order.proofStatus }}</p>
             <button class="reorder-btn" @click="reorder(order.id)">Reorder </button>
@@ -54,7 +54,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue';
+import { getMyOrder } from '@/services/offset.service';
+
 
 const orders = ref([
   {
@@ -98,6 +100,25 @@ const toggleBookmark = (orderId) => {
     order.bookmarked = !order.bookmarked
   }
 }
+
+const getOrder = async () => {
+  const userId = localStorage.getItem("userId");
+  const token = localStorage.getItem("token");
+  const res = await getMyOrder(userId, token);
+  console.log("--------res", res?.data?.data);
+  orders.value = res?.data?.data;
+  // let result = [];
+  // res?.data?.data?.map((dist) => {
+  //   let temp = dist;
+  //   dist?.orderDetail?.map((data) => {
+  //     dist.
+  //   })
+  // });
+}
+
+onMounted(() => {
+  getOrder();
+});
 </script>
 
 <style scoped>

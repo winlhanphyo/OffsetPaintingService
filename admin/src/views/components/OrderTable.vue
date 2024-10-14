@@ -48,7 +48,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <td>
                 <div class="px-3 py-1">
                   <router-link :to="`/order/${order.id}`" class="text-decoration-none">
-                    <p class="mb-0 text-sm">{{ order.firstName + ' ' + order.lastName}}</p>
+                    <p class="mb-0 text-sm">{{ order.firstName + ' ' + order.lastName }}</p>
                   </router-link>
                 </div>
               </td>
@@ -59,18 +59,18 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 <span class="text-secondary text-sm">{{ order?.totalAmount || 0 }}</span>
               </td>
               <td class="select-width">
-                <select class="form-select mx-0" aria-label="Default select example" v-model="order.status"
-                  @change="updateStatus(order, index)">
-                  <option value="New">New</option>
-                  <option value="Payment Done">Payment Done</option>
-                  <option value="Shipping">Shipping</option>
-                  <option value="Done">Done</option>
-                </select>
+                {{ order.status }}
               </td>
               <td class="align-middle d-flex justify-content-center">
-                <button type="button" class="m-0 btn btn-primary">
-                  Pending
+                <button type="button" class="m-0 btn btn-primary"
+                  data-bs-target="#changeStatusModal"
+                  data-bs-toggle="modal"
+                  @click="showStatusModal(order)">
+                    Change Status
                 </button>
+                <!-- <button type="button" class="m-0 btn btn-danger" @click="changeStatus('cancel')">
+                  Cancel
+                </button> -->
               </td>
 
             </tr>
@@ -87,13 +87,52 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="changeStatusModal" aria-hidden="true" aria-labelledby="modalToggleLavel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalToggleLavel">
+            Order Data
+          </h1>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="product-name" class="col-form-label">Order ID</label>
+              {{ orderId }}
+            </div>
+            <div class="mb-3">
+              <label for="category-name" class="col-form-label">Status</label>
+              <select class="form-select mx-0" aria-label="Default select example" v-model="statusValue">
+                <option value="new">New</option>
+                <option value="shipping">Shipping</option>
+                <option value="cancel">Cancel</option>
+                <option value="complete">Done</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary"
+            data-bs-target="#changeStatusModal" data-bs-toggle="modal"
+            @click="updateStatus()">
+            Change Status
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 // import moment from "moment";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 // import { imgRoot } from "../../../config.js";
-import { getOrder } from "@/services/admin.service.js";
+import { getOrder, updateOrderStatus } from "@/services/admin.service.js";
 
 export default {
   data() {
@@ -113,12 +152,14 @@ export default {
       description: "",
       status: "",
       categoryList: [],
+      statusValue: "new",
       modalLabel: "Create",
       detailData: {},
       searchName: null,
       total: 1,
       currentPage: 1,
-      lastPage: 1
+      lastPage: 1,
+      orderId: null
     };
   },
   mounted() {
@@ -141,9 +182,6 @@ export default {
       anchor.download = 'orderList.csv';
       anchor.click();
     },
-    updateStatus(order) {
-      console.log(`Status for ${order.fullName} updated to ${order.status}`);
-    },
     async getOrder() {
       localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
@@ -162,7 +200,7 @@ export default {
       //   }
       // });
     },
-    async clickPaginate(page=1) {
+    async clickPaginate(page = 1) {
       localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       page = Number(page) || 1;
@@ -179,12 +217,38 @@ export default {
       this.orders = res?.data?.data;
       this.total = res?.data?.count;
       this.lastPage = (this.total % 10 === 0 || page === 1) ? page : page + 1;
-      console.log("------------orders", this.orders);
     },
+    showStatusModal(order) {
+      console.log("-------order", order);
+      this.orderId = order.id;
+      this.statusValue = order.status;
+    },
+    updateStatus() {
+      const token = localStorage.getItem("token");
+      const data = {
+        status: this.statusValue
+      };
+      updateOrderStatus(this.orderId, data, token)
+        .then(() => {
+          Swal.fire({
+            title: "Success!",
+            text: "Order status is updated successfully!",
+            icon: "success"
+          }).then(() => {
+            this.getOrder();
+          });
+        }).catch((err) => {
+          Swal.fire({
+            title: "Oops!",
+            text: err.toString(),
+            icon: "error"
+          })
+        });
+    }
   },
   computed: {
     disabledNextBtn() {
-      const temp = this.total /(this.currentPage * 10);
+      const temp = this.total / (this.currentPage * 10);
       if (this.total % 10 === 0) {
         if (temp < 2) {
           return true;

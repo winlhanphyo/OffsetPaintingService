@@ -25,7 +25,7 @@ const modelAttributes: DbModelFieldInit<Partial<IMediaModel>> = {
     allowNull: false
   },
   url: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
   status: {

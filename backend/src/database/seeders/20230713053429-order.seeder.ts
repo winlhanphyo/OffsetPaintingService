@@ -17,7 +17,7 @@ module.exports = {
           phone: '+391234',
           status: 'new',
           totalAmount: 1000,
-          orderDetailId: "[1]",
+          orderDetailId: "[1,2]",
           orderInstruction: "",
           shippingMethod: "",
           paymentDone: true,

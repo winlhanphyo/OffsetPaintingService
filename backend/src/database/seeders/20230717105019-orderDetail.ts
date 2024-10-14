@@ -11,13 +11,17 @@ module.exports = {
       [
         {
           productId: 1,
+          orderId: 1,
           quantity: 1,
+          userId: 1,
           amount: 10000,
           createdAt: '2023-07-12',
           updatedAt: '2023-07-12'
         },
         {
           productId: 2,
+          orderId: 1,
+          userId: 1,
           quantity: 1,
           amount: 10000,
           createdAt: '2023-07-12',

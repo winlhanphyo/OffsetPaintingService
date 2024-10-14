@@ -623,7 +623,7 @@
 <script>
 import Swal from "sweetalert2";
 import store from "@/store";
-import { createOrder } from "@/services/offset.service";
+import { createOrder, createOrderDetail } from "@/services/offset.service";
 // import carts from "../const/cart.js";
 
 export default {
@@ -662,6 +662,23 @@ export default {
       await store.dispatch("commonData", param);
     },
     async orderComplete() {
+
+      // const orderDetail = [];
+
+      // this.cart.map((dist) => {
+      //   const temp = dist?.images ? JSON.parse(dist.images) : null;
+      //   const designImage = temp?.file;
+      //   orderDetail.push({
+      //     productId: dist?.id,
+      //     amount: dist?.totalPrice,
+      //     quantity: dist?.qty,
+      //     productDetail: dist,
+      //     designImage
+      //   });
+      // });
+      // payload.orderDetail = orderDetail;
+
+
       const payload = {
         customer: this.userData?.id,
         firstName: this.userData?.firstName,
@@ -674,49 +691,53 @@ export default {
         shippingMethod: this.shippingMethod
       };
 
-      // req.body?.paymentScreenshot ? payload.paymentScreenshot = req.body?.paymentScreenshot : "";
-      // payload.paymentDone = req.body?.paymentDone ? payload.paymentDone : false;
-      const orderDetail = [];
+      const orderDetailPromises = this.cart.map(async (dist) => {
+        // const temp = dist?.images ? JSON.parse(dist.images) : null;
 
-      this.cart.map((dist) => {
-        const temp = dist?.images ? JSON.parse(dist.images) : null;
-        const designImage = temp?.preview;
-        orderDetail.push({
-          productId: dist?.id,
-          amount: dist?.totalPrice,
-          quantity: dist?.qty,
-          productDetail: dist,
-          designImage
-        });
+        const formData = new FormData();
+        console.log("------dist images", dist?.images);
+
+        if (dist?.images) {
+          const byteString = atob(dist.images?.preview.split(',')[1]);
+          const mimeType = dist.images?.fileType;
+
+          const ab = new ArrayBuffer(byteString.length);
+          const ia = new Uint8Array(ab);
+          for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+          }
+
+          const blob = new Blob([ab], { type: mimeType });
+
+          // Append the Blob or File object to FormData
+          formData.append('designImage', blob, dist.images.fileName);
+        }
+        const productDetail = dist;
+        delete productDetail?.images;
+
+        formData.append("productId", dist?.id);
+        formData.append("customer", this.userData?.id);
+        formData.append("amount", dist?.totalPrice);
+        formData.append("quantity", dist?.qty);
+        formData.append("productDetail", JSON.stringify(productDetail));
+
+        const response = await createOrderDetail(formData);
+        return response?.data?.data?.id;
       });
-      payload.orderDetail = orderDetail;
 
-      // payload.orderDetail = {
-      //   productId: dist.productId,
-      //   amount: dist?.amount,
-      //   quantity: orderData?.qty,
-      //   designImage: orderData?.designImage,
-      //   productDetail: orderData?.productDetail
-      // }
+      // Wait for all createOrderDetail promises to resolve
+      const orderDetailIds = await Promise.all(orderDetailPromises);
+      console.log("-------orderDetailIds", orderDetailIds);
 
+      payload.orderDetailIds = orderDetailIds;
+
+      // Create the order after all details are processed
       const res = await createOrder(payload);
+
       if (res?.data?.message) {
         localStorage.removeItem("cartData");
         this.cart = [];
-        // let param = {
-        //   lang: this.lang,
-        //   cartLength: this.cart.length
-        // };
         await store.dispatch("resetDetailData");
-        // Swal.fire({
-        //   position: "bottom",
-        //   icon: "success",
-        //   title: "Order is created successfully.",
-        //   showConfirmButton: false,
-        //   // timer: 3000,
-        //   timerProgressBar: true,
-        //   toast: true,
-        // });
         const id = res?.data?.data?.id;
         this.$router.push(`/payment/${id}`);
       } else {

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getOrderById = exports.deleteOrder = exports.updateOrder = exports.createOrder = exports.getOrder = exports.deleteBanner = exports.createBanner = exports.updateBanner = exports.getBanner = exports.deletePackage = exports.updatePackage = exports.createPackage = exports.getPackage = exports.deleteArticle = exports.updateArticle = exports.createArticle = exports.getArticle = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.deleteMedia = exports.getProductById = exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProduct = exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategory = void 0;
+exports.getOrderById = exports.deleteOrder = exports.updateOrderStatus = exports.updateOrder = exports.createOrder = exports.getOrder = exports.deleteBanner = exports.createBanner = exports.updateBanner = exports.getBanner = exports.deletePackage = exports.updatePackage = exports.createPackage = exports.getPackage = exports.deleteArticle = exports.updateArticle = exports.createArticle = exports.getArticle = exports.deleteUser = exports.updateUser = exports.createUser = exports.getUser = exports.deleteMedia = exports.getProductById = exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProduct = exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategory = void 0;
 
 var _api = _interopRequireDefault(require("../api"));
 
@@ -892,7 +892,7 @@ var updateOrder = function updateOrder(id, data, token) {
   });
 };
 /**
- * delete order API.
+ * update order status API.
  * @param {*} token 
  * @param {*} data 
  * @returns 
@@ -901,14 +901,14 @@ var updateOrder = function updateOrder(id, data, token) {
 
 exports.updateOrder = updateOrder;
 
-var deleteOrder = function deleteOrder(id, token) {
+var updateOrderStatus = function updateOrderStatus(id, data, token) {
   var res;
-  return regeneratorRuntime.async(function deleteOrder$(_context30) {
+  return regeneratorRuntime.async(function updateOrderStatus$(_context30) {
     while (1) {
       switch (_context30.prev = _context30.next) {
         case 0:
           _context30.next = 2;
-          return regeneratorRuntime.awrap(_api["default"].deleteData("/order/".concat(id), token));
+          return regeneratorRuntime.awrap(_api["default"].post("/order/update/status/".concat(id), data, token, true));
 
         case 2:
           res = _context30.sent;
@@ -917,6 +917,36 @@ var deleteOrder = function deleteOrder(id, token) {
         case 4:
         case "end":
           return _context30.stop();
+      }
+    }
+  });
+};
+/**
+ * delete order API.
+ * @param {*} token 
+ * @param {*} data 
+ * @returns 
+ */
+
+
+exports.updateOrderStatus = updateOrderStatus;
+
+var deleteOrder = function deleteOrder(id, token) {
+  var res;
+  return regeneratorRuntime.async(function deleteOrder$(_context31) {
+    while (1) {
+      switch (_context31.prev = _context31.next) {
+        case 0:
+          _context31.next = 2;
+          return regeneratorRuntime.awrap(_api["default"].deleteData("/order/".concat(id), token));
+
+        case 2:
+          res = _context31.sent;
+          return _context31.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context31.stop();
       }
     }
   });
@@ -933,20 +963,20 @@ exports.deleteOrder = deleteOrder;
 
 var getOrderById = function getOrderById(id, token) {
   var res;
-  return regeneratorRuntime.async(function getOrderById$(_context31) {
+  return regeneratorRuntime.async(function getOrderById$(_context32) {
     while (1) {
-      switch (_context31.prev = _context31.next) {
+      switch (_context32.prev = _context32.next) {
         case 0:
-          _context31.next = 2;
+          _context32.next = 2;
           return regeneratorRuntime.awrap(_api["default"].get("/order/".concat(id), {}, token));
 
         case 2:
-          res = _context31.sent;
-          return _context31.abrupt("return", res);
+          res = _context32.sent;
+          return _context32.abrupt("return", res);
 
         case 4:
         case "end":
-          return _context31.stop();
+          return _context32.stop();
       }
     }
   });

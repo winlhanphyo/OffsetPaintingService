@@ -7,6 +7,8 @@ import { db } from '../db.provider';
 export interface IOrderModel {
   id: number;
   productId: number;
+  orderId: number;
+  userId: number;
   designImage: string;
   quantity: number;
   productDetail: string;
@@ -29,8 +31,24 @@ const modelAttributes: DbModelFieldInit<Partial<IOrderModel>> = {
       key: 'id'
     }
   },
+  orderId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: 'order',
+      key: 'id'
+    }
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'user',
+      key: 'id'
+    }
+  },
   designImage: {
-    type: DataTypes.TEXT('long'),
+    type: DataTypes.STRING,
     allowNull: true
   },
   quantity: {
@@ -50,9 +68,13 @@ const modelAttributes: DbModelFieldInit<Partial<IOrderModel>> = {
 @associative
 export class OrderDetailDbModel extends Model {
   static associate({
-    ProductDbModel
+    ProductDbModel,
+    OrderDbModel,
+    UserDbModel
   }: any) {
     this.belongsTo(ProductDbModel, { foreignKey: 'productId', as: 'productData', targetKey: 'id' });
+    this.belongsTo(OrderDbModel, { foreignKey: 'orderId', as: 'orderData', targetKey: 'id' });
+    this.belongsTo(UserDbModel, { foreignKey: 'userId', as: 'userData', targetKey: 'id' });
   }
 }
 

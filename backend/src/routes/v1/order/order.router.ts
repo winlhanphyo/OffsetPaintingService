@@ -6,8 +6,10 @@ const router = new Router();
 console.log('---------order router-------');
 
 router.get('/user/:id', orderController.getUserOrder);
+router.post('/update/status/:id', orderController.changeStatus);
 router.post('/update/:id', orderController.updateOrder);
-router.post('payemnt/:id', orderController.paymentOrder);
+router.post('/payment/:id', orderController.paymentOrder);
+router.post('/detail', orderController.createOrderDetail);
 router.get('/:id', orderController.detailOrder);
 router.delete('/:id', orderController.deleteOrder);
 router.get('/', orderController.getAllOrder);
