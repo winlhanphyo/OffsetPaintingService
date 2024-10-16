@@ -284,13 +284,13 @@ class OrderService {
       const orderDetailId = orderData?.dataValues?.orderDetailId || [];
       const orderDetail = await OrderDetailDbModel.findAll({
         where: { id: orderDetailId },
-        // include: [
-        //   {
-        //     model: MediaDbModel,
-        //     foreignKey: "id",
-        //     as: "mediaData"
-        //   }
-        // ]
+        include: [
+          {
+            model: ProductDbModel,
+            foreignKey: "productId",
+            as: "productData"
+          }
+        ]
       });
 
       // for (let i = 0; i < orderDetail.length; i++) {

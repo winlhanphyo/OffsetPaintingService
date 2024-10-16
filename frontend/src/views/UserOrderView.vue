@@ -107,13 +107,6 @@ const getOrder = async () => {
   const res = await getMyOrder(userId, token);
   console.log("--------res", res?.data?.data);
   orders.value = res?.data?.data;
-  // let result = [];
-  // res?.data?.data?.map((dist) => {
-  //   let temp = dist;
-  //   dist?.orderDetail?.map((data) => {
-  //     dist.
-  //   })
-  // });
 }
 
 onMounted(() => {
