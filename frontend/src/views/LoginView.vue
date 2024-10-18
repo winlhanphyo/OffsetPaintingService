@@ -20,20 +20,24 @@
               <div class="form-group">
                 <label for="" class="label">{{ $t('message.password') }} <span>*</span></label>
                 <div class="form-data">
-                  <input type="password" required name="password" :placeholder="$t('message.password')" v-model="password" />
+                  <!-- <input type="password" required name="password" :placeholder="$t('message.password')"
+                    v-model="password" /> -->
+                  <div class="password-input-wrapper">
+                    <input :type="showPassword ? 'text' : 'password'" id="password" v-model="password" required
+                      class="form-input" />
+                    <button type="button" @click="togglePasswordVisibility" class="toggle-password-visibility">
+                      <EyeIcon v-if="showPassword" class="eye-icon" />
+                      <EyeOffIcon v-else class="eye-icon" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="btn-container">
             <button class="submit-btn" @click="submit()">Login</button>
-            <a class="forget-password-btn"
-              data-type="iframe"
-              data-width="500"
-              data-height="350"
-              data-toggle="fancybox"
-              data-fancybox=""
-              @click="$router.push('/forget-password')">{{ $t('message.forgetPassword') }}</a>
+            <a class="forget-password-btn" data-type="iframe" data-width="500" data-height="350" data-toggle="fancybox"
+              data-fancybox="" @click="$router.push('/forget-password')">{{ $t('message.forgetPassword') }}</a>
           </div>
         </div>
       </div>
@@ -44,17 +48,25 @@
 <script>
 import Swal from "sweetalert2";
 import { login } from "@/services/offset.service";
+import { EyeIcon, EyeOffIcon } from "lucide-vue-next";
 
 export default {
   name: "AppLoginRegister",
-  components: {},
+  components: {
+    EyeIcon,
+    EyeOffIcon
+  },
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      showPassword: false
     };
   },
   methods: {
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    },
     async submit() {
       const payload = {
         email: this.email,
@@ -69,16 +81,16 @@ export default {
         this.$router.push("/home");
       } else {
         Swal.fire({
-            position: "bottom",
-            icon: "error",
-            title: "Username or Password is incorrect.",
-            showConfirmButton: false,
-            // timer: 3000,
-            timerProgressBar: true,
-            toast: true,
-          });
+          position: "bottom",
+          icon: "error",
+          title: "Username or Password is incorrect.",
+          showConfirmButton: false,
+          // timer: 3000,
+          timerProgressBar: true,
+          toast: true,
+        });
       }
-    }
+    },
   },
 };
 </script>
@@ -100,6 +112,7 @@ export default {
         list-style: none;
         background-color: #e9ecef;
         border-radius: 0.25rem;
+
         a {
           color: #003462;
           -webkit-transition: all 0.3s ease;
@@ -108,15 +121,18 @@ export default {
           -o-transition: all 0.3s ease;
           transition: all 0.3s ease;
         }
+
         li .a {
           cursor: pointer;
         }
+
         li.active .a {
           color: #f47920;
           cursor: text;
         }
       }
-      .breadcrumb.breadcrumb-arrow4 > li + li:before {
+
+      .breadcrumb.breadcrumb-arrow4>li+li:before {
         color: #ccc;
         content: "/";
         display: inline-block;
@@ -126,64 +142,79 @@ export default {
         font-weight: 600;
       }
     }
+
     .login {
       max-width: 720px;
       margin: 60px auto 0;
+
       @media screen and (max-width: 767.9px) {
         max-width: 100%;
         margin: 50px auto 0;
       }
+
       .page-sub-header {
         color: #003462;
         margin-bottom: 4%;
+
         h3 {
           font-size: 1.375rem;
           font-weight: 600;
           text-align: left;
         }
       }
+
       .row {
         display: block;
         margin-bottom: 30px;
+
         @media screen and (max-width: 767.9px) {
           display: block;
         }
       }
+
       .form {
         .d-inline-block {
           margin-bottom: 20px;
         }
+
         .form-row {
           .col {
             display: block;
           }
+
           .btn-container {
             display: flex;
             width: 100%;
             justify-content: space-between;
           }
         }
+
         .form-group {
           width: 100%;
           margin: 0 20px 20px 0;
+
           label {
             display: block;
             margin-bottom: 10px;
+
             span {
               color: #ff0018;
             }
           }
+
           input {
-            width: calc( 100% - 22px);
+            width: calc(100% - 22px);
             padding: 10px;
             border: 1px solid rgba(0, 0, 0, 0.25);
             border-radius: 5px;
           }
+
           &:last-child {
             margin: 0 0 20px 0;
           }
         }
       }
+
       .submit-btn {
         padding: 9px;
         margin-right: 10px;
@@ -193,10 +224,12 @@ export default {
         cursor: pointer;
         border-radius: 5px;
         border: none;
+
         &:hover {
           background: #009BDF;
         }
       }
+
       .forget-password-btn {
         padding: 9px;
         margin-right: 10px;
@@ -205,11 +238,32 @@ export default {
         cursor: pointer;
         border-radius: 5px;
         background: #000;
+
         &:hover {
           background: #009BDF;
         }
       }
     }
   }
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.toggle-password-visibility {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.eye-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #666;
 }
 </style>
