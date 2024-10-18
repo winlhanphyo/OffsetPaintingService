@@ -26,7 +26,7 @@ const actions = {
   },
   async GetProduct({ commit }, token) {
     const result = await getProduct(token);
-    console.log("------result", result.data);
+    console.log("------result", result?.data);
     const data = result?.data;
     await commit("setProduct", data);
   },
