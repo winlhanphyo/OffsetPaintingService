@@ -102,10 +102,11 @@ const toggleBookmark = (orderId) => {
 }
 
 const getOrder = async () => {
+  localStorage.setItem("setAllLoading", true);
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const res = await getMyOrder(userId, token);
-  console.log("--------res", res?.data?.data);
+  localStorage.removeItem("setAllLoading");
   orders.value = res?.data?.data;
 }
 

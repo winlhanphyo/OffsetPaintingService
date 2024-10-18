@@ -221,9 +221,11 @@ export default {
   },
   methods: {
     async getProductData() {
+      localStorage.setItem("setAllLoading", true);
       this.searchName = this.$route.query?.name;
       const token = localStorage.getItem("token");
       let res = await getProduct(token, this.searchName);
+      localStorage.removeItem("setAllLoading");
       if (res?.data?.data) {
         this.products = res.data.data;
       }

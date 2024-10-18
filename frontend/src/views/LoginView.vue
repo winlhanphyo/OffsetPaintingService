@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="btn-container">
-            <button class="submit-btn" @click="submit()">Login</button>
+            <button class="submit-btn" :disabled="disabledBtn" @click="submit()">Login</button>
             <a class="forget-password-btn" data-type="iframe" data-width="500" data-height="350" data-toggle="fancybox"
               data-fancybox="" @click="$router.push('/forget-password')">{{ $t('message.forgetPassword') }}</a>
           </div>
@@ -60,7 +60,8 @@ export default {
     return {
       email: "",
       password: "",
-      showPassword: false
+      showPassword: false,
+      disabledBtn: false,
     };
   },
   methods: {
@@ -72,7 +73,11 @@ export default {
         email: this.email,
         password: this.password
       };
+      this.disabledBtn = true;
+      localStorage.setItem("setAllLoading", true);
       const res = await login(payload);
+      this.disabledBtn = false;
+      localStorage.removeItem("setAllLoading");
       if (res?.data?.token) {
         const token = res?.data?.token;
         const user = res?.data?.user;
