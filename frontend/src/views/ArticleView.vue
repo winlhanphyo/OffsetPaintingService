@@ -41,8 +41,10 @@ export default {
   },
   methods: {
     async getArticle() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       await store.dispatch("GetArticle", token);
+      localStorage.removeItem("setAllLoading");
       this.articles = await this.$store?.state?.apiData?.articles;
 
       this.articles?.map((dist) => {

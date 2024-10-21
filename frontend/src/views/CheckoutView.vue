@@ -608,6 +608,7 @@
                     class="btn btn-success btn-lg btn-block ld-ext-left"
                     data-step="2"
                     data-loading-text="စောင့်ပါ <i class='fa fa-sync-alt fa-spin'></i>"
+                    :disabled="disabledBtn"
                     @click="orderComplete()">
                     Order Complete <span class="ld ld-ring ld-spin"></span>
                   </button>
@@ -638,7 +639,8 @@ export default {
       total: 0,
       shippingMethod: "shipping",
       orderInstruction: "",
-      selectedPayment: "kpay"
+      selectedPayment: "kpay",
+      disabledBtn: false,
     };
   },
   methods: {
@@ -690,6 +692,8 @@ export default {
         orderInstruction: this.orderInstruction,
         shippingMethod: this.shippingMethod
       };
+      this.disabledBtn = true;
+      localStorage.setItem("setAllLoading", true);
 
       const orderDetailPromises = this.cart.map(async (dist) => {
         // const temp = dist?.images ? JSON.parse(dist.images) : null;
@@ -721,6 +725,7 @@ export default {
         formData.append("quantity", dist?.qty);
         formData.append("productDetail", JSON.stringify(productDetail));
 
+
         const response = await createOrderDetail(formData);
         return response?.data?.data?.id;
       });
@@ -733,6 +738,8 @@ export default {
 
       // Create the order after all details are processed
       const res = await createOrder(payload);
+      this.disabledBtn = false;
+      localStorage.removeItem("setAllLoading");
 
       if (res?.data?.message) {
         localStorage.removeItem("cartData");

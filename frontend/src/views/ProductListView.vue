@@ -57,6 +57,10 @@ export default {
   },
   methods: {
     async clickPaginate(page=1) {
+      if ((this.disabledPreviousBtn && this.currentPage - 1) || (this.disabledNextBtn && this.currentPage + 1)) {
+        return;
+      }
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       page = Number(page) || 1;
       // let searchNameData =  || searchName.current.value;
@@ -71,14 +75,17 @@ export default {
       // }
       const result = await getProduct(token, null, params);
       this.products = result?.data?.data;
+      localStorage.removeItem("setAllLoading");
       console.log("------------products", this.products);
     },
     async getProductData() {
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       // const res = await getProduct(token);
 
       // this.products = res?.data?.data;
       await store.dispatch("GetProduct", token);
+      localStorage.removeItem("setAllLoading");
       this.products = await this.$store?.state?.apiData?.products;
       this.total = await this.$store?.state?.apiData?.productCount;
 

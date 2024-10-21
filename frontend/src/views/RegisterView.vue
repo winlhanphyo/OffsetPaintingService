@@ -203,7 +203,7 @@
           </div>
         </div>
       </div>
-      <button class="submit-btn" @click="submit()">{{ $t("message.submit") }}</button>
+      <button class="submit-btn" :disabled="disabledBtn" @click="submit()">{{ $t("message.submit") }}</button>
       <button class="reset-btn" @click="reset()">{{ $t("message.reset") }}</button>
     </div>
   </div>
@@ -235,6 +235,7 @@ export default {
         "Password is not valid",
         "Confirm Password is not valid",
       ],
+      disabledBtn: false,
     };
   },
   methods: {
@@ -274,7 +275,11 @@ export default {
         password: this.password,
         address: this.address
       };
+      this.disabledBtn = true;
+      localStorage.setItem("setAllLoading", true);
       const res = await register(payload);
+      localStorage.removeItem("setAllLoading");
+      this.disabledBtn = false;
       if (res?.data?.message) {
         Swal.fire({
           position: "bottom",
