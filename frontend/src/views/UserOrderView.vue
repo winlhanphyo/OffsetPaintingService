@@ -5,13 +5,8 @@
         <option>status</option>
       </select>
       <div class="search-container">
-        <!-- <input type="text" placeholder="ထုတ်ကုန် ရှာပါ အမည်"> -->
         <button class="search-btn">🔍</button>
       </div>
-      <!-- <div class="view-controls">
-        <button class="grid-view">⋮⋮</button>
-        <button class="list-view">☰</button>
-      </div> -->
     </header>
     <main class="cards-container">
       <div class="order-card" v-for="(order, index) in orders" :key="index">
@@ -36,11 +31,19 @@
           </div>
           <div class="favorite-icon"></div>
           <div class="favorite-icon" @click="toggleBookmark(order.id)">
-            <svg v-if="!order.bookmarked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            <svg v-if="!order.bookmarked" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="star-icon">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
             </svg>
-            <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="star-icon star-filled">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="star-icon star-filled">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
             </svg>
           </div>
         </div>
@@ -84,7 +87,59 @@ const orders = ref([
     productCode: 'IBC_029',
     quantity: 200,
     proofStatus: 'Proof Pending'
-  }
+  },
+  {
+    id: '5809',
+    status: 'Processing',
+    date: '03 Oct, 2024 10:30',
+    total: 'Ks45,000.00',
+    deliveryDate: '20 Oct, 2024',
+    imageUrl: '/placeholder.svg?height=150&width=150',
+    productName: 'Premium Business Cards - Glossy',
+    productSize: '[3.5" x 2.1" - Standard Business Card Size]',
+    productCode: 'IBC_029',
+    quantity: 200,
+    proofStatus: 'Proof Pending'
+  },
+  {
+    id: '5810',
+    status: 'Processing',
+    date: '03 Oct, 2024 10:30',
+    total: 'Ks45,000.00',
+    deliveryDate: '20 Oct, 2024',
+    imageUrl: '/placeholder.svg?height=150&width=150',
+    productName: 'Premium Business Cards - Glossy',
+    productSize: '[3.5" x 2.1" - Standard Business Card Size]',
+    productCode: 'IBC_029',
+    quantity: 200,
+    proofStatus: 'Proof Pending'
+  },
+  {
+    id: '5811',
+    status: 'Processing',
+    date: '03 Oct, 2024 10:30',
+    total: 'Ks45,000.00',
+    deliveryDate: '20 Oct, 2024',
+    imageUrl: '/placeholder.svg?height=150&width=150',
+    productName: 'Premium Business Cards - Glossy',
+    productSize: '[3.5" x 2.1" - Standard Business Card Size]',
+    productCode: 'IBC_029',
+    quantity: 200,
+    proofStatus: 'Proof Pending'
+  },
+  {
+    id: '5812',
+    status: 'Processing',
+    date: '03 Oct, 2024 10:30',
+    total: 'Ks45,000.00',
+    deliveryDate: '20 Oct, 2024',
+    imageUrl: '/placeholder.svg?height=150&width=150',
+    productName: 'Premium Business Cards - Glossy',
+    productSize: '[3.5" x 2.1" - Standard Business Card Size]',
+    productCode: 'IBC_029',
+    quantity: 200,
+    proofStatus: 'Proof Pending'
+  },
 ])
 
 const reorder = (orderId) => {
@@ -130,7 +185,8 @@ header {
   margin-bottom: 20px;
 }
 
-select, input {
+select,
+input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -162,6 +218,8 @@ select, input {
 .cards-container {
   display: flex;
   gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
 }
 
 .order-card {
@@ -170,12 +228,19 @@ select, input {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
-  width: 100%;
+  flex: 0 0 calc(33.33% - 20px);
+  box-sizing: border-box;
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   .order-card {
     width: calc(50% - 10px);
+  }
+} */
+
+@media (max-width: 768px) {
+  .order-card {
+    flex: 0 0 100%;
   }
 }
 
@@ -223,7 +288,9 @@ select, input {
   color: #4a90e2;
 }
 
-.product-size, .product-code, .product-quantity {
+.product-size,
+.product-code,
+.product-quantity {
   margin: 5px 0;
   font-size: 14px;
 }
@@ -267,7 +334,8 @@ select, input {
   gap: 10px;
 }
 
-.reorder-btn-large, .view-details-btn {
+.reorder-btn-large,
+.view-details-btn {
   padding: 8px 16px;
   border: 1px solid #4a90e2;
   background-color: white;
