@@ -523,8 +523,10 @@ export default {
     },
     async getProductDetailData() {
       const id = this.$route.params.id;
+      localStorage.setItem("setAllLoading", true);
       const token = localStorage.getItem("token");
       const res = await getProductDetail(token, id);
+      localStorage.removeItem("setAllLoading");
       if (res?.data?.data) {
         this.detailData = res?.data?.data;
         this.formatList = this.detailData?.format ? JSON.parse(this.detailData.format) : [];

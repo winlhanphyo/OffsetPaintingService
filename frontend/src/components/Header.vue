@@ -28,7 +28,7 @@
                   <span @click="clickActiveDropDownMenu(index)">{{ item?.name }}</span>
                   <ul class="dropdown-menu" v-if="activeDropDownMenu[index]">
                     <li v-for="(data, i) in item?.product" :key="'product' + i">
-                      <a @click="changeRoute()" class="dropdown-item"
+                      <a @click="changeRoute(`/product/${data?.id}`)" class="dropdown-item"
                         >{{ data?.name }}<span class="badge-info">SALE!</span></a
                       >
                     </li>

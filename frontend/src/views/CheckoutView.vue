@@ -657,6 +657,7 @@ export default {
     async deleteOrder(index) {
       this.cart.splice(index, 1);
       localStorage.setItem("cartData", JSON.stringify(this.cart));
+      this.total = this.cart.reduce((accumulator, item) => accumulator + item.totalPrice, 0);
       let param = {
         lang: this.lang,
         cartLength: this.cart.length
