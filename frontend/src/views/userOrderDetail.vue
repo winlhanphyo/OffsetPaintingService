@@ -1,15 +1,5 @@
 <template>
     <div class="order-details">
-        <header class="header">
-            <nav class="nav">
-                <a href="#" class="nav-item">ပင်မစာမျက်နှာ</a>
-                <a href="#" class="nav-item">ထုတ်ကုန်များ ▼</a>
-                <a href="#" class="nav-item">ဝယ်ယူမှု အကောင့် ▼</a>
-                <a href="#" class="nav-item">ဆက်သွယ်ရန်</a>
-                <a href="#" class="nav-item">ဈေးနှုန်းတောင်းခံရန်</a>
-            </nav>
-        </header>
-
         <main class="main-content">
             <div class="order-header">
                 <h1>Cancelled ရက်စွဲ: {{ orderDate }}</h1>
@@ -66,7 +56,8 @@
                             <tr v-for="item in orderItems" :key="item.id">
                                 <td>
                                     <div class="product-info">
-                                        <img src="/img/Fabrix_T_Shirt_01_40091.0dd21194.jpg" :alt="item.name" class="product-image" />
+                                        <img src="/img/Fabrix_T_Shirt_01_40091.0dd21194.jpg" :alt="item.name"
+                                            class="product-image" />
                                         <span>{{ item.name }}</span>
                                     </div>
                                 </td>
@@ -92,48 +83,64 @@
     </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
+import { ref } from 'vue';
 
-const orderDate = ref('02 Oct, 2024')
-const shippingDetails = ref({
-    name: 'Win Lhan Phyo',
-    address: 'အမှတ်(၃၄) ၅လွှာ သခင်ရွှေလမ်း၊ ၂ရပ်ကွက်၊',
-    city: 'Yangon City,Yangon,',
-    country: 'Thaketa, Myanmar.',
-    phone: '09964764462'
-})
-const billingDetails = ref({
-    name: 'Win Lhan Phyo',
-    address: 'အမှတ်(၃၄) ၅လွှာ သခင်ရွှေလမ်း၊ ၂ရပ်ကွက်၊',
-    city: 'Yangon City,Yangon,',
-    country: 'Thaketa, Myanmar.',
-    phone: '09964764462'
-})
-const paymentDetails = ref({
-    date: '02 Oct, 2024 17:49',
-    method: 'QuickPay - KBZ Bank',
-    transactionId: '---',
-    agreement: 'အိမ်အရောက်ပို့ဆောင်မှု',
-    agreementEndDate: '18 Oct, 2024'
-})
-const orderItems = ref([
-    {
-        id: 1,
-        name: 'Standard Business Cards - Promo',
-        image: '/placeholder.svg?height=100&width=100',
-        details: [
-            { label: 'စာရွက်အမျိုးအစား', value: 'Artcard 250GSM' },
-            { label: 'ပုံနှိပ်နည်းစနစ်', value: 'Digital Press' },
-            { label: 'တစ်ဖက်/နှစ်ဖက်', value: 'One Side' },
-            { label: 'Lamination (ပလတ်စတစ်အုပ်ခြင်း)', value: 'None' }
-        ],
-        status: 'Proof Approved',
-        quantity: 100,
-        price: 'Ks31,500.00'
+export default {
+    setup() {
+        const orderDate = ref('02 Oct, 2024');
+        const shippingDetails = ref({
+            name: 'Win Lhan Phyo',
+            address: 'အမှတ်(၃၄) ၅လွှာ သခင်ရွှေလမ်း၊ ၂ရပ်ကွက်၊',
+            city: 'Yangon City, Yangon',
+            country: 'Thaketa, Myanmar',
+            phone: '09964764462'
+        });
+
+        const billingDetails = ref({
+            name: 'Win Lhan Phyo',
+            address: 'အမှတ်(၃၄) ၅လွှာ သခင်ရွှေလမ်း၊ ၂ရပ်ကွက်၊',
+            city: 'Yangon City, Yangon',
+            country: 'Thaketa, Myanmar',
+            phone: '09964764462'
+        });
+
+        const paymentDetails = ref({
+            date: '02 Oct, 2024 17:49',
+            method: 'QuickPay - KBZ Bank',
+            transactionId: '---',
+            agreement: 'အိမ်အရောက်ပို့ဆောင်မှု',
+            agreementEndDate: '18 Oct, 2024'
+        });
+
+        const orderItems = ref([
+            {
+                id: 1,
+                name: 'Standard Business Cards - Promo',
+                image: '/placeholder.svg?height=100&width=100',
+                details: [
+                    { label: 'စာရွက်အမျိုးအစား', value: 'Artcard 250GSM' },
+                    { label: 'ပုံနှိပ်နည်းစနစ်', value: 'Digital Press' },
+                    { label: 'တစ်ဖက်/နှစ်ဖက်', value: 'One Side' },
+                    { label: 'Lamination (ပလတ်စတစ်အုပ်ခြင်း)', value: 'None' }
+                ],
+                status: 'Proof Approved',
+                quantity: 100,
+                price: 'Ks31,500.00'
+            }
+        ]);
+
+        return {
+            orderDate,
+            shippingDetails,
+            billingDetails,
+            paymentDetails,
+            orderItems
+        };
     }
-])
+};
 </script>
+
 
 <style scoped>
 .order-details {
