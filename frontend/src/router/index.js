@@ -108,6 +108,11 @@ const routes = [
     component: () => import('../views/UserOrderView.vue')
   },
   {
+    path: '/userOrderDetail',
+    name: 'userOrderDetail',
+    component: () => import('../views/UserOrderDetail.vue')
+  },
+  {
     path: "/",
     redirect: "/home",
   },
