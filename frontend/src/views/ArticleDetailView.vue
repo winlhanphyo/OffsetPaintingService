@@ -134,6 +134,7 @@ export default {
       display: block;
       padding: 20px;
       border-radius: 10px;
+      cursor: pointer;
       &:hover {
         background: #dae0e5;
       }

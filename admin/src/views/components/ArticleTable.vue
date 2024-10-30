@@ -62,12 +62,12 @@
               <td>
                 <div class="px-3 py-1">{{ item?.id }}</div>
               </td>
-              <td>
+              <td style="max-width: 200px;">
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">{{ item?.name }}</h6>
                 </div>
               </td>
-              <td>
+              <td style="max-width: 200px; word-break: break-all; white-space: normal;">
                 <div class="py-1">
                   <h6 class="mb-0 text-sm">{{ item?.description }}</h6>
                 </div>

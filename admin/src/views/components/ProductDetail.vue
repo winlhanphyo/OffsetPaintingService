@@ -413,10 +413,13 @@ export default {
       if (!this.selectedLam) {
         lamPerPrice = "";
       } else if (this.selectedLam == "One Side") {
-        lamPerPrice = (1 * this.ratioWidth * this.ratioHeight * this.detailData?.lamSqPrice);
-      } else if (this.selectedLam == "Both Side") {
-        lamPerPrice = (2 * this.ratioWidth * this.ratioHeight * this.detailData?.lamSqPrice);
+        lamPerPrice = (1 * Number(this.ratioWidth) * Number(this.ratioHeight) * Number(this.detailData?.lamSqPrice));
+      } else if (this.selectedLam == "Both Sides") {
+        lamPerPrice = (2 * Number(this.ratioWidth) * Number(this.ratioHeight) * Number(this.detailData?.lamSqPrice));
       }
+
+      console.log("selectedLam", this.selectedLam);
+      console.log("-----ratioWidth", this.ratioWidth, this.ratioHeight, this.detailData?.lamSqPrice);
 
       let vPround = 0;
       if (!this.detailData?.plySet || this.detailData?.plySet <= 0) {
@@ -455,8 +458,12 @@ export default {
         paper = (this.quantity / this.selectedFormat) + (form * this.detailData.waste);
       }
 
+      console.log("--------quantity", this.quantity, this.selectedFormat, this.detailData?.waste);
+
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
+
+      console.log("-----lamTotal Cost", paper, lamPerPrice, lamTotalCost);
       const paperTotalCost = (paper * this.detailData?.paperPrice);
       const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
       const bindingTotalCost = (this.detailData?.biPrice * this.quantity);

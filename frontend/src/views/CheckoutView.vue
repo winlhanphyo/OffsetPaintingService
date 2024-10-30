@@ -96,12 +96,12 @@
                 </div>
               </div>
 
-              <div class="product-info-detail" v-if="data.selectedGsm">
+              <!-- <div class="product-info-detail" v-if="data.selectedGsm">
                 <div class="product-info-item">
                   <label>{{ $t("message.material") }}</label>
                   <div>{{ data.selectedGsm }}</div>
                 </div>
-              </div>
+              </div> -->
 
               <div class="product-info-detail" v-if="data.printingType">
                 <div class="product-info-item">
@@ -110,23 +110,16 @@
                 </div>
               </div>
 
-              <div class="product-info-detail" v-if="data.selectedBiType">
+              <!-- <div class="product-info-detail" v-if="data.selectedBiType">
                 <div class="product-info-item">
                   <label>{{ $t("message.printingSides") }}:</label>
                   <div>{{ data?.selectedBiType }}</div>
                 </div>
-              </div>
+              </div> -->
 
               <div class="product-info-detail" v-if="data.selectedLam">
                 <div class="product-info-item">
                   <label>{{ $t("message.lamination") }}</label>
-                  <div>{{ data?.selectedLam ? data?.selectedLam : "None" }}</div>
-                </div>
-              </div>
-
-              <div class="product-info-detail" v-if="data.selectedLam">
-                <div class="product-info-item">
-                  <label>{{ $t("message.format") }}</label>
                   <div>{{ data?.selectedLam ? data?.selectedLam : "None" }}</div>
                 </div>
               </div>

@@ -113,19 +113,29 @@
               </div>
             </div>
             <div class="form-group" v-if="toggles?.biType">
-              <label for="" class="label">{{ $t("message.printingSides") }}</label>
+              <label for="" class="label">{{ $t("message.biType") }}</label>
               <div class="form-data">
                 <select name="biType" id="biType" class="form-select" v-model="selectedBiType" @change="calculate()">
-                  <option value="" selected disabled hidden>{{ $t("message.printingSides") }}</option>
+                  <option value="" selected disabled hidden>{{ $t("message.biType") }}</option>
                   <option value="">None</option>
                   <option v-for="item in biTypeList" :key="item" :value="item">{{ item }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" v-if="toggles?.selectedColorF">
+              <label for="" class="label">{{ $t("message.printingSides") }}</label>
+              <div class="form-data">
+                <select name="lam" id="lam" class="form-select" v-model="selectedColor" @change="calculate()">
+                  <option value="" selected disabled hidden>{{ $t("message.printingSides") }}</option>
+                  <option value="One Side" selected v-if="colorFList?.length > 0">One Side</option>
+                  <option value="Both Sides" v-if="colorBList?.length > 0">Both Sides</option>
                 </select>
               </div>
             </div>
             <div class="form-group" v-if="toggles?.type">
               <label for="" class="label">{{ $t("message.type") }}</label>
               <div class="form-data">
-                {{ detailData.type }}
+                {{ detailData?.type }}
               </div>
             </div>
             <div class="form-group" v-if="toggles?.ratioFullSize">
@@ -378,6 +388,7 @@ export default {
       gsmList: [],
       biTypeList: [],
       lamList: [],
+      colorList: ["One Side", "Both Sides"],
       ratioFullSizeList: [],
       // quantityList: [],
       colorBList: [],
@@ -398,6 +409,7 @@ export default {
       selectedColorF: "",
       selectedColorB: "",
       selectedLam: "",
+      selectedColor: "",
       selectedBiType: "",
       totalPrice: 0,
       images: {
@@ -578,33 +590,37 @@ export default {
           })
         });
 
+        console.log("--------ratioWidthList", ratioWidthList, ratioHeightList);
+        console.log("--------toggles",this.toggles["ratioWidth"], this.toggles, this.ratioWidthHeightList);
+
         Object.keys(this.toggles).map((dist) => {
-          if (dist === "format" && !this.detailData[dist] && this.formatList.length > 0) {
+          if (dist === "format" && !this.toggles[dist] && this.formatList.length > 0) {
             this.selectedFormat = this.formatList[0];
           }
-          if (dist === "gsm" && !this.detailData[dist] && this.gsmList.length > 0) {
+          if (dist === "gsm" && !this.toggles[dist] && this.gsmList.length > 0) {
             this.selectedGsm = this.gsmList[0];
           }
-          if (dist === "biType" && !this.detailData[dist] && this.colorFList.length > 0) {
+          if (dist === "biType" && !this.toggles[dist] && this.colorFList.length > 0) {
             this.selectedBiType = this.biTypeList[0];
           }
-          if (dist === "lam" && !this.detailData[dist] && this.lamList.length > 0) {
+          if (dist === "lam" && !this.toggles[dist] && this.lamList.length > 0) {
             this.selectedLam = this.lamList[0];
           }
-          if (dist === "selectedRatioFullSize" && !this.detailData[dist] && this.ratioFullSizeList.length > 0) {
+          if (dist === "selectedRatioFullSize" && !this.toggles[dist] && this.ratioFullSizeList.length > 0) {
             this.selectedRatioFullSize = this.ratioFullSizeList[0];
           }
-          if (dist === "selectedColorF" && !this.detailData[dist] && this.colorFList.length > 0) {
+          if (dist === "selectedColorF" && !this.toggles[dist] && this.colorFList.length > 0) {
             this.selectedColorF = this.colorFList[0];
           }
-          if (dist === "selectedColorB" && !this.detailData[dist] && this.colorBList.length > 0) {
+          if (dist === "selectedColorB" && !this.toggles[dist] && this.colorBList.length > 0) {
             this.selectedColorB = this.colorBList[0];
           }
-          if (dist === "width" && !this.detailData[dist] && this.widthHeightList.length > 0) {
-            this.widthHeight = this.widthHeightList[0];
+          if (dist === "width" && !this.toggles[dist] && this.widthHeightList.length > 0) {
+            this.widthHeight = this.widthHeightList[0]?.value;
           }
-          if (dist === "ratioWidth" && !this.detailData[dist] && this.ratioWidthHeightList.length > 0) {
-            this.ratioWidthHeight = this.ratioWidthHeightList[0];
+          if (dist === "ratioWidth" && !this.toggles[dist] && this.ratioWidthHeightList.length > 0) {
+            this.ratioWidthHeight = this.ratioWidthHeightList[0]?.value;
+            console.log("ratioWidthHeight: " + this.ratioWidthHeight);
           }
         });
       }
@@ -626,6 +642,20 @@ export default {
       } else {
         form = 1;
       }
+
+      console.log("--------selected color", this.selectedColor);
+
+      if (this.selectedColor === "One Side" || this.selectedColor === "Both Sides") {
+        this.selectedColorF = this.colorFList[0];
+      } else {
+        this.selectedColorF = 0;
+      }
+      if (this.selectedColor === "Both Sides") {
+        this.selectedColorB = this.colorBList[0];
+      } else {
+        this.selectedColorB = 0;
+      }
+
       let pressCost = 0;
       const plateCtp = this.selectedColorF + this.selectedColorB;
       let lamPerPrice = null;
@@ -747,7 +777,7 @@ export default {
 
       console.log("-----detail dialog", this.detailDialogData);
 
-      this.totalPrice = allTotal;
+      this.totalPrice = this.quantity > 0 ? allTotal : 0;
 
     },
     async getMediaWithProductData() {
