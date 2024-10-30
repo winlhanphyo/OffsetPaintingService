@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getPackage = exports.getBanner = exports.getCategoryProduct = exports.getArticleDetail = exports.getArticle = exports.getMediaWithProductId = exports.getPackageDetail = exports.getProductDetail = exports.getProduct = exports.getCategory = exports.paymentOrder = exports.getMyOrder = exports.createOrderDetail = exports.createOrder = exports.contactUs = exports.register = exports.updatePassword = exports.forgetPassword = exports.login = void 0;
+exports.getPackage = exports.getBanner = exports.getCategoryProduct = exports.getArticleDetail = exports.getLatestArticle = exports.getArticle = exports.getMediaWithProductId = exports.getPackageDetail = exports.getProductDetail = exports.getProduct = exports.getCategory = exports.paymentOrder = exports.getOrderDetail = exports.getMyOrder = exports.createOrderDetail = exports.createOrder = exports.contactUs = exports.register = exports.updatePassword = exports.forgetPassword = exports.login = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -240,21 +240,21 @@ var getMyOrder = function getMyOrder(id, token) {
   });
 };
 /**
- * create order API.
+ * get my order detail API.
  * @param {*} data 
  */
 
 
 exports.getMyOrder = getMyOrder;
 
-var paymentOrder = function paymentOrder(id, data, token) {
+var getOrderDetail = function getOrderDetail(id, token) {
   var res;
-  return regeneratorRuntime.async(function paymentOrder$(_context9) {
+  return regeneratorRuntime.async(function getOrderDetail$(_context9) {
     while (1) {
       switch (_context9.prev = _context9.next) {
         case 0:
           _context9.next = 2;
-          return regeneratorRuntime.awrap(_axios["default"].post("".concat(_config.apiRoot, "/order/payment/").concat(id), data, token));
+          return regeneratorRuntime.awrap(_api["default"].get("/order/".concat(id), token));
 
         case 2:
           res = _context9.sent;
@@ -263,6 +263,34 @@ var paymentOrder = function paymentOrder(id, data, token) {
         case 4:
         case "end":
           return _context9.stop();
+      }
+    }
+  });
+};
+/**
+ * create order API.
+ * @param {*} data 
+ */
+
+
+exports.getOrderDetail = getOrderDetail;
+
+var paymentOrder = function paymentOrder(id, data, token) {
+  var res;
+  return regeneratorRuntime.async(function paymentOrder$(_context10) {
+    while (1) {
+      switch (_context10.prev = _context10.next) {
+        case 0:
+          _context10.next = 2;
+          return regeneratorRuntime.awrap(_axios["default"].post("".concat(_config.apiRoot, "/order/payment/").concat(id), data, token));
+
+        case 2:
+          res = _context10.sent;
+          return _context10.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context10.stop();
       }
     }
   });
@@ -279,20 +307,20 @@ exports.paymentOrder = paymentOrder;
 
 var getCategory = function getCategory(token) {
   var res;
-  return regeneratorRuntime.async(function getCategory$(_context10) {
+  return regeneratorRuntime.async(function getCategory$(_context11) {
     while (1) {
-      switch (_context10.prev = _context10.next) {
+      switch (_context11.prev = _context11.next) {
         case 0:
-          _context10.next = 2;
+          _context11.next = 2;
           return regeneratorRuntime.awrap(_api["default"].get('/category', token));
 
         case 2:
-          res = _context10.sent;
-          return _context10.abrupt("return", res);
+          res = _context11.sent;
+          return _context11.abrupt("return", res);
 
         case 4:
         case "end":
-          return _context10.stop();
+          return _context11.stop();
       }
     }
   });
@@ -314,13 +342,13 @@ var getProduct = function getProduct(token) {
       pageData,
       params,
       res,
-      _args11 = arguments;
-  return regeneratorRuntime.async(function getProduct$(_context11) {
+      _args12 = arguments;
+  return regeneratorRuntime.async(function getProduct$(_context12) {
     while (1) {
-      switch (_context11.prev = _context11.next) {
+      switch (_context12.prev = _context12.next) {
         case 0:
-          searchName = _args11.length > 1 && _args11[1] !== undefined ? _args11[1] : null;
-          pageData = _args11.length > 2 && _args11[2] !== undefined ? _args11[2] : null;
+          searchName = _args12.length > 1 && _args12[1] !== undefined ? _args12[1] : null;
+          pageData = _args12.length > 2 && _args12[2] !== undefined ? _args12[2] : null;
           params = {};
           console.log("-----pageData", pageData);
           pageData ? params = pageData : "";
@@ -328,35 +356,35 @@ var getProduct = function getProduct(token) {
           res = null;
 
           if (params) {
-            _context11.next = 14;
+            _context12.next = 14;
             break;
           }
 
           console.log("-----not params", params);
-          _context11.next = 11;
+          _context12.next = 11;
           return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/product"), token));
 
         case 11:
-          res = _context11.sent;
-          _context11.next = 18;
+          res = _context12.sent;
+          _context12.next = 18;
           break;
 
         case 14:
           console.log("-----params", params);
-          _context11.next = 17;
+          _context12.next = 17;
           return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/product"), {
             params: params
           }));
 
         case 17:
-          res = _context11.sent;
+          res = _context12.sent;
 
         case 18:
-          return _context11.abrupt("return", res);
+          return _context12.abrupt("return", res);
 
         case 19:
         case "end":
-          return _context11.stop();
+          return _context12.stop();
       }
     }
   });
@@ -373,20 +401,20 @@ exports.getProduct = getProduct;
 
 var getProductDetail = function getProductDetail(token, id) {
   var res;
-  return regeneratorRuntime.async(function getProductDetail$(_context12) {
+  return regeneratorRuntime.async(function getProductDetail$(_context13) {
     while (1) {
-      switch (_context12.prev = _context12.next) {
+      switch (_context13.prev = _context13.next) {
         case 0:
-          _context12.next = 2;
+          _context13.next = 2;
           return regeneratorRuntime.awrap(_api["default"].get("/product/".concat(id), token));
 
         case 2:
-          res = _context12.sent;
-          return _context12.abrupt("return", res);
+          res = _context13.sent;
+          return _context13.abrupt("return", res);
 
         case 4:
         case "end":
-          return _context12.stop();
+          return _context13.stop();
       }
     }
   });
@@ -403,21 +431,21 @@ exports.getProductDetail = getProductDetail;
 
 var getPackageDetail = function getPackageDetail(token, id) {
   var res;
-  return regeneratorRuntime.async(function getPackageDetail$(_context13) {
+  return regeneratorRuntime.async(function getPackageDetail$(_context14) {
     while (1) {
-      switch (_context13.prev = _context13.next) {
+      switch (_context14.prev = _context14.next) {
         case 0:
           console.log("-------get package detail service", token);
-          _context13.next = 3;
+          _context14.next = 3;
           return regeneratorRuntime.awrap(_api["default"].get("/package/".concat(id), token));
 
         case 3:
-          res = _context13.sent;
-          return _context13.abrupt("return", res);
+          res = _context14.sent;
+          return _context14.abrupt("return", res);
 
         case 5:
         case "end":
-          return _context13.stop();
+          return _context14.stop();
       }
     }
   });
@@ -434,20 +462,20 @@ exports.getPackageDetail = getPackageDetail;
 
 var getMediaWithProductId = function getMediaWithProductId(token, id) {
   var res;
-  return regeneratorRuntime.async(function getMediaWithProductId$(_context14) {
+  return regeneratorRuntime.async(function getMediaWithProductId$(_context15) {
     while (1) {
-      switch (_context14.prev = _context14.next) {
+      switch (_context15.prev = _context15.next) {
         case 0:
-          _context14.next = 2;
+          _context15.next = 2;
           return regeneratorRuntime.awrap(_api["default"].get("/media/product/".concat(id), token));
 
         case 2:
-          res = _context14.sent;
-          return _context14.abrupt("return", res);
+          res = _context15.sent;
+          return _context15.abrupt("return", res);
 
         case 4:
         case "end":
-          return _context14.stop();
+          return _context15.stop();
       }
     }
   });
@@ -466,44 +494,74 @@ var getArticle = function getArticle(token) {
   var searchName,
       params,
       res,
-      _args15 = arguments;
-  return regeneratorRuntime.async(function getArticle$(_context15) {
+      _args16 = arguments;
+  return regeneratorRuntime.async(function getArticle$(_context16) {
     while (1) {
-      switch (_context15.prev = _context15.next) {
+      switch (_context16.prev = _context16.next) {
         case 0:
-          searchName = _args15.length > 1 && _args15[1] !== undefined ? _args15[1] : null;
+          searchName = _args16.length > 1 && _args16[1] !== undefined ? _args16[1] : null;
           params = {};
           searchName ? params.name = searchName : params = null;
           res = null;
 
           if (searchName) {
-            _context15.next = 10;
+            _context16.next = 10;
             break;
           }
 
-          _context15.next = 7;
+          _context16.next = 7;
           return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/article"), token));
 
         case 7:
-          res = _context15.sent;
-          _context15.next = 13;
+          res = _context16.sent;
+          _context16.next = 13;
           break;
 
         case 10:
-          _context15.next = 12;
+          _context16.next = 12;
           return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/article"), {
             params: params
           }));
 
         case 12:
-          res = _context15.sent;
+          res = _context16.sent;
 
         case 13:
-          return _context15.abrupt("return", res);
+          return _context16.abrupt("return", res);
 
         case 14:
         case "end":
-          return _context15.stop();
+          return _context16.stop();
+      }
+    }
+  });
+};
+/**
+ * get latest article API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+
+
+exports.getArticle = getArticle;
+
+var getLatestArticle = function getLatestArticle(token) {
+  var res;
+  return regeneratorRuntime.async(function getLatestArticle$(_context17) {
+    while (1) {
+      switch (_context17.prev = _context17.next) {
+        case 0:
+          _context17.next = 2;
+          return regeneratorRuntime.awrap(_axios["default"].get("".concat(_config.apiRoot, "/article/latest"), token));
+
+        case 2:
+          res = _context17.sent;
+          return _context17.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context17.stop();
       }
     }
   });
@@ -516,25 +574,25 @@ var getArticle = function getArticle(token) {
  */
 
 
-exports.getArticle = getArticle;
+exports.getLatestArticle = getLatestArticle;
 
 var getArticleDetail = function getArticleDetail(token, id) {
   var res;
-  return regeneratorRuntime.async(function getArticleDetail$(_context16) {
+  return regeneratorRuntime.async(function getArticleDetail$(_context18) {
     while (1) {
-      switch (_context16.prev = _context16.next) {
+      switch (_context18.prev = _context18.next) {
         case 0:
           console.log("-------get article detail service", token);
-          _context16.next = 3;
+          _context18.next = 3;
           return regeneratorRuntime.awrap(_api["default"].get("/article/".concat(id), token));
 
         case 3:
-          res = _context16.sent;
-          return _context16.abrupt("return", res);
+          res = _context18.sent;
+          return _context18.abrupt("return", res);
 
         case 5:
         case "end":
-          return _context16.stop();
+          return _context18.stop();
       }
     }
   });
@@ -551,21 +609,21 @@ exports.getArticleDetail = getArticleDetail;
 
 var getCategoryProduct = function getCategoryProduct(token) {
   var res;
-  return regeneratorRuntime.async(function getCategoryProduct$(_context17) {
+  return regeneratorRuntime.async(function getCategoryProduct$(_context19) {
     while (1) {
-      switch (_context17.prev = _context17.next) {
+      switch (_context19.prev = _context19.next) {
         case 0:
           console.log("-------getCategory", token);
-          _context17.next = 3;
+          _context19.next = 3;
           return regeneratorRuntime.awrap(_api["default"].get('/category/product', token));
 
         case 3:
-          res = _context17.sent;
-          return _context17.abrupt("return", res);
+          res = _context19.sent;
+          return _context19.abrupt("return", res);
 
         case 5:
         case "end":
-          return _context17.stop();
+          return _context19.stop();
       }
     }
   });
@@ -582,21 +640,21 @@ exports.getCategoryProduct = getCategoryProduct;
 
 var getBanner = function getBanner(token) {
   var res;
-  return regeneratorRuntime.async(function getBanner$(_context18) {
+  return regeneratorRuntime.async(function getBanner$(_context20) {
     while (1) {
-      switch (_context18.prev = _context18.next) {
+      switch (_context20.prev = _context20.next) {
         case 0:
           console.log("-------getBanner", token);
-          _context18.next = 3;
+          _context20.next = 3;
           return regeneratorRuntime.awrap(_api["default"].get('/banner', token));
 
         case 3:
-          res = _context18.sent;
-          return _context18.abrupt("return", res);
+          res = _context20.sent;
+          return _context20.abrupt("return", res);
 
         case 5:
         case "end":
-          return _context18.stop();
+          return _context20.stop();
       }
     }
   });
@@ -613,21 +671,21 @@ exports.getBanner = getBanner;
 
 var getPackage = function getPackage(token) {
   var res;
-  return regeneratorRuntime.async(function getPackage$(_context19) {
+  return regeneratorRuntime.async(function getPackage$(_context21) {
     while (1) {
-      switch (_context19.prev = _context19.next) {
+      switch (_context21.prev = _context21.next) {
         case 0:
           console.log("-------getPackage", token);
-          _context19.next = 3;
+          _context21.next = 3;
           return regeneratorRuntime.awrap(_api["default"].get('/package', token));
 
         case 3:
-          res = _context19.sent;
-          return _context19.abrupt("return", res);
+          res = _context21.sent;
+          return _context21.abrupt("return", res);
 
         case 5:
         case "end":
-          return _context19.stop();
+          return _context21.stop();
       }
     }
   });

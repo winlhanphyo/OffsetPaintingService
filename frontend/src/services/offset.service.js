@@ -81,6 +81,15 @@ export const getMyOrder = async (id, token) => {
 }
 
 /**
+ * get my order detail API.
+ * @param {*} data 
+ */
+export const getOrderDetail = async (id, token) => {
+  const res = await api.get(`/order/${id}`, token);
+  return res;
+}
+
+/**
  * create order API.
  * @param {*} data 
  */
@@ -175,6 +184,17 @@ export const getArticle = async (token, searchName=null) => {
     res = await axios.get(`${apiRoot}/article`, {params});
   }
   
+  return res;
+}
+
+/**
+ * get latest article API.
+ * @param {*} data 
+ * @param {*} token 
+ * @returns 
+ */
+export const getLatestArticle = async (token) => {
+  const res = await axios.get(`${apiRoot}/article/latest`, token);
   return res;
 }
 

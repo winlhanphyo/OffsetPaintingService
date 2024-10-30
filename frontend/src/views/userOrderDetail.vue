@@ -1,281 +1,312 @@
 <template>
-    <div class="order-details">
-        <main class="main-content">
-            <div class="order-header">
-                <h1>Cancelled ရက်စွဲ: {{ orderDate }}</h1>
-                <button class="reorder-btn">Reorder</button>
-            </div>
+  <div class="order-details">
+    <main class="main-content">
+      <div class="order-header">
+        <h1>ရက်စွဲ: {{ orderDate }}</h1>
+        <button class="reorder-btn">Reorder</button>
+      </div>
 
-            <div class="order-tabs">
-                <button class="tab-btn active">အော်ဒါအသေးစိတ်များ</button>
-                <button class="tab-btn">မှတ်ချက်နှင့် နောက်ဆက်တွဲများ <span class="badge">1</span></button>
-            </div>
+      <div class="order-tabs">
+        <button class="tab-btn active">အော်ဒါအသေးစိတ်များ</button>
+        <button class="tab-btn">မှတ်ချက်နှင့် နောက်ဆက်တွဲများ <span class="badge">1</span></button>
+      </div>
 
-            <div class="order-sections">
-                <section class="order-section">
-                    <div class="order-info">
-                        <div class="info-column">
-                            <h3>ပို့ဆောင်မှုအသေးစိတ်</h3>
-                            <p>{{ shippingDetails.name }}</p>
-                            <p>{{ shippingDetails.address }}</p>
-                            <p>{{ shippingDetails.city }}</p>
-                            <p>{{ shippingDetails.country }}</p>
-                            <p>ဖုန်း : {{ shippingDetails.phone }}</p>
-                        </div>
-                        <div class="info-column">
-                            <h3>ငွေပေးချေမှုအသေးစိတ်</h3>
-                            <p>{{ billingDetails.name }}</p>
-                            <p>{{ billingDetails.address }}</p>
-                            <p>{{ billingDetails.city }}</p>
-                            <p>{{ billingDetails.country }}</p>
-                            <p>ဖုန်း : {{ billingDetails.phone }}</p>
-                        </div>
-                        <div class="info-column">
-                            <h3>ငွေပေးချေသူ / ပို့ဆောင်ခံ အသေးစိတ်</h3>
-                            <p>ငွေပေးချေသည့်ရက်စွဲ: {{ paymentDetails.date }}</p>
-                            <p>ငွေပေးချေမှုနည်း: {{ paymentDetails.method }}</p>
-                            <p>ငွေသွင်းငွေထုတ် ID: {{ paymentDetails.transactionId }}</p>
-                            <p>သဘောတူချက်: {{ paymentDetails.agreement }}</p>
-                            <p>သဘောတူချက်ပြီးဆုံးရက်: {{ paymentDetails.agreementEndDate }}</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="order-items">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ထုတ်ကုန်များ</th>
-                                <th>နောက်ထပ်သတင်းအချက်အလက်များ</th>
-                                <th>အခြေအနေ</th>
-                                <th>အရေအတွက်</th>
-                                <th>စျေးနှုန်း</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="item in orderItems" :key="item.id">
-                                <td>
-                                    <div class="product-info">
-                                        <img src="/img/Fabrix_T_Shirt_01_40091.0dd21194.jpg" :alt="item.name"
-                                            class="product-image" />
-                                        <span>{{ item.name }}</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div v-for="(detail, index) in item.details" :key="index">
-                                        <strong>{{ detail.label }}:</strong> {{ detail.value }}
-                                    </div>
-                                    <!-- <button class="reorder-btn small">Reorder ခလုတ်</button> -->
-                                </td>
-                                <td>
-                                    <span :class="['status-indicator', item.status.toLowerCase()]">
-                                        {{ item.status }}
-                                    </span>
-                                </td>
-                                <td>{{ item.quantity }}</td>
-                                <td>{{ item.price }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
+      <div class="order-sections">
+        <section class="order-section">
+          <div class="order-info">
+            <div class="info-column">
+              <h3>ပို့ဆောင်မှုအသေးစိတ်</h3>
+              <p>{{ orders?.firstName + " " + orders?.lastName }}</p>
+              <p>{{ orders?.address }}</p>
+              <p>{{ orders?.city }}</p>
+              <p>{{ orders?.country }}</p>
+              <p>{{ $t("message.phone") }} : {{ orders?.phone }}</p>
             </div>
-        </main>
-    </div>
+            <div class="info-column">
+              <h3>ငွေပေးချေမှုအသေးစိတ်</h3>
+              <p>{{ billingDetails?.name }}</p>
+              <p>{{ billingDetails?.address }}</p>
+              <p>{{ billingDetails?.city }}</p>
+              <p>{{ billingDetails?.country }}</p>
+              <p>ဖုန်း : {{ billingDetails?.phone }}</p>
+            </div>
+            <div class="info-column">
+              <h3>ငွေပေးချေသူ / ပို့ဆောင်ခံ အသေးစိတ်</h3>
+              <p>ငွေပေးချေသည့်ရက်စွဲ: {{ orders?.createdAt }}</p>
+              <!-- <p>ငွေပေးချေမှုနည်း: {{ paymentDetails?.method }}</p> -->
+              <!-- <p>ငွေသွင်းငွေထုတ် ID: {{ paymentDetails?.transactionId }}</p> -->
+              <p>သဘောတူချက်: {{ paymentDetails?.agreement }}</p>
+              <p>သဘောတူချက်ပြီးဆုံးရက်: {{ paymentDetails?.agreementEndDate }}</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="order-items">
+          <table>
+            <thead>
+              <tr>
+                <th>ထုတ်ကုန်များ</th>
+                <th>နောက်ထပ်သတင်းအချက်အလက်များ</th>
+                <th>အခြေအနေ</th>
+                <th>အရေအတွက်</th>
+                <th>စျေးနှုန်း</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in orders?.orderDetail" :key="item.id">
+                <td>
+                  <div class="product-info">
+                    <img src="/img/Fabrix_T_Shirt_01_40091.0dd21194.jpg" :alt="item?.name" class="product-image" />
+                    <span>{{ item?.name }}</span>
+                  </div>
+                </td>
+                <td>
+                  <!-- <div v-for="(detail, index) in item.details" :key="index">
+                    <strong>{{ detail?.label }}:</strong> {{ detail?.value }}
+                  </div> -->
+                  <!-- <button class="reorder-btn small">Reorder ခလုတ်</button> -->
+                  <div>
+                    <strong>{{ $t("message.material") }} :</strong> {{ item?.productDetail?.gsm }}
+                  </div>
+                  <div>
+                    <strong>{{ $t("message.printingType") }} :</strong> {{ item?.productDetail?.type }}
+                  </div>
+                  <div>
+                    <strong>{{ $t("message.printingSides") }} :</strong> {{ item?.productDetail?.value }}
+                  </div>
+                  <div>
+                    <strong>{{ $t("message.lamination") }} :</strong> {{ item?.productDetail?.lam ? item?.productDetail?.lam : "None" }}
+                  </div>
+                </td>
+                <td>
+                  <span :class="['status-indicator', orders?.status?.toLowerCase()]">
+                    {{ orders?.status }}
+                  </span>
+                </td>
+                <td>{{ item?.quantity }}</td>
+                <td>{{ "Ks" + item?.amount }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
 import { ref } from 'vue';
+import { getOrderDetail } from "@/services/offset.service";
 
 export default {
-    setup() {
-        const orderDate = ref('02 Oct, 2024');
-        const shippingDetails = ref({
-            name: 'Win Lhan Phyo',
-            address: 'အမှတ်(၃၄) ၅လွှာ သခင်ရွှေလမ်း၊ ၂ရပ်ကွက်၊',
-            city: 'Yangon City, Yangon',
-            country: 'Thaketa, Myanmar',
-            phone: '09964764462'
-        });
-
-        const billingDetails = ref({
-            name: 'Win Lhan Phyo',
-            address: 'အမှတ်(၃၄) ၅လွှာ သခင်ရွှေလမ်း၊ ၂ရပ်ကွက်၊',
-            city: 'Yangon City, Yangon',
-            country: 'Thaketa, Myanmar',
-            phone: '09964764462'
-        });
-
-        const paymentDetails = ref({
-            date: '02 Oct, 2024 17:49',
-            method: 'QuickPay - KBZ Bank',
-            transactionId: '---',
-            agreement: 'အိမ်အရောက်ပို့ဆောင်မှု',
-            agreementEndDate: '18 Oct, 2024'
-        });
-
-        const orderItems = ref([
-            {
-                id: 1,
-                name: 'Standard Business Cards - Promo',
-                image: '/placeholder.svg?height=100&width=100',
-                details: [
-                    { label: 'စာရွက်အမျိုးအစား', value: 'Artcard 250GSM' },
-                    { label: 'ပုံနှိပ်နည်းစနစ်', value: 'Digital Press' },
-                    { label: 'တစ်ဖက်/နှစ်ဖက်', value: 'One Side' },
-                    { label: 'Lamination (ပလတ်စတစ်အုပ်ခြင်း)', value: 'None' }
-                ],
-                status: 'Proof Approved',
-                quantity: 100,
-                price: 'Ks31,500.00'
-            }
-        ]);
-
-        return {
-            orderDate,
-            shippingDetails,
-            billingDetails,
-            paymentDetails,
-            orderItems
-        };
+  data() {
+    return {
+      orders: []
     }
+  },
+  setup() {
+    const orderDate = ref('02 Oct, 2024');
+    const shippingDetails = ref({
+      name: 'Win Lhan Phyo',
+      address: 'အမှတ်(၃၄) ၅လွှာ သခင်ရွှေလမ်း၊ ၂ရပ်ကွက်၊',
+      city: 'Yangon City, Yangon',
+      country: 'Thaketa, Myanmar',
+      phone: '09964764462'
+    });
+
+    const billingDetails = ref({
+      name: 'Win Lhan Phyo',
+      address: 'အမှတ်(၃၄) ၅လွှာ သခင်ရွှေလမ်း၊ ၂ရပ်ကွက်၊',
+      city: 'Yangon City, Yangon',
+      country: 'Thaketa, Myanmar',
+      phone: '09964764462'
+    });
+
+    const paymentDetails = ref({
+      date: '02 Oct, 2024 17:49',
+      method: 'QuickPay - KBZ Bank',
+      transactionId: '---',
+      agreement: 'အိမ်အရောက်ပို့ဆောင်မှု',
+      agreementEndDate: '18 Oct, 2024'
+    });
+
+    const orderItems = ref([
+      {
+        id: 1,
+        name: 'Standard Business Cards - Promo',
+        image: '/placeholder.svg?height=100&width=100',
+        details: [
+          { label: 'စာရွက်အမျိုးအစား', value: 'Artcard 250GSM' },
+          { label: 'ပုံနှိပ်နည်းစနစ်', value: 'Digital Press' },
+          { label: 'တစ်ဖက်/နှစ်ဖက်', value: 'One Side' },
+          { label: 'Lamination (ပလတ်စတစ်အုပ်ခြင်း)', value: 'None' }
+        ],
+        status: 'Proof Approved',
+        quantity: 100,
+        price: 'Ks31,500.00'
+      }
+    ]);
+
+    return {
+      orderDate,
+      shippingDetails,
+      billingDetails,
+      paymentDetails,
+      orderItems
+    };
+  },
+  mounted() {
+    this.getOrderDetailData();
+  },
+  methods: {
+    async getOrderDetailData() {
+      localStorage.setItem("setAllLoading", true);
+      const token = localStorage.getItem("token");
+      const id = this.$route.params.id;
+      const res = await getOrderDetail(id, token);
+      localStorage.removeItem("setAllLoading");
+      this.orders = res?.data?.data;
+      console.log("------orders", this.orders);
+    }
+  }
 };
 </script>
 
 
 <style scoped>
 .order-details {
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f0f0f0;
 }
 
 .header {
-    background-color: #003366;
-    padding: 1rem;
+  background-color: #003366;
+  padding: 1rem;
 }
 
 .nav {
-    display: flex;
-    justify-content: flex-start;
-    gap: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 
 .nav-item {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .main-content {
-    padding: 2rem;
-    background-color: white;
-    margin: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  background-color: white;
+  margin: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .order-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
 .reorder-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .reorder-btn.small {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.6rem;
 }
 
 .order-tabs {
-    display: flex;
-    margin-bottom: 1rem;
+  display: flex;
+  margin-bottom: 1rem;
 }
 
 .tab-btn {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
+  background-color: #f0f0f0;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
 }
 
 .tab-btn.active {
-    border-bottom-color: #003366;
-    font-weight: bold;
+  border-bottom-color: #003366;
+  font-weight: bold;
 }
 
 .badge {
-    background-color: #ff0000;
-    color: white;
-    border-radius: 50%;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
+  background-color: #ff0000;
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
 }
 
 .order-sections {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .order-section {
-    border: 1px solid #ddd;
-    padding: 1rem;
-    border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 4px;
 }
 
 .order-info {
-    display: flex;
-    gap: 2rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .info-column {
-    flex: 1;
+  flex: 1;
 }
 
 .order-items table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .order-items th,
 .order-items td {
-    border: 1px solid #ddd;
-    padding: 0.5rem;
-    text-align: left;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
 }
 
 .product-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .product-image {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 
 .status-indicator {
-    display: inline-block;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: bold;
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
 }
 
 .status-indicator.proof-approved {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4CAF50;
+  color: white;
 }
 </style>

@@ -161,7 +161,7 @@ const messages = {
             printingType: "ပုံနှိပ်အမျိုးအစား",
             printingSides: "တစ်ဖက်လှ / နှစ်ဖက်လှ",
             sheet: "စာရွက်အရေအတွက်",
-            type: "အမျိုးအစား",
+            type: "အထူအပါး",
             ratioFullSize: "Ratio Full Size",
             ratioWidthHeight: "Ratio Width Height",
             format: "Format",

@@ -4,6 +4,42 @@ import { PAGINATION_LIMIT } from "../../utils/constant";
 import { deleteFile } from "../../utils/utils";
 
 class ArticleService {
+
+  async getLatestArticleList(articleAttributes?: Array<any>, otherFindOptions?: FindOptions, res?: any): Promise<any> {
+    try {
+      otherFindOptions = {};
+      let articleList = await ArticleDbModel.findAll({
+        ...otherFindOptions,
+        attributes: articleAttributes,
+        include: [
+          {
+            model: UserDbModel,
+            foreignKey: "createdUserId",
+            as: "createdArticleByUser"
+          },
+          {
+            model: UserDbModel,
+            foreignKey: "updatedUserId",
+            as: "updatedArticleByUser"
+          }
+        ],
+        order: [["createdAt", "DESC"]]
+      });
+
+      return res.json({
+        success: true,
+        data: articleList
+      });
+
+    } catch (e: any) {
+      console.log('------get article list API error----', e);
+      return res.status(400).json({
+        success: false,
+        message: e.toString()
+      });
+    }
+  }
+
   /**
    * get article list.
    * @param articleAttributes 

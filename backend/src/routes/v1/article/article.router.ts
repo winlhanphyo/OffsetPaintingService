@@ -3,6 +3,7 @@ import { articleController } from "../../../controllers/article";
 
 const router = new Router();
 
+router.get('/latest', articleController.getLatestArticle);
 router.get('/', articleController.getAllArticle);
 router.post('/', articleController.createArticle);
 router.get('/:id', articleController.detailArticle);

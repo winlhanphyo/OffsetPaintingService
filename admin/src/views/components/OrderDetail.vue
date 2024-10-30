@@ -36,7 +36,22 @@
               <div class="col-md-9">{{ order?.phone }}</div>
             </div>
 
-            <hr class="my-4">
+            <!-- <hr class="my-4" /> -->
+            <template v-if="order?.paymentScreenshot">
+              <div class="row mb-3">
+                <div class="col-md-12">
+                  <h4>Payment Screenshoot</h4>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-3">
+                  <img class="payment-img" :src="order?.paymentScreenshot" alt="paymentScreenshoot" />
+                </div>
+              </div>
+            </template>
+
+            <hr class="my-4" />
 
             <div class="row" v-for="data in productDetail" :key="data?.id">
               <div class="col-md-3">
@@ -138,6 +153,8 @@ const getOrder = async () => {
   const res = await getOrderById(id, token);
   order.value = res?.data?.data;
   orderDetail.value = res?.data?.data?.orderDetail;
+  console.log("-------order value", order.value);
+  console.log("-------orderDetail value", orderDetail.value);
   const temp = res?.data?.data?.orderDetail[0]?.productDetail || null;
   if (temp && JSON.parse(temp)) {
     productDetailArr.push(JSON.parse(temp));
@@ -180,5 +197,10 @@ onMounted(() => {
 
 .bookmark-star {
   color: #ffd700 !important;
+}
+
+.payment-img {
+  width: 250px;
+  height: 250px;
 }
 </style>

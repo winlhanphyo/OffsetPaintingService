@@ -185,6 +185,14 @@ var routes = [{
     });
   }
 }, {
+  path: '/userOrder/:id',
+  name: 'userOrderDetail',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/userOrderDetail.vue'));
+    });
+  }
+}, {
   path: "/",
   redirect: "/home"
 }, {

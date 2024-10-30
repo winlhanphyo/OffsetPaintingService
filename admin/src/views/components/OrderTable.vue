@@ -38,6 +38,9 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                 Status
               </th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                Created Date
+              </th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">
                 Confirm
               </th>
@@ -59,7 +62,10 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
                 <span class="text-secondary text-sm">{{ order?.totalAmount || 0 }}</span>
               </td>
               <td class="select-width">
-                {{ order.status }}
+                {{ order?.status }}
+              </td>
+              <td class="select-width">
+                {{ moment(order?.createdAt).format("YYYY-MM-DD") }}
               </td>
               <td class="align-middle d-flex justify-content-center">
                 <button type="button" class="m-0 btn btn-primary"
@@ -129,7 +135,7 @@ import ArgonPaginationItem from "@/components/ArgonPaginationItem.vue";
 </template>
 
 <script>
-// import moment from "moment";
+import moment from "moment";
 import Swal from "sweetalert2";
 // import { imgRoot } from "../../../config.js";
 import { getOrder, updateOrderStatus } from "@/services/admin.service.js";

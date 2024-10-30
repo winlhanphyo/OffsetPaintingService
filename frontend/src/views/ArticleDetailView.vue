@@ -18,7 +18,13 @@
       </div>
       <div class="news">
         <h4>Latest Posts</h4>
-        <div class="new-blk">
+        <div class="new-blk" v-for="item in latestArticle" :key="item?.id">
+          <a @click="clickArticle(item?.id)">
+            <h5>{{item?.name}}</h5>
+            <span>{{moment(item?.createdAt).format("YYYY-MM-DD")}}</span>
+          </a>
+        </div>
+        <!-- <div class="new-blk">
           <a href="">
             <h5>Title</h5>
             <span>2024/04/01</span>
@@ -29,13 +35,7 @@
             <h5>Title</h5>
             <span>2024/04/01</span>
           </a>
-        </div>
-        <div class="new-blk">
-          <a href="">
-            <h5>Title</h5>
-            <span>2024/04/01</span>
-          </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
 
 <script>
 import moment from "moment";
-import { getArticleDetail } from "@/services/offset.service.js";
+import { getArticleDetail, getLatestArticle } from "@/services/offset.service.js";
 import { imgRoot } from "./../../config";
 
 export default {
@@ -51,7 +51,8 @@ export default {
   components: {},
   data() {
     return {
-      articleDetail: {}
+      articleDetail: {},
+      latestArticle: []
     };
   },
   mounted() {
@@ -64,9 +65,17 @@ export default {
       const res = await getArticleDetail(token, id);
       if (res?.data?.data) {
         this.articleDetail = res.data.data;
-        console.log("------article detail", this.articleDetail);
         this.articleDetail.articleImage = this.articleDetail?.articleImage ? imgRoot + this.articleDetail?.articleImage : "";
       }
+
+      const data = await getLatestArticle(token);
+      if (data?.data?.data) {
+        this.latestArticle = data.data.data;
+        // this.articleDetail.articleImage = this.articleDetail?.articleImage ? imgRoot + this.articleDetail?.articleImage : "";
+      }
+    },
+    clickArticle(id) {
+      window.location.href = `/article/${id}`;
     }
   },
 };

@@ -9,6 +9,17 @@ import { Op } from 'sequelize';
 class ArticleController {
 
   /**
+   * get all latest article
+   * @param req 
+   * @param res 
+   */
+  async getLatestArticle(req: Request, res: Response) {
+    const otherFindOptions = {};
+    const response = await articleService.getLatestArticleList(undefined, otherFindOptions, res);
+    return response;
+  }
+
+  /**
    * get all article data.
    * @param req 
    * @param res 

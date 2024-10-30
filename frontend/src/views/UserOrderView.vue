@@ -12,7 +12,7 @@
       <div class="order-card" v-for="(order, index) in orders" :key="index">
         <div class="order-header">
           <span class="order-id">အမှာစာ: #{{ order?.id }} {{ order.status }}</span>
-          <span class="order-date">ရက်စွဲ : {{ order?.createdAt }}</span>
+          <span class="order-date">ရက်စွဲ : {{ moment(order?.createdAt).format("YYYY-MM-DD") }}</span>
           <span class="order-total">စုစုပေါင်းငွေ: {{ order?.amount }}</span>
           <span class="order-delivery">ခန့်မှန်းရက်စွဲ - {{ order?.deliveryDate }}</span>
         </div>
@@ -57,7 +57,9 @@
 </template>
 
 <script setup>
+import moment from 'moment';
 import { ref, onMounted } from 'vue';
+import router from '@/router';
 import { getMyOrder } from '@/services/offset.service';
 
 
@@ -148,6 +150,7 @@ const reorder = (orderId) => {
 
 const viewDetails = (orderId) => {
   console.log('View details clicked for order:', orderId)
+  router.push(`/userOrder/${orderId}`);
 }
 const toggleBookmark = (orderId) => {
   const order = orders.value.find(o => o.id === orderId)
