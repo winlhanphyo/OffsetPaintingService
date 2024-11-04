@@ -63,13 +63,13 @@
               >
             </li>
 
-            <li>
+            <!-- <li>
               <a
                 :class="[checkActiveMenu('/quota') ? 'active' : '']"
                 @click="changeRoute('/quota')"
                 >{{ $t("message.requestAQuota") }}</a
               >
-            </li>
+            </li> -->
 
             <li class="has-menu" v-if="user">
               <a

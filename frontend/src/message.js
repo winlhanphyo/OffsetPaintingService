@@ -88,6 +88,7 @@ const messages = {
             continue: "Continue",
             continueShopping: "Continue Shopping",
             shippingPrice: "Shipping Price",
+            shippingNotice: "Note: The shipping fee must be paid by the customers themselves",
 
             shippingAddress: "Shipping Address",
             shippingMethod: "Shipping Method",
@@ -200,6 +201,7 @@ const messages = {
             continue: "ဆက်လုပ်ရန်",
             continueShopping: "ထပ်၀ယ်ရန်",
             shippingPrice: "ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း",
+            shippingNotice: "မှတ်ချက်း ပို့ခကို customers များမှ မိမိဘာသာကျခံရမည် ဖြစ်သည်",
 
             //package
             package: "ပက်ကေ့များ",

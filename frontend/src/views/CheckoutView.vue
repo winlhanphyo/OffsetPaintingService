@@ -272,7 +272,7 @@
       <div class="pb-2 d-flex align-items-start flex-wrap">
         <h3 class="billing_address_label mb-0">{{ $t("message.billingAddress") }}</h3>
         <div class="custom-control custom-checkbox custom-control-inline w-100">
-          <input
+          <!-- <input
             type="checkbox"
             name="billing_address"
             id="billing_address"
@@ -280,7 +280,8 @@
             class="custom-control-input blindShipping"
           /><label class="custom-control-label" for="billing_address"
             ><small>Same as Shipping Address</small></label
-          >
+          > -->
+          <small style="color: red;">{{ $t("message.shippingNotice") }}</small>
         </div>
       </div>
     </div>

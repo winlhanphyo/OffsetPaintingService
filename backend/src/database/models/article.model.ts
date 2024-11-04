@@ -27,7 +27,7 @@ const modelAttributes: DbModelFieldInit<Partial<IArticleModel>> = {
     allowNull: false,
   },
   description: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   articleImage: {

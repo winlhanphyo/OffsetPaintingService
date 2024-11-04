@@ -80,7 +80,7 @@
           <div class="short-company-overview">
             <img src="@/assets/images/home/about_company.png" alt="" />
             <div class="company-blk">
-              <h3>About Company</h3>
+              <h3>About Us</h3>
               <p>
                 Since inception, we have worked relentlessly in improving your printing
                 experience. We stand tall to provide you a high order and quality printing

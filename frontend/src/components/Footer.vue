@@ -20,10 +20,10 @@
       <div class="row">
         <div class="col">
           <a href=""><img src="@/assets/images/common/logo.png" alt="" /></a>
-          <p class="ft-txt">
+          <!-- <p class="ft-txt">
             Xenon presents the Premium Online Printing Platform for obtaining personal,
             promotional, commercial, and informational print products at the best prices!
-          </p>
+          </p> -->
         </div>
         <div class="col contact-us">
           <h3>Contact Us</h3>

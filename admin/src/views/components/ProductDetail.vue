@@ -302,8 +302,7 @@ export default {
       selectedLam: "",
       selectedBiType: "",
       totalPrice: 0,
-      detailDialogData: {}
-
+      detailDialogData: {},
     };
   },
   async mounted() {

@@ -37,15 +37,12 @@ var routes = [{
       return _interopRequireWildcard(require('../views/ContactUsView.vue'));
     });
   }
-}, {
-  path: '/quota',
-  name: 'quota',
-  component: function component() {
-    return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/QuotaView.vue'));
-    });
-  }
-}, {
+}, // {
+//   path: '/quota',
+//   name: 'quota',
+//   component: () => import('../views/QuotaView.vue')
+// },
+{
   path: '/article/:id',
   name: 'articleDetail',
   component: function component() {

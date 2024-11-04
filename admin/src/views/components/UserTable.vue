@@ -263,6 +263,10 @@ export default {
         formParam.append('address', this.address);
         formParam.append('type', this.type);
 
+        if (this.password) {
+          formParam.append('password', this.password);
+        }
+
        updateUser(this.id, formParam, token)
           .then(() => {
             Swal.fire({

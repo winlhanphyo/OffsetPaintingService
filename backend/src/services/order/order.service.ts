@@ -288,7 +288,13 @@ class OrderService {
           {
             model: ProductDbModel,
             foreignKey: "productId",
-            as: "productData"
+            as: "productData",
+            include: [
+              {
+                model: MediaDbModel,
+                as: "media", // Specify the alias for MediaDbModel
+              }
+            ]
           }
         ]
       });

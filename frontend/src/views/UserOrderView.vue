@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="order-footer">
-          <button class="reorder-btn-large" @click="reorder(order.id)">Reorder</button>
+          <!-- <button class="reorder-btn-large" @click="reorder(order.id)">Reorder</button> -->
           <button class="view-details-btn" @click="viewDetails(order.id)">View details</button>
         </div>
       </div>
@@ -161,7 +161,12 @@ const toggleBookmark = (orderId) => {
 
 const getOrder = async () => {
   localStorage.setItem("setAllLoading", true);
-  const userId = localStorage.getItem("userId");
+  const dist = localStorage.getItem("user");
+  let userId = 0;
+  if (dist) {
+    const temp = JSON.parse(dist);
+    userId = temp?.id;
+  }
   const token = localStorage.getItem("token");
   const res = await getMyOrder(userId, token);
   localStorage.removeItem("setAllLoading");

@@ -191,7 +191,7 @@
                 </select>
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.lam && lamList?.length > 0">
+            <div class="form-group" v-if="toggles?.selectedLam && lamList?.length > 0">
               <label for="" class="label">{{ $t("message.lamination") }}</label>
               <div class="form-data">
                 <!-- <input type="text" placeholder="None" />  -->

@@ -15,7 +15,7 @@
       </div>
       <h2>About Us</h2>
       <div class="landing-page">
-        <p>
+        <!-- <p>
           Xenon Company Limited&nbsp;presents the premier Online Printing Platform for
           obtaining personal, promotional, commercial, and informational print products at
           the lowest prices!
@@ -76,7 +76,11 @@
           That's our sincere promise!
         </p>
       </div>
-      <div class="row"><div class="col-12"></div></div>
+      <div class="row"><div class="col-12"></div>-->
+    </div>
+    <div style="text-align:center; font-size: 20px;">
+      Comming Soon
+    </div>
     </div>
   </main>
 </template>

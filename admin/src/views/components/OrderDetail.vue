@@ -58,7 +58,7 @@
                 <div class="product-image">
                   <!-- <img :src="order.imageUrl" :alt="order.productName" class="img-fluid"> -->
                   <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW1yhlTpkCnujnhzP-xioiy9RdDQkKLMnMSg&s"
+                    :src=" data?.productImage"
                     :alt="data?.productName" class="img-fluid">
                 </div>
               </div>
@@ -103,6 +103,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { imgRoot } from "../../../config.js";
 import { getOrderById } from '@/services/admin.service';
 import router from '@/router/index';
 
@@ -157,8 +158,12 @@ const getOrder = async () => {
   console.log("-------orderDetail value", orderDetail.value);
   const temp = res?.data?.data?.orderDetail[0]?.productDetail || null;
   if (temp && JSON.parse(temp)) {
+    if (temp?.media?.length > 0) {
+      temp.productImage = imgRoot + temp.media[0]?.url;
+    }
     productDetailArr.push(JSON.parse(temp));
     productDetail.value = productDetailArr;
+    console.log("-------productDetail value", productDetail.value);
   }
 }
 
