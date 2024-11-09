@@ -15,7 +15,7 @@
       </ul>
     </div>
     <div class="container">
-      <div class="package">
+      <!-- <div class="package">
         <h2>{{ $t("message.package") }}</h2>
         <div class="product-list package-list">
 
@@ -39,7 +39,7 @@
             <a @click="$router.push('/packages')"><span>Show All</span></a>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <h2>{{ $t("message.product") }}</h2>
       <div class="product-list">

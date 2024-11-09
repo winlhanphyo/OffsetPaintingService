@@ -258,12 +258,12 @@
             <div class="price-amount">Ks {{ total }}</div>
           </div>
 
-          <div class="price-summary-detail">
+          <!-- <div class="price-summary-detail">
             <div class="price-label">
               {{ $t("message.shippingPrice") }}
             </div>
             <div class="price-amount">Ks 0.00</div>
-          </div>
+          </div> -->
 
           <button @click="handleContinue()">{{ $t("message.continue") }}</button>
         </div>
@@ -548,13 +548,13 @@
                     ><input type="hidden" name="subtotal" id="subtotal" value="56500.00" />
                   </p>
                 </div>
-                <div class="shippingStep">
+                <!-- <div class="shippingStep">
                   <p class="d-flex justify-content-between align-items-center mb-0 pb-1">
                     ပစ္စည်းပို့ဆောင်မှုစျေးနှုန်း<span class="price shipprice"
                       >Ks3,000.00</span
                     >
                   </p>
-                </div>
+                </div> -->
                 <div class="paymentDetailsStep">
                   <p class="d-flex justify-content-between align-items-center mb-0 pb-1">
                     လျှော့စျေး<span class="price couponprice">Ks0.00</span

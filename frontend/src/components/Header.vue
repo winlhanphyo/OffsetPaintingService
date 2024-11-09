@@ -254,9 +254,14 @@ export default {
     },
     changeRoute(param) {
       if (param) {
-        router.push(param);
+        if (param.indexOf("/product") !== -1) {
+          window.location.href = param;
+        } else {
+          router.push(param);
+        }
       } else {
-        router.push("/product/1");
+        // router.push("/product/1");
+        window.location.href = "/product/1";
       }
       this.activeMenu = false;
       this.mobileToggle = false;

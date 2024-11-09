@@ -122,13 +122,33 @@
                 </select>
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.selectedColorF">
+            <!-- <div class="form-group" v-if="toggles?.selectedColorF">
               <label for="" class="label">{{ $t("message.printingSides") }}</label>
               <div class="form-data">
                 <select name="lam" id="lam" class="form-select" v-model="selectedColor" @change="calculate()">
                   <option value="" selected disabled hidden>{{ $t("message.printingSides") }}</option>
                   <option value="One Side" selected v-if="colorFList?.length > 0">One Side</option>
                   <option value="Both Sides" v-if="colorBList?.length > 0">Both Sides</option>
+                </select>
+              </div>
+            </div> -->
+            <div class="form-group" v-if="toggles?.colorF">
+              <label for="" class="label">{{ $t("message.colorF") }}</label>
+              <div class="form-data">
+                <select name="size" id="size" class="form-select" v-model="selectedColorF" @change="calculate()">
+                  <option value="" selected disabled hidden>Choose {{ $t("message.colorF") }}</option>
+                  <option value="">None</option>
+                  <option v-for="item in colorFList" :key="item" :value="item">{{ item }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" v-if="toggles?.colorB">
+              <label for="" class="label">{{ $t("message.colorB") }}</label>
+              <div class="form-data">
+                <select name="colorB" id="colorB" class="form-select" v-model="selectedColorB" @change="calculate()">
+                  <option value="" selected disabled hidden>Choose {{ $t("message.colorB") }}</option>
+                  <option value="">None</option>
+                  <option v-for="item in colorBList" :key="item" :value="item">{{ item }}</option>
                 </select>
               </div>
             </div>
@@ -643,18 +663,18 @@ export default {
         form = 1;
       }
 
-      console.log("--------selected color", this.selectedColor);
+      // console.log("--------selected color", this.selectedColor);
 
-      if (this.selectedColor === "One Side" || this.selectedColor === "Both Sides") {
-        this.selectedColorF = this.colorFList[0];
-      } else {
-        this.selectedColorF = 0;
-      }
-      if (this.selectedColor === "Both Sides") {
-        this.selectedColorB = this.colorBList[0];
-      } else {
-        this.selectedColorB = 0;
-      }
+      // if (this.selectedColor === "One Side" || this.selectedColor === "Both Sides") {
+      //   this.selectedColorF = this.colorFList[0];
+      // } else {
+      //   this.selectedColorF = 0;
+      // }
+      // if (this.selectedColor === "Both Sides") {
+      //   this.selectedColorB = this.colorBList[0];
+      // } else {
+      //   this.selectedColorB = 0;
+      // }
 
       let pressCost = 0;
       const plateCtp = this.selectedColorF + this.selectedColorB;

@@ -30,7 +30,7 @@
           <ul>
             <li class="address">
               <a
-                href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x30c18cfb170bb19f:0xcfa5696f4b738826?source=g.page.share"
+                href="https://www.google.com/maps?ll=16.782981,96.19663&z=18&t=m&hl=en&gl=MM&mapclient=embed&cid=17513801750858178758"
                 target="_blank"
               >
                 <span class="material-symbols-outlined"> location_on </span>
