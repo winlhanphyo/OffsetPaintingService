@@ -104,7 +104,7 @@
               placeholder="Select or add options">
             </v-select>
           </div>
-          <div class="form-group col-sm-4 p-2">
+          <!-- <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="type">Type:</label>
               <ToggleSwitch v-model="toggles.type" />
@@ -120,17 +120,17 @@
               <option value="Khaki">Khaki</option>
               <option value="Recycle">Recycle</option>
             </select>
-          </div>
+          </div> -->
         </div>
         <div class="d-flex mb-3">
 
           <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
-              <label for="gsm">Gsm:</label>
+              <label for="gsm">Gsm And Type:</label>
               <ToggleSwitch v-model="toggles.gsm" />
             </div>
             <v-select v-model="selectedGsm" :options="gsmOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add GSM">
+              placeholder="Select or add GSM and Type">
             </v-select>
           </div>
           <div class="form-group col-sm-4 p-2">
@@ -248,7 +248,11 @@
               <label for="paperPrice">Paper Price:</label>
               <ToggleSwitch v-model="toggles.paperPrice" />
             </div>
-            <input type="text" name="paperPrice" v-model="paperPrice" class="form-control" />
+            <!-- <input type="text" name="paperPrice" v-model="paperPrice" class="form-control" /> -->
+
+            <v-select v-model="paperPrice" :options="paperPriceOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
           </div>
 
           <div class="form-group col-sm-4 p-2">
@@ -386,9 +390,10 @@ export default {
       selectedFormat: [],
       formatOptions: [1, 2, 4, 6, 8, 9, 16],
       lamOptions: ["None", "One Side", "Both Sides"],
-      gsmOptions: ["128gsm", "148gsm", "157gsm", "210gsm", "230gsm", "250gsm", "300gsm", "350gsm"],
+      gsmOptions: ["128gsm AP", "148gsm AP", "157gsm AP", "210gsm AP", "230gsm AP", "250gsm AP", "300gsm AP", "350gsm AP"],
       biTypeOptions: ["Saddle", "Width Box"],
       qtyOptions: ["100", "200", "300"],
+      paperPriceOptions: ["100", "200"],
       colorBOptions: [0, 1, 4],
       colorFOptions: [0, 1, 4],
       widthOptions: [],
@@ -406,7 +411,7 @@ export default {
         description: true,
         printingType: true,
         biType: true,
-        type: true,
+        // type: true,
         gsm: true,
         width: true,
         height: true,
@@ -437,7 +442,7 @@ export default {
       printingType: "",
       quantity: true,
       sheet: true,
-      type: "",
+      // type: "",
       gsm: [],
       width: [],
       height: [],
@@ -449,7 +454,7 @@ export default {
       selectedBiType: [],
       selectedColorB: [],
       selectedColorF: [],
-      paperPrice: "",
+      paperPrice: [],
       pressPrice: "",
       lamSqPrice: "",
 
@@ -534,7 +539,7 @@ export default {
       // this.quantity?.length > 0 && formParam.append("quantity", JSON.stringify(this.quantity));
       formParam.append("quantity", this.quantity);
       formParam.append("sheet", this.sheet);
-      this.type && formParam.append("type", this.type);
+      // this.type && formParam.append("type", this.type);
       this.selectedGsm?.length > 0 && formParam.append("gsm", JSON.stringify(this.selectedGsm));
       this.width?.length > 0 && formParam.append("width", JSON.stringify(this.width));
       this.height?.length > 0 && formParam.append("height", JSON.stringify(this.height));
@@ -547,7 +552,10 @@ export default {
       this.selectedBiType?.length > 0 && formParam.append("biType", JSON.stringify(this.selectedBiType));
       this.selectedColorF?.length > 0 && formParam.append("colorF", JSON.stringify(this.selectedColorF));
       this.selectedColorB?.length > 0 && formParam.append("colorB", JSON.stringify(this.selectedColorB));
-      this.paperPrice && formParam.append("paperPrice", this.paperPrice);
+      
+      // this.paperPrice && formParam.append("paperPrice", this.paperPrice);
+
+      this.paperPrice?.length > 0 && formParam.append("paperPrice", JSON.stringify(this.paperPrice));
       this.pressPrice && formParam.append("pressPrice", this.pressPrice);
       this.lamSqPrice && formParam.append("lamSqPrice", this.lamSqPrice);
 

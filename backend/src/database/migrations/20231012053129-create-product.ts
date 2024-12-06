@@ -43,10 +43,10 @@ module.exports = {
         allowNull: true,
         defaultValue: false
       },
-      type: {
-        type: DataTypes.JSON,
-        allowNull: true
-      },
+      // type: {
+      //   type: DataTypes.JSON,
+      //   allowNull: true
+      // },
       gsm: {
         type: DataTypes.JSON,
         allowNull: true
@@ -96,7 +96,7 @@ module.exports = {
         allowNull: true
       },
       paperPrice: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       pressPrice: {

@@ -84,10 +84,10 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     type: DataTypes.BOOLEAN,
     allowNull: true
   },
-  type: {
-    type: DataTypes.JSON,
-    allowNull: true
-  },
+  // type: {
+  //   type: DataTypes.JSON,
+  //   allowNull: true
+  // },
   gsm: {
     type: DataTypes.JSON,
     allowNull: true
@@ -137,7 +137,7 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   paperPrice: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   pressPrice: {

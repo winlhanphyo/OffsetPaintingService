@@ -75,10 +75,10 @@
           </div>
         </div>
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <!-- <div class="form-group col-sm-4 p-2">
             <label for="type">Type:</label>
             {{ detailData?.type }}
-          </div>
+          </div> -->
           <div class="form-group col-sm-4 p-2">
             <label for="gsm">Gsm:</label>
             <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm">
