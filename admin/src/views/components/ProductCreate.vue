@@ -10,6 +10,41 @@
     <div class="card-body px-0 pt-0 pb-2">
       <div class="product-create">
         <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="productName">Product Name:</label>
+            <input type="text" class="form-control" id="product-name" v-model="name" />
+            <div>
+              <!-- {{ detailData?.name }} -->
+            </div>
+          </div>
+          <div class="form-group col-sm-4 p-2">
+            <label for="categoryName">Category Name:</label>
+            <select class="form-select" @change="changeCategory($event)" v-model="categoryId">
+              <option value="" disabled>Select Category Menu</option>
+              <option v-for="(item, i) in categoryList" :key="'categoryList' + i" :value="item.value">
+                {{ item?.name }}
+              </option>
+            </select>
+            <!-- {{ detailData?.category?.name }} -->
+          </div>
+
+          <!-- <div class="form-group col-sm-4 p-2"> -->
+          <!-- <label for="image">Image:</label> -->
+          <!-- <img v-for="item in detailData.media" :key="item?.id" style="width: 100px;height: 100px; object-fit: cover;margin-left: 15px;" :src="imgRoot + item?.url" /> -->
+          <!-- <input type="file"> -->
+          <!-- </div> -->
+          <div class="form-group col-sm-4 p-2">
+            <label for="image" class="form-label fw-bold">Upload Image</label>
+            <div class="input-group">
+              <input type="file" class="form-control" id="image" accept="image/*" @change="onImageChange" />
+            </div>
+            <div class="image-preview border rounded shadow-sm d-flex justify-content-center align-items-center">
+              <img v-if="imageSrc" :src="imageSrc" alt="Preview" class="img-fluid rounded" />
+              <span v-else class="text-muted">No file chosen</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex mb-3">
           <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="productName">Status:</label>
@@ -77,8 +112,7 @@
               <label for="sheet">Sheet:</label>
               <ToggleSwitch v-model="toggles.sheet" />
             </div>
-            <v-select  :multiple="true" :taggable="true"
-              placeholder="Select Sheet">
+            <v-select :multiple="true" :taggable="true" placeholder="Select Sheet">
             </v-select>
           </div>
           <div class="form-group col-sm-6 p-2">
@@ -86,8 +120,7 @@
               <label for="quantity">Quantity:</label>
               <ToggleSwitch v-model="toggles.quantity" />
             </div>
-            <v-select  :multiple="true" :taggable="true"
-              placeholder="Select Quantity">
+            <v-select :multiple="true" :taggable="true" placeholder="Select Quantity">
             </v-select>
           </div>
         </div>
@@ -190,7 +223,7 @@
             </div>
             <input type="text" name="abbb" v-model="abbb" class="form-control" />
           </div>
-          
+
         </div>
 
         <div class="d-flex mb-3">
@@ -333,7 +366,7 @@
         </div>
 
         <!-- <div class="class"> -->
-           <!-- <div class="form-group col-sm-4 p-2">
+        <!-- <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="remark">Remark:</label>
               <ToggleSwitch v-model="toggles.remark" />
@@ -394,6 +427,7 @@ export default {
       ratioWidthOptions: [],
       ratioHeightOptions: [],
       ratioDepthOptions: [],
+      imageSrc: null,
       toggles: {
         productName: true,
         category: true,
@@ -496,12 +530,12 @@ export default {
     },
     handleFileUpload() {
       const files = this.$refs.fileInput.files;
-      
+
       if (files) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
           const reader = new FileReader();
-          
+
           reader.onload = (e) => {
             this.images.push({
               file: file,           // Store the file object
@@ -544,7 +578,7 @@ export default {
       this.selectedBiType?.length > 0 && formParam.append("biType", JSON.stringify(this.selectedBiType));
       this.selectedColorF?.length > 0 && formParam.append("colorF", JSON.stringify(this.selectedColorF));
       this.selectedColorB?.length > 0 && formParam.append("colorB", JSON.stringify(this.selectedColorB));
-      
+
       // this.paperPrice && formParam.append("paperPrice", this.paperPrice);
 
       this.paperPrice?.length > 0 && formParam.append("paperPrice", JSON.stringify(this.paperPrice));
@@ -600,6 +634,18 @@ export default {
     changeCategory(event) {
       this.categoryId = event.target.value;
     },
+    onImageChange(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imageSrc = reader.result; // Set the image source to the file's data URL
+        };
+        reader.readAsDataURL(file);
+      } else {
+        this.imageSrc = null; // Reset if no file is selected
+      }
+    },
   },
 };
 </script>
@@ -639,10 +685,16 @@ textarea {
 }
 
 .image-preview {
-  max-width: 100px;
+  width: 115px;
   height: 100px;
   object-fit: cover;
   display: block;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 .remove-button {
@@ -666,6 +718,7 @@ textarea {
 .remove-button:hover {
   background-color: #cc0000;
 }
+
 .vs__search {
   height: 30px !important;
 }

@@ -38,12 +38,13 @@
 
           <div class="form-group col-sm-4 p-2" v-if="detailData?.media?.length > 0">
             <label for="image">Image:</label>
-            <img v-for="item in detailData.media" :key="item?.id" style="width: 100px;height: 100px; object-fit: cover;margin-left: 15px;" :src="imgRoot + item?.url" />
+            <img v-for="item in detailData.media" :key="item?.id"
+              style="width: 100px;height: 100px; object-fit: cover;margin-left: 15px;" :src="imgRoot + item?.url" />
           </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <label for="productName">Status:</label>
             <div>{{ detailData?.status }}</div>
             <!-- <select class="form-select" @change="changeStatus($event)" v-model="status">
@@ -52,25 +53,28 @@
               <option value="Sale">Sale</option>
             </select> -->
           </div>
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <label for="categoryName">Description:</label>
             <div>{{ detailData?.description }}</div>
           </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <label for="printingType">Printing Type:</label>
             {{ detailData?.printingType }}
           </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="quantity">Quantity:</label>
-            <input name="sheet" v-if="toggles?.quantity" type="number" v-model="quantity" class="form-control" />
-            <label v-else>{{ 1 }}</label>
-          </div>
-          <div class="form-group col-sm-4 p-2">
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <label for="sheet">Sheet:</label>
             <input name="sheet" v-if="detailData?.sheet" type="number" v-model="sheet" class="form-control" />
+            <label v-else>{{ 1 }}</label>
+          </div>
+          <div class="form-group col-sm-6 p-2">
+            <label for="quantity">Quantity:</label>
+            <input name="sheet" v-if="toggles?.quantity" type="number" v-model="quantity" class="form-control" />
             <label v-else>{{ 1 }}</label>
           </div>
         </div>
@@ -80,22 +84,44 @@
             {{ detailData?.type }}
           </div> -->
           <div class="form-group col-sm-4 p-2">
-            <label for="gsm">Gsm:</label>
-            <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm">
-              <option value="" selected disabled hidden>Choose Gsm</option>
-              <option v-for="item in gsmList" :value="item" :key="item">{{ item }}</option>
+            <label for="width">Width: </label>
+            <select name="width" id="width" class="form-select" v-model="widthHeight">
+              <option value="" selected disabled hidden>Choose Width </option>
+              <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
             </select>
           </div>
           <div class="form-group col-sm-4 p-2">
-            <label for="width">Width Height Depth:</label>
-            <select name="width" id="width" class="form-select" v-model="widthHeight">
-              <option value="" selected disabled hidden>Choose Width And Height (Depth)</option>
+            <label for="heightidth">Height: </label>
+            <select name="height" id="height" class="form-select" v-model="widthHeight">
+              <option value="" selected disabled hidden>Choose Height </option>
+              <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-4 p-2">
+            <label for="depth">Depth: </label>
+            <select name="depth" id="depth" class="form-select" v-model="widthHeight">
+              <option value="" selected disabled hidden>Choose Depth</option>
               <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
             </select>
           </div>
         </div>
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
+            <label for="gsm">Paper Type + GSM:</label>
+            <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm">
+              <option value="" selected disabled hidden>Choose Gsm and Paper Type</option>
+              <option v-for="item in gsmList" :value="item" :key="item">{{ item }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-sm-6 p-2">
+            <label for="Ratio Width">Paper Price:</label>
+            {{ detailData?.paperPrice }}
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <label for="ratioFullSize">(Ratio) Full Size:</label>
             <select name="ratioFullSize" id="size" class="form-select" v-model="ratioFullSize">
               <option value="" selected disabled hidden>Choose Ratio Size</option>
@@ -103,32 +129,43 @@
             </select>
           </div>
 
-          <div class="form-group col-sm-4 p-2">
-            <label for="ratioWidth">Ratio Width Height:</label>
+          <div class="form-group col-sm-6 p-2">
+            <label for="ratioWidth">Ratio Width </label>
             <select name="ratioWidth" id="ratioWidth" class="form-select" v-model="ratioWidthHeight">
-              <option value="" selected disabled hidden>Choose Ratio Width And Height</option>
-              <option v-for="item in ratioWidthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
+              <option value="" selected disabled hidden>Choose Ratio Width</option>
+              <option v-for="item in ratioWidthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}
+              </option>
             </select>
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
+        <div class="d-flex mb-3 justify-content-end">
+          <div class="form-group col-sm-6 p-2">
+            <label for="ratioHeight">Ratio Height </label>
+            <select name="ratioHeight" id="ratioHeight" class="form-select" v-model="ratioWidthHeight">
+              <option value="" selected disabled hidden>Choose Ratio Height</option>
+              <option v-for="item in ratioWidthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <label for="format">Format:</label>
             <select name="format" id="format" class="form-select" v-model="selectedFormat">
               <option value="" selected disabled hidden>Choose Format</option>
               <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
             </select>
           </div>
+
+          <div class="form-group col-sm-6 p-2">
+            <label for="abbb">1 (AB)2 (BB):</label>
+            <label>{{ detailData?.abbb }}</label>
+          </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <label for="colorF">Color F:</label>
-            <select name="size" id="size" class="form-select" v-model="selectedColorF">
-              <option value="" selected disabled hidden>Choose ColorF</option>
-              <option v-for="item in colorFList" :key="item" :value="item">{{ item }}</option>
-            </select>
-          </div>
-
           <div class="form-group col-sm-4 p-2">
             <label for="Ratio Width">Color B:</label>
             <select name="colorB" id="colorB" class="form-select" v-model="selectedColorB">
@@ -138,16 +175,42 @@
           </div>
 
           <div class="form-group col-sm-4 p-2">
+            <label for="colorF">Color F:</label>
+            <select name="size" id="size" class="form-select" v-model="selectedColorF">
+              <option value="" selected disabled hidden>Choose ColorF</option>
+              <option v-for="item in colorFList" :key="item" :value="item">{{ item }}</option>
+            </select>
+          </div>
+
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="ctpPrice">CTP Price:</label>
+            <label>{{ detailData?.ctpPrice }}</label>
+          </div>
+
+          <!-- <div class="form-group col-sm-4 p-2">
             <label for="lam">Lam:</label>
             <select name="lam" id="lam" class="form-select" v-model="selectedLam">
               <option value="" selected disabled hidden>Choose Lam</option>
               <option v-for="item in lamList" :key="item" :value="item">{{ item }}</option>
             </select>
+          </div> -->
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
+            <label for="Ratio Width">Lam Price:</label>
+            {{ detailData?.lamPrice }}
+          </div>
+
+          <div class="form-group col-sm-6 p-2">
+            <label for="Ratio Width">Lam Sq Price:</label>
+            {{ detailData?.lamSqPrice }}
           </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <label for="biType">BiType:</label>
             <select name="biType" id="biType" class="form-select" v-model="selectedBiType">
               <option value="" selected disabled hidden>Choose Bi Type</option>
@@ -155,28 +218,34 @@
             </select>
           </div>
 
-          <div class="form-group col-sm-4 p-2">
-            <label for="Ratio Width">Paper Price:</label>
-            {{ detailData?.paperPrice }}
+          <div class="form-group col-sm-6 p-2">
+            <label for="biType">Bi Price:</label>
+            <label>{{ detailData?.biPrice }}</label>
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
+        <div class="d-flex-mb-3">
+          <div class="form-group col-sm-6 p-2">
             <label for="Ratio Width">Press Price:</label>
             {{ detailData?.pressPrice }}
           </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <label for="Ratio Width">Lam Sq Price:</label>
-            {{ detailData?.lamSqPrice }}
+          <div class="form-group col-sm-6 p-2">
+            <label for="waste">Waste:</label>
+            <label>{{ detailData?.waste }}</label>
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
+        <div class="d-flex mb-">
+          <div class="form-group col-sm-6 p-2">
             <label for="dieCut">Die Cut:</label>
             <label>{{ detailData?.dieCut }}</label>
           </div>
+        </div>
 
+        <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
             <label for="gluding">Gluding:</label>
             <label>{{ detailData?.gluding }}</label>
@@ -184,52 +253,35 @@
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <label for="plySet">Ply Set:</label>
             <label>{{ detailData?.plySet }}</label>
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
-            <label for="biType">Bi Price:</label>
-            <label>{{ detailData?.biPrice }}</label>
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
+            <label for="cover">Cover:</label>
+            <label>{{ detailData?.cover }}</label>
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <label for="other">Other:</label>
             <label>{{ detailData?.other }}</label>
           </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <label for="cover">Cover:</label>
-            <label>{{ detailData?.cover }}</label>
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <label for="remark">Remark:</label>
             <label>{{ detailData?.remark }}</label>
           </div>
-
-          <div class="form-group col-sm-4 p-2">
-            <label for="ctpPrice">CTP Price:</label>
-            <label>{{ detailData?.ctpPrice }}</label>
-          </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <label for="waste">Waste:</label>
-            <label>{{ detailData?.waste }}</label>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="abbb">1 (AB)2 (BB):</label>
-            <label>{{ detailData?.abbb }}</label>
-          </div>
-        </div>
-
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <label for="Ratio Width" class="totalPrice">Total Price:</label>
             <label class="totalPrice">{{ totalPrice }}</label>
           </div>
@@ -237,18 +289,10 @@
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
-            <button
-              class="btn btn-primary"
-              style="margin-left: 10px"
-              @click="back()"
-            >
+            <button class="btn btn-primary" style="margin-left: 10px" @click="back()">
               Back
             </button>
-            <button
-              class="btn btn-primary"
-              style="margin-left: 10px"
-              @click="calculate()"
-            >
+            <button class="btn btn-primary" style="margin-left: 10px" @click="calculate()">
               Calculate
             </button>
           </div>

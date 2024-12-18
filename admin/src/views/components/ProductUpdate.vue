@@ -5,10 +5,10 @@
     <div class="card-header pb-0">
       <div class="d-flex items-center justify-content-between">
         <h6>Product Update</h6>
-        <div class="d-flex items-center justify-content-between w-8">
+        <!-- <div class="d-flex items-center justify-content-between w-8">
           <label for="sheet">Sheet:</label>
           <ToggleSwitch v-model="toggles.sheet" />
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
@@ -39,14 +39,7 @@
               <label for="image">Image:</label>
               <!-- <ToggleSwitch v-model="toggles.image" /> -->
             </div>
-            <input
-              class="form-control"
-              type="file"
-              id="formFile"
-              @change="handleFileUpload"
-              ref="fileInput"
-              multiple
-            />
+            <input class="form-control" type="file" id="formFile" @change="handleFileUpload" ref="fileInput" multiple />
             <!-- Image Preview with "X" remove button -->
             <div v-for="(img, index) in images" :key="index" class="image-container">
               <img :src="img.preview" alt="Image Preview" class="image-preview">
@@ -56,7 +49,7 @@
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="productName">Status:</label>
               <!-- <ToggleSwitch v-model="toggles.status" /> -->
@@ -67,21 +60,17 @@
               <option value="Sale">Sale</option>
             </select>
           </div>
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="categoryName">Description:</label>
               <!-- <ToggleSwitch v-model="toggles.description" /> -->
             </div>
             <textarea id="w3review" name="w3review" rows="4" v-model="description"></textarea>
           </div>
-          <div class="form-group col-sm-4 p-2">
-            <label for="qty">Quantity:</label>
-            <ToggleSwitch v-model="quantity" />
-          </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="printing">Printing Type:</label>
               <ToggleSwitch v-model="toggles.printingType" />
@@ -93,7 +82,185 @@
               </option>
             </select>
           </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="sheet">Sheet:</label>
+              <ToggleSwitch v-model="toggles.sheet" />
+            </div>
+            <v-select :multiple="true" :taggable="true" placeholder="Select Sheet">
+            </v-select>
+          </div>
+
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="quantity">Quantity:</label>
+              <ToggleSwitch v-model="toggles.quantity" />
+            </div>
+            <v-select :multiple="true" :taggable="true" placeholder="Select Quantity">
+            </v-select>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
           <div class="form-group col-sm-4 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="width">Width:</label>
+              <ToggleSwitch v-model="toggles.width" />
+            </div>
+            <v-select v-model="width" :options="widthOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add Width">
+            </v-select>
+          </div>
+          <div class="form-group col-sm-4 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="height">Height:</label>
+              <!-- <ToggleSwitch v-model="toggles.height" /> -->
+            </div>
+            <v-select v-model="height" :options="heightOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add Height">
+            </v-select>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="depth">Depth:</label>
+              <!-- <ToggleSwitch v-model="toggles.depth" /> -->
+            </div>
+            <v-select v-model="depth" :options="depthOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add Depth">
+            </v-select>
+          </div>
+        </div>
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="gsm">Paper Type + GSM:</label>
+              <ToggleSwitch v-model="toggles.gsm" />
+            </div>
+            <v-select v-model="selectedGsm" :options="gsmOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add GSM and Type">
+            </v-select>
+          </div>
+
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="paperPrice">Paper Price:</label>
+              <ToggleSwitch v-model="toggles.paperPrice" />
+            </div>
+            <!-- <input type="text" name="paperPrice" v-model="paperPrice" class="form-control" /> -->
+            <v-select v-model="paperPrice" :options="paperPriceOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
+          </div>
+        </div>
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="size">(Ratio) Full Size:</label>
+              <ToggleSwitch v-model="toggles.selectedRatioFullSize" />
+            </div>
+            <v-select v-model="selectedRatioFullSize" :options="ratioFullSizeOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add Ratio Full Size">
+            </v-select>
+          </div>
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="ratioWidth">Ratio Width:</label>
+              <ToggleSwitch v-model="toggles.ratioWidth" />
+            </div>
+            <v-select v-model="ratioWidth" :options="ratioWidthOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add Ratio Width">
+            </v-select>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3 justify-content-end">
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center">
+              <label for="ratioHeight">Ratio Height:</label>
+              <ToggleSwitch v-model="toggles.ratioHeight" />
+            </div>
+            <v-select v-model="ratioHeight" :options="ratioHeightOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add Ratio Heigth">
+            </v-select>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="format">Format:</label>
+              <ToggleSwitch v-model="toggles.format" />
+            </div>
+            <v-select v-model="selectedFormat" :options="formatOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
+          </div>
+
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="abbb">1 (AB)2 (BB):</label>
+              <ToggleSwitch v-model="toggles.abbb" />
+            </div>
+            <input type="text" name="abbb" v-model="abbb" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="colorB">Color B:</label>
+              <ToggleSwitch v-model="toggles.selectedColorB" />
+            </div>
+            <v-select v-model="selectedColorB" :options="colorBOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="colorF">Color F:</label>
+              <ToggleSwitch v-model="toggles.selectedColorF" />
+            </div>
+            <v-select v-model="selectedColorF" :options="colorFOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="ctpPrice">CTP Price:</label>
+              <ToggleSwitch v-model="toggles.ctpPrice" />
+            </div>
+            <input type="text" name="ctpPrice" v-model="ctpPrice" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="lam">Lam:</label>
+              <ToggleSwitch v-model="toggles.selectedLam" />
+            </div>
+            <v-select v-model="selectedLam" :options="lamOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add options">
+            </v-select>
+          </div>
+
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="Ratio Width">Lam Sq Price:</label>
+              <ToggleSwitch v-model="toggles.lamSqPrice" />
+            </div>
+            <input type="text" v-model="lamSqPrice" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="biType">BiType:</label>
               <ToggleSwitch v-model="toggles.biType" />
@@ -101,6 +268,14 @@
             <v-select v-model="selectedBiType" :options="biTypeOptions" :multiple="true" :taggable="true"
               placeholder="Select or add options">
             </v-select>
+          </div>
+
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="biPrice">Bi Price:</label>
+              <ToggleSwitch v-model="toggles.biPrice" />
+            </div>
+            <input type="text" name="biPrice" v-model="biPrice" class="form-control" />
           </div>
           <!-- <div class="form-group col-sm-4 p-2">
             <div class="d-flex items-center justify-content-between">
@@ -120,173 +295,49 @@
             </select>
           </div> -->
         </div>
-        <div class="d-flex mb-3">
-
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="gsm">Gsm And Type:</label>
-              <ToggleSwitch v-model="toggles.gsm" />
-            </div>
-            <v-select v-model="selectedGsm" :options="gsmOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add GSM and Type">
-            </v-select>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="width">Width:</label>
-              <ToggleSwitch v-model="toggles.width" />
-            </div>
-            <v-select v-model="width" :options="widthOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add Width">
-            </v-select>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="height">Height:</label>
-              <!-- <ToggleSwitch v-model="toggles.height" /> -->
-            </div>
-            <v-select v-model="height" :options="heightOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add Height">
-            </v-select>
-          </div>
-        </div>
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="depth">Depth:</label>
-              <!-- <ToggleSwitch v-model="toggles.depth" /> -->
-            </div>
-            <v-select v-model="depth" :options="depthOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add Depth">
-            </v-select>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="size">(Ratio) Full Size:</label>
-              <ToggleSwitch v-model="toggles.selectedRatioFullSize" />
-            </div>
-            <v-select v-model="selectedRatioFullSize" :options="ratioFullSizeOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add Ratio Full Size">
-            </v-select>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="ratioWidth">Ratio Width:</label>
-              <ToggleSwitch v-model="toggles.ratioWidth" />
-            </div>
-            <v-select v-model="ratioWidth" :options="ratioWidthOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add Ratio Width">
-            </v-select>
-          </div>
-        </div>
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="ratioHeight">Ratio Height:</label>
-              <!-- <ToggleSwitch v-model="toggles.ratioHeight" /> -->
-            </div>
-            <v-select v-model="ratioHeight" :options="ratioHeightOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add Ratio Heigth">
-            </v-select>
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="format">Format:</label>
-              <ToggleSwitch v-model="toggles.format" />
-            </div>
-            <v-select v-model="selectedFormat" :options="formatOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add options">
-            </v-select>
-          </div>
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="colorF">Color F:</label>
-              <ToggleSwitch v-model="toggles.selectedColorF" />
-            </div>
-            <v-select v-model="selectedColorF" :options="colorFOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add options">
-            </v-select>
-          </div>
-        </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="colorB">Color B:</label>
-              <ToggleSwitch v-model="toggles.selectedColorB" />
-            </div>
-            <v-select v-model="selectedColorB" :options="colorBOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add options">
-            </v-select>
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="lam">Lam:</label>
-              <ToggleSwitch v-model="toggles.selectedLam" />
-            </div>
-            <v-select v-model="selectedLam" :options="lamOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add options">
-            </v-select>
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="Ratio Width">Lam Sq Price:</label>
-              <ToggleSwitch v-model="toggles.lamSqPrice" />
-            </div>
-            <input type="text" v-model="lamSqPrice" class="form-control" />
-          </div>
-        </div>
-
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="paperPrice">Paper Price:</label>
-              <ToggleSwitch v-model="toggles.paperPrice" />
-            </div>
-            <!-- <input type="text" name="paperPrice" v-model="paperPrice" class="form-control" /> -->
-            <v-select v-model="paperPrice" :options="paperPriceOptions" :multiple="true" :taggable="true"
-              placeholder="Select or add options">
-            </v-select>
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="Ratio Width">Press Price:</label>
               <ToggleSwitch v-model="toggles.pressPrice" />
             </div>
             <input type="text" v-model="pressPrice" class="form-control" />
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
-              <label for="biPrice">Bi Price:</label>
-              <ToggleSwitch v-model="toggles.biPrice" />
+              <label for="waste">Waste:</label>
+              <ToggleSwitch v-model="toggles.waste" />
             </div>
-            <input type="text" name="biPrice" v-model="biPrice" class="form-control" />
+            <input type="text" name="waste" v-model="waste" class="form-control" />
           </div>
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="dieCut">Die Cut:</label>
               <ToggleSwitch v-model="toggles.dieCut" />
             </div>
             <input type="text" v-model="dieCut" class="form-control" />
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="gluding">Gluding:</label>
               <ToggleSwitch v-model="toggles.gluding" />
             </div>
             <input type="text" name="gluding" v-model="gluding" class="form-control" />
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="plySet">Ply Set:</label>
               <ToggleSwitch v-model="toggles.plySet" />
@@ -296,54 +347,32 @@
         </div>
 
         <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="other">Other:</label>
-              <ToggleSwitch v-model="toggles.other" />
-            </div>
-            <input type="text" v-model="other" class="form-control" />
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="cover">Cover:</label>
               <ToggleSwitch v-model="toggles.cover" />
             </div>
             <input type="text" v-model="cover" class="form-control" />
           </div>
+        </div>
 
-          <div class="form-group col-sm-4 p-2">
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="other">Other:</label>
+              <ToggleSwitch v-model="toggles.other" />
+            </div>
+            <input type="text" v-model="other" class="form-control" />
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="remark">Remark:</label>
               <ToggleSwitch v-model="toggles.remark" />
             </div>
             <input type="text" name="remark" v-model="remark" class="form-control" />
-          </div>
-        </div>
-
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="ctpPrice">CTP Price:</label>
-              <ToggleSwitch v-model="toggles.ctpPrice" />
-            </div>
-            <input type="text" name="ctpPrice" v-model="ctpPrice" class="form-control" />
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="waste">Waste:</label>
-              <ToggleSwitch v-model="toggles.waste" />
-            </div>
-            <input type="text" name="waste" v-model="waste" class="form-control" />
-          </div>
-
-          <div class="form-group col-sm-4 p-2">
-            <div class="d-flex items-center justify-content-between">
-              <label for="abbb">1 (AB)2 (BB):</label>
-              <ToggleSwitch v-model="toggles.abbb" />
-            </div>
-            <input type="text" name="abbb" v-model="abbb" class="form-control" />
           </div>
         </div>
 
