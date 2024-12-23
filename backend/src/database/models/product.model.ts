@@ -11,7 +11,7 @@ export interface IProductModel {
   categoryId: number;
   printingType: string;
   quantity: boolean;
-  sheet: boolean;
+  sheet: string;
   type: string;
   gsm: string;
   width: string;
@@ -77,11 +77,11 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   quantity: {
-    type: DataTypes.BOOLEAN,
-    allowNull: true
+    type: DataTypes.JSON,
+    allowNull: false
   },
   sheet: {
-    type: DataTypes.BOOLEAN,
+    type: DataTypes.JSON,
     allowNull: true
   },
   // type: {

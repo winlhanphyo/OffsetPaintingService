@@ -35,13 +35,12 @@ module.exports = {
         allowNull: true
       },
       quantity: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.JSON,
         allowNull: true
       },
       sheet: {
-        type: DataTypes.BOOLEAN,
-        allowNull: true,
-        defaultValue: false
+        type: DataTypes.JSON,
+        allowNull: true
       },
       // type: {
       //   type: DataTypes.JSON,

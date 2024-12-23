@@ -69,13 +69,23 @@
         <div class="d-flex mb-3">
           <div class="form-group col-sm-6 p-2">
             <label for="sheet">Sheet:</label>
-            <input name="sheet" v-if="detailData?.sheet" type="number" v-model="sheet" class="form-control" />
-            <label v-else>{{ 1 }}</label>
+            <!-- <input name="sheet" v-if="detailData?.sheet" type="number" v-model="sheet" class="form-control" /> -->
+            <select name="sheet" id="sheet" class="form-select" v-model="sheet">
+              <option value="" selected disabled hidden>Choose Sheet</option>
+              <option v-for="item in sheetList" :value="item" :key="item">{{ item }}
+              </option>
+            </select>
+            <!-- <label v-else>{{ 1 }}</label> -->
           </div>
           <div class="form-group col-sm-6 p-2">
             <label for="quantity">Quantity:</label>
-            <input name="sheet" v-if="toggles?.quantity" type="number" v-model="quantity" class="form-control" />
-            <label v-else>{{ 1 }}</label>
+            <!-- <input name="sheet" v-if="toggles?.quantity" type="number" v-model="quantity" class="form-control" /> -->
+            <select name="quanitity" id="quantity" class="form-select" v-model="quantity">
+              <option value="" selected disabled hidden>Choose Quantity</option>
+              <option v-for="item in quantityList" :value="item" :key="item">{{ item }}
+              </option>
+            </select>
+            <!-- <label v-else>{{ 1 }}</label> -->
           </div>
         </div>
         <div class="d-flex mb-3">
@@ -116,7 +126,11 @@
 
           <div class="form-group col-sm-6 p-2">
             <label for="Ratio Width">Paper Price:</label>
-            {{ detailData?.paperPrice }}
+            <select name="quanitity" id="paperPrice" class="form-select" v-model="paperPrice">
+              <option value="" selected disabled hidden>Choose Paper Price</option>
+              <option v-for="item in paperPriceList" :value="item" :key="item">{{ item }}
+              </option>
+            </select>
           </div>
         </div>
 
@@ -325,18 +339,21 @@ export default {
       biTypeList: [],
       lamList: [],
       ratioFullSizeList: [],
-      // quantityList: [],
+      quantityList: [],
+      sheetList: [],
       colorBList: [],
       colorFList: [],
       widthHeightList: [],
       ratioWidthHeightList: [],
+      paperPriceList: [],
       imgRoot: imgRoot,
 
-      sheet: 1,
+      sheet: "",
       selectedGsm: "128",
       quantity: "",
       ratioFullSize: "",
       ratioWidthHeight: "",
+      paperPrice: "",
       ratioWidth: "",
       ratioHeight: "",
       widthHeight: "",
@@ -369,7 +386,9 @@ export default {
       const depthList = this.detailData?.depth ? JSON.parse(this.detailData.depth) : [];
       const ratioWidthList = this.detailData?.ratioWidth ? JSON.parse(this.detailData.ratioWidth) : [];
       const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
-      // this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+      this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+      this.sheetList = this.detailData?.sheet ? JSON.parse(this.detailData.sheet) : [];
+      this.paperPriceList = this.detailData?.paperPrice ? JSON.parse(this.detailData.paperPrice) : [];
 
       widthList?.map((w) => {
         heightList?.map(h => {
@@ -507,7 +526,7 @@ export default {
       const lamTotalCost = (paper * lamPerPrice);
 
       console.log("-----lamTotal Cost", paper, lamPerPrice, lamTotalCost);
-      const paperTotalCost = (paper * this.detailData?.paperPrice);
+      const paperTotalCost = (paper * this.paperPrice);
       const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
       const bindingTotalCost = (this.detailData?.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);

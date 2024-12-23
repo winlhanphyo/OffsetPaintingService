@@ -34,13 +34,15 @@
           <!-- <input type="file"> -->
           <!-- </div> -->
           <div class="form-group col-sm-4 p-2">
-            <label for="image" class="form-label fw-bold">Upload Image</label>
-            <div class="input-group">
-              <input type="file" class="form-control" id="image" accept="image/*" @change="onImageChange" />
+            <div class="d-flex items-center justify-content-between">
+              <label for="image">Image:</label>
+              <!-- <ToggleSwitch v-model="toggles.image" /> -->
             </div>
-            <div class="image-preview border rounded shadow-sm d-flex justify-content-center align-items-center">
-              <img v-if="imageSrc" :src="imageSrc" alt="Preview" class="img-fluid rounded" />
-              <span v-else class="text-muted">No file chosen</span>
+            <input class="form-control" type="file" id="formFile" @change="handleFileUpload" ref="fileInput" multiple />
+            <!-- Image Preview with "X" remove button -->
+            <div v-for="(img, index) in images" :key="index" class="image-container">
+              <img :src="img.preview" alt="Image Preview" class="image-preview">
+              <button class="remove-button" @click="removeImage(index)">×</button>
             </div>
           </div>
         </div>
@@ -112,7 +114,7 @@
               <label for="sheet">Sheet:</label>
               <ToggleSwitch v-model="toggles.sheet" />
             </div>
-            <v-select :multiple="true" :taggable="true" placeholder="Select Sheet">
+            <v-select :multiple="true" v-model="sheet" :options="sheetOptions"  :taggable="true" placeholder="Select Sheet">
             </v-select>
           </div>
           <div class="form-group col-sm-6 p-2">
@@ -120,7 +122,7 @@
               <label for="quantity">Quantity:</label>
               <ToggleSwitch v-model="toggles.quantity" />
             </div>
-            <v-select :multiple="true" :taggable="true" placeholder="Select Quantity">
+            <v-select :multiple="true" v-model="quantity" :options="qtyOptions" :taggable="true" placeholder="Select Quantity">
             </v-select>
           </div>
         </div>
@@ -418,6 +420,7 @@ export default {
       gsmOptions: ["128gsm AP", "148gsm AP", "157gsm AP", "210gsm AP", "230gsm AP", "250gsm AP", "300gsm AP", "350gsm AP"],
       biTypeOptions: ["Saddle", "Width Box"],
       qtyOptions: ["100", "200", "300"],
+      sheetOptions: ["100", "200", "300"],
       paperPriceOptions: ["100", "200"],
       colorBOptions: [0, 1, 4],
       colorFOptions: [0, 1, 4],
@@ -427,7 +430,6 @@ export default {
       ratioWidthOptions: [],
       ratioHeightOptions: [],
       ratioDepthOptions: [],
-      imageSrc: null,
       toggles: {
         productName: true,
         category: true,
@@ -462,12 +464,13 @@ export default {
         ctpPrice: true,
         waste: true,
         abbb: true,
+        sheet: true,
       },
 
       selectedGsm: [],
       printingType: "",
-      quantity: true,
-      sheet: true,
+      quantity: [],
+      sheet: [],
       // type: "",
       gsm: [],
       width: [],
@@ -530,12 +533,12 @@ export default {
     },
     handleFileUpload() {
       const files = this.$refs.fileInput.files;
-
+      
       if (files) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
           const reader = new FileReader();
-
+          
           reader.onload = (e) => {
             this.images.push({
               file: file,           // Store the file object
@@ -562,9 +565,10 @@ export default {
       this.description && formParam.append("description", this.description);
 
       this.printingType && formParam.append("printingType", this.printingType);
-      // this.quantity?.length > 0 && formParam.append("quantity", JSON.stringify(this.quantity));
-      formParam.append("quantity", this.quantity);
-      formParam.append("sheet", this.sheet);
+      this.quantity?.length > 0 && formParam.append("quantity", JSON.stringify(this.quantity));
+      // formParam.append("quantity", this.quantity);
+      this.sheet?.length > 0 && formParam.append("sheet", JSON.stringify(this.sheet));
+      // formParam.append("sheet", this.sheet);
       // this.type && formParam.append("type", this.type);
       this.selectedGsm?.length > 0 && formParam.append("gsm", JSON.stringify(this.selectedGsm));
       this.width?.length > 0 && formParam.append("width", JSON.stringify(this.width));

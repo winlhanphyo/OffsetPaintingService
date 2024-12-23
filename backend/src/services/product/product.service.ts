@@ -156,8 +156,8 @@ class ProductService {
       } as any;
 
       productData.printingType = req.body?.printingType ? req.body.printingType : "";
-      productData.quantity = req.body?.quantity ? req.body.quantity : false;
-      productData.sheet = req.body?.sheet ? req.body.sheet : false;
+      productData.quantity = req.body?.quantity ? req.body.quantity : "";
+      productData.sheet = req.body?.sheet ? req.body.sheet : "";
       // productData.type = req.body?.type ? req.body.type : "";
       productData.gsm = req.body?.gsm ? req.body.gsm : "";
       productData.width = req.body?.width ? req.body.width : "";
@@ -246,8 +246,8 @@ class ProductService {
       } as any;
 
       productData.printingType = req.body?.printingType ? req.body.printingType : "";
-      productData.quantity = req.body?.quantity ? req.body.quantity : false;
-      productData.sheet = req.body?.sheet ? req.body.sheet : false;
+      productData.quantity = req.body?.quantity ? req.body.quantity : "";
+      productData.sheet = req.body?.sheet ? req.body.sheet : "";
       // productData.type = req.body?.type ? req.body.type : "";
       productData.gsm = req.body?.gsm ? req.body.gsm : "";
       productData.width = req.body?.width ? req.body.width : "";
