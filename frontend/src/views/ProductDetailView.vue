@@ -86,8 +86,10 @@
             <div class="form-group" v-if="toggles?.quantity">
               <label for="" class="label">{{ $t("message.quantity") }}</label>
               <div class="form-data">
-                <input type="number" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
-                  name="quantity" @input="calculate()" />
+                <!-- <input type="number" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
+                  name="quantity" @input="calculate()" /> -->
+                <v-select v-if="toggles?.quantity" :multiple="false" v-model="quantity" :options="quantityList" :taggable="true" :placeholder="$t('message.quantity')">
+                  </v-select>
               </div>
             </div>
             <div class="form-group" v-if="toggles?.sheet">
@@ -392,12 +394,16 @@
 import $ from "jquery";
 import "slick-carousel";
 import store from "@/store";
+import vSelect from 'vue-select';
 import { getProductDetail, getMediaWithProductId } from "@/services/offset.service.js";
 import { imgRoot } from "./../../config";
+import "vue-select/dist/vue-select.css";
 
 export default {
   name: "AppProductDetail",
-  components: {},
+  components: {
+    vSelect
+  },
   data() {
     return {
       categoryList: [],
@@ -575,7 +581,7 @@ export default {
         const ratioWidthList = this.detailData?.ratioWidth ? JSON.parse(this.detailData.ratioWidth) : [];
         const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
         this.detailData?.toggles ? this.toggles = JSON.parse(this.detailData.toggles) : "";
-        // this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+        this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
 
         widthList?.map((w) => {
           heightList?.map(h => {

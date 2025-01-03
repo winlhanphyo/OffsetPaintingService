@@ -80,11 +80,15 @@
           <div class="form-group col-sm-6 p-2">
             <label for="quantity">Quantity:</label>
             <!-- <input name="sheet" v-if="toggles?.quantity" type="number" v-model="quantity" class="form-control" /> -->
-            <select name="quanitity" id="quantity" class="form-select" v-model="quantity">
+            <!-- <select name="quanitity" id="quantity" class="form-select" v-model="quantity">
               <option value="" selected disabled hidden>Choose Quantity</option>
               <option v-for="item in quantityList" :value="item" :key="item">{{ item }}
               </option>
-            </select>
+            </select> -->
+
+            <v-select v-if="toggles?.quantity" :multiple="false" v-model="quantity" :options="quantityList" :taggable="true" placeholder="Choose Quantity">
+            </v-select>
+
             <!-- <label v-else>{{ 1 }}</label> -->
           </div>
         </div>
@@ -320,13 +324,16 @@
 <script>
 // import moment from "moment";
 // import Swal from "sweetalert2";
+import vSelect from 'vue-select';
+import "vue-select/dist/vue-select.css";
 import DetailDialog from "../../components/DetailDialog.vue";
 import { imgRoot } from "../../../config.js";
 import { getCategory, getProductById } from "@/services/admin.service.js";
 
 export default {
   components: {
-    DetailDialog
+    DetailDialog,
+    vSelect
   },
   data() {
     return {
