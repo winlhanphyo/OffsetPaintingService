@@ -88,8 +88,9 @@
               <div class="form-data">
                 <!-- <input type="number" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
                   name="quantity" @input="calculate()" /> -->
-                <v-select v-if="toggles?.quantity" :multiple="false" v-model="quantity" :options="quantityList" :taggable="true" :placeholder="$t('message.quantity')">
-                  </v-select>
+                <v-select v-if="toggles?.quantity" :multiple="false" v-model="quantity" :options="quantityList"
+                  :taggable="true" :placeholder="$t('message.quantity')">
+                </v-select>
               </div>
             </div>
             <div class="form-group" v-if="toggles?.sheet">
@@ -186,11 +187,14 @@
             <div class="form-group" v-if="toggles?.format">
               <label for="" class="label">{{ $t("message.format") }}</label>
               <div class="form-data">
-                <select name="format" id="format" class="form-select" v-model="selectedFormat" @change="calculate()">
+                <!-- <select name="format" id="format" class="form-select" v-model="selectedFormat" @change="calculate()">
                   <option value="" selected disabled hidden>Choose {{ $t("message.format") }}</option>
                   <option value="">None</option>
                   <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
-                </select>
+                </select> -->
+                <v-select v-if="toggles?.format" :multiple="false" v-model="selectedFormat" :options="formatList"
+                  :taggable="true" @change="changePaperType">
+                </v-select>
               </div>
             </div>
             <div class="form-group" v-if="toggles?.colorF">
@@ -246,7 +250,14 @@
             <div class="form-group" v-if="toggles?.biPrice">
               <label for="" class="label">{{ $t("message.biPrice") }}</label>
               <div class="form-data">
-                {{ detailData?.biPrice }}
+                <v-select v-if="toggles?.biPrice" :multiple="false" v-model="biPrice" :options="biPriceList"
+                  :taggable="true" disabled>
+                </v-select>
+
+                <!-- <select name="biPrice" id="biPrice" class="form-select" v-model="biPrice" disabled>
+                  <option value="" selected disabled hidden>Choose Bi Price</option>
+                  <option v-for="item in biPriceList" :key="item" :value="item">{{ item }}</option>
+                </select> -->
               </div>
             </div>
             <div class="form-group" v-if="toggles?.dieCut">
@@ -307,13 +318,7 @@
             <div class="form-group">
               <label for="" class="label">{{ $t("message.designImage") }}</label>
               <div class="form-data">
-                <input
-                  class="form-control"
-                  type="file"
-                  id="formFile"
-                  @change="handleFileUpload"
-                  ref="fileInput"
-                />
+                <input class="form-control" type="file" id="formFile" @change="handleFileUpload" ref="fileInput" />
               </div>
             </div>
             <!-- Image Preview with "X" remove button -->
@@ -413,6 +418,7 @@ export default {
       formatList: [],
       gsmList: [],
       biTypeList: [],
+      biPriceList: [],
       lamList: [],
       colorList: ["One Side", "Both Sides"],
       ratioFullSizeList: [],
@@ -437,6 +443,7 @@ export default {
       selectedLam: "",
       selectedColor: "",
       selectedBiType: "",
+      biPrice: "",
       totalPrice: 0,
       images: {
         file: null,
@@ -539,10 +546,10 @@ export default {
     },
     handleFileUpload() {
       const file = this.$refs.fileInput.files[0]; // Get the first (and only) file
-      
+
       if (file) {
         const reader = new FileReader();
-        
+
         reader.onload = (e) => {
           this.images = {
             file: file,
@@ -559,6 +566,13 @@ export default {
       };
       this.$refs.fileInput.value = null;
     },
+    changeFormat() {
+      const index = this.formatList.indexOf(this.selectedFormat);
+      if (index >= 0 && this.biPriceList.length >= index + 1) {
+        this.biPrice = this.biPriceList[index];
+      }
+      console.log('--------biPrice index', index, this.biPrice);
+    },
     async getProductDetailData() {
       const id = this.$route.params.id;
       localStorage.setItem("setAllLoading", true);
@@ -570,6 +584,7 @@ export default {
         this.formatList = this.detailData?.format ? JSON.parse(this.detailData.format) : [];
         this.gsmList = this.detailData?.gsm ? JSON.parse(this.detailData.gsm) : [];
         this.biTypeList = this.detailData?.biType ? JSON.parse(this.detailData.biType) : [];
+        this.biPriceList = this.detailData.biPrice ? JSON.parse(this.detailData.biPrice) : [];
         this.lamList = this.detailData?.lam ? JSON.parse(this.detailData.lam) : [];
         this.ratioFullSizeList = this.detailData?.ratioFullSize ? JSON.parse(this.detailData.ratioFullSize) : [];
         this.colorBList = this.detailData?.colorB ? JSON.parse(this.detailData.colorB) : [];
@@ -581,7 +596,18 @@ export default {
         const ratioWidthList = this.detailData?.ratioWidth ? JSON.parse(this.detailData.ratioWidth) : [];
         const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
         this.detailData?.toggles ? this.toggles = JSON.parse(this.detailData.toggles) : "";
-        this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+        // this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+        this.quantityList = this.detailData?.quantity
+          ? (() => {
+            try {
+              const parsed = JSON.parse(this.detailData.quantity);
+              return Array.isArray(parsed) ? parsed : [];
+            } catch (e) {
+              console.error("Failed to parse quantity:", e);
+              return [];
+            }
+          })()
+          : [];
 
         widthList?.map((w) => {
           heightList?.map(h => {
@@ -617,7 +643,7 @@ export default {
         });
 
         console.log("--------ratioWidthList", ratioWidthList, ratioHeightList);
-        console.log("--------toggles",this.toggles["ratioWidth"], this.toggles, this.ratioWidthHeightList);
+        console.log("--------toggles", this.toggles["ratioWidth"], this.toggles, this.ratioWidthHeightList);
 
         Object.keys(this.toggles).map((dist) => {
           if (dist === "format" && !this.toggles[dist] && this.formatList.length > 0) {
@@ -706,6 +732,14 @@ export default {
         lamPerPrice = (2 * this.ratioWidth * this.ratioHeight * this.detailData?.lamSqPrice);
       }
 
+      let selectedRatioFullSize = 0;
+      if (this.ratioFullSize) {
+        const splitRatioFullSize = this.ratioFullSize.split(" ");
+        if (splitRatioFullSize.length > 0) {
+          selectedRatioFullSize = splitRatioFullSize[0]
+        }
+      }
+
       let vPround = 0;
       if (!this.detailData?.plySet || this.detailData?.plySet <= 0) {
         if (this.sheet <= 2) {
@@ -742,10 +776,11 @@ export default {
         // flatten
         paper = (this.quantity / this.selectedFormat) + (form * this.detailData.waste);
       }
+      console.log("---------------ratioFullSize", this.ratioFullSize);
 
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
-      const paperTotalCost = (paper * this.detailData?.paperPrice);
+      const paperTotalCost = (paper * this.detailData?.paperPrice / selectedRatioFullSize);
       const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
       const bindingTotalCost = (this.detailData?.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);
@@ -1164,5 +1199,13 @@ export default {
 
 .remove-button:hover {
   background-color: #cc0000;
+}
+
+.vs__search {
+  border: none !important;
+}
+
+.v-select ul li {
+  width: 100%;
 }
 </style>
