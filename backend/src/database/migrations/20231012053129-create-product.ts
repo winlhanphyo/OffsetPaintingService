@@ -119,7 +119,7 @@ module.exports = {
         allowNull: true
       },
       biPrice: {
-        type: DataTypes.STRING,
+        type: DataTypes.JSON,
         allowNull: true
       },
       other: {

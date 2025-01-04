@@ -70,11 +70,14 @@
           <div class="form-group col-sm-6 p-2">
             <label for="sheet">Sheet:</label>
             <!-- <input name="sheet" v-if="detailData?.sheet" type="number" v-model="sheet" class="form-control" /> -->
-            <select name="sheet" id="sheet" class="form-select" v-model="sheet">
+            <!-- <select name="sheet" id="sheet" class="form-select" v-model="sheet">
               <option value="" selected disabled hidden>Choose Sheet</option>
               <option v-for="item in sheetList" :value="item" :key="item">{{ item }}
               </option>
-            </select>
+            </select> -->
+
+            <v-select v-if="toggles?.sheet" :multiple="false" v-model="sheet" :options="sheetList" :taggable="true" placeholder="Choose Sheet">
+            </v-select>
             <!-- <label v-else>{{ 1 }}</label> -->
           </div>
           <div class="form-group col-sm-6 p-2">
@@ -104,7 +107,7 @@
               <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
             </select>
           </div>
-          <div class="form-group col-sm-4 p-2">
+          <!-- <div class="form-group col-sm-4 p-2">
             <label for="heightidth">Height: </label>
             <select name="height" id="height" class="form-select" v-model="widthHeight">
               <option value="" selected disabled hidden>Choose Height </option>
@@ -117,12 +120,12 @@
               <option value="" selected disabled hidden>Choose Depth</option>
               <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}</option>
             </select>
-          </div>
+          </div> -->
         </div>
         <div class="d-flex mb-3">
           <div class="form-group col-sm-6 p-2">
             <label for="gsm">Paper Type + GSM:</label>
-            <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm">
+            <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm" @change="changePaperType">
               <option value="" selected disabled hidden>Choose Gsm and Paper Type</option>
               <option v-for="item in gsmList" :value="item" :key="item">{{ item }}</option>
             </select>
@@ -130,7 +133,7 @@
 
           <div class="form-group col-sm-6 p-2">
             <label for="Ratio Width">Paper Price:</label>
-            <select name="quanitity" id="paperPrice" class="form-select" v-model="paperPrice">
+            <select name="quanitity" id="paperPrice" class="form-select" v-model="paperPrice" disabled>
               <option value="" selected disabled hidden>Choose Paper Price</option>
               <option v-for="item in paperPriceList" :value="item" :key="item">{{ item }}
               </option>
@@ -157,7 +160,7 @@
           </div>
         </div>
 
-        <div class="d-flex mb-3 justify-content-end">
+        <!-- <div class="d-flex mb-3 justify-content-end">
           <div class="form-group col-sm-6 p-2">
             <label for="ratioHeight">Ratio Height </label>
             <select name="ratioHeight" id="ratioHeight" class="form-select" v-model="ratioWidthHeight">
@@ -166,12 +169,12 @@
               </option>
             </select>
           </div>
-        </div>
+        </div> -->
 
         <div class="d-flex mb-3">
           <div class="form-group col-sm-6 p-2">
             <label for="format">Format:</label>
-            <select name="format" id="format" class="form-select" v-model="selectedFormat">
+            <select name="format" id="format" class="form-select" v-model="selectedFormat" @change="changeFormat">
               <option value="" selected disabled hidden>Choose Format</option>
               <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
             </select>
@@ -238,7 +241,15 @@
 
           <div class="form-group col-sm-6 p-2">
             <label for="biType">Bi Price:</label>
-            <label>{{ detailData?.biPrice }}</label>
+            <!-- <label>{{ detailData?.biPrice }}</label> -->
+
+            <!-- <v-select v-if="toggles?.biPrice" :multiple="false" v-model="biPrice" :options="biPriceList" :taggable="true" placeholder="Choose BiPrice">
+            </v-select> -->
+
+            <select name="biPrice" id="biPrice" class="form-select" v-model="biPrice" disabled>
+              <option value="" selected disabled hidden>Choose Bi Price</option>
+              <option v-for="item in biPriceList" :key="item" :value="item">{{ item }}</option>
+            </select>
           </div>
         </div>
 
@@ -344,6 +355,7 @@ export default {
       formatList: [],
       gsmList: [],
       biTypeList: [],
+      biPriceList: [],
       lamList: [],
       ratioFullSizeList: [],
       quantityList: [],
@@ -361,6 +373,7 @@ export default {
       ratioFullSize: "",
       ratioWidthHeight: "",
       paperPrice: "",
+      biPrice: "",
       ratioWidth: "",
       ratioHeight: "",
       widthHeight: "",
@@ -382,6 +395,7 @@ export default {
       this.formatList = this.detailData?.format ? JSON.parse(this.detailData.format) : [];
       this.gsmList = this.detailData?.gsm ? JSON.parse(this.detailData.gsm) : [];
       this.biTypeList = this.detailData?.biType ? JSON.parse(this.detailData.biType) : [];
+      this.biPriceList = this.detailData?.biPrice ? JSON.parse(this.detailData.biPrice) : [];
       this.lamList = this.detailData?.lam ? JSON.parse(this.detailData.lam) : [];
       this.ratioFullSizeList = this.detailData?.ratioFullSize ? JSON.parse(this.detailData.ratioFullSize) : [];
       this.colorBList = this.detailData?.colorB ? JSON.parse(this.detailData.colorB) : [];
@@ -433,6 +447,20 @@ export default {
     }
   },
   methods: {
+    changePaperType() {
+      const index = this.gsmList.indexOf(this.selectedGsm);
+      if (index >= 0 && this.paperPriceList.length >= index + 1) {
+        this.paperPrice = this.paperPriceList[index];
+      }
+      console.log('--------paperPrice index', index, this.paperPrice);
+    },
+    changeFormat() {
+      const index = this.formatList.indexOf(this.selectedFormat);
+      if (index >= 0 && this.biPriceList.length >= index + 1) {
+        this.biPrice = this.biPriceList[index];
+      }
+      console.log('--------biPrice index', index, this.biPrice);
+    },
     async getCategoryData() {
       const token = localStorage.getItem("token");
       const arr = [];
@@ -490,6 +518,14 @@ export default {
       console.log("selectedLam", this.selectedLam);
       console.log("-----ratioWidth", this.ratioWidth, this.ratioHeight, this.detailData?.lamSqPrice);
 
+      let selectedRatioFullSize = 0;
+      if (this.ratioFullSize) {
+        const splitRatioFullSize = this.ratioFullSize.split(" ");
+        if (splitRatioFullSize.length > 0) {
+          selectedRatioFullSize = splitRatioFullSize[0]
+        }
+      }
+
       let vPround = 0;
       if (!this.detailData?.plySet || this.detailData?.plySet <= 0) {
         if (this.sheet <= 2) {
@@ -528,14 +564,15 @@ export default {
       }
 
       console.log("--------quantity", this.quantity, this.selectedFormat, this.detailData?.waste);
+      console.log("--------ratio full size", this.ratioFullSize);
 
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
 
       console.log("-----lamTotal Cost", paper, lamPerPrice, lamTotalCost);
-      const paperTotalCost = (paper * this.paperPrice);
+      const paperTotalCost = (paper * (this.paperPrice / selectedRatioFullSize));
       const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
-      const bindingTotalCost = (this.detailData?.biPrice * this.quantity);
+      const bindingTotalCost = (this?.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);
       const gludingTotal = (this.detailData?.gluding * this.quantity);
       const coverTotal = (this.detailData?.cover * this.quantity);

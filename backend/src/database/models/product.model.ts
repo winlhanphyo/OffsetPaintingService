@@ -161,7 +161,7 @@ const modelAttributes: DbModelFieldInit<Partial<IProductModel>> = {
     allowNull: true
   },
   biPrice: {
-    type: DataTypes.STRING,
+    type: DataTypes.JSON,
     allowNull: true
   },
   other: {

@@ -282,18 +282,27 @@
           <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="biPrice">Bi Type:</label>
-              <ToggleSwitch v-model="toggles.biPrice" />
+              <ToggleSwitch v-model="toggles.biType" />
             </div>
             <v-select v-model="selectedBiType" :options="biTypeOptions" :multiple="true" :taggable="true"
               placeholder="Select or add BiType">
             </v-select>
           </div>
-          <div class="form-group col-sm-6 p-2">
+          <!-- <div class="form-group col-sm-6 p-2">
             <div class="d-flex items-center justify-content-between">
               <label for="biPrice">Bi Price:</label>
               <ToggleSwitch v-model="toggles.biPrice" />
             </div>
             <input type="text" name="biPrice" v-model="biPrice" class="form-control" />
+          </div> -->
+          <div class="form-group col-sm-6 p-2">
+            <div class="d-flex items-center justify-content-between">
+              <label for="biPrice">Bi Price:</label>
+              <ToggleSwitch v-model="toggles.biPrice" />
+            </div>
+            <v-select v-model="biPrice" :options="biPriceOptions" :multiple="true" :taggable="true"
+              placeholder="Select or add Bi Price">
+            </v-select>
           </div>
         </div>
 
@@ -422,6 +431,7 @@ export default {
       qtyOptions: ["100", "200", "300"],
       sheetOptions: ["100", "200", "300"],
       paperPriceOptions: ["100", "200"],
+      biPriceOptions: ["100", "200"],
       colorBOptions: [0, 1, 4],
       colorFOptions: [0, 1, 4],
       widthOptions: [],
@@ -483,7 +493,6 @@ export default {
       selectedBiType: [],
       selectedColorB: [],
       selectedColorF: [],
-      paperPrice: [],
       pressPrice: "",
       lamSqPrice: "",
 
@@ -592,7 +601,8 @@ export default {
       this.dieCut && formParam.append("dieCut", this.dieCut);
       this.gluding && formParam.append("gluding", this.gluding);
       this.plySet && formParam.append("plySet", this.plySet);
-      this.biPrice && formParam.append("biPrice", this.biPrice);
+      // this.biPrice && formParam.append("biPrice", this.biPrice);
+      this.biPrice?.length > 0 && formParam.append("biPrice", JSON.stringify(this.biPrice));
       this.other && formParam.append("other", this.other);
       this.cover && formParam.append("cover", this.cover);
       this.remark && formParam.append("remark", this.remark);
