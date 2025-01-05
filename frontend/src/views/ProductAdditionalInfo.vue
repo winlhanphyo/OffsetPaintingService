@@ -79,222 +79,226 @@
         </div> -->
 
         <div class="form-group" v-if="toggles?.width">
-              <label for="" class="label">{{ $t("message.size") }}</label>
-              <div class="form-data">
-                <select name="width" id="width" class="form-select" v-model="widthHeight">
-                  <option value="" selected disabled hidden>{{ $t("message.size") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.quantity">
-              <label for="" class="label">{{ $t("message.quantity") }}</label>
-              <div class="form-data">
-                <input type="number" class="form-select" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
-                  name="quantity" @input="calculate()" style="width: 89%;padding: 10px;border: 1px solid rgba(0, 0, 0, 0.25);" />
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.sheet">
-              <label for="" class="label">{{ $t("message.sheet") }}</label>
-              <div class="form-data">
-                <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" />
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.gsm">
-              <label for="" class="label">{{ $t("message.material") }}</label>
-              <div class="form-data">
-                <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm" @change="calculate()">
-                  <option value="" selected disabled hidden>{{ $t("message.material") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in gsmList" :value="item" :key="item">{{ item }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.printingType">
-              <label for="" class="label">{{ $t("message.printingType") }}</label>
-              <div class="form-data">
-                {{ detailData.printingType }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.biType">
-              <label for="" class="label">{{ $t("message.printingSides") }}</label>
-              <div class="form-data">
-                <select name="biType" id="biType" class="form-select" v-model="selectedBiType" @change="calculate()">
-                  <option value="" selected disabled hidden>{{ $t("message.printingSides") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in biTypeList" :key="item" :value="item">{{ item }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.type">
-              <label for="" class="label">{{ $t("message.type") }}</label>
-              <div class="form-data">
-                {{ detailData.type }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.ratioFullSize">
-              <label for="" class="label">{{ $t("message.ratioFullSize") }}</label>
-              <div class="form-data">
-                <select name="ratioFullSize" id="size" class="form-select" v-model="ratioFullSize"
-                  @change="calculate()">
-                  <option value="" selected disabled hidden>{{ $t("message.ratioFullSize") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in ratioFullSizeList" :key="item" :value="item">{{ item }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.ratioWidth">
-              <label for="" class="label">{{ $t("message.ratioWidthHeight") }}</label>
-              <div class="form-data">
-                <select name="ratioWidth" id="ratioWidth" class="form-select" v-model="ratioWidthHeight"
-                  @change="calculate()">
-                  <option value="" selected disabled hidden>Choose {{ $t("message.ratioWidthHeight") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in ratioWidthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.format">
-              <label for="" class="label">{{ $t("message.format") }}</label>
-              <div class="form-data">
-                <select name="format" id="format" class="form-select" v-model="selectedFormat" @change="calculate()">
-                  <option value="" selected disabled hidden>Choose {{ $t("message.format") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.colorF">
-              <label for="" class="label">{{ $t("message.colorF") }}</label>
-              <div class="form-data">
-                <select name="size" id="size" class="form-select" v-model="selectedColorF" @change="calculate()">
-                  <option value="" selected disabled hidden>Choose {{ $t("message.colorF") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in colorFList" :key="item" :value="item">{{ item }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.colorB">
-              <label for="" class="label">{{ $t("message.colorB") }}</label>
-              <div class="form-data">
-                <select name="colorB" id="colorB" class="form-select" v-model="selectedColorB" @change="calculate()">
-                  <option value="" selected disabled hidden>Choose {{ $t("message.colorB") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in colorBList" :key="item" :value="item">{{ item }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.lam && lamList?.length > 0">
-              <label for="" class="label">{{ $t("message.lamination") }}</label>
-              <div class="form-data">
-                <!-- <input type="text" placeholder="None" />  -->
-                <select name="lam" id="lam" class="form-select" v-model="selectedLam" @change="calculate()">
-                  <option value="" hidden>Choose {{ $t("message.lamination") }}</option>
-                  <option value="">None</option>
-                  <option v-for="item in lamList" :key="item" :value="item">{{ item }}</option>
-                </select>
-              </div>
-            </div>
+          <label for="" class="label">{{ $t("message.size") }}</label>
+          <div class="form-data">
+            <select name="width" id="width" class="form-select" v-model="widthHeight">
+              <option value="" selected disabled hidden>{{ $t("message.size") }}</option>
+              <option value="">None</option>
+              <option v-for="item in widthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="width: 92%;" v-if="toggles?.quantity">
+          <label for="" class="label">{{ $t("message.quantity") }}</label>
+          <div class="form-data">
+            <!-- <input type="number" class="form-select" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
+                  name="quantity" @input="calculate()" style="width: 89%;padding: 10px;border: 1px solid rgba(0, 0, 0, 0.25);" /> -->
+            <!-- <v-select :items="quantities" v-model="selectedQuantity" label="Quantity" /> -->
+            <v-select v-if="toggles?.quantity" :multiple="false" v-model="quantity" :options="quantityList"
+              :taggable="true" :placeholder="$t('message.quantity')">
+            </v-select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.sheet">
+          <label for="" class="label">{{ $t("message.sheet") }}</label>
+          <div class="form-data">
+            <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" />
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.gsm">
+          <label for="" class="label">{{ $t("message.material") }}</label>
+          <div class="form-data">
+            <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm" @change="calculate()">
+              <option value="" selected disabled hidden>{{ $t("message.material") }}</option>
+              <option value="">None</option>
+              <option v-for="item in gsmList" :value="item" :key="item">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.printingType">
+          <label for="" class="label">{{ $t("message.printingType") }}</label>
+          <div class="form-data">
+            {{ detailData.printingType }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.biType">
+          <label for="" class="label">{{ $t("message.printingSides") }}</label>
+          <div class="form-data">
+            <select name="biType" id="biType" class="form-select" v-model="selectedBiType" @change="calculate()">
+              <option value="" selected disabled hidden>{{ $t("message.printingSides") }}</option>
+              <option value="">None</option>
+              <option v-for="item in biTypeList" :key="item" :value="item">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.type">
+          <label for="" class="label">{{ $t("message.type") }}</label>
+          <div class="form-data">
+            {{ detailData.type }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.ratioFullSize">
+          <label for="" class="label">{{ $t("message.ratioFullSize") }}</label>
+          <div class="form-data">
+            <select name="ratioFullSize" id="size" class="form-select" v-model="ratioFullSize" @change="calculate()">
+              <option value="" selected disabled hidden>{{ $t("message.ratioFullSize") }}</option>
+              <option value="">None</option>
+              <option v-for="item in ratioFullSizeList" :key="item" :value="item">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.ratioWidth">
+          <label for="" class="label">{{ $t("message.ratioWidthHeight") }}</label>
+          <div class="form-data">
+            <select name="ratioWidth" id="ratioWidth" class="form-select" v-model="ratioWidthHeight"
+              @change="calculate()">
+              <option value="" selected disabled hidden>Choose {{ $t("message.ratioWidthHeight") }}</option>
+              <option value="">None</option>
+              <option v-for="item in ratioWidthHeightList" :value="item.value" :key="item?.value">{{ item?.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.format">
+          <label for="" class="label">{{ $t("message.format") }}</label>
+          <div class="form-data" style="width: 92%;">
+            <!-- <select name="format" id="format" class="form-select" v-model="selectedFormat" @change="calculate()">
+              <option value="" selected disabled hidden>Choose {{ $t("message.format") }}</option>
+              <option value="">None</option>
+              <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
+            </select> -->
+            <v-select v-if="toggles?.format" :multiple="false" v-model="selectedFormat" :options="formatList"
+              :taggable="true" @change="calculate()">
+            </v-select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.colorF">
+          <label for="" class="label">{{ $t("message.colorF") }}</label>
+          <div class="form-data">
+            <select name="size" id="size" class="form-select" v-model="selectedColorF" @change="calculate()">
+              <option value="" selected disabled hidden>Choose {{ $t("message.colorF") }}</option>
+              <option value="">None</option>
+              <option v-for="item in colorFList" :key="item" :value="item">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.colorB">
+          <label for="" class="label">{{ $t("message.colorB") }}</label>
+          <div class="form-data">
+            <select name="colorB" id="colorB" class="form-select" v-model="selectedColorB" @change="calculate()">
+              <option value="" selected disabled hidden>Choose {{ $t("message.colorB") }}</option>
+              <option value="">None</option>
+              <option v-for="item in colorBList" :key="item" :value="item">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.lam && lamList?.length > 0">
+          <label for="" class="label">{{ $t("message.lamination") }}</label>
+          <div class="form-data">
+            <!-- <input type="text" placeholder="None" />  -->
+            <select name="lam" id="lam" class="form-select" v-model="selectedLam" @change="calculate()">
+              <option value="" hidden>Choose {{ $t("message.lamination") }}</option>
+              <option value="">None</option>
+              <option v-for="item in lamList" :key="item" :value="item">{{ item }}</option>
+            </select>
+          </div>
+        </div>
 
-            <div class="form-group" v-if="toggles?.lamSqPrice" @change="calculate()">
-              <label for="" class="label">{{ $t("message.lamSqPrice") }}</label>
-              <div class="form-data">
-                {{ detailData?.lamSqPrice }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.paperPrice" @change="calculate()">
-              <label for="" class="label">{{ $t("message.paperPrice") }}</label>
-              <div class="form-data">
-                {{ detailData?.paperPrice }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.pressPrice" @change="calculate()">
-              <label for="" class="label">{{ $t("message.pressPrice") }}</label>
-              <div class="form-data">
-                {{ detailData?.pressPrice }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.biPrice" @change="calculate()">
-              <label for="" class="label">{{ $t("message.biPrice") }}</label>
-              <div class="form-data">
-                {{ detailData?.biPrice }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.dieCut" @change="calculate()">
-              <label for="" class="label">{{ $t("message.dieCut") }}</label>
-              <div class="form-data">
-                {{ detailData?.dieCut }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.gluding" @change="calculate()">
-              <label for="" class="label">{{ $t("message.gluding") }}</label>
-              <div class="form-data">
-                {{ detailData?.gluding }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.plySet" @change="calculate()">
-              <label for="" class="label">{{ $t("message.plySet") }}</label>
-              <div class="form-data">
-                {{ detailData?.plySet }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.other" @change="calculate()">
-              <label for="" class="label">{{ $t("message.other") }}</label>
-              <div class="form-data">
-                {{ detailData?.other }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.cover" @change="calculate()">
-              <label for="" class="label">{{ $t("message.cover") }}</label>
-              <div class="form-data">
-                {{ detailData?.cover }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.remark" @change="calculate()">
-              <label for="" class="label">{{ $t("message.remark") }}</label>
-              <div class="form-data">
-                {{ detailData?.remark }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.ctpPrice" @change="calculate()">
-              <label for="" class="label">{{ $t("message.ctpPrice") }}</label>
-              <div class="form-data">
-                {{ detailData?.ctpPrice }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.waste" @change="calculate()">
-              <label for="" class="label">{{ $t("message.waste") }}</label>
-              <div class="form-data">
-                {{ detailData?.waste }}
-              </div>
-            </div>
-            <div class="form-group" v-if="toggles?.abbb" @change="calculate()">
-              <label for="" class="label">{{ $t("message.abbb") }}</label>
-              <div class="form-data">
-                {{ detailData?.abbb }}
-              </div>
-            </div>
+        <div class="form-group" v-if="toggles?.lamSqPrice" @change="calculate()">
+          <label for="" class="label">{{ $t("message.lamSqPrice") }}</label>
+          <div class="form-data">
+            {{ detailData?.lamSqPrice }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.paperPrice" @change="calculate()">
+          <label for="" class="label">{{ $t("message.paperPrice") }}</label>
+          <div class="form-data">
+            {{ detailData?.paperPrice }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.pressPrice" @change="calculate()">
+          <label for="" class="label">{{ $t("message.pressPrice") }}</label>
+          <div class="form-data">
+            {{ detailData?.pressPrice }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.biPrice" @change="calculate()">
+          <label for="" class="label">{{ $t("message.biPrice") }}</label>
+          <div class="form-data" style="width: 92%;">
+            <!-- {{ detailData?.biPrice }} -->
+            <!-- <v-text-field v-model="biPrice" label="Bi Price" :disabled="true" :options="biPriceList/> -->
+            <v-select v-if="toggles?.biPrice" :multiple="false" v-model="selectedBiPr" :options="biPriceList"
+              :taggable="true" @change="calculate()" :disabled="true">
+            </v-select>
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.dieCut" @change="calculate()">
+          <label for="" class="label">{{ $t("message.dieCut") }}</label>
+          <div class="form-data">
+            {{ detailData?.dieCut }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.gluding" @change="calculate()">
+          <label for="" class="label">{{ $t("message.gluding") }}</label>
+          <div class="form-data">
+            {{ detailData?.gluding }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.plySet" @change="calculate()">
+          <label for="" class="label">{{ $t("message.plySet") }}</label>
+          <div class="form-data">
+            {{ detailData?.plySet }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.other" @change="calculate()">
+          <label for="" class="label">{{ $t("message.other") }}</label>
+          <div class="form-data">
+            {{ detailData?.other }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.cover" @change="calculate()">
+          <label for="" class="label">{{ $t("message.cover") }}</label>
+          <div class="form-data">
+            {{ detailData?.cover }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.remark" @change="calculate()">
+          <label for="" class="label">{{ $t("message.remark") }}</label>
+          <div class="form-data">
+            {{ detailData?.remark }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.ctpPrice" @change="calculate()">
+          <label for="" class="label">{{ $t("message.ctpPrice") }}</label>
+          <div class="form-data">
+            {{ detailData?.ctpPrice }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.waste" @change="calculate()">
+          <label for="" class="label">{{ $t("message.waste") }}</label>
+          <div class="form-data">
+            {{ detailData?.waste }}
+          </div>
+        </div>
+        <div class="form-group" v-if="toggles?.abbb" @change="calculate()">
+          <label for="" class="label">{{ $t("message.abbb") }}</label>
+          <div class="form-data">
+            {{ detailData?.abbb }}
+          </div>
+        </div>
 
-            <div class="form-group">
-              <label for="" class="label">{{ $t("message.designImage") }}</label>
-              <div class="form-data">
-                <input
-                  class="form-control"
-                  type="file"
-                  id="formFile"
-                  @change="handleFileUpload"
-                  ref="fileInput"
-                />
-              </div>
-            </div>
-             <!-- Image Preview with "X" remove button -->
-             <div class="image-container" v-if="images?.preview">
-              <img :src="images?.preview" alt="Image Preview" class="image-preview">
-              <button class="remove-button" @click="removeImage()">×</button>
-            </div>
+        <div class="form-group">
+          <label for="" class="label">{{ $t("message.designImage") }}</label>
+          <div class="form-data">
+            <input class="form-control" type="file" id="formFile" @change="handleFileUpload" ref="fileInput" />
+          </div>
+        </div>
+        <!-- Image Preview with "X" remove button -->
+        <div class="image-container" v-if="images?.preview">
+          <img :src="images?.preview" alt="Image Preview" class="image-preview">
+          <button class="remove-button" @click="removeImage()">×</button>
+        </div>
 
         <div class="total">စုစုပေါင်း : Ks{{ totalPrice }}</div>
       </div>
@@ -320,17 +324,23 @@ import "slick-carousel";
 import store from "@/store";
 import { getProductDetail, getMediaWithProductId } from "@/services/offset.service.js";
 import { imgRoot } from "./../../config";
+import vSelect from 'vue-select';
+import "vue-select/dist/vue-select.css";
 
 export default {
   name: "AppProductAdditionalInfo",
-  components: {},
+  components: { vSelect },
   data() {
     return {
       categoryList: [],
       detailData: {},
       media: [],
 
-      formatList: [],
+      formatList: ["A1", "A2", "A3", "A4"],
+      biPriceList: ["1000", "2000", "3000", "4000"],
+      // biPrices: [500, 700, 900],
+      selectedFormat: null,
+      selectedBiPrice: null,
       gsmList: [],
       biTypeList: [],
       lamList: [],
@@ -350,7 +360,7 @@ export default {
       ratioWidth: "",
       ratioHeight: "",
       widthHeight: "",
-      selectedFormat: "",
+      // selectedFormat: "",
       selectedColorF: "",
       selectedColorB: "",
       selectedLam: "",
@@ -404,10 +414,10 @@ export default {
   methods: {
     handleFileUpload() {
       const file = this.$refs.fileInput.files[0]; // Get the first (and only) file
-      
+
       if (file) {
         const reader = new FileReader();
-        
+
         reader.onload = (e) => {
           this.images = {
             file: file,
@@ -442,6 +452,7 @@ export default {
 
           this.images = item?.images ? JSON.parse(item.images) : this.images;
           this.formatList = this.detailData?.format ? JSON.parse(this.detailData.format) : [];
+          this.biPriceList = this.detailData?.biPriceList ? JSON.parse(this.detailData.biPriceList) : [];
           this.gsmList = this.detailData?.gsm ? JSON.parse(this.detailData.gsm) : [];
           this.biTypeList = this.detailData?.biType ? JSON.parse(this.detailData.biType) : [];
           this.lamList = this.detailData?.lam ? JSON.parse(this.detailData.lam) : [];
@@ -455,7 +466,7 @@ export default {
           const ratioWidthList = this.detailData?.ratioWidth ? JSON.parse(this.detailData.ratioWidth) : [];
           const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
           this.detailData?.toggles ? this.toggles = JSON.parse(this.detailData.toggles) : "";
-          // this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+          this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
 
           widthList?.map((w) => {
             heightList?.map(h => {
@@ -599,6 +610,15 @@ export default {
         }
       } else {
         vPround = (this.quantity * this.sheet * this.detailData?.plySet);
+      }
+
+      if (this.selectedFormat && Array.isArray(this.formats)) {
+        let formatIndex = this.formats.indexOf(this.selectedFormat);
+        if (formatIndex !== -1) {
+          this.selectedBiPrice = this.biPriceList[formatIndex]; // Update Bi Price
+        } else {
+          this.selectedBiPrice = null; // Reset if no format matches
+        }
       }
 
 
