@@ -109,7 +109,7 @@
         <div class="form-group" v-if="toggles?.gsm">
           <label for="" class="label">{{ $t("message.material") }}</label>
           <div class="form-data">
-            <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm" @change="calculate()">
+            <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm" @change="changePaperType()">
               <option value="" selected disabled hidden>{{ $t("message.material") }}</option>
               <option value="">None</option>
               <option v-for="item in gsmList" :value="item" :key="item">{{ item }}</option>
@@ -163,14 +163,14 @@
         <div class="form-group" v-if="toggles?.format">
           <label for="" class="label">{{ $t("message.format") }}</label>
           <div class="form-data" style="width: 92%;">
-            <!-- <select name="format" id="format" class="form-select" v-model="selectedFormat" @change="calculate()">
+            <select name="format" id="format" class="form-select" v-model="selectedFormat" @change="changeFormat()">
               <option value="" selected disabled hidden>Choose {{ $t("message.format") }}</option>
               <option value="">None</option>
               <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
-            </select> -->
-            <v-select v-if="toggles?.format" :multiple="false" v-model="selectedFormat" :options="formatList"
-              :taggable="true" @change="calculate()">
-            </v-select>
+            </select>
+            <!-- <v-select v-if="toggles?.format" :multiple="false" v-model="selectedFormat" :options="formatList"
+              :taggable="true" @change="changeFormat()">
+            </v-select> -->
           </div>
         </div>
         <div class="form-group" v-if="toggles?.colorF">
@@ -214,7 +214,7 @@
         <div class="form-group" v-if="toggles?.paperPrice" @change="calculate()">
           <label for="" class="label">{{ $t("message.paperPrice") }}</label>
           <div class="form-data">
-            {{ detailData?.paperPrice }}
+            {{ paperPrice }}
           </div>
         </div>
         <div class="form-group" v-if="toggles?.pressPrice" @change="calculate()">
@@ -223,14 +223,15 @@
             {{ detailData?.pressPrice }}
           </div>
         </div>
-        <div class="form-group" v-if="toggles?.biPrice" @change="calculate()">
+        <div class="form-group" v-if="toggles?.biPrice">
           <label for="" class="label">{{ $t("message.biPrice") }}</label>
           <div class="form-data" style="width: 92%;">
-            <!-- {{ detailData?.biPrice }} -->
+            {{ biPrice }}
+            {{ console.log("-----bi price", biPrice) }}
             <!-- <v-text-field v-model="biPrice" label="Bi Price" :disabled="true" :options="biPriceList/> -->
-            <v-select v-if="toggles?.biPrice" :multiple="false" v-model="selectedBiPr" :options="biPriceList"
+            <!-- <v-select v-if="toggles?.biPrice" :multiple="false" v-model="selectedBiPr" :options="biPriceList"
               :taggable="true" @change="calculate()" :disabled="true">
-            </v-select>
+            </v-select> -->
           </div>
         </div>
         <div class="form-group" v-if="toggles?.dieCut" @change="calculate()">
@@ -366,6 +367,8 @@ export default {
       selectedLam: "",
       selectedBiType: "",
       totalPrice: 0,
+      paperPrice: "",
+      biPrice: "",
       images: {
         file: null,
         preview: null
@@ -412,6 +415,20 @@ export default {
     this.getProductDetailData();
   },
   methods: {
+    changePaperType() {
+      const index = this.gsmList.indexOf(this.selectedGsm);
+      if (index >= 0 && this.paperPriceList.length >= index + 1) {
+        this.paperPrice = this.paperPriceList[index];
+      }
+      console.log('--------paperPrice index', index, this.paperPrice);
+    },
+    changeFormat() {
+      const index = this.formatList.indexOf(this.selectedFormat);
+      if (index >= 0 && this.biPriceList.length >= index + 1) {
+        this.biPrice = this.biPriceList[index];
+      }
+      console.log('--------biPrice index', index, this.biPriceList);
+    },
     handleFileUpload() {
       const file = this.$refs.fileInput.files[0]; // Get the first (and only) file
 
@@ -452,7 +469,11 @@ export default {
 
           this.images = item?.images ? JSON.parse(item.images) : this.images;
           this.formatList = this.detailData?.format ? JSON.parse(this.detailData.format) : [];
-          this.biPriceList = this.detailData?.biPriceList ? JSON.parse(this.detailData.biPriceList) : [];
+          this.biPriceList = this.detailData?.biPrice ? JSON.parse(this.detailData.biPrice) : [];
+          if (this.biPriceList.length > 0) {
+            this.biPrice = this.biPriceList[0];
+          }
+
           this.gsmList = this.detailData?.gsm ? JSON.parse(this.detailData.gsm) : [];
           this.biTypeList = this.detailData?.biType ? JSON.parse(this.detailData.biType) : [];
           this.lamList = this.detailData?.lam ? JSON.parse(this.detailData.lam) : [];
@@ -467,6 +488,10 @@ export default {
           const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
           this.detailData?.toggles ? this.toggles = JSON.parse(this.detailData.toggles) : "";
           this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+          this.paperPriceList = this.detailData?.paperPrice ? JSON.parse(this.detailData.paperPrice) : [];
+          if (this.paperPriceList.length > 0) {
+            this.paperPrice = this.paperPriceList[0];
+          }
 
           widthList?.map((w) => {
             heightList?.map(h => {
@@ -612,14 +637,14 @@ export default {
         vPround = (this.quantity * this.sheet * this.detailData?.plySet);
       }
 
-      if (this.selectedFormat && Array.isArray(this.formats)) {
-        let formatIndex = this.formats.indexOf(this.selectedFormat);
-        if (formatIndex !== -1) {
-          this.selectedBiPrice = this.biPriceList[formatIndex]; // Update Bi Price
-        } else {
-          this.selectedBiPrice = null; // Reset if no format matches
-        }
-      }
+      // if (this.selectedFormat && Array.isArray(this.formats)) {
+      //   let formatIndex = this.formats.indexOf(this.selectedFormat);
+      //   if (formatIndex !== -1) {
+      //     this.biPrice = this.biPriceList[formatIndex]; // Update Bi Price
+      //   } else {
+      //     this.selectedBiPrice = null; // Reset if no format matches
+      //   }
+      // }
 
 
       let vCounter = 0;
@@ -649,9 +674,9 @@ export default {
 
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
-      const paperTotalCost = (paper * this.detailData?.paperPrice);
+      const paperTotalCost = (paper * this.paperPrice);
       const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
-      const bindingTotalCost = (this.detailData?.biPrice * this.quantity);
+      const bindingTotalCost = (this.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);
       const gludingTotal = (this.detailData?.gluding * this.quantity);
       const coverTotal = (this.detailData?.cover * this.quantity);
