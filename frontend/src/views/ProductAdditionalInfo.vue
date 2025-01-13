@@ -100,10 +100,13 @@
             </v-select>
           </div>
         </div>
-        <div class="form-group" v-if="toggles?.sheet">
+        <div class="form-group" style="width: 92%;">
           <label for="" class="label">{{ $t("message.sheet") }}</label>
           <div class="form-data">
-            <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" />
+            <!-- <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" /> -->
+            <v-select :multiple="false" v-model="sheet" :options="sheetList" :taggable="true"
+              :placeholder="$t('message.sheet')" disabled>
+            </v-select>
           </div>
         </div>
         <div class="form-group" v-if="toggles?.gsm">
@@ -162,15 +165,12 @@
         </div>
         <div class="form-group" v-if="toggles?.format">
           <label for="" class="label">{{ $t("message.format") }}</label>
-          <div class="form-data" style="width: 92%;">
+          <div class="form-data">
             <select name="format" id="format" class="form-select" v-model="selectedFormat" @change="changeFormat()">
               <option value="" selected disabled hidden>Choose {{ $t("message.format") }}</option>
               <option value="">None</option>
               <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
             </select>
-            <!-- <v-select v-if="toggles?.format" :multiple="false" v-model="selectedFormat" :options="formatList"
-              :taggable="true" @change="changeFormat()">
-            </v-select> -->
           </div>
         </div>
         <div class="form-group" v-if="toggles?.colorF">
@@ -351,6 +351,7 @@ export default {
       colorFList: [],
       widthHeightList: [],
       ratioWidthHeightList: [],
+      sheetList: [],
       imgRoot: imgRoot,
 
       sheet: 1,
@@ -361,7 +362,6 @@ export default {
       ratioWidth: "",
       ratioHeight: "",
       widthHeight: "",
-      // selectedFormat: "",
       selectedColorF: "",
       selectedColorB: "",
       selectedLam: "",
