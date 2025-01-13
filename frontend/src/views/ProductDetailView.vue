@@ -89,20 +89,20 @@
                 <!-- <input type="number" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
                   name="quantity" @input="calculate()" /> -->
                 <v-select v-if="toggles?.quantity" :multiple="false" v-model="quantity" :options="quantityList"
-                  :taggable="true" :placeholder="$t('message.quantity')">
+                  :taggable="true" :placeholder="$t('message.quantity')" @input="calculate">
                 </v-select>
               </div>
             </div>
             <div class="form-group" v-if="toggles?.sheet">
               <label for="" class="label">{{ $t("message.sheet") }}</label>
               <div class="form-data">
-                <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" />
+                <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" @change="calculate()" />
               </div>
             </div>
             <div class="form-group" v-if="toggles?.gsm">
               <label for="" class="label">{{ $t("message.material") }}</label>
               <div class="form-data">
-                <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm" @change="calculate()">
+                <select name="gsm" id="gsm" class="form-select" v-model="selectedGsm" @change="changePaperType()">
                   <option value="" selected disabled hidden>{{ $t("message.material") }}</option>
                   <option value="">None</option>
                   <option v-for="item in gsmList" :value="item" :key="item">{{ item }}</option>
@@ -193,7 +193,7 @@
                   <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
                 </select> -->
                 <v-select v-if="toggles?.format" :multiple="false" v-model="selectedFormat" :options="formatList"
-                  :taggable="true" @change="changePaperType">
+                  :taggable="true" @input="changeFormat">
                 </v-select>
               </div>
             </div>
@@ -238,7 +238,7 @@
             <div class="form-group" v-if="toggles?.paperPrice">
               <label for="" class="label">{{ $t("message.paperPrice") }}</label>
               <div class="form-data">
-                {{ detailData?.paperPrice }}
+                {{ paperPrice }}
               </div>
             </div>
             <div class="form-group" v-if="toggles?.pressPrice">
@@ -250,9 +250,10 @@
             <div class="form-group" v-if="toggles?.biPrice">
               <label for="" class="label">{{ $t("message.biPrice") }}</label>
               <div class="form-data">
-                <v-select v-if="toggles?.biPrice" :multiple="false" v-model="biPrice" :options="biPriceList"
+                {{ biPrice }}
+                <!-- <v-select v-if="toggles?.biPrice" :multiple="false" v-model="biPrice" :options="biPriceList"
                   :taggable="true" disabled>
-                </v-select>
+                </v-select> -->
 
                 <!-- <select name="biPrice" id="biPrice" class="form-select" v-model="biPrice" disabled>
                   <option value="" selected disabled hidden>Choose Bi Price</option>
@@ -419,10 +420,11 @@ export default {
       gsmList: [],
       biTypeList: [],
       biPriceList: [],
+      paperPriceList: [],
       lamList: [],
       colorList: ["One Side", "Both Sides"],
       ratioFullSizeList: [],
-      // quantityList: [],
+      quantityList: [],
       colorBList: [],
       colorFList: [],
       widthHeightList: [],
@@ -444,6 +446,7 @@ export default {
       selectedColor: "",
       selectedBiType: "",
       biPrice: "",
+      paperPrice: "",
       totalPrice: 0,
       images: {
         file: null,
@@ -566,6 +569,13 @@ export default {
       };
       this.$refs.fileInput.value = null;
     },
+    changePaperType() {
+      const index = this.gsmList.indexOf(this.selectedGsm);
+      if (index >= 0 && this.paperPriceList.length >= index + 1) {
+        this.paperPrice = this.paperPriceList[index];
+      }
+      console.log('--------paperPrice index', index, this.paperPrice);
+    },
     changeFormat() {
       const index = this.formatList.indexOf(this.selectedFormat);
       if (index >= 0 && this.biPriceList.length >= index + 1) {
@@ -585,6 +595,7 @@ export default {
         this.gsmList = this.detailData?.gsm ? JSON.parse(this.detailData.gsm) : [];
         this.biTypeList = this.detailData?.biType ? JSON.parse(this.detailData.biType) : [];
         this.biPriceList = this.detailData.biPrice ? JSON.parse(this.detailData.biPrice) : [];
+        this.paperPriceList = this.detailData.paperPrice ? JSON.parse(this.detailData.paperPrice) : [];
         this.lamList = this.detailData?.lam ? JSON.parse(this.detailData.lam) : [];
         this.ratioFullSizeList = this.detailData?.ratioFullSize ? JSON.parse(this.detailData.ratioFullSize) : [];
         this.colorBList = this.detailData?.colorB ? JSON.parse(this.detailData.colorB) : [];
@@ -596,7 +607,8 @@ export default {
         const ratioWidthList = this.detailData?.ratioWidth ? JSON.parse(this.detailData.ratioWidth) : [];
         const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
         this.detailData?.toggles ? this.toggles = JSON.parse(this.detailData.toggles) : "";
-        // this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+        this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+
         this.quantityList = this.detailData?.quantity
           ? (() => {
             try {
@@ -780,9 +792,9 @@ export default {
 
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
-      const paperTotalCost = (paper * this.detailData?.paperPrice / selectedRatioFullSize);
+      const paperTotalCost = (paper * this?.paperPrice / selectedRatioFullSize);
       const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
-      const bindingTotalCost = (this.detailData?.biPrice * this.quantity);
+      const bindingTotalCost = (this?.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);
       const gludingTotal = (this.detailData?.gluding * this.quantity);
       const coverTotal = (this.detailData?.cover * this.quantity);
