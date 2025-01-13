@@ -66,16 +66,16 @@
                   </div> -->
                   <!-- <button class="reorder-btn small">Reorder ခလုတ်</button> -->
                   <div>
-                    <strong>{{ $t("message.material") }} :</strong> {{ item?.productDetail?.gsm }}
+                    <strong>{{ $t("message.material") }} :</strong> {{ productDetail?.selectedGsm }}
                   </div>
                   <div>
-                    <strong>{{ $t("message.printingType") }} :</strong> {{ item?.productDetail?.type }}
+                    <strong>{{ $t("message.printingType") }} :</strong> {{ productDetail?.printingType }}
                   </div>
                   <div>
-                    <strong>{{ $t("message.printingSides") }} :</strong> {{ item?.productDetail?.value }}
+                    <strong>{{ $t("message.printingSides") }} :</strong> {{ productDetail?.value }}
                   </div>
                   <div>
-                    <strong>{{ $t("message.lamination") }} :</strong> {{ item?.productDetail?.lam ? item?.productDetail?.lam : "None" }}
+                    <strong>{{ $t("message.lamination") }} :</strong> {{ productDetail?.lam ? item?.productDetail?.lam : "None" }}
                   </div>
                 </td>
                 <td>
@@ -101,7 +101,8 @@ import { getOrderDetail } from "@/services/offset.service";
 export default {
   data() {
     return {
-      orders: []
+      orders: [],
+      productDetail: {}
     }
   },
   setup() {
@@ -167,6 +168,14 @@ export default {
       localStorage.removeItem("setAllLoading");
       this.orders = res?.data?.data;
       console.log("------orders", this.orders);
+
+      if (this.orders?.orderDetail?.length > 0) {
+        if (this.orders?.orderDetail[0]?.productDetail) {
+          const temp = JSON.parse(this.orders?.orderDetail[0]?.productDetail);
+          this.productDetail = temp;
+          console.log("-------product Detail", this.productDetail);
+        }
+      }
     }
   }
 };

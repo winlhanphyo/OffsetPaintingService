@@ -27,7 +27,7 @@
             <p class="product-code">အမည်: {{ order?.userData?.firstName + " " + order?.userData?.lastName }}</p>
             <p class="product-quantity">အရေအတွက်: {{ order.quantity }}</p>
             <p class="proof-status">{{ order.proofStatus }}</p>
-            <button class="reorder-btn" @click="reorder(order.id)">Reorder </button>
+            <!-- <button class="reorder-btn" @click="reorder(order.id)">Reorder </button> -->
           </div>
           <div class="favorite-icon"></div>
           <div class="favorite-icon" @click="toggleBookmark(order.id)">
@@ -49,7 +49,7 @@
         </div>
         <div class="order-footer">
           <!-- <button class="reorder-btn-large" @click="reorder(order.id)">Reorder</button> -->
-          <button class="view-details-btn" @click="viewDetails(order.id)">View details</button>
+          <button class="view-details-btn" @click="viewDetails(order.orderId)">View details</button>
         </div>
       </div>
     </main>
@@ -144,9 +144,11 @@ const orders = ref([
   },
 ])
 
-const reorder = (orderId) => {
-  console.log('Reorder clicked for order:', orderId)
-}
+const productDetail = ref({});
+
+// const reorder = (orderId) => {
+//   console.log('Reorder clicked for order:', orderId)
+// }
 
 const viewDetails = (orderId) => {
   console.log('View details clicked for order:', orderId)
@@ -171,6 +173,17 @@ const getOrder = async () => {
   const res = await getMyOrder(userId, token);
   localStorage.removeItem("setAllLoading");
   orders.value = res?.data?.data;
+
+  if (res?.data?.data?.orderDetail) {
+    const orderDetail = JSON.parse(res?.data?.data?.orderDetail);
+    if (orderDetail?.length > 0) {
+      if (orderDetail[0]?.productDetail) {
+        const temp = JSON.parse(orderDetail[0]?.productDetail);
+        productDetail.value = temp;
+        console.log("-------product Detail", productDetail);
+      }
+    }
+  }
 }
 
 onMounted(() => {

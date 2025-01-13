@@ -105,7 +105,7 @@
           <div class="form-data">
             <!-- <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" /> -->
             <v-select :multiple="false" v-model="sheet" :options="sheetList" :taggable="true"
-              :placeholder="$t('message.sheet')" disabled>
+              :placeholder="$t('message.sheet')">
             </v-select>
           </div>
         </div>

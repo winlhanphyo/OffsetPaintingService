@@ -68,7 +68,7 @@
                 <p class="mb-1"><strong>အမည်:</strong> {{ data?.name }}</p>
                 <p class="mb-1"><strong>အရေအတွက်:</strong> {{ data?.qty }}</p>
                 <p class="text-success fw-bold">{{ data?.proofStatus }}</p>
-                <button class="btn btn-primary btn-sm" @click="reorder(data?.id)">Reorder</button>
+                <!-- <button class="btn btn-primary btn-sm" @click="reorder(data?.id)">Reorder</button> -->
               </div>
             </div>
 
@@ -91,10 +91,10 @@
               </button>
             </div>
           </div>
-          <div class="card-footer text-end">
+          <!-- <div class="card-footer text-end">
             <button class="btn btn-outline-primary me-2" @click="reorder(data?.id)">Reorder</button>
             <button class="btn btn-primary" @click="viewDetails(data?.id)">View details</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -134,13 +134,13 @@ const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString(undefined, options)
 }
 
-const reorder = (orderId) => {
-  console.log('Reorder clicked for order:', orderId)
-}
+// const reorder = (orderId) => {
+//   console.log('Reorder clicked for order:', orderId)
+// }
 
-const viewDetails = (orderId) => {
-  console.log('View details clicked for order:', orderId)
-}
+// const viewDetails = (orderId) => {
+//   console.log('View details clicked for order:', orderId)
+// }
 
 const toggleBookmark = () => {
   order.value.bookmarked = !order.value.bookmarked
