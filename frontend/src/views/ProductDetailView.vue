@@ -89,14 +89,17 @@
                 <!-- <input type="number" id="quantity" :placeholder="$t('message.quantity')" v-model="quantity"
                   name="quantity" @input="calculate()" /> -->
                 <v-select v-if="toggles?.quantity" :multiple="false" v-model="quantity" :options="quantityList"
-                  :taggable="true" :placeholder="$t('message.quantity')" @input="calculate">
+                  :taggable="true" :placeholder="$t('message.quantity')" @update:modelValue="calculate">
                 </v-select>
               </div>
             </div>
             <div class="form-group" v-if="toggles?.sheet">
               <label for="" class="label">{{ $t("message.sheet") }}</label>
               <div class="form-data">
-                <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" @change="calculate()" />
+                <!-- <input type="number" id="sheet" :placeholder="$t('message.sheet')" v-model="sheet" name="sheet" @change="calculate()" /> -->
+                <v-select :multiple="false" v-model="sheet" :options="sheetList"
+                  :taggable="true" :placeholder="$t('message.sheet')" @update:modelValue="calculate">
+                </v-select>
               </div>
             </div>
             <div class="form-group" v-if="toggles?.gsm">
@@ -193,7 +196,7 @@
                   <option v-for="item in formatList" :key="item" :value="item">{{ item }}</option>
                 </select> -->
                 <v-select v-if="toggles?.format" :multiple="false" v-model="selectedFormat" :options="formatList"
-                  :taggable="true" @input="changeFormat">
+                  :taggable="true" @update:modelValue="changeFormat">
                 </v-select>
               </div>
             </div>
@@ -425,6 +428,7 @@ export default {
       colorList: ["One Side", "Both Sides"],
       ratioFullSizeList: [],
       quantityList: [],
+      sheetList: [],
       colorBList: [],
       colorFList: [],
       widthHeightList: [],
@@ -608,6 +612,7 @@ export default {
         const ratioHeightList = this.detailData?.ratioHeight ? JSON.parse(this.detailData.ratioHeight) : [];
         this.detailData?.toggles ? this.toggles = JSON.parse(this.detailData.toggles) : "";
         this.quantityList = this.detailData?.quantity ? JSON.parse(this.detailData.quantity) : [];
+        this.sheetList = this.detailData?.sheet ? JSON.parse(this.detailData.sheet) : [];
 
         this.quantityList = this.detailData?.quantity
           ? (() => {
