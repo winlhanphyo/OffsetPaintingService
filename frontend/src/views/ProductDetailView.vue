@@ -138,7 +138,7 @@
                 </select>
               </div>
             </div> -->
-            <div class="form-group" v-if="toggles?.colorF">
+            <div class="form-group" v-if="toggles?.selectedColorF">
               <label for="" class="label">{{ $t("message.colorF") }}</label>
               <div class="form-data">
                 <select name="size" id="size" class="form-select" v-model="selectedColorF" @change="calculate()">
@@ -148,7 +148,7 @@
                 </select>
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.colorB">
+            <div class="form-group" v-if="toggles?.selectedColorB">
               <label for="" class="label">{{ $t("message.colorB") }}</label>
               <div class="form-data">
                 <select name="colorB" id="colorB" class="form-select" v-model="selectedColorB" @change="calculate()">
@@ -164,7 +164,7 @@
                 {{ detailData?.type }}
               </div>
             </div>
-            <div class="form-group" v-if="toggles?.ratioFullSize">
+            <div class="form-group" v-if="toggles?.selectedRatioFullSize">
               <label for="" class="label">{{ $t("message.ratioFullSize") }}</label>
               <div class="form-data">
                 <select name="ratioFullSize" id="size" class="form-select" v-model="ratioFullSize"
@@ -676,7 +676,7 @@ export default {
             this.selectedLam = this.lamList[0];
           }
           if (dist === "selectedRatioFullSize" && !this.toggles[dist] && this.ratioFullSizeList.length > 0) {
-            this.selectedRatioFullSize = this.ratioFullSizeList[0];
+            this.ratioFullSize = this.ratioFullSizeList[0];
           }
           if (dist === "selectedColorF" && !this.toggles[dist] && this.colorFList.length > 0) {
             this.selectedColorF = this.colorFList[0];
@@ -684,6 +684,8 @@ export default {
           if (dist === "selectedColorB" && !this.toggles[dist] && this.colorBList.length > 0) {
             this.selectedColorB = this.colorBList[0];
           }
+          console.log("-----select color f", this.selectedColorF);
+          console.log("-----select color b", this.selectedColorB);
           if (dist === "width" && !this.toggles[dist] && this.widthHeightList.length > 0) {
             this.widthHeight = this.widthHeightList[0]?.value;
           }
@@ -788,12 +790,13 @@ export default {
       if (this.detailData?.printingType === "Book") {
         paper = (this.quantity * form) + (form * this.detailData.waste);
       } else if (this.detailData?.printingType === "Voucher") {
+        console.log("vpround", vPround, this.selectedFormat, this.sheet, this.detailData.waste);
         paper = (vPround / this.selectedFormat) + (this.sheet * this.detailData.waste);
       } else {
         // flatten
         paper = (this.quantity / this.selectedFormat) + (form * this.detailData.waste);
       }
-      console.log("---------------ratioFullSize", this.ratioFullSize);
+      console.log("---------------ratioFullSize", selectedRatioFullSize);
 
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
@@ -820,7 +823,11 @@ export default {
         fCounter = this.roundUp(((this.quantity * this.sheet) / this.selectedFormat) * this.detailData?.abbb, 500);
       }
 
+      console.log("-----printing Type", this.detailData.printingType);
+
       if (this.detailData.printingType === "Voucher") {
+        console.log("pressCost", vRound, this.detailData.pressPrice);
+        console.log("-----color f b", this.selectedColorF, this.selectedColorB);
         pressCost = vRound * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice;
       } else if (this.detailData.printingType === "Flatten") {
         pressCost = (form * fCounter) * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice;
@@ -830,6 +837,9 @@ export default {
 
       const allTotal = pressCost + lamTotalCost + paperTotalCost + ctpTotalCost + bindingTotalCost + dieCutTotal +
         gludingTotal + coverTotal;
+
+      console.log("----press Cost", pressCost, lamTotalCost, paperTotalCost, ctpTotalCost)
+      console.log("----binding Cost", bindingTotalCost, dieCutTotal, gludingTotal, coverTotal)
 
       const perCost = (allTotal / this.quantity).toFixed(1);
 
@@ -913,6 +923,7 @@ export default {
       });
       cart.totalPrice = this.totalPrice;
       cart.qty = this.quantity;
+      console.log("-----total price", this.totalPrice);
       if (this.images?.file) {
         const cartImageData = {
           preview: this.images.preview,
