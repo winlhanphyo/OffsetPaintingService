@@ -35,6 +35,86 @@
               <div class="col-md-3"><strong>Phone:</strong></div>
               <div class="col-md-9">{{ order?.phone }}</div>
             </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Quantity:</strong></div>
+              <div class="col-md-9">{{ order?.quantity }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Sheet:</strong></div>
+              <div class="col-md-9">{{ order?.sheet }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Material:</strong></div>
+              <div class="col-md-9">{{ order?.material }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Print Type:</strong></div>
+              <div class="col-md-9">{{ order?.printType }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Bi Type:</strong></div>
+              <div class="col-md-9">{{ order?.biType }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Type:</strong></div>
+              <div class="col-md-9">{{ order?.type }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Ratio Width Height:</strong></div>
+              <div class="col-md-9">{{ order?.ratioWidthHeight }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Width Height:</strong></div>
+              <div class="col-md-9">{{ order?.widthHeight }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Format:</strong></div>
+              <div class="col-md-9">{{ order?.format }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Lam Sq Price:</strong></div>
+              <div class="col-md-9">{{ order?.lamSqPrice }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Paper Price:</strong></div>
+              <div class="col-md-9">{{ order?.paperPrice }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Press Price:</strong></div>
+              <div class="col-md-9">{{ order?.pressPrice }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Die Cut Price:</strong></div>
+              <div class="col-md-9">{{ order?.dieCutPrice }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Ply Set:</strong></div>
+              <div class="col-md-9">{{ order?.plySet }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Other:</strong></div>
+              <div class="col-md-9">{{ order?.other }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Cover:</strong></div>
+              <div class="col-md-9">{{ order?.cover }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>CTP Price:</strong></div>
+              <div class="col-md-9">{{ order?.ctpPrice }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Waste:</strong></div>
+              <div class="col-md-9">{{ order?.waste }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>AB 2 BB:</strong></div>
+              <div class="col-md-9">{{ order?.ab2bb }}</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-3"><strong>Design File:</strong></div>
+              <div class="col-md-9">{{ order?.designFile }}</div>
+            </div>
 
             <!-- <hr class="my-4" /> -->
             <template v-if="order?.paymentScreenshot">
