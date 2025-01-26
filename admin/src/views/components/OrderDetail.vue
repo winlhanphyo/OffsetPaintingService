@@ -43,7 +43,7 @@
               </div>
               <div class="row mb-3">
                 <div class="col-md-3"><strong>Sheet:</strong></div>
-                <div class="col-md-9">{{ item?.sheet }}</div>
+                <div class="col-md-9">{{ checkData(item?.sheet) }}</div>
               </div>
               <div class="row mb-3">
                 <div class="col-md-3"><strong>Material:</strong></div>
@@ -79,7 +79,7 @@
               </div>
               <div class="row mb-3">
                 <div class="col-md-3"><strong>Paper Price:</strong></div>
-                <div class="col-md-9">{{ item?.paperPrice }}</div>
+                <div class="col-md-9">{{ checkData(item?.paperPrice) }}</div>
               </div>
               <div class="row mb-3">
                 <div class="col-md-3"><strong>Press Price:</strong></div>
@@ -256,6 +256,15 @@ const showWidthHeight = (dist) => {
     }
   }
   return "";
+}
+
+const checkData = (param) => {
+  const dist = JSON.parse(param);
+  if (dist?.length > 0) {
+    return dist[0];
+  } else {
+    return "";
+  }
 }
 
 onMounted(() => {

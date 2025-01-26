@@ -865,7 +865,7 @@ export default {
 
       console.log("-----detail dialog", this.detailDialogData);
 
-      this.totalPrice = this.quantity > 0 ? allTotal : 0;
+      this.totalPrice = this.quantity > 0 ? Math.round(allTotal) : 0;
 
     },
     async getMediaWithProductData() {

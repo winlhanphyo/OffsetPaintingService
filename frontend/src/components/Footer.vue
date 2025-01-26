@@ -66,9 +66,23 @@
             <p class="title">Follow Us:</p>
             <ul class="row">
               <li>
-                <a href="https://www.facebook.com/cicioffsetprinting" title="Facebook"
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
+                <a href="https://www.facebook.com/cicioffsetprinting" title="Facebook">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    width="32px"
+    height="32px"
+    aria-label="Facebook"
+  >
+    <path
+      d="M13 3h2.667V0h-4C9.08 0 8 2.08 8 4.667V7H5v3.333h3V24h4.333V10.333h3.667L17 7h-3.667V4.667C13.333 4 13 3.667 13 3z"
+      fill="#FFFFFF"
+    />
+  </svg>
+</a>
+
+
               </li>
               <li>
                 <a href="#viber"
