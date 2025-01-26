@@ -35,86 +35,89 @@
               <div class="col-md-3"><strong>Phone:</strong></div>
               <div class="col-md-9">{{ order?.phone }}</div>
             </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Quantity:</strong></div>
-              <div class="col-md-9">{{ order?.quantity }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Sheet:</strong></div>
-              <div class="col-md-9">{{ order?.sheet }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Material:</strong></div>
-              <div class="col-md-9">{{ order?.material }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Print Type:</strong></div>
-              <div class="col-md-9">{{ order?.printType }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Bi Type:</strong></div>
-              <div class="col-md-9">{{ order?.biType }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Type:</strong></div>
-              <div class="col-md-9">{{ order?.type }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Ratio Width Height:</strong></div>
-              <div class="col-md-9">{{ order?.ratioWidthHeight }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Width Height:</strong></div>
-              <div class="col-md-9">{{ order?.widthHeight }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Format:</strong></div>
-              <div class="col-md-9">{{ order?.format }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Lam Sq Price:</strong></div>
-              <div class="col-md-9">{{ order?.lamSqPrice }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Paper Price:</strong></div>
-              <div class="col-md-9">{{ order?.paperPrice }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Press Price:</strong></div>
-              <div class="col-md-9">{{ order?.pressPrice }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Die Cut Price:</strong></div>
-              <div class="col-md-9">{{ order?.dieCutPrice }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Ply Set:</strong></div>
-              <div class="col-md-9">{{ order?.plySet }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Other:</strong></div>
-              <div class="col-md-9">{{ order?.other }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Cover:</strong></div>
-              <div class="col-md-9">{{ order?.cover }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>CTP Price:</strong></div>
-              <div class="col-md-9">{{ order?.ctpPrice }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Waste:</strong></div>
-              <div class="col-md-9">{{ order?.waste }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>AB 2 BB:</strong></div>
-              <div class="col-md-9">{{ order?.ab2bb }}</div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3"><strong>Design File:</strong></div>
-              <div class="col-md-9">{{ order?.designFile }}</div>
-            </div>
+
+            <template v-for="item in productDetail" :key="item?.id">
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Quantity:</strong></div>
+                <div class="col-md-9">{{ item?.qty }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Sheet:</strong></div>
+                <div class="col-md-9">{{ item?.sheet }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Material:</strong></div>
+                <div class="col-md-9">{{ item?.selectedGsm }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Print Type:</strong></div>
+                <div class="col-md-9">{{ item?.printingType }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Bi Type:</strong></div>
+                <div class="col-md-9">{{ item?.selectedBiType }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Type:</strong></div>
+                <div class="col-md-9">{{ item?.printingType }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Ratio Width Height:</strong></div>
+                <div class="col-md-9">{{ item?.ratioWidthHeight }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Width Height:</strong></div>
+                <div class="col-md-9">{{ item?.widthHeight }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Format:</strong></div>
+                <div class="col-md-9">{{ item?.selectedFormat }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Lam Sq Price:</strong></div>
+                <div class="col-md-9">{{ item?.lamSqPrice }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Paper Price:</strong></div>
+                <div class="col-md-9">{{ item?.paperPrice }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Press Price:</strong></div>
+                <div class="col-md-9">{{ item?.pressPrice }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Die Cut Price:</strong></div>
+                <div class="col-md-9">{{ item?.dieCut }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Ply Set:</strong></div>
+                <div class="col-md-9">{{ item?.plySet }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Other:</strong></div>
+                <div class="col-md-9">{{ item?.other }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Cover:</strong></div>
+                <div class="col-md-9">{{ item?.cover }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>CTP Price:</strong></div>
+                <div class="col-md-9">{{ item?.ctpPrice }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Waste:</strong></div>
+                <div class="col-md-9">{{ item?.waste }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>AB 2 BB:</strong></div>
+                <div class="col-md-9">{{ item?.abbb }}</div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-3"><strong>Design File:</strong></div>
+                <div class="col-md-9">{{ item?.designFile }}</div>
+              </div>
+            </template>
 
             <!-- <hr class="my-4" /> -->
             <template v-if="order?.paymentScreenshot">
@@ -137,9 +140,7 @@
               <div class="col-md-3">
                 <div class="product-image">
                   <!-- <img :src="order.imageUrl" :alt="order.productName" class="img-fluid"> -->
-                  <img
-                    :src=" data?.productImage"
-                    :alt="data?.productName" class="img-fluid">
+                  <img :src="data?.productImage" :alt="data?.productName" class="img-fluid">
                 </div>
               </div>
               <div class="col-md-9">

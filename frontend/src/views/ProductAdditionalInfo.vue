@@ -787,6 +787,7 @@ export default {
       });
       cart.totalPrice = this.totalPrice;
       cart.qty = this.quantity;
+      cart.sheet = this.sheet;
       let data = localStorage.getItem("cartData");
       const index = this.$route.params.id;
       if (data && JSON.parse(data)?.length > index) {
