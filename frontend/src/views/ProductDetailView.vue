@@ -728,7 +728,7 @@ export default {
       // }
 
       let pressCost = 0;
-      const plateCtp = this.selectedColorF + this.selectedColorB;
+      const plateCtp = Number(this.selectedColorF) + Number(this.selectedColorB);
       let lamPerPrice = null;
 
       const splitRatioWidthHeight = this.ratioWidthHeight?.split(" ");
@@ -801,7 +801,7 @@ export default {
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
       const paperTotalCost = (paper * this?.paperPrice / selectedRatioFullSize);
-      const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
+      const ctpTotalCost = (Number(this.selectedColorF) + Number(this.selectedColorB)) * (form * this.detailData.ctpPrice);
       const bindingTotalCost = (this?.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);
       const gludingTotal = (this.detailData?.gluding * this.quantity);
@@ -826,13 +826,11 @@ export default {
       console.log("-----printing Type", this.detailData.printingType);
 
       if (this.detailData.printingType === "Voucher") {
-        console.log("pressCost", vRound, this.detailData.pressPrice);
-        console.log("-----color f b", this.selectedColorF, this.selectedColorB);
-        pressCost = vRound * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice;
+        pressCost = vRound * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice;
       } else if (this.detailData.printingType === "Flatten") {
-        pressCost = (form * fCounter) * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice;
+        pressCost = (form * fCounter) * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice;
       } else {
-        pressCost = (form * bCounter) * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice * this.detailData?.abbb;
+        pressCost = (form * bCounter) * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice * this.detailData?.abbb;
       }
 
       const allTotal = pressCost + lamTotalCost + paperTotalCost + ctpTotalCost + bindingTotalCost + dieCutTotal +

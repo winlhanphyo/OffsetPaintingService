@@ -208,25 +208,25 @@
             <label for="ctpPrice">CTP Price:</label>
             <label>{{ detailData?.ctpPrice }}</label>
           </div>
+        </div>
 
-          <!-- <div class="form-group col-sm-4 p-2">
+        <div class="d-flex mb-3">
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Lam Price:</label>
+            {{ detailData?.lamPrice }}
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
+            <label for="Ratio Width">Lam Sq Price:</label>
+            {{ detailData?.lamSqPrice }}
+          </div>
+
+          <div class="form-group col-sm-4 p-2">
             <label for="lam">Lam:</label>
             <select name="lam" id="lam" class="form-select" v-model="selectedLam">
               <option value="" selected disabled hidden>Choose Lam</option>
               <option v-for="item in lamList" :key="item" :value="item">{{ item }}</option>
             </select>
-          </div> -->
-        </div>
-
-        <div class="d-flex mb-3">
-          <div class="form-group col-sm-6 p-2">
-            <label for="Ratio Width">Lam Price:</label>
-            {{ detailData?.lamPrice }}
-          </div>
-
-          <div class="form-group col-sm-6 p-2">
-            <label for="Ratio Width">Lam Sq Price:</label>
-            {{ detailData?.lamSqPrice }}
           </div>
         </div>
 
@@ -492,7 +492,7 @@ export default {
         form = 1;
       }
       let pressCost = 0;
-      const plateCtp = this.selectedColorF + this.selectedColorB;
+      const plateCtp = Number(this.selectedColorF) + Number(this.selectedColorB);
       let lamPerPrice = null;
 
       const splitRatioWidthHeight = this.ratioWidthHeight?.split(" ");
@@ -515,14 +515,11 @@ export default {
         lamPerPrice = (2 * Number(this.ratioWidth) * Number(this.ratioHeight) * Number(this.detailData?.lamSqPrice));
       }
 
-      console.log("selectedLam", this.selectedLam);
-      console.log("-----ratioWidth", this.ratioWidth, this.ratioHeight, this.detailData?.lamSqPrice);
-
       let selectedRatioFullSize = 0;
       if (this.ratioFullSize) {
         const splitRatioFullSize = this.ratioFullSize.split(" ");
         if (splitRatioFullSize.length > 0) {
-          selectedRatioFullSize = splitRatioFullSize[0]
+          selectedRatioFullSize = Number(splitRatioFullSize[0])
         }
       }
 
@@ -563,15 +560,11 @@ export default {
         paper = (this.quantity / this.selectedFormat) + (form * this.detailData.waste);
       }
 
-      console.log("--------quantity", this.quantity, this.selectedFormat, this.detailData?.waste);
-      console.log("--------ratio full size", this.ratioFullSize);
-
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
 
-      console.log("-----lamTotal Cost", paper, lamPerPrice, lamTotalCost);
       const paperTotalCost = (paper * (this.paperPrice / selectedRatioFullSize));
-      const ctpTotalCost = (this.selectedColorF + this.selectedColorB) * (form * this.detailData.ctpPrice);
+      const ctpTotalCost = (Number(this.selectedColorF) + Number(this.selectedColorB)) * (form * this.detailData.ctpPrice);
       const bindingTotalCost = (this?.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);
       const gludingTotal = (this.detailData?.gluding * this.quantity);
@@ -594,19 +587,17 @@ export default {
       }
 
       if (this.detailData.printingType === "Voucher") {
-        pressCost = vRound * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice;
+        pressCost = vRound * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice;
       } else if (this.detailData.printingType === "Flatten") {
-        pressCost = (form * fCounter) * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice;
+        pressCost = (form * fCounter) * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice;
       } else {
-        pressCost = (form * bCounter) * (this.selectedColorF + this.selectedColorB) * this.detailData?.pressPrice * this.detailData?.abbb;;
+        pressCost = (form * bCounter) * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice * this.detailData?.abbb;;
       }
 
       const allTotal = pressCost + lamTotalCost + paperTotalCost + ctpTotalCost + bindingTotalCost + dieCutTotal +
       gludingTotal + coverTotal;
 
       const perCost = (allTotal/this.quantity).toFixed(1);
-
-
 
       // console.log("-------paper", paper);
       // console.log("-------plateCtp", plateCtp);
