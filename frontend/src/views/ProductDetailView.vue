@@ -800,7 +800,7 @@ export default {
 
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
-      const paperTotalCost = (paper * this?.paperPrice / selectedRatioFullSize);
+      const paperTotalCost = (Number(paper) * Number(this?.paperPrice) / Number(selectedRatioFullSize));
       const ctpTotalCost = (Number(this.selectedColorF) + Number(this.selectedColorB)) * (form * this.detailData.ctpPrice);
       const bindingTotalCost = (this?.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);
@@ -854,8 +854,8 @@ export default {
       this.detailDialogData.allTotal = allTotal;
       this.detailDialogData.vCounter = vCounter;
       this.detailDialogData.vRound = vRound;
-      this.detailDialogData.vPround = vPround;
-      this.detailDialogData.bCounter = bCounter;
+      this.detailDialogData.vPround = bCounter;
+      this.detailDialogData.bCounter = vPround;
       this.detailDialogData.form = form;
       this.detailDialogData.perCost = perCost;
       this.detailDialogData.pressCost = pressCost;
