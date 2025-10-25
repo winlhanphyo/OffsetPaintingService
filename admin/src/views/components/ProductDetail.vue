@@ -591,7 +591,7 @@ export default {
       } else if (this.detailData.printingType === "Flatten") {
         pressCost = (form * fCounter) * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice;
       } else {
-        pressCost = (form * bCounter) * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice * this.detailData?.abbb;;
+        pressCost = (form * bCounter) * (Number(this.selectedColorF) + Number(this.selectedColorB)) * this.detailData?.pressPrice * this.detailData?.abbb;
       }
 
       const allTotal = pressCost + lamTotalCost + paperTotalCost + ctpTotalCost + bindingTotalCost + dieCutTotal +

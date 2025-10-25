@@ -579,6 +579,7 @@ export default {
         this.paperPrice = this.paperPriceList[index];
       }
       console.log('--------paperPrice index', index, this.paperPrice);
+      this.calculate();
     },
     changeFormat() {
       const index = this.formatList.indexOf(this.selectedFormat);
@@ -586,6 +587,7 @@ export default {
         this.biPrice = this.biPriceList[index];
       }
       console.log('--------biPrice index', index, this.biPrice);
+      this.calculate();
     },
     async getProductDetailData() {
       const id = this.$route.params.id;
@@ -665,6 +667,13 @@ export default {
         Object.keys(this.toggles).map((dist) => {
           if (dist === "format" && !this.toggles[dist] && this.formatList.length > 0) {
             this.selectedFormat = this.formatList[0];
+            console.log("-----select format", this.selectedFormat);
+            
+            const index = this.formatList.indexOf(this.selectedFormat);
+            if (index >= 0 && this.biPriceList.length >= index + 1) {
+              this.biPrice = this.biPriceList[index];
+            }
+            console.log('--------biPrice index', index, this.biPrice);
           }
           if (dist === "gsm" && !this.toggles[dist] && this.gsmList.length > 0) {
             this.selectedGsm = this.gsmList[0];
@@ -746,16 +755,16 @@ export default {
       if (!this.selectedLam) {
         lamPerPrice = "";
       } else if (this.selectedLam == "One Side") {
-        lamPerPrice = (1 * this.ratioWidth * this.ratioHeight * this.detailData?.lamSqPrice);
-      } else if (this.selectedLam == "Both Side") {
-        lamPerPrice = (2 * this.ratioWidth * this.ratioHeight * this.detailData?.lamSqPrice);
+        lamPerPrice = (1 * Number(this.ratioWidth) * Number(this.ratioHeight) * Number(this.detailData?.lamSqPrice));
+      } else if (this.selectedLam == "Both Sides") {
+        lamPerPrice = (2 * Number(this.ratioWidth) * Number(this.ratioHeight) * Number(this.detailData?.lamSqPrice));
       }
 
       let selectedRatioFullSize = 0;
       if (this.ratioFullSize) {
         const splitRatioFullSize = this.ratioFullSize.split(" ");
         if (splitRatioFullSize.length > 0) {
-          selectedRatioFullSize = splitRatioFullSize[0]
+          selectedRatioFullSize = Number(splitRatioFullSize[0])
         }
       }
 
@@ -800,7 +809,7 @@ export default {
 
       // press per cost not know
       const lamTotalCost = (paper * lamPerPrice);
-      const paperTotalCost = (Number(paper) * Number(this?.paperPrice) / Number(selectedRatioFullSize));
+      const paperTotalCost = (Number(paper) * (Number(this.paperPrice) / Number(selectedRatioFullSize)));
       const ctpTotalCost = (Number(this.selectedColorF) + Number(this.selectedColorB)) * (form * this.detailData.ctpPrice);
       const bindingTotalCost = (this?.biPrice * this.quantity);
       const dieCutTotal = (this.detailData?.dieCut * this.quantity);
@@ -854,8 +863,8 @@ export default {
       this.detailDialogData.allTotal = allTotal;
       this.detailDialogData.vCounter = vCounter;
       this.detailDialogData.vRound = vRound;
-      this.detailDialogData.vPround = bCounter;
-      this.detailDialogData.bCounter = vPround;
+      this.detailDialogData.bCounter = bCounter;
+      this.detailDialogData.vPround = vPround;
       this.detailDialogData.form = form;
       this.detailDialogData.perCost = perCost;
       this.detailDialogData.pressCost = pressCost;
